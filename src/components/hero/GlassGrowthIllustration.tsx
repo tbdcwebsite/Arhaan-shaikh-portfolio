@@ -23,20 +23,19 @@ export function GlassGrowthIllustration() {
           },
         };
 
+  // Trajectory calibrated to terminate safely inside the viewport
   const arrowPath =
-    "M45 285 L151 198 L224 231 L327 103 L367 144 L436 11";
+    "M45 285 L151 198 L224 231 L327 103 L367 144 L415 42";
   const arrowDepthPath =
-    "M45 292 L151 205 L224 238 L327 110 L367 151 L436 18";
+    "M45 292 L151 205 L224 238 L327 110 L367 151 L415 49";
   const arrowRidgePath =
-    "M45 279 L151 192 L224 225 L327 97 L367 138 L433 15";
+    "M45 279 L151 192 L224 225 L327 97 L367 138 L413 44";
 
   return (
     <section className="growth-scene" aria-label="Business growth analytics illustration">
-      {/* Ambient background glows blending into #F8F8F5 */}
       <div className="growth-glow" />
       <div className="growth-glow growth-glow-small" />
 
-      {/* Main 3D Stage */}
       <motion.div
         className="growth-stage"
         initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 18 }}
@@ -139,13 +138,14 @@ export function GlassGrowthIllustration() {
         </motion.div>
 
         {/* ================================================================
-            STUDIO-LEVEL 3D GROWTH ARROW (No weird capsule, pure liquid energy flow)
+            3D GROWTH ARROW (Solid Beveled Arrowhead + Smooth Liquid Wave)
             ================================================================ */}
         <motion.svg
           className="growth-arrow"
           viewBox="0 0 460 330"
           fill="none"
           aria-hidden="true"
+          style={{ overflow: "visible" }}
           initial={reduceMotion ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.25 }}
@@ -162,7 +162,6 @@ export function GlassGrowthIllustration() {
               <stop offset="1" stopColor="#CDF225" stopOpacity="0.4" />
             </linearGradient>
 
-            {/* Seamless Liquid Pulse Gradient */}
             <linearGradient id={`liquid-pulse-${id}`} x1="0%" y1="100%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#CDF225" stopOpacity="0" />
               <stop offset="40%" stopColor="#FFFFFF" stopOpacity="0.85" />
@@ -196,8 +195,8 @@ export function GlassGrowthIllustration() {
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{
-              duration: 1.3,
-              delay: 0.3,
+              duration: 1.25,
+              delay: 0.25,
               ease: [0.16, 1, 0.3, 1],
             }}
           />
@@ -212,8 +211,8 @@ export function GlassGrowthIllustration() {
             initial={{ pathLength: 0 }}
             animate={{ pathLength: 1 }}
             transition={{
-              duration: 1.3,
-              delay: 0.3,
+              duration: 1.25,
+              delay: 0.25,
               ease: [0.16, 1, 0.3, 1],
             }}
           />
@@ -228,7 +227,7 @@ export function GlassGrowthIllustration() {
             opacity=".95"
           />
 
-          {/* 5. Seamless Studio Liquid Flow (Infinite Smooth Wave, Zero Harsh Dash) */}
+          {/* 5. Seamless Liquid Energy Flow */}
           {!reduceMotion && (
             <motion.path
               d={arrowPath}
@@ -236,28 +235,47 @@ export function GlassGrowthIllustration() {
               strokeWidth="10"
               strokeLinecap="round"
               strokeLinejoin="round"
-              strokeDasharray="140 380"
+              strokeDasharray="130 360"
               style={{ filter: "blur(1.5px)" }}
-              animate={{ strokeDashoffset: [520, 0] }}
+              animate={{ strokeDashoffset: [490, 0] }}
               transition={{
-                duration: 2.6,
+                duration: 2.5,
                 repeat: Infinity,
                 ease: "linear",
               }}
             />
           )}
 
-          {/* 6. Arrowhead with Smooth Spring Entrance & Soft Glow */}
-          <motion.path
-            d="M404 19 L439 7 L435 44"
-            stroke="#CDF225"
-            strokeWidth="13"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.35, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          />
+          {/* 6. PROMINENT 3D CHEVRON ARROWHEAD (Flawlessly Aligned at -64.8°)
+              Native transform positioning ensures it stays put and never jumps on layout resize. */}
+          <g transform="translate(415, 42) rotate(-64.8)" className="arrowhead-tip select-none">
+            {/* 3D Underbody Extrusion / Shadow */}
+            <path
+              d="M 0 0 L -25 -14 L -14 0 L -25 14 Z"
+              fill="#436104"
+              transform="translate(1.5, 3.5)"
+            />
+
+            {/* Main 3D Glossy Arrowhead Body */}
+            <path
+              d="M 0 0 L -25 -14 L -14 0 L -25 14 Z"
+              fill={`url(#arrow-${id})`}
+              stroke="#FFFFFF"
+              strokeWidth="1.2"
+              strokeLinejoin="round"
+            />
+
+            {/* Top Specular Light Facet */}
+            <path
+              d="M 0 0 L -25 -14 L -14 0 Z"
+              fill="#FFFFFF"
+              fillOpacity="0.55"
+            />
+
+            {/* Apex Glow Beacon Node */}
+            <circle cx="0" cy="0" r="3.5" fill="#FFFFFF" />
+            <circle cx="0" cy="0" r="7" fill="#CDF225" opacity="0.65" />
+          </g>
         </motion.svg>
 
         {/* Floating Lower Bar Chart */}
@@ -317,12 +335,11 @@ export function GlassGrowthIllustration() {
           </div>
         </motion.div>
 
-        {/* Small Floating Icons (Repositioned to avoid arrow collision) */}
+        {/* Small Floating Icons */}
         <motion.div className="float-icon float-icon-one" animate={float(7, 3.4)}>
           <BarChart3 size={19} />
         </motion.div>
 
-        {/* Top-Right Activity Icon: Shifted away from arrow path */}
         <motion.div className="float-icon float-icon-two" animate={float(8, 4.2)}>
           <Activity size={16} />
         </motion.div>
@@ -345,7 +362,6 @@ export function GlassGrowthIllustration() {
           <circle cx="15" cy="86" r="11" fill="#CDF225" opacity=".2" />
         </svg>
 
-        {/* Ambient Light Accents */}
         <i className="light light-one" />
         <i className="light light-two" />
         <i className="light light-three" />

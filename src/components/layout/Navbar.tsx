@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 interface NavItem {
   name: string;
@@ -21,7 +21,7 @@ const navItems: NavItem[] = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Lock body scroll when mobile drawer is open
+  // Lock body scroll on mobile when drawer is active
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -33,41 +33,40 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Luxury "Lazy" Motion Variants with Blur Deceleration
+  // Lazy reveal motion variants
   const menuContainerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12, // Deliberate lazy spacing between items
-        delayChildren: 0.32,   // Waits for the drawer slide to settle first
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
       },
     },
     exit: {
       opacity: 0,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.04,
         staggerDirection: -1,
       },
     },
   };
 
   const menuItemVariants = {
-    hidden: { opacity: 0, x: 35, filter: "blur(6px)" },
+    hidden: { opacity: 0, x: 24, filter: "blur(4px)" },
     show: {
       opacity: 1,
       x: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.8,
-        ease: [0.16, 1, 0.3, 1] as const, // Apple/Awwwards silky deceleration
+        duration: 0.55,
+        ease: [0.16, 1, 0.3, 1] as const,
       },
     },
     exit: {
       opacity: 0,
-      x: 20,
-      filter: "blur(4px)",
-      transition: { duration: 0.25 },
+      x: 16,
+      transition: { duration: 0.2 },
     },
   };
 
@@ -76,9 +75,9 @@ export function Navbar() {
       {/* Floating Dark Pill Container */}
       <nav
         aria-label="Main Navigation"
-        className="pointer-events-auto w-full max-w-6xl h-14 sm:h-16 px-5 sm:px-6 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
+        className="pointer-events-auto w-full max-w-6xl h-14 sm:h-16 px-4 sm:px-6 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
       >
-        {/* Brand Logo (TBDC Only) */}
+        {/* Brand Logo */}
         <a
           href="#"
           className="flex items-center select-none group py-1 focus:outline-none"
@@ -101,25 +100,22 @@ export function Navbar() {
                 initial="initial"
                 whileHover="hover"
               >
-                {/* Layer 1: Default Uppercase */}
                 <motion.span
                   variants={{
                     initial: { y: 0, opacity: 0.9 },
                     hover: { y: "-130%", opacity: 0 },
                   }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] as const }}
                   className="block font-heading font-semibold text-xs tracking-[0.14em] text-white/85"
                 >
                   {item.name}
                 </motion.span>
-
-                {/* Layer 2: Hover Display */}
                 <motion.span
                   variants={{
                     initial: { y: "130%", opacity: 0 },
                     hover: { y: 0, opacity: 1 },
                   }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] as const }}
                   className="absolute inset-0 flex items-center justify-center font-serif italic font-bold text-[15px] tracking-normal text-[#CDF225] drop-shadow-[0_0_10px_rgba(205,242,37,0.6)]"
                 >
                   {item.hoverDisplay}
@@ -129,110 +125,135 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Right Action Button & Mobile Hamburger */}
-        <div className="flex items-center gap-3">
-          {/* "LET'S TALK" Pill Button (Desktop only) */}
+        {/* Desktop CTA & Mobile Morphing Hamburger Button */}
+        <div className="flex items-center gap-2">
+          {/* Desktop Only CTA */}
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
-            className="hidden md:inline-flex items-center justify-center h-9 sm:h-10 px-5 sm:px-6 rounded-full bg-[#CDF225] text-[#121310] font-heading font-extrabold text-[11px] sm:text-xs tracking-wider uppercase shadow-[0_4px_16px_rgba(205,242,37,0.35)] hover:shadow-[0_6px_22px_rgba(205,242,37,0.6)] select-none cursor-pointer focus:outline-none"
+            className="hidden md:inline-flex items-center justify-center h-9 sm:h-10 px-5 sm:px-6 rounded-full bg-[#CDF225] text-[#121310] font-heading font-extrabold text-[11px] sm:text-xs tracking-wider uppercase shadow-[0_4px_16px_rgba(205,242,37,0.35)] select-none cursor-pointer focus:outline-none"
           >
             LET&apos;S TALK
           </motion.a>
 
-          {/* Mobile Menu Toggle Button */}
+          {/* Guaranteed Touch-Responsive Morphing Hamburger Button */}
           <button
-            onClick={() => setMobileMenuOpen(true)}
-            aria-label="Open Menu"
-            className="md:hidden w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/15 transition-colors focus:outline-none"
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setMobileMenuOpen(!mobileMenuOpen);
+            }}
+            aria-label="Toggle Mobile Menu"
+            className="md:hidden relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/15 active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none select-none"
           >
-            <Menu className="w-4 h-4 text-white" />
+            <div className="w-5 h-4 flex flex-col justify-between items-center pointer-events-none">
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+                className="w-5 h-0.5 bg-white rounded-full origin-center"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { opacity: 0, x: -6 } : { opacity: 1, x: 0 }}
+                transition={{ duration: 0.2 }}
+                className="w-3.5 h-0.5 bg-[#CDF225] rounded-full self-end"
+              />
+              <motion.span
+                animate={mobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+                className="w-5 h-0.5 bg-white rounded-full origin-center"
+              />
+            </div>
           </button>
         </div>
       </nav>
 
       {/* ================================================================
-          RIGHT-SIDE SLIDING MOBILE DRAWER WITH LAZY LUXURY CASCADE
+          COMPACT 80% MAX-HEIGHT LIQUID GLASS SHEET (Zero Dead Space)
           ================================================================ */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop Blur Overlay with Click-Outside Dismiss */}
+            {/* Backdrop Blur Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.35 }}
+              transition={{ duration: 0.25 }}
               onClick={() => setMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/65 backdrop-blur-sm z-50 md:hidden pointer-events-auto"
+              className="fixed inset-0 bg-black/60 backdrop-blur-md z-50 md:hidden pointer-events-auto touch-manipulation"
               aria-hidden="true"
             />
 
-            {/* Sliding Drawer Container */}
+            {/* Compact Floating Liquid Glass Drawer */}
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 30, stiffness: 220 }}
-              className="fixed top-0 right-0 bottom-0 w-[84%] max-w-[340px] h-full bg-[#121214] border-l border-white/10 z-50 md:hidden flex flex-col justify-between p-6 sm:p-8 shadow-[-20px_0_50px_rgba(0,0,0,0.6)] pointer-events-auto"
+              initial={{ x: "100%", opacity: 0.8 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: "100%", opacity: 0.8 }}
+              transition={{ type: "spring", damping: 28, stiffness: 250 }}
+              className="fixed top-0 right-0 w-[84%] max-w-[320px] h-auto max-h-[82vh] z-50 md:hidden flex flex-col p-6 shadow-[-20px_20px_50px_rgba(0,0,0,0.7)] pointer-events-auto border-l border-b border-white/15 rounded-bl-[32px] overflow-hidden"
+              style={{
+                background: "rgba(18, 18, 22, 0.88)",
+                backdropFilter: "blur(32px) saturate(190%)",
+                WebkitBackdropFilter: "blur(32px) saturate(190%)",
+                boxShadow: "-16px 16px 50px rgba(0,0,0,0.65), inset 1px -1px 0 rgba(255,255,255,0.18)",
+              }}
             >
-              {/* Drawer Top Bar: Brand & Close Button */}
-              <div className="flex items-center justify-between pb-6 border-b border-white/10">
-                <span className="font-heading font-extrabold text-lg tracking-wider text-white">
+              {/* Drawer Top Header */}
+              <div className="flex items-center justify-between pb-4 border-b border-white/10 shrink-0">
+                <span className="font-heading font-extrabold text-base tracking-wider text-white select-none">
                   TBDC
                 </span>
                 <button
-                  onClick={() => setMobileMenuOpen(false)}
-                  aria-label="Close Menu"
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/15 active:scale-95 transition-all focus:outline-none"
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setMobileMenuOpen(false);
+                  }}
+                  aria-label="Close Mobile Menu"
+                  className="w-11 h-11 -mr-2 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/15 active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none select-none"
                 >
-                  <X className="w-5 h-5 text-white" />
+                  <span className="text-xl font-light leading-none select-none">✕</span>
                 </button>
               </div>
 
-              {/* Lazy Staggered Navigation List */}
-              <motion.ul
-                variants={menuContainerVariants}
-                initial="hidden"
-                animate="show"
-                exit="exit"
-                className="flex flex-col gap-2 my-auto py-6"
-              >
-                {navItems.map((item, index) => (
-                  <motion.li key={item.name} variants={menuItemVariants}>
-                    <a
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="group flex items-center justify-between py-3.5 px-3 rounded-2xl hover:bg-white/5 transition-all text-left"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span className="font-mono text-xs text-white/30 group-hover:text-[#CDF225] transition-colors">
-                          0{index + 1}
-                        </span>
-                        <span className="font-heading font-bold text-lg text-white/90 group-hover:text-white transition-colors">
+              {/* Tightly Nested Menu Links (No Empty Stretch Gap) */}
+              <div className="py-4 overflow-y-auto">
+                <motion.ul
+                  variants={menuContainerVariants}
+                  initial="hidden"
+                  animate="show"
+                  exit="exit"
+                  className="flex flex-col gap-3.5 w-full"
+                >
+                  {navItems.map((item) => (
+                    <motion.li key={item.name} variants={menuItemVariants}>
+                      <a
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="group block py-1.5 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation"
+                      >
+                        <span className="font-heading font-bold text-lg text-white/90 group-hover:text-[#CDF225] transition-colors tracking-tight">
                           {item.hoverDisplay}
                         </span>
-                      </div>
-                      <ArrowUpRight className="w-4 h-4 text-white/30 group-hover:text-[#CDF225] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                    </a>
-                  </motion.li>
-                ))}
-              </motion.ul>
+                      </a>
+                    </motion.li>
+                  ))}
+                </motion.ul>
+              </div>
 
-              {/* Synchronized Lazy Footer CTA Pill */}
+              {/* Immediately Connected Bottom CTA */}
               <motion.div
-                initial={{ opacity: 0, y: 16, filter: "blur(4px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.7, delay: 0.75, ease: [0.16, 1, 0.3, 1] as const }}
-                className="pt-6 border-t border-white/10 flex flex-col gap-3"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] as const }}
+                className="pt-4 mt-1 border-t border-white/10 shrink-0"
               >
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full h-12 rounded-full bg-[#CDF225] text-[#121310] font-heading font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(205,242,37,0.35)] active:scale-98 transition-transform"
+                  className="w-full h-11 rounded-full bg-[#CDF225] text-[#121310] font-heading font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(205,242,37,0.35)] active:scale-95 transition-transform touch-manipulation"
                 >
                   <span>LET&apos;S TALK</span>
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />

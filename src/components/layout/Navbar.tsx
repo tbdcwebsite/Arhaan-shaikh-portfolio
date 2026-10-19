@@ -15,7 +15,6 @@ const navItems: NavItem[] = [
   { name: "SERVICES", href: "#services", hoverDisplay: "Services" },
   { name: "SUCCESS STORIES", href: "#success-stories", hoverDisplay: "Success Stories" },
   { name: "JOURNAL", href: "#journal", hoverDisplay: "Journal" },
-  { name: "CONTACT", href: "#contact", hoverDisplay: "Contact" },
 ];
 
 export function Navbar() {
@@ -37,8 +36,8 @@ export function Navbar() {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.2,
+        staggerChildren: 0.07,
+        delayChildren: 0.15,
       },
     },
     exit: {
@@ -51,29 +50,29 @@ export function Navbar() {
   };
 
   const menuItemVariants = {
-    hidden: { opacity: 0, x: 24, filter: "blur(4px)" },
+    hidden: { opacity: 0, x: 20, filter: "blur(3px)" },
     show: {
       opacity: 1,
       x: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.55,
+        duration: 0.45,
         ease: [0.16, 1, 0.3, 1] as const,
       },
     },
     exit: {
       opacity: 0,
-      x: 16,
+      x: 14,
       transition: { duration: 0.2 },
     },
   };
 
   return (
-    <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+    <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-8 md:px-12 lg:px-16 pointer-events-none">
       {/* Floating Dark Pill Container */}
       <nav
         aria-label="Main Navigation"
-        className="pointer-events-auto w-full max-w-6xl h-14 sm:h-16 px-4 sm:px-6 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
+        className="pointer-events-auto w-full max-w-7xl h-14 sm:h-16 px-5 sm:px-8 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
       >
         {/* Brand Logo */}
         <a
@@ -85,39 +84,39 @@ export function Navbar() {
           </span>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-0.5 lg:gap-1.5">
+        {/* Desktop Navigation Links with 100% Transparent Background */}
+        <div className="hidden md:flex items-center gap-1.5 lg:gap-3">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="relative px-3 lg:px-3.5 py-1.5 flex items-center justify-center focus:outline-none whitespace-nowrap"
+              className="relative px-3.5 lg:px-4 py-1.5 flex items-center justify-center focus:outline-none whitespace-nowrap bg-transparent hover:bg-transparent"
             >
               <motion.div
-                className="relative h-6 overflow-hidden flex items-center justify-center cursor-pointer select-none"
+                className="relative h-6 overflow-hidden flex items-center justify-center cursor-pointer select-none bg-transparent"
                 initial="initial"
                 whileHover="hover"
               >
                 {/* Default Sans Layer */}
                 <motion.span
                   variants={{
-                    initial: { y: 0, opacity: 0.9 },
+                    initial: { y: 0, opacity: 0.85 },
                     hover: { y: "-130%", opacity: 0 },
                   }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] as const }}
-                  className="block font-heading font-semibold text-xs tracking-[0.14em] text-white/85 whitespace-nowrap"
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] as const }}
+                  className="block font-heading font-semibold text-xs tracking-[0.14em] text-white/80 whitespace-nowrap"
                 >
                   {item.name}
                 </motion.span>
 
-                {/* Hover Italic Serif Layer */}
+                {/* Hover Italic Serif Layer (Pure transparent canvas) */}
                 <motion.span
                   variants={{
                     initial: { y: "130%", opacity: 0 },
                     hover: { y: 0, opacity: 1 },
                   }}
-                  transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] as const }}
-                  className="absolute inset-0 flex items-center justify-center font-serif italic font-bold text-[14.5px] tracking-normal text-[#CDF225] drop-shadow-[0_0_10px_rgba(205,242,37,0.6)] whitespace-nowrap"
+                  transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] as const }}
+                  className="absolute inset-0 flex items-center justify-center font-serif italic font-medium text-[14.5px] tracking-normal text-[#CDF225] drop-shadow-[0_0_10px_rgba(205,242,37,0.55)] whitespace-nowrap bg-transparent"
                 >
                   {item.hoverDisplay}
                 </motion.span>
@@ -169,10 +168,13 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Compact Liquid Glass Drawer */}
+      {/* ================================================================
+          TALLER LIQUID GLASS MOBILE DRAWER WITH COMPACT MENU HEIGHT
+          ================================================================ */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
+            {/* Backdrop Blur Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -183,22 +185,23 @@ export function Navbar() {
               aria-hidden="true"
             />
 
+            {/* Taller Drawer Card (h-[74vh] with clean distribution) */}
             <motion.div
               initial={{ x: "100%", opacity: 0.8 }}
               animate={{ x: 0, opacity: 1 }}
               exit={{ x: "100%", opacity: 0.8 }}
               transition={{ type: "spring", damping: 28, stiffness: 250 }}
-              className="fixed top-0 right-0 w-[84%] max-w-[320px] h-auto max-h-[82vh] z-50 md:hidden flex flex-col p-6 shadow-[-20px_20px_50px_rgba(0,0,0,0.7)] pointer-events-auto border-l border-b border-white/15 rounded-bl-[32px] overflow-hidden"
+              className="fixed top-0 right-0 w-[84%] max-w-[320px] h-[74vh] max-h-[620px] z-50 md:hidden flex flex-col justify-between p-6 shadow-[-20px_20px_50px_rgba(0,0,0,0.7)] pointer-events-auto border-l border-b border-white/15 rounded-bl-[36px] overflow-hidden"
               style={{
-                background: "rgba(18, 18, 22, 0.88)",
+                background: "rgba(18, 18, 22, 0.90)",
                 backdropFilter: "blur(32px) saturate(190%)",
                 WebkitBackdropFilter: "blur(32px) saturate(190%)",
                 boxShadow: "-16px 16px 50px rgba(0,0,0,0.65), inset 1px -1px 0 rgba(255,255,255,0.18)",
               }}
             >
-              {/* Drawer Top Header */}
+              {/* Header: Clean Bold Logo (No extra dot/tag) + 48px Close Button */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10 shrink-0">
-                <span className="font-heading font-extrabold text-base tracking-wider text-white select-none">
+                <span className="font-heading font-extrabold text-lg tracking-wider text-white select-none">
                   TBDC
                 </span>
                 <button
@@ -214,14 +217,14 @@ export function Navbar() {
                 </button>
               </div>
 
-              {/* Menu Links */}
-              <div className="py-4 overflow-y-auto">
+              {/* Compact Menu Section (Image 2 Bold Typography, Reduced Line Height & Gaps, No Arrows) */}
+              <div className="py-2 flex flex-col justify-center">
                 <motion.ul
                   variants={menuContainerVariants}
                   initial="hidden"
                   animate="show"
                   exit="exit"
-                  className="flex flex-col gap-3.5 w-full"
+                  className="flex flex-col gap-2.5 w-full"
                 >
                   {navItems.map((item) => (
                     <motion.li key={item.name} variants={menuItemVariants}>
@@ -239,17 +242,17 @@ export function Navbar() {
                 </motion.ul>
               </div>
 
-              {/* Bottom CTA */}
+              {/* Bottom CTA Pill */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] as const }}
-                className="pt-4 mt-1 border-t border-white/10 shrink-0"
+                transition={{ duration: 0.45, delay: 0.35, ease: [0.16, 1, 0.3, 1] as const }}
+                className="pt-4 border-t border-white/10 shrink-0"
               >
                 <a
                   href="#contact"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="w-full h-11 rounded-full bg-[#CDF225] text-[#121310] font-heading font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(205,242,37,0.35)] active:scale-95 transition-transform touch-manipulation"
+                  className="w-full h-12 rounded-full bg-[#CDF225] text-[#121310] font-heading font-extrabold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(205,242,37,0.35)] active:scale-95 transition-transform touch-manipulation"
                 >
                   <span>LET&apos;S TALK</span>
                   <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />

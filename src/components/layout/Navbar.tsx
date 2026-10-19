@@ -21,7 +21,6 @@ const navItems: NavItem[] = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Lock body scroll on mobile when drawer is active
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
@@ -33,7 +32,6 @@ export function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  // Lazy reveal motion variants
   const menuContainerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -72,12 +70,10 @@ export function Navbar() {
 
   return (
     <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
-      {/* Floating Dark Pill Container */}
       <nav
         aria-label="Main Navigation"
         className="pointer-events-auto w-full max-w-6xl h-14 sm:h-16 px-4 sm:px-6 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
       >
-        {/* Brand Logo */}
         <a
           href="#"
           className="flex items-center select-none group py-1 focus:outline-none"
@@ -125,9 +121,8 @@ export function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA & Mobile Morphing Hamburger Button */}
+        {/* Desktop CTA & Mobile Transparent Hamburger */}
         <div className="flex items-center gap-2">
-          {/* Desktop Only CTA */}
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
@@ -138,7 +133,7 @@ export function Navbar() {
             LET&apos;S TALK
           </motion.a>
 
-          {/* Guaranteed Touch-Responsive Morphing Hamburger Button */}
+          {/* Transparent Background Hamburger Button */}
           <button
             type="button"
             onClick={(e) => {
@@ -146,12 +141,12 @@ export function Navbar() {
               setMobileMenuOpen(!mobileMenuOpen);
             }}
             aria-label="Toggle Mobile Menu"
-            className="md:hidden relative w-12 h-12 flex items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/15 active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none select-none"
+            className="md:hidden relative w-12 h-12 flex items-center justify-center bg-transparent active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none select-none"
           >
-            <div className="w-5 h-4 flex flex-col justify-between items-center pointer-events-none">
+            <div className="w-5 h-3.5 flex flex-col justify-between items-center pointer-events-none">
               <motion.span
-                animate={mobileMenuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+                animate={mobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] as const }}
                 className="w-5 h-0.5 bg-white rounded-full origin-center"
               />
               <motion.span
@@ -160,8 +155,8 @@ export function Navbar() {
                 className="w-3.5 h-0.5 bg-[#CDF225] rounded-full self-end"
               />
               <motion.span
-                animate={mobileMenuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] as const }}
+                animate={mobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+                transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] as const }}
                 className="w-5 h-0.5 bg-white rounded-full origin-center"
               />
             </div>
@@ -169,13 +164,10 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* ================================================================
-          COMPACT 80% MAX-HEIGHT LIQUID GLASS SHEET (Zero Dead Space)
-          ================================================================ */}
+      {/* Compact Liquid Glass Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <>
-            {/* Backdrop Blur Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -186,7 +178,6 @@ export function Navbar() {
               aria-hidden="true"
             />
 
-            {/* Compact Floating Liquid Glass Drawer */}
             <motion.div
               initial={{ x: "100%", opacity: 0.8 }}
               animate={{ x: 0, opacity: 1 }}
@@ -200,7 +191,6 @@ export function Navbar() {
                 boxShadow: "-16px 16px 50px rgba(0,0,0,0.65), inset 1px -1px 0 rgba(255,255,255,0.18)",
               }}
             >
-              {/* Drawer Top Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10 shrink-0">
                 <span className="font-heading font-extrabold text-base tracking-wider text-white select-none">
                   TBDC
@@ -218,7 +208,6 @@ export function Navbar() {
                 </button>
               </div>
 
-              {/* Tightly Nested Menu Links (No Empty Stretch Gap) */}
               <div className="py-4 overflow-y-auto">
                 <motion.ul
                   variants={menuContainerVariants}
@@ -243,7 +232,6 @@ export function Navbar() {
                 </motion.ul>
               </div>
 
-              {/* Immediately Connected Bottom CTA */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}

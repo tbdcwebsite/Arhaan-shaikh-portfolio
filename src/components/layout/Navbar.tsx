@@ -12,10 +12,10 @@ interface NavItem {
 
 const navItems: NavItem[] = [
   { name: "ABOUT", href: "#about", hoverDisplay: "About" },
-  { name: "QUESTIONS", href: "#questions", hoverDisplay: "Questions" },
-  { name: "EXPERTISE", href: "#expertise", hoverDisplay: "Expertise" },
-  { name: "PROCESS", href: "#process", hoverDisplay: "Process" },
-  { name: "NOTES", href: "#notes", hoverDisplay: "Notes" },
+  { name: "SERVICES", href: "#services", hoverDisplay: "Services" },
+  { name: "SUCCESS STORIES", href: "#success-stories", hoverDisplay: "Success Stories" },
+  { name: "JOURNAL", href: "#journal", hoverDisplay: "Journal" },
+  { name: "CONTACT", href: "#contact", hoverDisplay: "Contact" },
 ];
 
 export function Navbar() {
@@ -70,10 +70,12 @@ export function Navbar() {
 
   return (
     <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none">
+      {/* Floating Dark Pill Container */}
       <nav
         aria-label="Main Navigation"
         className="pointer-events-auto w-full max-w-6xl h-14 sm:h-16 px-4 sm:px-6 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
       >
+        {/* Brand Logo */}
         <a
           href="#"
           className="flex items-center select-none group py-1 focus:outline-none"
@@ -84,35 +86,38 @@ export function Navbar() {
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center gap-1 lg:gap-2">
+        <div className="hidden md:flex items-center gap-0.5 lg:gap-1.5">
           {navItems.map((item) => (
             <a
               key={item.name}
               href={item.href}
-              className="relative px-3.5 py-1.5 flex items-center justify-center focus:outline-none"
+              className="relative px-3 lg:px-3.5 py-1.5 flex items-center justify-center focus:outline-none whitespace-nowrap"
             >
               <motion.div
                 className="relative h-6 overflow-hidden flex items-center justify-center cursor-pointer select-none"
                 initial="initial"
                 whileHover="hover"
               >
+                {/* Default Sans Layer */}
                 <motion.span
                   variants={{
                     initial: { y: 0, opacity: 0.9 },
                     hover: { y: "-130%", opacity: 0 },
                   }}
                   transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] as const }}
-                  className="block font-heading font-semibold text-xs tracking-[0.14em] text-white/85"
+                  className="block font-heading font-semibold text-xs tracking-[0.14em] text-white/85 whitespace-nowrap"
                 >
                   {item.name}
                 </motion.span>
+
+                {/* Hover Italic Serif Layer */}
                 <motion.span
                   variants={{
                     initial: { y: "130%", opacity: 0 },
                     hover: { y: 0, opacity: 1 },
                   }}
                   transition={{ duration: 0.32, ease: [0.16, 1, 0.3, 1] as const }}
-                  className="absolute inset-0 flex items-center justify-center font-serif italic font-bold text-[15px] tracking-normal text-[#CDF225] drop-shadow-[0_0_10px_rgba(205,242,37,0.6)]"
+                  className="absolute inset-0 flex items-center justify-center font-serif italic font-bold text-[14.5px] tracking-normal text-[#CDF225] drop-shadow-[0_0_10px_rgba(205,242,37,0.6)] whitespace-nowrap"
                 >
                   {item.hoverDisplay}
                 </motion.span>
@@ -191,6 +196,7 @@ export function Navbar() {
                 boxShadow: "-16px 16px 50px rgba(0,0,0,0.65), inset 1px -1px 0 rgba(255,255,255,0.18)",
               }}
             >
+              {/* Drawer Top Header */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10 shrink-0">
                 <span className="font-heading font-extrabold text-base tracking-wider text-white select-none">
                   TBDC
@@ -208,6 +214,7 @@ export function Navbar() {
                 </button>
               </div>
 
+              {/* Menu Links */}
               <div className="py-4 overflow-y-auto">
                 <motion.ul
                   variants={menuContainerVariants}
@@ -232,6 +239,7 @@ export function Navbar() {
                 </motion.ul>
               </div>
 
+              {/* Bottom CTA */}
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -80,7 +80,7 @@ export function Navbar() {
           className="flex items-center select-none group py-1 focus:outline-none"
         >
           <span className="font-heading font-extrabold text-sm sm:text-base tracking-wider text-white">
-            TBDC
+            Arhaan Shaikh
           </span>
         </a>
 
@@ -202,7 +202,7 @@ export function Navbar() {
               {/* Header: Clean Bold Logo (No extra dot/tag) + 48px Close Button */}
               <div className="flex items-center justify-between pb-4 border-b border-white/10 shrink-0">
                 <span className="font-heading font-extrabold text-lg tracking-wider text-white select-none">
-                  TBDC
+                  Arhaan Shaikh
                 </span>
                 <button
                   type="button"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
@@ -21,10 +21,49 @@ const navItems: NavItem[] = [
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [hidden, setHidden] = useState(false);
+  const lastScrollY = useRef(0);
 
   useEffect(() => {
     setMounted(true);
+    lastScrollY.current = window.scrollY;
   }, []);
+
+  // Rock-solid native scroll listener for auto-hide / auto-reveal
+  useEffect(() => {
+    const handleScroll = () => {
+      // If mobile menu is open, never hide the navbar
+      if (mobileMenuOpen) {
+        setHidden(false);
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY < 60) {
+        setHidden(false);
+      } else if (delta > 8) {
+        // User scrolling down: hide navbar smoothly
+        setHidden(true);
+      } else if (delta < -8) {
+        // User scrolling up: reveal navbar
+        setHidden(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [mobileMenuOpen]);
+
+  // Keep navbar visible if mobile drawer opens
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setHidden(false);
+    }
+  }, [mobileMenuOpen]);
 
   // Comprehensive Mobile Scroll Lock (Blocks body, html, touch-move, and Lenis)
   useEffect(() => {
@@ -104,7 +143,14 @@ export function Navbar() {
 
   return (
     <>
-      <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-8 md:px-12 lg:px-16 pointer-events-none">
+      <header
+        style={{
+          transform: hidden ? "translate3d(0, -160%, 0)" : "translate3d(0, 0, 0)",
+          opacity: hidden ? 0 : 1,
+          visibility: hidden ? "hidden" : "visible",
+        }}
+        className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-8 md:px-12 lg:px-16 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+      >
         {/* Floating Dark Pill Container */}
         <nav
           aria-label="Main Navigation"
@@ -320,4 +366,5 @@ export function Navbar() {
   );
 }
 
+export { Navbar as Nav };
 export default Navbar;

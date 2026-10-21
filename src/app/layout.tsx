@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${manrope.variable} h-full antialiased bg-[#F8F8F5]`}
+      className={`${inter.variable} ${manrope.variable} min-h-full antialiased bg-[#F8F8F5]`}
       style={{ backgroundColor: "#F8F8F5" }}
     >
       <body

@@ -4,7 +4,12 @@ import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 if (typeof window !== "undefined") {
@@ -86,90 +91,113 @@ const EXPERTISE_ITEMS: ExpertiseCard[] = [
 ];
 
 /* ------------------------------------------------------------------
-   MOBILE STICKY STACKED CARD (Inspired by Skiper16 + Framer Motion)
+   MOBILE PINNED CARD COMPONENT (Zero Bottom Peeking)
    ------------------------------------------------------------------ */
 function MobileStackedCard({
   i,
   item,
+  total,
   progress,
-  range,
-  targetScale,
 }: {
   i: number;
   item: ExpertiseCard;
+  total: number;
   progress: MotionValue<number>;
-  range: [number, number];
-  targetScale: number;
 }) {
-  const scale = useTransform(progress, range, [1, targetScale]);
+  // Discrete animation slice for cards 1 to 5
+  const startProgress = i === 0 ? 0 : (i - 1) * 0.2;
+  const endProgress = i === 0 ? 0 : i * 0.2;
+
+  // Discrete y translation: 100vh keeps upcoming cards completely off-screen
+  const y = useTransform(
+    progress,
+    i === 0 ? [0, 1] : [startProgress, endProgress],
+    i === 0 ? ["0px", "0px"] : ["100vh", "0px"]
+  );
+
+  // Opacity culling: 0 until scroll window arrives, eliminating any bottom peeking
+  const opacity = useTransform(
+    progress,
+    i === 0 ? [0, 1] : [startProgress, Math.min(1, startProgress + 0.05)],
+    i === 0 ? [1, 1] : [0, 1]
+  );
+
+  // Progressive depth scale: lower cards scale down as higher cards stack on top
+  const targetScale = Math.max(0.86, 1 - (total - 1 - i) * 0.028);
+  const scaleRange = i === 0 ? [0, 1] : [endProgress, 1];
+  const scaleTransform = useTransform(progress, scaleRange, [1, targetScale]);
+  // Top card retains full scale
+  const scale = i === total - 1 ? 1 : scaleTransform;
 
   return (
-    <div
-      style={{ zIndex: i + 1 }}
-      className="sticky top-0 flex items-start justify-center h-[54vh] min-h-[350px] w-full"
+    <motion.article
+      style={{
+        y,
+        scale,
+        opacity,
+        top: `${i * 10}px`,
+        zIndex: 10 + i,
+        transformOrigin: "top center",
+      }}
+      className={`pointer-events-auto absolute flex flex-col justify-between w-[calc(100%-8px)] max-w-[360px] sm:max-w-[380px] h-[280px] sm:h-[300px] shrink-0 rounded-[28px] p-6 sm:p-7 border border-white/10 shadow-[0_-12px_36px_rgba(0,0,0,0.55),0_24px_50px_rgba(0,0,0,0.65)] select-none ${item.bgClass} ${item.textClass}`}
     >
-      <motion.div
-        style={{
-          scale,
-          top: `calc(5.2rem + ${i * 12}px)`,
-        }}
-        className={`relative w-full max-w-[340px] sm:max-w-[380px] h-[280px] sm:h-[310px] ${item.bgClass} ${item.textClass} p-6 sm:p-7 rounded-[28px] flex flex-col justify-between shadow-[0_-8px_32px_rgba(0,0,0,0.5),0_20px_45px_rgba(0,0,0,0.65)] border border-white/10 origin-top select-none`}
-      >
-        {/* Card Header: Giant Number & Chapter Tag */}
-        <div className="flex items-start justify-between">
-          <span className="font-serif italic font-medium text-6xl sm:text-7xl leading-none tracking-tight">
-            {item.number}
-          </span>
-          <span
-            className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold ${item.tagClass}`}
-          >
-            {item.chapter}
-          </span>
-        </div>
+      {/* Card Header: Giant Number & Chapter Tag */}
+      <div className="flex items-start justify-between">
+        <span className="font-serif italic font-medium text-6xl sm:text-7xl leading-none tracking-tight">
+          {item.number}
+        </span>
+        <span
+          className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold whitespace-nowrap ${item.tagClass}`}
+        >
+          {item.chapter}
+        </span>
+      </div>
 
-        {/* Card Footer: Service Heading & Arrow */}
-        <div className="flex items-end justify-between gap-4">
-          <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] leading-[1.1] tracking-tight">
-            {item.title}
-          </h3>
-          <div
-            className={`w-11 h-11 rounded-full ${item.arrowClass} flex items-center justify-center shrink-0 shadow-md`}
-          >
-            <ArrowUpRight className="w-5 h-5 stroke-[2.4]" />
-          </div>
+      {/* Card Footer: Service Heading & Arrow */}
+      <div className="flex items-end justify-between gap-3">
+        <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] leading-[1.1] tracking-tight">
+          {item.title}
+        </h3>
+        <div
+          className={`w-11 h-11 rounded-full ${item.arrowClass} flex items-center justify-center shrink-0 shadow-md`}
+        >
+          <ArrowUpRight className="w-5 h-5 stroke-[2.4]" />
         </div>
-      </motion.div>
-    </div>
+      </div>
+    </motion.article>
   );
 }
 
 export default function ExpertiseSection() {
   const desktopContainerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const mobileContainerRef = useRef<HTMLDivElement>(null);
+  const mobileTrackRef = useRef<HTMLDivElement>(null);
 
-  // Mobile scroll progress for forward/reverse stacking
+  // Mobile scroll progress across the h-[360vh] runway
   const { scrollYProgress: mobileScrollProgress } = useScroll({
-    target: mobileContainerRef,
+    target: mobileTrackRef,
     offset: ["start start", "end end"],
   });
 
-  // Desktop horizontal pin-scroll via GSAP ScrollTrigger
+  /* Desktop GSAP Horizontal Pinning */
   useGSAP(
     () => {
       const mm = gsap.matchMedia();
 
       mm.add("(min-width: 1024px)", () => {
-        if (!desktopContainerRef.current || !trackRef.current) return;
-
+        const container = desktopContainerRef.current;
         const track = trackRef.current;
-        const getScrollDistance = () => track.scrollWidth - window.innerWidth + 140;
+
+        if (!container || !track) return;
+
+        const getScrollDistance = () =>
+          Math.max(0, track.scrollWidth - window.innerWidth + 140);
 
         const tween = gsap.to(track, {
           x: () => -getScrollDistance(),
           ease: "none",
           scrollTrigger: {
-            trigger: desktopContainerRef.current,
+            trigger: container,
             start: "top top",
             end: () => `+=${getScrollDistance()}`,
             pin: true,
@@ -178,10 +206,10 @@ export default function ExpertiseSection() {
           },
         });
 
-        return () => {
-          tween.kill();
-        };
+        return () => tween.kill();
       });
+
+      return () => mm.revert();
     },
     { scope: desktopContainerRef }
   );
@@ -191,10 +219,15 @@ export default function ExpertiseSection() {
   }, []);
 
   return (
-    <section id="expertise" className="relative w-full bg-[#121214] text-white overflow-visible">
-      {/* Anchor for #services navigation */}
-      <div id="services" className="absolute top-0 left-0 w-px h-px pointer-events-none" />
-      
+    <section
+      id="expertise"
+      className="relative w-full bg-[#121214] text-white overflow-visible"
+    >
+      <div
+        id="services"
+        className="absolute top-0 left-0 w-px h-px pointer-events-none"
+      />
+
       {/* ==============================================================
           1. DESKTOP GSAP HORIZONTAL PIN-SCROLL (>= lg)
           ============================================================== */}
@@ -202,16 +235,13 @@ export default function ExpertiseSection() {
         ref={desktopContainerRef}
         className="hidden lg:flex h-screen w-full flex-col justify-center overflow-hidden px-10 xl:px-16 relative"
       >
-        {/* Desktop Header */}
         <div className="max-w-7xl w-full mx-auto mb-8 xl:mb-12 flex items-end justify-between select-none">
-          <div>
-            <h2 className="text-4xl xl:text-6xl font-heading font-extrabold tracking-tight leading-[1.08] text-white">
-              <span>Where I usually </span>
-              <span className="font-serif italic font-normal text-[#CDF225]">
-                enter the picture.
-              </span>
-            </h2>
-          </div>
+          <h2 className="text-4xl xl:text-6xl font-heading font-extrabold tracking-tight leading-[1.08] text-white">
+            Where I usually{" "}
+            <span className="font-serif italic font-normal text-[#CDF225]">
+              enter the picture.
+            </span>
+          </h2>
 
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-[0.2em] text-white/50 pb-2">
             <span>Keep scrolling</span>
@@ -219,7 +249,6 @@ export default function ExpertiseSection() {
           </div>
         </div>
 
-        {/* Dynamic Horizontal Track */}
         <div className="w-full overflow-visible">
           <div
             ref={trackRef}
@@ -229,13 +258,23 @@ export default function ExpertiseSection() {
               <article
                 key={item.title}
                 style={{ transform: `rotate(${item.rotateDeg}deg)` }}
-                className={`group relative w-[330px] xl:w-[390px] h-[410px] xl:h-[460px] ${item.bgClass} ${item.textClass} p-8 rounded-[36px] flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.55)] transition-all duration-400 hover:!rotate-0 hover:scale-[1.04] hover:shadow-[0_30px_70px_rgba(0,0,0,0.8)] select-none cursor-pointer shrink-0`}
+                className={`
+                  group relative w-[330px] xl:w-[390px]
+                  h-[410px] xl:h-[460px]
+                  ${item.bgClass} ${item.textClass}
+                  p-8 rounded-[36px] flex flex-col justify-between
+                  shadow-[0_20px_50px_rgba(0,0,0,0.55)]
+                  transition-all duration-300
+                  hover:!rotate-0 hover:scale-[1.04]
+                  hover:shadow-[0_30px_70px_rgba(0,0,0,0.8)]
+                  select-none cursor-pointer shrink-0
+                `}
               >
-                {/* Giant Number & Chapter Tag */}
                 <div className="flex items-start justify-between">
                   <span className="font-serif italic font-medium text-7xl xl:text-8xl leading-none tracking-tight">
                     {item.number}
                   </span>
+
                   <span
                     className={`px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider font-semibold ${item.tagClass}`}
                   >
@@ -243,13 +282,18 @@ export default function ExpertiseSection() {
                   </span>
                 </div>
 
-                {/* Service Title & Arrow Button */}
                 <div className="flex items-end justify-between gap-4 pt-6">
                   <h3 className="font-heading font-extrabold text-2xl xl:text-3xl leading-[1.1] tracking-tight">
                     {item.title}
                   </h3>
+
                   <div
-                    className={`w-12 h-12 rounded-full ${item.arrowClass} flex items-center justify-center shrink-0 shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-45`}
+                    className={`
+                      w-12 h-12 rounded-full ${item.arrowClass}
+                      flex items-center justify-center shrink-0 shadow-md
+                      transition-transform duration-300
+                      group-hover:scale-110 group-hover:rotate-45
+                    `}
                   >
                     <ArrowUpRight className="w-5 h-5 stroke-[2.4]" />
                   </div>
@@ -261,43 +305,41 @@ export default function ExpertiseSection() {
       </div>
 
       {/* ==============================================================
-          2. MOBILE STICKY STACKED CARD DECK (< lg)
+          2. MOBILE: SINGLE PINNED VIEWPORT ARCHITECTURE (< lg)
           ============================================================== */}
-      <div className="flex lg:hidden flex-col px-5 pt-20 pb-12 relative">
-        {/* Mobile Header */}
-        <div className="mb-10 select-none">
-          <span className="text-xs font-mono uppercase tracking-[0.2em] text-[#CDF225] block mb-2">
-            Services
-          </span>
-          <h2 className="text-3xl sm:text-4xl font-heading font-extrabold tracking-tight leading-[1.1] text-white">
-            <span>Where I usually </span>
-            <span className="font-serif italic font-normal text-[#CDF225]">
-              enter the picture.
+      <div
+        ref={mobileTrackRef}
+        className="flex lg:hidden relative w-full h-[360vh]"
+      >
+        {/* Pinned Viewport Container */}
+        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-start px-5 pt-16 sm:pt-20 pb-6 overflow-hidden">
+
+          {/* Header docked as flex item above cards */}
+          <header className="shrink-0 w-full select-none mb-3">
+            <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#CDF225] block mb-1">
+              Services
             </span>
-          </h2>
-        </div>
+            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold tracking-tight leading-[1.12] text-white">
+              Where I usually{" "}
+              <span className="font-serif italic font-normal text-[#CDF225]">
+                enter the picture.
+              </span>
+            </h2>
+          </header>
 
-        {/* Scroll Container for Sticky Cards */}
-        <div
-          ref={mobileContainerRef}
-          className="relative w-full flex flex-col pb-[35vh]"
-        >
-          {EXPERTISE_ITEMS.map((item, index) => {
-            const total = EXPERTISE_ITEMS.length;
-            const targetScale = Math.max(0.80, 1 - (total - 1 - index) * 0.035);
-            const range: [number, number] = [index * (1 / total), 1];
-
-            return (
+          {/* Cards Stage: Clean area with zero bottom peeking */}
+          <div className="relative flex-1 w-full flex items-start justify-center pt-2 sm:pt-4">
+            {EXPERTISE_ITEMS.map((item, index) => (
               <MobileStackedCard
                 key={item.title}
                 i={index}
                 item={item}
+                total={EXPERTISE_ITEMS.length}
                 progress={mobileScrollProgress}
-                range={range}
-                targetScale={targetScale}
               />
-            );
-          })}
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

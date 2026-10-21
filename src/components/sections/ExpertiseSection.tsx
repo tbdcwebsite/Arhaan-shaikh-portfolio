@@ -18,11 +18,9 @@ if (typeof window !== "undefined") {
 
 interface ExpertiseCard {
   number: string;
-  chapter: string;
   title: string;
   bgClass: string;
   textClass: string;
-  tagClass: string;
   arrowClass: string;
   rotateDeg: number;
 }
@@ -30,68 +28,60 @@ interface ExpertiseCard {
 const EXPERTISE_ITEMS: ExpertiseCard[] = [
   {
     number: "01",
-    chapter: "Chapter 01/06",
     title: "Go-to-market strategy",
     bgClass: "bg-[#F8F8F5]",
     textClass: "text-[#121310]",
-    tagClass: "bg-[#121310]/10 text-[#121310]/80",
     arrowClass: "bg-[#121310] text-white",
     rotateDeg: -2.5,
   },
   {
     number: "02",
-    chapter: "Chapter 02/06",
     title: "Growth strategy",
     bgClass: "bg-[#CDF225]",
     textClass: "text-[#121310]",
-    tagClass: "bg-[#121310]/12 text-[#121310]",
     arrowClass: "bg-[#121310] text-[#CDF225]",
     rotateDeg: 2,
   },
   {
     number: "03",
-    chapter: "Chapter 03/06",
     title: "E-commerce & Quick Commerce",
     bgClass: "bg-[#FF4D2E]",
     textClass: "text-white",
-    tagClass: "bg-white/20 text-white",
     arrowClass: "bg-white text-[#FF4D2E]",
     rotateDeg: -2,
   },
   {
     number: "04",
-    chapter: "Chapter 04/06",
     title: "Marketing strategy",
     bgClass: "bg-[#1F3552]",
     textClass: "text-white",
-    tagClass: "bg-white/15 text-white/90",
     arrowClass: "bg-[#CDF225] text-[#121310]",
     rotateDeg: 2.5,
   },
   {
     number: "05",
-    chapter: "Chapter 05/06",
     title: "Brand positioning",
     bgClass: "bg-[#F8F8F5]",
     textClass: "text-[#121310]",
-    tagClass: "bg-[#121310]/10 text-[#121310]/80",
     arrowClass: "bg-[#121310] text-white",
     rotateDeg: -1.5,
   },
   {
     number: "06",
-    chapter: "Chapter 06/06",
     title: "Digital strategy",
     bgClass: "bg-[#CDF225]",
     textClass: "text-[#121310]",
-    tagClass: "bg-[#121310]/12 text-[#121310]",
     arrowClass: "bg-[#121310] text-[#CDF225]",
     rotateDeg: 2,
   },
 ];
 
 /* ------------------------------------------------------------------
-   MOBILE PINNED CARD COMPONENT (Zero Bottom Peeking)
+   MOBILE PINNED CARD COMPONENT
+   - Tall luxury card aspect ratio (h: 440px)
+   - Centered vertically in stage
+   - Chapter pill removed for pure minimalist typography
+   - Clean 100vh offscreen translation with opacity culling
    ------------------------------------------------------------------ */
 function MobileStackedCard({
   i,
@@ -104,29 +94,27 @@ function MobileStackedCard({
   total: number;
   progress: MotionValue<number>;
 }) {
-  // Discrete animation slice for cards 1 to 5
   const startProgress = i === 0 ? 0 : (i - 1) * 0.2;
   const endProgress = i === 0 ? 0 : i * 0.2;
 
-  // Discrete y translation: 100vh keeps upcoming cards completely off-screen
+  // Off-screen translation
   const y = useTransform(
     progress,
     i === 0 ? [0, 1] : [startProgress, endProgress],
     i === 0 ? ["0px", "0px"] : ["100vh", "0px"]
   );
 
-  // Opacity culling: 0 until scroll window arrives, eliminating any bottom peeking
+  // Opacity culling so next cards never peek at the bottom
   const opacity = useTransform(
     progress,
     i === 0 ? [0, 1] : [startProgress, Math.min(1, startProgress + 0.05)],
     i === 0 ? [1, 1] : [0, 1]
   );
 
-  // Progressive depth scale: lower cards scale down as higher cards stack on top
+  // Subtle 3D deck scale
   const targetScale = Math.max(0.86, 1 - (total - 1 - i) * 0.028);
   const scaleRange = i === 0 ? [0, 1] : [endProgress, 1];
   const scaleTransform = useTransform(progress, scaleRange, [1, targetScale]);
-  // Top card retains full scale
   const scale = i === total - 1 ? 1 : scaleTransform;
 
   return (
@@ -135,31 +123,26 @@ function MobileStackedCard({
         y,
         scale,
         opacity,
-        top: `${i * 10}px`,
+        top: `calc(50% - 220px + ${i * 8}px)`,
         zIndex: 10 + i,
         transformOrigin: "top center",
       }}
-      className={`pointer-events-auto absolute flex flex-col justify-between w-[calc(100%-8px)] max-w-[360px] sm:max-w-[380px] h-[280px] sm:h-[300px] shrink-0 rounded-[28px] p-6 sm:p-7 border border-white/10 shadow-[0_-12px_36px_rgba(0,0,0,0.55),0_24px_50px_rgba(0,0,0,0.65)] select-none ${item.bgClass} ${item.textClass}`}
+      className={`pointer-events-auto absolute flex flex-col justify-between w-[calc(100%-32px)] max-w-[370px] sm:max-w-[390px] h-[440px] sm:h-[470px] shrink-0 rounded-[32px] p-7 sm:p-8 border border-white/10 shadow-[0_-14px_40px_rgba(0,0,0,0.55),0_28px_60px_rgba(0,0,0,0.7)] select-none ${item.bgClass} ${item.textClass}`}
     >
-      {/* Card Header: Giant Number & Chapter Tag */}
+      {/* Top: Giant Minimalist Serif Number */}
       <div className="flex items-start justify-between">
-        <span className="font-serif italic font-medium text-6xl sm:text-7xl leading-none tracking-tight">
+        <span className="font-serif italic font-medium text-7xl sm:text-8xl leading-none tracking-tight">
           {item.number}
-        </span>
-        <span
-          className={`px-3 py-1 rounded-full text-[10px] font-mono uppercase tracking-wider font-semibold whitespace-nowrap ${item.tagClass}`}
-        >
-          {item.chapter}
         </span>
       </div>
 
-      {/* Card Footer: Service Heading & Arrow */}
-      <div className="flex items-end justify-between gap-3">
-        <h3 className="font-heading font-extrabold text-2xl sm:text-[26px] leading-[1.1] tracking-tight">
+      {/* Bottom: Service Title & Pop-In Action Button */}
+      <div className="flex items-end justify-between gap-4 pt-6">
+        <h3 className="font-heading font-extrabold text-2xl sm:text-3xl leading-[1.08] tracking-tight">
           {item.title}
         </h3>
         <div
-          className={`w-11 h-11 rounded-full ${item.arrowClass} flex items-center justify-center shrink-0 shadow-md`}
+          className={`w-12 h-12 rounded-full ${item.arrowClass} flex items-center justify-center shrink-0 shadow-md`}
         >
           <ArrowUpRight className="w-5 h-5 stroke-[2.4]" />
         </div>
@@ -260,7 +243,7 @@ export default function ExpertiseSection() {
                 style={{ transform: `rotate(${item.rotateDeg}deg)` }}
                 className={`
                   group relative w-[330px] xl:w-[390px]
-                  h-[410px] xl:h-[460px]
+                  h-[440px] xl:h-[480px]
                   ${item.bgClass} ${item.textClass}
                   p-8 rounded-[36px] flex flex-col justify-between
                   shadow-[0_20px_50px_rgba(0,0,0,0.55)]
@@ -273,12 +256,6 @@ export default function ExpertiseSection() {
                 <div className="flex items-start justify-between">
                   <span className="font-serif italic font-medium text-7xl xl:text-8xl leading-none tracking-tight">
                     {item.number}
-                  </span>
-
-                  <span
-                    className={`px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider font-semibold ${item.tagClass}`}
-                  >
-                    {item.chapter}
                   </span>
                 </div>
 
@@ -311,11 +288,10 @@ export default function ExpertiseSection() {
         ref={mobileTrackRef}
         className="flex lg:hidden relative w-full h-[360vh]"
       >
-        {/* Pinned Viewport Container */}
-        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-start px-5 pt-16 sm:pt-20 pb-6 overflow-hidden">
-
-          {/* Header docked as flex item above cards */}
-          <header className="shrink-0 w-full select-none mb-3">
+        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-start px-4 sm:px-6 pt-12 pb-4 overflow-hidden select-none">
+          
+          {/* Header Block */}
+          <header className="shrink-0 w-full mb-2">
             <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#CDF225] block mb-1">
               Services
             </span>
@@ -327,8 +303,8 @@ export default function ExpertiseSection() {
             </h2>
           </header>
 
-          {/* Cards Stage: Clean area with zero bottom peeking */}
-          <div className="relative flex-1 w-full flex items-start justify-center pt-2 sm:pt-4">
+          {/* Cards Stage: Perfectly Centered */}
+          <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden">
             {EXPERTISE_ITEMS.map((item, index) => (
               <MobileStackedCard
                 key={item.title}

@@ -78,10 +78,6 @@ const EXPERTISE_ITEMS: ExpertiseCard[] = [
 
 /* ------------------------------------------------------------------
    MOBILE PINNED CARD COMPONENT
-   - Tall luxury card aspect ratio (h: 440px)
-   - Centered vertically in stage
-   - Chapter pill removed for pure minimalist typography
-   - Clean 100vh offscreen translation with opacity culling
    ------------------------------------------------------------------ */
 function MobileStackedCard({
   i,
@@ -97,21 +93,18 @@ function MobileStackedCard({
   const startProgress = i === 0 ? 0 : (i - 1) * 0.2;
   const endProgress = i === 0 ? 0 : i * 0.2;
 
-  // Off-screen translation
   const y = useTransform(
     progress,
     i === 0 ? [0, 1] : [startProgress, endProgress],
     i === 0 ? ["0px", "0px"] : ["100vh", "0px"]
   );
 
-  // Opacity culling so next cards never peek at the bottom
   const opacity = useTransform(
     progress,
     i === 0 ? [0, 1] : [startProgress, Math.min(1, startProgress + 0.05)],
     i === 0 ? [1, 1] : [0, 1]
   );
 
-  // Subtle 3D deck scale
   const targetScale = Math.max(0.86, 1 - (total - 1 - i) * 0.028);
   const scaleRange = i === 0 ? [0, 1] : [endProgress, 1];
   const scaleTransform = useTransform(progress, scaleRange, [1, targetScale]);
@@ -123,20 +116,18 @@ function MobileStackedCard({
         y,
         scale,
         opacity,
-        top: `calc(50% - 220px + ${i * 8}px)`,
+        top: `calc(50% - 215px + ${i * 8}px)`,
         zIndex: 10 + i,
         transformOrigin: "top center",
       }}
-      className={`pointer-events-auto absolute flex flex-col justify-between w-[calc(100%-32px)] max-w-[370px] sm:max-w-[390px] h-[440px] sm:h-[470px] shrink-0 rounded-[32px] p-7 sm:p-8 border border-white/10 shadow-[0_-14px_40px_rgba(0,0,0,0.55),0_28px_60px_rgba(0,0,0,0.7)] select-none ${item.bgClass} ${item.textClass}`}
+      className={`pointer-events-auto absolute flex flex-col justify-between w-[calc(100%-32px)] max-w-[370px] sm:max-w-[390px] h-[430px] sm:h-[460px] shrink-0 rounded-[32px] p-7 sm:p-8 border border-white/10 shadow-[0_-14px_40px_rgba(0,0,0,0.55),0_28px_60px_rgba(0,0,0,0.7)] select-none ${item.bgClass} ${item.textClass}`}
     >
-      {/* Top: Giant Minimalist Serif Number */}
       <div className="flex items-start justify-between">
         <span className="font-serif italic font-medium text-7xl sm:text-8xl leading-none tracking-tight">
           {item.number}
         </span>
       </div>
 
-      {/* Bottom: Service Title & Pop-In Action Button */}
       <div className="flex items-end justify-between gap-4 pt-6">
         <h3 className="font-heading font-extrabold text-2xl sm:text-3xl leading-[1.08] tracking-tight">
           {item.title}
@@ -156,7 +147,6 @@ export default function ExpertiseSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const mobileTrackRef = useRef<HTMLDivElement>(null);
 
-  // Mobile scroll progress across the h-[360vh] runway
   const { scrollYProgress: mobileScrollProgress } = useScroll({
     target: mobileTrackRef,
     offset: ["start start", "end end"],
@@ -213,13 +203,16 @@ export default function ExpertiseSection() {
 
       {/* ==============================================================
           1. DESKTOP GSAP HORIZONTAL PIN-SCROLL (>= lg)
+             - Generous pt-28 xl:pt-32 matching About/Hero
+             - Balanced card heights (h-[380px] xl:h-[420px])
           ============================================================== */}
       <div
         ref={desktopContainerRef}
-        className="hidden lg:flex h-screen w-full flex-col justify-center overflow-hidden px-10 xl:px-16 relative"
+        className="hidden lg:flex h-screen w-full flex-col justify-start pt-24 xl:pt-28 pb-10 overflow-hidden px-8 lg:px-14 xl:px-20 relative select-none"
       >
-        <div className="max-w-7xl w-full mx-auto mb-8 xl:mb-12 flex items-end justify-between select-none">
-          <h2 className="text-4xl xl:text-6xl font-heading font-extrabold tracking-tight leading-[1.08] text-white">
+        {/* Desktop Header */}
+        <div className="w-full mb-6 xl:mb-8 flex items-end justify-between shrink-0">
+          <h2 className="text-3xl xl:text-5xl font-heading font-extrabold tracking-tight leading-[1.1] text-white">
             Where I usually{" "}
             <span className="font-serif italic font-normal text-[#CDF225]">
               enter the picture.
@@ -232,41 +225,42 @@ export default function ExpertiseSection() {
           </div>
         </div>
 
-        <div className="w-full overflow-visible">
+        {/* Dynamic Horizontal Track */}
+        <div className="w-full overflow-visible flex-1 flex items-center">
           <div
             ref={trackRef}
-            className="flex gap-8 w-max py-6 px-4 will-change-transform"
+            className="flex gap-8 w-max py-4 will-change-transform"
           >
             {EXPERTISE_ITEMS.map((item) => (
               <article
                 key={item.title}
                 style={{ transform: `rotate(${item.rotateDeg}deg)` }}
                 className={`
-                  group relative w-[330px] xl:w-[390px]
-                  h-[440px] xl:h-[480px]
+                  group relative w-[310px] xl:w-[360px]
+                  h-[370px] xl:h-[410px]
                   ${item.bgClass} ${item.textClass}
-                  p-8 rounded-[36px] flex flex-col justify-between
+                  p-7 xl:p-8 rounded-[32px] flex flex-col justify-between
                   shadow-[0_20px_50px_rgba(0,0,0,0.55)]
                   transition-all duration-300
-                  hover:!rotate-0 hover:scale-[1.04]
+                  hover:!rotate-0 hover:scale-[1.03]
                   hover:shadow-[0_30px_70px_rgba(0,0,0,0.8)]
                   select-none cursor-pointer shrink-0
                 `}
               >
                 <div className="flex items-start justify-between">
-                  <span className="font-serif italic font-medium text-7xl xl:text-8xl leading-none tracking-tight">
+                  <span className="font-serif italic font-medium text-6xl xl:text-7xl leading-none tracking-tight">
                     {item.number}
                   </span>
                 </div>
 
-                <div className="flex items-end justify-between gap-4 pt-6">
-                  <h3 className="font-heading font-extrabold text-2xl xl:text-3xl leading-[1.1] tracking-tight">
+                <div className="flex items-end justify-between gap-4 pt-4">
+                  <h3 className="font-heading font-extrabold text-2xl xl:text-[26px] leading-[1.12] tracking-tight">
                     {item.title}
                   </h3>
 
                   <div
                     className={`
-                      w-12 h-12 rounded-full ${item.arrowClass}
+                      w-11 h-11 xl:w-12 xl:h-12 rounded-full ${item.arrowClass}
                       flex items-center justify-center shrink-0 shadow-md
                       transition-transform duration-300
                       group-hover:scale-110 group-hover:rotate-45
@@ -288,22 +282,17 @@ export default function ExpertiseSection() {
         ref={mobileTrackRef}
         className="flex lg:hidden relative w-full h-[360vh]"
       >
-        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-start px-4 sm:px-6 pt-12 pb-4 overflow-hidden select-none">
+        <div className="sticky top-0 h-[100dvh] w-full flex flex-col justify-start px-5 pt-24 sm:pt-28 pb-6 overflow-hidden select-none">
           
-          {/* Header Block */}
-          <header className="shrink-0 w-full mb-2">
-            <span className="text-[11px] font-mono uppercase tracking-[0.22em] text-[#CDF225] block mb-1">
-              Services
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-heading font-extrabold tracking-tight leading-[1.12] text-white">
-              Where I usually{" "}
-              <span className="font-serif italic font-normal text-[#CDF225]">
+          <header className="shrink-0 w-full mb-3">
+            <h2 className="text-3xl sm:text-4xl font-heading font-extrabold tracking-tight leading-[1.12] text-white">
+              <span className="block">Where I usually</span>
+              <span className="block font-serif italic font-normal text-[#CDF225]">
                 enter the picture.
               </span>
             </h2>
           </header>
 
-          {/* Cards Stage: Perfectly Centered */}
           <div className="relative flex-1 w-full flex items-center justify-center overflow-hidden">
             {EXPERTISE_ITEMS.map((item, index) => (
               <MobileStackedCard

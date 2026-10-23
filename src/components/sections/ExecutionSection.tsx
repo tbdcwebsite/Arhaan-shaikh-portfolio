@@ -9,8 +9,8 @@ export function ExecutionSection() {
       id="execution"
       className="relative w-full bg-[#121214] text-[#F8F8F5] pt-6 sm:pt-10 pb-16 sm:pb-24 overflow-hidden select-none"
     >
-      <div className="relative z-10 max-w-5xl mx-auto px-5 sm:px-8 text-center flex flex-col items-center">
-        
+      <div className="relative z-10 mx-auto px-5 sm:px-8 text-center flex flex-col items-center">
+
         {/* Top Kicker Pill */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-white/10 bg-[#161618] font-mono text-[10px] sm:text-xs uppercase tracking-[0.22em] text-[#F8F8F5]/80 mb-4 sm:mb-6 shadow-sm">
           <span className="w-1.5 h-1.5 rounded-full bg-[#CDF225] animate-pulse" />
@@ -21,7 +21,7 @@ export function ExecutionSection() {
             HEADLINE + STRIPES STAGE (STRIPES LOCKED ONLY TO THIS BOX)
             ============================================================== */}
         <div className="relative w-full flex items-center justify-center py-6 sm:py-10 my-1">
-          
+
           {/* --- INTERSECTING STRIPES: BOUND STRICTLY BEHIND THE HEADLINE --- */}
           <div
             className="pointer-events-none absolute inset-0 flex items-center justify-center overflow-hidden"

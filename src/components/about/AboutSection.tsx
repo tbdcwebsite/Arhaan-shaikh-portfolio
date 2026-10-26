@@ -139,6 +139,7 @@ export default function AboutSection() {
                   className="object-cover object-top filter grayscale contrast-105"
                   fill
                   priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 500px"
                   src="/images/arhaan-portrait.jpg"
                 />
               </div>

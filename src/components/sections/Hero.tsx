@@ -45,7 +45,7 @@ export function Hero() {
 
   return (
     // Hard-locked 100dvh container without vertical scrollbar leaks
-    <section className="relative w-full h-[100dvh] max-h-[100dvh] bg-[#EAE6DE] text-[#121214] pt-16 xs:pt-18 sm:pt-22 lg:pt-24 pb-4 sm:pb-6 px-4 xs:px-6 sm:px-8 lg:px-16 flex flex-col justify-between lg:justify-center overflow-hidden select-none">
+    <section className="relative w-full h-[100dvh] max-h-[100dvh] bg-[#EAE6DE] text-[#121214] pt-24 xs:pt-26 sm:pt-28 lg:pt-24 pb-4 sm:pb-6 px-4 xs:px-6 sm:px-8 lg:px-16 flex flex-col justify-between items-center overflow-hidden select-none">
       
       {/* Floating Top Navbar Container */}
       <div className="absolute top-0 left-0 w-full z-50">
@@ -55,15 +55,15 @@ export function Hero() {
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between items-center lg:grid lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-10 relative z-10 min-h-0">
         
         {/* ==============================================================
-            TOP/LEFT: DE-CLUMPED HEADLINE & ACTIONS (CLEAR BELOW NAVBAR)
+            TOP/LEFT: CLEAN CLEARANCE HEADLINE & ACTIONS
             ============================================================== */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left shrink-0 pt-1 xs:pt-2 sm:pt-0"
+          className="w-full lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left shrink-0"
         >
-          {/* Top Social-Proof Badge */}
+          {/* Top Social-Proof Badge (Clean 20px-24px Clearance below Navbar) */}
           <motion.div
             variants={fadeUpVariants}
             className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#226192] text-white shadow-sm mb-2 xs:mb-2.5 sm:mb-4 lg:mb-5"
@@ -74,8 +74,8 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Masked Headline (Edge-to-Edge Responsive Mobile Scale) */}
-          <h1 className="w-full text-[32px] xs:text-[36px] sm:text-5xl lg:text-6xl xl:text-[68px] leading-[1.08] sm:leading-[1.12] text-[#121214] max-w-none sm:max-w-2xl mx-auto lg:mx-0">
+          {/* Masked Headline (Responsive Mobile Scale) */}
+          <h1 className="w-full text-[30px] xs:text-[34px] sm:text-5xl lg:text-6xl xl:text-[68px] leading-[1.08] sm:leading-[1.12] text-[#121214] max-w-none sm:max-w-2xl mx-auto lg:mx-0">
             {/* Line 1 */}
             <span className="block overflow-hidden pt-0.5 pb-1.5 sm:pb-3 -mb-1 sm:-mb-2">
               <motion.span
@@ -134,18 +134,18 @@ export function Hero() {
         </motion.div>
 
         {/* ==============================================================
-            BOTTOM/RIGHT: EXPANDED PROPORTIONAL HERO ILLUSTRATION
+            BOTTOM/RIGHT: OPTIMIZED PROPORTIONAL HERO ILLUSTRATION
             ============================================================== */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
-          className="w-full lg:col-span-5 relative flex-1 min-h-0 flex items-center justify-center py-1 sm:py-2 lg:py-0"
+          className="w-full lg:col-span-5 relative flex-1 min-h-0 flex items-center justify-center py-2 lg:py-0"
         >
           <motion.div
             animate={{ y: [-4, 4, -4] }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="relative w-full max-w-[340px] xs:max-w-[370px] sm:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] h-full max-h-[320px] xs:max-h-[350px] sm:max-h-[380px] lg:max-h-[440px] flex items-center justify-center"
+            className="relative w-full max-w-[290px] xs:max-w-[330px] sm:max-w-[390px] lg:max-w-[460px] xl:max-w-[500px] h-full max-h-[250px] xs:max-h-[290px] sm:max-h-[350px] lg:max-h-[440px] flex items-center justify-center"
           >
             <Image
               src="/images/growth strategy illustration.png"

@@ -131,7 +131,7 @@ export default function AboutSection() {
             <div ref={portraitImgRef} className="relative w-full will-change-transform">
               <Image
                 alt="Arhaan Shaikh - Strategic Marketing Consultant"
-                src="/images/arhaan-shaikh.png"
+                src="/images/arhaan-shaikh portrait.webp"
                 width={600}
                 height={750}
                 priority
@@ -140,10 +140,10 @@ export default function AboutSection() {
               />
             </div>
 
-            {/* Rotating Stamp Badge: Pinned & Overlapping Directly on Image Corner */}
-            <div className="reveal-stamp absolute bottom-[6%] left-[3%] sm:bottom-[8%] sm:left-[4%] lg:bottom-[9%] lg:left-[4%] w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 z-30 select-none cursor-pointer">
+            {/* Rotating Stamp Badge: Anchored Directly to Bottom-Left Corner Vertex */}
+            <div className="reveal-stamp absolute -bottom-5 -left-5 sm:-bottom-7 sm:-left-7 lg:-bottom-8 lg:-left-8 w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 z-30 select-none cursor-pointer">
               <div className="relative w-full h-full rounded-full bg-[#226192] shadow-[0_12px_28px_rgba(34,97,146,0.45),_0_2px_8px_rgba(0,0,0,0.2)] flex items-center justify-center transition-transform duration-300 group-hover:scale-105 origin-center">
-                
+
                 {/* Outer Rotating Text Ring */}
                 <div className="absolute inset-0 animate-[spin_14s_linear_infinite] origin-center">
                   <svg className="w-full h-full p-2 origin-center" viewBox="0 0 100 100">

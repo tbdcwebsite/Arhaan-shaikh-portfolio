@@ -11,6 +11,10 @@ const config: Config = {
       screens: {
         xs: "380px",
       },
+      spacing: {
+        "18": "4.5rem",
+        "22": "5.5rem",
+      },
       colors: {
         primary: "#CDF225",
         secondary: "#520000",

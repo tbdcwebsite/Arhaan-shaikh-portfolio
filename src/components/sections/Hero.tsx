@@ -45,28 +45,28 @@ export function Hero() {
 
   return (
     // Hard-locked 100dvh container without vertical scrollbar leaks
-    <section className="relative w-full h-[100dvh] max-h-[100dvh] bg-[#EAE6DE] text-[#121214] pt-24 sm:pt-28 lg:pt-24 pb-4 sm:pb-8 px-4 sm:px-8 lg:px-16 flex flex-col justify-center items-center overflow-hidden select-none">
+    <section className="relative w-full h-[100dvh] max-h-[100dvh] bg-[#EAE6DE] text-[#121214] pt-16 xs:pt-18 sm:pt-22 lg:pt-24 pb-4 sm:pb-6 px-4 xs:px-6 sm:px-8 lg:px-16 flex flex-col justify-between lg:justify-center overflow-hidden select-none">
       
       {/* Floating Top Navbar Container */}
       <div className="absolute top-0 left-0 w-full z-50">
         <Navbar />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center items-center lg:grid lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-10 relative z-10 min-h-0">
+      <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between items-center lg:grid lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-10 relative z-10 min-h-0">
         
         {/* ==============================================================
-            TOP/LEFT: CENTERED COMPACT HEADLINE & ACTIONS
+            TOP/LEFT: DE-CLUMPED HEADLINE & ACTIONS (CLEAR BELOW NAVBAR)
             ============================================================== */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="w-full lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left shrink-0"
+          className="w-full lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left shrink-0 pt-1 xs:pt-2 sm:pt-0"
         >
-          {/* Top Social-Proof Badge (Clean Clearance below Navbar) */}
+          {/* Top Social-Proof Badge */}
           <motion.div
             variants={fadeUpVariants}
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#226192] text-white shadow-sm mb-2 sm:mb-4 lg:mb-5"
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#226192] text-white shadow-sm mb-2 xs:mb-2.5 sm:mb-4 lg:mb-5"
           >
             <Star className="w-3 h-3 fill-[#EF8557] text-[#EF8557]" />
             <span className="font-sans font-medium text-[11px] sm:text-xs lg:text-[13px] tracking-normal">
@@ -74,10 +74,10 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Masked Headline (Responsive Mobile Scale) */}
-          <h1 className="text-[27px] xs:text-[31px] sm:text-5xl lg:text-6xl xl:text-[68px] leading-[1.1] sm:leading-[1.12] text-[#121214] max-w-2xl mx-auto lg:mx-0">
+          {/* Masked Headline (Edge-to-Edge Responsive Mobile Scale) */}
+          <h1 className="w-full text-[32px] xs:text-[36px] sm:text-5xl lg:text-6xl xl:text-[68px] leading-[1.08] sm:leading-[1.12] text-[#121214] max-w-none sm:max-w-2xl mx-auto lg:mx-0">
             {/* Line 1 */}
-            <span className="block overflow-hidden pt-0.5 pb-2 sm:pb-3 -mb-1.5 sm:-mb-2">
+            <span className="block overflow-hidden pt-0.5 pb-1.5 sm:pb-3 -mb-1 sm:-mb-2">
               <motion.span
                 variants={maskLineVariants}
                 className="block font-sans font-medium sm:font-semibold tracking-[-0.01em]"
@@ -87,7 +87,7 @@ export function Hero() {
             </span>
 
             {/* Line 2 */}
-            <span className="block overflow-hidden pt-0.5 pb-2 sm:pb-3 -mb-1.5 sm:-mb-2">
+            <span className="block overflow-hidden pt-0.5 pb-1.5 sm:pb-3 -mb-1 sm:-mb-2">
               <motion.span
                 variants={maskLineVariants}
                 className="block font-sans font-medium sm:font-semibold tracking-[-0.01em]"
@@ -97,7 +97,7 @@ export function Hero() {
             </span>
 
             {/* Line 3: Butler Serif Italic */}
-            <span className="block overflow-hidden pt-0.5 pb-2.5 sm:pb-3.5 -mb-1.5 sm:-mb-2">
+            <span className="block overflow-hidden pt-0.5 pb-2 sm:pb-3.5 -mb-1 sm:-mb-2">
               <motion.span
                 variants={maskLineVariants}
                 className="block font-serif italic font-normal text-[#EF8557] tracking-normal"
@@ -110,7 +110,7 @@ export function Hero() {
           {/* Action Buttons (Centered on mobile, left-aligned on desktop) */}
           <motion.div
             variants={fadeUpVariants}
-            className="mt-3 sm:mt-5 lg:mt-6 flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 w-full xs:w-auto"
+            className="mt-2.5 xs:mt-3.5 sm:mt-5 lg:mt-6 flex items-center justify-center lg:justify-start gap-2.5 sm:gap-3.5 w-full xs:w-auto"
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
@@ -134,18 +134,18 @@ export function Hero() {
         </motion.div>
 
         {/* ==============================================================
-            BOTTOM/RIGHT: PROMINENT CENTERED ILLUSTRATION
+            BOTTOM/RIGHT: EXPANDED PROPORTIONAL HERO ILLUSTRATION
             ============================================================== */}
         <motion.div
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.65, delay: 0.15, ease: [0.16, 1, 0.3, 1] as const }}
-          className="w-full lg:col-span-5 relative flex items-center justify-center mt-2 lg:mt-0 shrink-0 lg:shrink"
+          className="w-full lg:col-span-5 relative flex-1 min-h-0 flex items-center justify-center py-1 sm:py-2 lg:py-0"
         >
           <motion.div
             animate={{ y: [-4, 4, -4] }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="relative w-full max-w-[270px] xs:max-w-[310px] sm:max-w-[360px] lg:max-w-[460px] xl:max-w-[500px] flex items-center justify-center"
+            className="relative w-full max-w-[340px] xs:max-w-[370px] sm:max-w-[420px] lg:max-w-[460px] xl:max-w-[500px] h-full max-h-[320px] xs:max-h-[350px] sm:max-h-[380px] lg:max-h-[440px] flex items-center justify-center"
           >
             <Image
               src="/images/growth strategy illustration.png"
@@ -153,7 +153,7 @@ export function Hero() {
               width={500}
               height={500}
               priority
-              className="w-auto h-auto max-h-[220px] xs:max-h-[250px] sm:max-h-[320px] lg:max-h-[440px] object-contain drop-shadow-[0_12px_28px_rgba(18,18,20,0.06)] select-none pointer-events-none"
+              className="w-full h-full object-contain drop-shadow-[0_12px_28px_rgba(18,18,20,0.06)] select-none pointer-events-none"
             />
           </motion.div>
         </motion.div>

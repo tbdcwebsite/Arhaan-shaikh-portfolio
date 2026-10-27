@@ -18,9 +18,9 @@ export function ProcessSection() {
 
         const rect = el.getBoundingClientRect();
         const vh = window.innerHeight;
-        const startThreshold = vh * 0.68;
-        const endThreshold = vh * 0.46;
-        const totalDistance = (startThreshold - endThreshold) + rect.height;
+        const startThreshold = vh * 0.72;
+        const endThreshold = vh * 0.35;
+        const totalDistance = startThreshold - endThreshold + rect.height;
         const currentScrolled = startThreshold - rect.top;
         const progress = Math.max(0, Math.min(1, currentScrolled / totalDistance));
 
@@ -44,14 +44,16 @@ export function ProcessSection() {
   return (
     <section
       id="process"
-      className="relative w-full bg-[#121214] text-[#F8F8F5] py-24 sm:py-32 lg:py-40 overflow-hidden select-none"
+      style={{ backgroundColor: "#EAE6DE" }}
+      className="relative w-full text-[#121214] py-24 sm:py-32 lg:py-40 overflow-hidden select-none border-t border-[#121214]/10"
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-10 lg:px-16">
-        {/* Section Header: Clean headline without trailing badges */}
-        <div className="mb-14 sm:mb-20 border-b border-white/10 pb-6 sm:pb-8">
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-heading font-extrabold tracking-tight leading-[1.08] text-white">
+        
+        {/* Section Header: Clean Mont + Butler Pairing */}
+        <div className="mb-14 sm:mb-20 border-b border-[#121214]/10 pb-6 sm:pb-8">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-sans font-bold sm:font-extrabold tracking-tight leading-[1.08] text-[#121214]">
             Our{" "}
-            <span className="font-serif italic font-normal text-[#CDF225]">
+            <span className="font-serif italic font-normal text-[#EF8557]">
               process.
             </span>
           </h2>
@@ -59,18 +61,19 @@ export function ProcessSection() {
 
         {/* Vertical Progress Rail & Big Steps */}
         <div ref={stepsContainerRef} className="relative pl-8 sm:pl-16 lg:pl-20">
+          
           {/* Base Inactive Rail */}
-          <div className="absolute bottom-0 left-2 top-0 w-px bg-white/10 sm:left-5" />
+          <div className="absolute bottom-0 left-2 top-0 w-px bg-[#121214]/15 sm:left-5" />
 
-          {/* Glowing Active Progress Fill */}
+          {/* Glowing Active Progress Fill (Steel Marine Blue) */}
           <div
-            className="absolute left-2 top-0 w-[2px] -translate-x-px bg-[#CDF225] shadow-[0_0_12px_rgba(205,242,37,0.6)] sm:left-5 transition-all duration-150 ease-out pointer-events-none"
+            className="absolute left-2 top-0 w-[2px] -translate-x-px bg-[#226192] shadow-[0_0_10px_rgba(34,97,146,0.45)] sm:left-5 transition-all duration-150 ease-out pointer-events-none"
             style={{ height: `${p * 100}%` }}
           />
 
-          {/* Diamond Scrub Indicator */}
+          {/* Diamond Scrub Indicator (Terracotta #EF8557 Accent) */}
           <div
-            className="absolute left-2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#CDF225] shadow-[0_0_16px_rgba(205,242,37,0.85)] sm:left-5 transition-all duration-150 ease-out pointer-events-none"
+            className="absolute left-2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rotate-45 bg-[#EF8557] shadow-[0_0_14px_rgba(239,133,87,0.7)] sm:left-5 transition-all duration-150 ease-out pointer-events-none"
             style={{ top: `${p * 100}%` }}
           />
 
@@ -89,24 +92,23 @@ export function ProcessSection() {
                   <span
                     className={`font-mono text-xs sm:text-sm font-semibold tracking-widest transition-colors duration-500 shrink-0 ${
                       isCurrent
-                        ? "text-[#CDF225]"
+                        ? "text-[#EF8557]"
                         : isPassed
-                        ? "text-[#F8F8F5]/60"
-                        : "text-[#F8F8F5]/20"
+                        ? "text-[#226192]"
+                        : "text-[#121214]/25"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
 
-                  {/* Giant Typography (Hollow Outline to Solid Ivory/Lime) */}
+                  {/* Giant Typography: Hollow Outlines on Cream to Solid Charcoal */}
                   <span
-                    style={{ fontFamily: "var(--font-display, inherit)" }}
-                    className={`font-display font-heading font-extrabold tracking-tight leading-[0.95] text-[13vw] sm:text-[10vw] lg:text-[8vw] transition-all duration-500 will-change-transform ${
+                    className={`font-sans font-bold sm:font-extrabold tracking-tight leading-[0.95] text-[13vw] sm:text-[10vw] lg:text-[8vw] transition-all duration-500 will-change-transform ${
                       isCurrent
-                        ? "text-[#F8F8F5] translate-x-3 sm:translate-x-8"
+                        ? "text-[#121214] translate-x-3 sm:translate-x-8"
                         : isPassed
-                        ? "text-[#F8F8F5]/40"
-                        : "text-transparent [-webkit-text-stroke:1px_rgba(248,248,245,0.18)]"
+                        ? "text-[#121214]/40"
+                        : "text-transparent [-webkit-text-stroke:1.5px_rgba(18,18,20,0.22)]"
                     }`}
                   >
                     {step}
@@ -116,6 +118,7 @@ export function ProcessSection() {
             })}
           </div>
         </div>
+
       </div>
     </section>
   );

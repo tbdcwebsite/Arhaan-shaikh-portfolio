@@ -5,6 +5,7 @@ import ExpertiseSection from "@/components/sections/ExpertiseSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ExecutionSection } from "@/components/sections/ExecutionSection";
 import CaseStudiesDeck from "@/components/sections/CaseStudiesDeck";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ProcessSection />
       <ExecutionSection />
       <CaseStudiesDeck />
+      <Footer />
     </main>
   );
 }

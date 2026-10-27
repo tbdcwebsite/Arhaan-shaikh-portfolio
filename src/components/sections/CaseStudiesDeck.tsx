@@ -1,9 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence, useSpring, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+  useSpring,
+  useMotionValueEvent,
+} from "framer-motion";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 export interface CaseStudyData {
@@ -87,7 +94,7 @@ const CASE_STUDIES: CaseStudyData[] = [
     category: "Luxury Goods",
     client: "Elysian Atelier",
     headline: "Reframing Heritage Goods",
-    punchline: "For High-Intent Modern Shoppers.",
+    punchline: "For High-Intent Shoppers.",
     metric: "-42%",
     metricLabel: "BLENDED CAC",
     description:
@@ -128,34 +135,35 @@ function DeckCard({
 }) {
   const diff = useTransform(smoothProgress, (p: number) => index - p);
 
+  // Scaled strictly for 100vh viewports (no bottom or top clipping)
   const y = useTransform(
     diff,
     [-2, -1, 0, 1, 2, 3, 4],
-    [640, 340, -15, -72, -122, -164, -200]
+    [520, 270, 0, -48, -88, -120, -148]
   );
 
   const scale = useTransform(
     diff,
     [-2, -1, 0, 1, 2, 3, 4],
-    [0.92, 1, 1, 0.92, 0.84, 0.76, 0.68]
+    [0.92, 1, 1, 0.93, 0.86, 0.79, 0.72]
   );
 
   const rotateX = useTransform(
     diff,
     [-2, -1, -0.5, 0, 1, 2, 3],
-    [-22, -12, -24, 0, 12, 18, 22]
+    [-20, -10, -22, 0, 10, 16, 20]
   );
 
   const opacity = useTransform(
     diff,
     [-2.1, -1.35, -1, 0, 3, 4.2],
-    [0, 0, 1, 1, 0.9, 0]
+    [0, 0, 1, 1, 0.88, 0]
   );
 
   const brightness = useTransform(
     diff,
     [-2, -1, 0, 1, 2, 3],
-    [0.55, 0.95, 1, 0.85, 0.7, 0.55]
+    [0.55, 0.95, 1, 0.85, 0.72, 0.58]
   );
 
   const filter = useTransform(brightness, (b) => `brightness(${b})`);
@@ -182,9 +190,9 @@ function DeckCard({
         zIndex,
         transformPerspective: 1200,
       }}
-      className="absolute top-[90px] w-[310px] xs:w-[340px] sm:w-[390px] lg:w-[420px] h-[350px] sm:h-[375px] rounded-[24px] overflow-hidden shadow-[0_24px_50px_rgba(18,18,20,0.18)] cursor-pointer select-none border border-white/20 bg-[#121214] origin-center will-change-transform group"
+      className="absolute top-[35px] sm:top-[45px] lg:top-[55px] w-[290px] xs:w-[325px] sm:w-[370px] lg:w-[410px] h-[280px] xs:h-[305px] sm:h-[330px] lg:h-[345px] rounded-[22px] overflow-hidden shadow-[0_22px_45px_rgba(18,18,20,0.18)] cursor-pointer select-none border border-white/20 bg-[#121214] origin-center will-change-transform group"
     >
-      {/* Background Cover Image with Soft Scrim */}
+      {/* Background Cover Image with Gradient Scrim */}
       <div className="absolute inset-0 w-full h-full">
         <Image
           src={card.image}
@@ -197,34 +205,34 @@ function DeckCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[#121214]/95 via-[#121214]/40 to-[#121214]/30 pointer-events-none" />
       </div>
 
-      {/* Top Meta Capsule Bar */}
-      <div className="absolute top-5 inset-x-6 flex items-center justify-between z-10">
-        <span className="font-mono text-[10px] tracking-[0.22em] text-white/80 uppercase px-2.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
+      {/* Top Meta Bar */}
+      <div className="absolute top-4 inset-x-5 flex items-center justify-between z-10">
+        <span className="font-mono text-[9px] sm:text-[10px] tracking-[0.2em] text-white/80 uppercase px-2.5 py-0.5 rounded-full bg-white/10 backdrop-blur-md border border-white/10">
           CASE {formattedNum} / {formattedTotal}
         </span>
-        <span className="font-mono text-[10px] font-semibold tracking-[0.2em] text-[#EF8557] uppercase px-2.5 py-1 rounded-full bg-[#EF8557]/15 backdrop-blur-md border border-[#EF8557]/30">
+        <span className="font-mono text-[9px] sm:text-[10px] font-semibold tracking-[0.2em] text-[#EF8557] uppercase px-2.5 py-0.5 rounded-full bg-[#EF8557]/15 backdrop-blur-md border border-[#EF8557]/30">
           {card.tag}
         </span>
       </div>
 
       {/* Bottom Content Card */}
-      <div className="absolute bottom-6 inset-x-6 text-white z-10 flex flex-col items-start">
-        <p className="font-mono text-[10px] tracking-[0.24em] uppercase text-white/60 mb-1">
+      <div className="absolute bottom-5 inset-x-5 text-white z-10 flex flex-col items-start">
+        <p className="font-mono text-[9px] tracking-[0.22em] uppercase text-white/60 mb-0.5">
           {card.category}
         </p>
-        <h3 className="font-sans font-bold text-2xl sm:text-3xl tracking-tight leading-snug mb-2 group-hover:text-[#EF8557] transition-colors">
+        <h3 className="font-sans font-bold text-xl sm:text-2xl tracking-tight leading-snug mb-1 group-hover:text-[#EF8557] transition-colors">
           {card.client}
         </h3>
-        <p className="font-sans text-xs sm:text-sm text-white/80 leading-relaxed max-w-[320px] line-clamp-2">
+        <p className="font-sans text-[11px] sm:text-xs text-white/80 leading-relaxed max-w-[310px] line-clamp-2">
           {card.description}
         </p>
 
-        {/* Metric Accent Badge */}
-        <div className="mt-3.5 flex items-baseline gap-2 pt-2 border-t border-white/10 w-full">
-          <span className="font-serif italic font-normal text-xl sm:text-2xl text-[#EF8557]">
+        {/* Metric Accent Bar */}
+        <div className="mt-2.5 flex items-baseline gap-2 pt-1.5 border-t border-white/10 w-full">
+          <span className="font-serif italic font-normal text-lg sm:text-xl text-[#EF8557]">
             {card.metric}
           </span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/65">
+          <span className="font-mono text-[8px] sm:text-[9px] uppercase tracking-[0.18em] text-white/65">
             {card.metricLabel}
           </span>
         </div>
@@ -235,276 +243,236 @@ function DeckCard({
 
 export function CaseStudiesDeck() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const rawProgress = useRef(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  const smoothProgress = useSpring(0, {
-    stiffness: 130,
-    damping: 24,
-    mass: 0.8,
+  // Outer container scroll binds native page scroll to card progression
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ["start start", "end end"],
   });
 
-  const clamp = (val: number, min: number, max: number) =>
-    Math.max(min, Math.min(max, val));
-
-  const goToCard = useCallback(
-    (index: number) => {
-      const target = clamp(index, 0, CASE_STUDIES.length - 1);
-      rawProgress.current = target;
-      smoothProgress.set(target);
-      setActiveIndex(target);
-    },
-    [smoothProgress]
+  const rawProgress = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, CASE_STUDIES.length - 1]
   );
 
-  // Boundary-aware scroll & touch physics (Never traps user in an infinite scroll jail)
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
+  const smoothProgress = useSpring(rawProgress, {
+    stiffness: 160,
+    damping: 26,
+    mass: 0.45,
+  });
 
-    const handleWheel = (e: WheelEvent) => {
-      const current = rawProgress.current;
-      const isAtTop = current <= 0.05;
-      const isAtBottom = current >= CASE_STUDIES.length - 1 - 0.05;
+  useMotionValueEvent(smoothProgress, "change", (latest) => {
+    setActiveIndex(Math.round(latest));
+  });
 
-      // If at boundary and user keeps scrolling out, release native scroll!
-      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
-        return; // Allow native page scroll
-      }
+  // Smooth jump to any card by scrolling the native window position
+  const goToCard = (index: number) => {
+    if (!trackRef.current) return;
+    const rect = trackRef.current.getBoundingClientRect();
+    const scrollTop = window.scrollY;
+    const trackTop = scrollTop + rect.top;
+    const totalScrollableDistance = rect.height - window.innerHeight;
+    const targetScroll =
+      trackTop + (index / (CASE_STUDIES.length - 1)) * totalScrollableDistance;
 
-      e.preventDefault();
-      const delta = e.deltaY * 0.0024;
-      const next = clamp(current + delta, 0, CASE_STUDIES.length - 1);
-      rawProgress.current = next;
-      smoothProgress.set(next);
-      setActiveIndex(Math.round(next));
-    };
-
-    let touchStartY = 0;
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
-
-    const handleTouchMove = (e: TouchEvent) => {
-      const current = rawProgress.current;
-      const currentY = e.touches[0].clientY;
-      const deltaY = touchStartY - currentY;
-      const isAtTop = current <= 0.05;
-      const isAtBottom = current >= CASE_STUDIES.length - 1 - 0.05;
-
-      if ((isAtTop && deltaY < 0) || (isAtBottom && deltaY > 0)) {
-        return; // Allow native swipe escape
-      }
-
-      if (e.cancelable) e.preventDefault();
-      const delta = deltaY * 0.005;
-      touchStartY = currentY;
-      const next = clamp(current + delta, 0, CASE_STUDIES.length - 1);
-      rawProgress.current = next;
-      smoothProgress.set(next);
-      setActiveIndex(Math.round(next));
-    };
-
-    el.addEventListener("wheel", handleWheel, { passive: false });
-    el.addEventListener("touchstart", handleTouchStart, { passive: true });
-    el.addEventListener("touchmove", handleTouchMove, { passive: false });
-
-    return () => {
-      el.removeEventListener("wheel", handleWheel);
-      el.removeEventListener("touchstart", handleTouchStart);
-      el.removeEventListener("touchmove", handleTouchMove);
-    };
-  }, [smoothProgress]);
+    window.scrollTo({ top: targetScroll, behavior: "smooth" });
+  };
 
   const activeCard = CASE_STUDIES[activeIndex] || CASE_STUDIES[0];
-  const indicatorTopPercent =
-    (activeIndex / (CASE_STUDIES.length - 1)) * 100;
+  const indicatorTopPercent = (activeIndex / (CASE_STUDIES.length - 1)) * 100;
 
   return (
-    <section
-      ref={containerRef}
+    // Outer scroll track: Multiplies viewport height so natural scroll flips cards
+    <div
+      ref={trackRef}
       id="success-stories"
-      style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full h-[100dvh] min-h-[720px] max-h-[960px] text-[#121214] overflow-hidden select-none flex items-center justify-center px-5 sm:px-10 lg:px-16 border-t border-[#121214]/10"
+      className="relative w-full"
+      style={{ height: `${CASE_STUDIES.length * 110}vh` }}
     >
-      <div className="w-full max-w-7xl h-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
-
-        {/* ==============================================================
-            LEFT COLUMN: DYNAMIC KINETIC MASK REVEALS
-            ============================================================== */}
-        <div className="lg:col-span-5 flex flex-col items-start justify-center pt-8 sm:pt-0">
+      {/* Pinned Sticky Section: Locked 100% to screen while scrolling */}
+      <section
+        style={{ backgroundColor: "#EAE6DE" }}
+        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-5 sm:py-8 lg:py-10 px-4 sm:px-8 lg:px-14 border-t border-[#121214]/10"
+      >
+        <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
           
-          {/* Static Top Category Label */}
-          <div className="flex items-center gap-2.5 text-[11px] font-mono tracking-[0.24em] text-[#121214]/50 uppercase mb-4 sm:mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#EF8557]" />
-            <span>PROVEN OUTCOMES</span>
-            <span>·</span>
-            <span>CHAPTER {String(activeIndex + 1).padStart(2, "0")}</span>
-          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center h-full my-auto">
+            
+            {/* ==============================================================
+                LEFT COLUMN: COMPACT HEADLINE, METRIC & BUTTONS (NO OVERFLOW)
+                ============================================================== */}
+            <div className="lg:col-span-5 flex flex-col items-start justify-center">
+              
+              {/* Mask-Revealed Headline (Marked kicker text removed) */}
+              <div className="w-full overflow-hidden min-h-[100px] xs:min-h-[120px] sm:min-h-[145px] flex flex-col justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`headline-${activeCard.id}`}
+                    initial={{ opacity: 0, y: 25 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-col"
+                  >
+                    <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] font-sans font-black tracking-tight leading-[1.08] text-[#121214]">
+                      {activeCard.headline}
+                    </h2>
+                    <span className="font-serif italic font-normal text-2xl xs:text-3xl sm:text-4xl lg:text-[42px] xl:text-[48px] tracking-tight leading-[1.1] text-[#EF8557] mt-0.5">
+                      {activeCard.punchline}
+                    </span>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-          {/* Mask-Revealed Headline */}
-          <div className="w-full overflow-hidden min-h-[140px] sm:min-h-[175px] flex flex-col justify-center">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`headline-${activeCard.id}`}
-                initial={{ opacity: 0, y: 35 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -30 }}
-                transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col"
-              >
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-sans font-black tracking-tight leading-[1.06] text-[#121214]">
-                  {activeCard.headline}
-                </h2>
-                <span className="font-serif italic font-normal text-3xl sm:text-4xl lg:text-5xl xl:text-6xl tracking-tight leading-[1.1] text-[#EF8557] mt-1">
-                  {activeCard.punchline}
-                </span>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              {/* Dynamic Metric & Narrative Excerpt */}
+              <div className="w-full min-h-[85px] sm:min-h-[95px] overflow-hidden mt-2 sm:mt-4">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`desc-${activeCard.id}`}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -14 }}
+                    transition={{ duration: 0.35, delay: 0.04, ease: [0.16, 1, 0.3, 1] }}
+                    className="flex flex-col gap-2"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <span className="font-serif italic text-2xl sm:text-3xl font-normal text-[#226192]">
+                        {activeCard.metric}
+                      </span>
+                      <div className="h-5 w-px bg-[#121214]/15" />
+                      <span className="font-mono text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-[#121214]/65">
+                        {activeCard.metricLabel}
+                      </span>
+                    </div>
 
-          {/* Mask-Revealed Metric & Transformation Excerpt */}
-          <div className="w-full min-h-[105px] overflow-hidden mt-3 sm:mt-5">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`desc-${activeCard.id}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.4, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col gap-3"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="font-serif italic text-3xl sm:text-4xl font-normal text-[#226192]">
-                    {activeCard.metric}
-                  </span>
-                  <div className="h-6 w-px bg-[#121214]/15" />
-                  <span className="font-mono text-xs font-semibold uppercase tracking-[0.2em] text-[#121214]/65">
-                    {activeCard.metricLabel}
-                  </span>
-                </div>
+                    <p className="text-xs sm:text-sm text-[#121214]/75 max-w-md font-sans leading-relaxed line-clamp-2">
+                      {activeCard.description}
+                    </p>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
-                <p className="text-xs sm:text-sm lg:text-base text-[#121214]/75 max-w-md font-sans leading-relaxed">
-                  {activeCard.description}
-                </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Action Row */}
-          <div className="mt-6 sm:mt-8 flex items-center gap-3">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 bg-[#226192] hover:bg-[#1b4f77] active:scale-[0.98] text-white text-xs sm:text-sm font-sans font-semibold px-6 py-3 rounded-full shadow-[0_4px_16px_rgba(34,97,146,0.3)] transition-all cursor-pointer group"
-            >
-              <span>Explore Engagement</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </Link>
-
-            <button
-              type="button"
-              onClick={() => goToCard((activeIndex + 1) % CASE_STUDIES.length)}
-              aria-label="Next Case Study"
-              className="inline-flex items-center justify-center w-11 h-11 rounded-full border border-[#121214]/15 bg-white/70 hover:bg-white text-[#121214] transition-all cursor-pointer active:scale-95 shadow-sm"
-            >
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </div>
-
-        </div>
-
-        {/* ==============================================================
-            CENTER COLUMN: 3D CASCADING DECK STAGE
-            ============================================================== */}
-        <div className="lg:col-span-6 relative h-full flex items-center justify-center">
-          <div
-            className="relative w-full h-[620px] sm:h-[700px] flex items-center justify-center"
-            style={{ perspective: "1400px" }}
-          >
-            {CASE_STUDIES.map((card, idx) => (
-              <DeckCard
-                key={card.id}
-                card={card}
-                index={idx}
-                total={CASE_STUDIES.length}
-                smoothProgress={smoothProgress}
-                onSelect={() => goToCard(idx)}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* ==============================================================
-            RIGHT COLUMN: VERTICAL TIMELINE TRACK & COUNTER
-            ============================================================== */}
-        <div className="hidden lg:flex lg:col-span-1 flex-col items-center justify-center h-full z-20">
-          
-          {/* Chapter Numerical Counter */}
-          <div className="flex items-baseline font-mono mb-6">
-            <span className="text-3xl font-extrabold tracking-tighter text-[#121214]">
-              {String(activeIndex + 1).padStart(2, "0")}
-            </span>
-            <span className="text-xs text-[#121214]/40 font-semibold ml-1">
-              /{String(CASE_STUDIES.length).padStart(2, "0")}
-            </span>
-          </div>
-
-          {/* Vertical Track Rail */}
-          <div className="relative h-[260px] w-[20px] flex justify-center">
-            {/* Rail Background */}
-            <div className="w-[1.5px] h-full bg-[#121214]/15 relative" />
-
-            {/* Clickable Step Beads */}
-            <div className="absolute inset-0 flex flex-col justify-between items-center">
-              {CASE_STUDIES.map((c, idx) => (
-                <button
-                  key={c.id}
-                  onClick={() => goToCard(idx)}
-                  aria-label={`Go to ${c.client}`}
-                  className="w-4 h-3 flex items-center justify-center group cursor-pointer focus:outline-none"
+              {/* Action Buttons: Compact & Guaranteed Above the Fold */}
+              <div className="mt-4 sm:mt-6 flex items-center gap-3">
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-2 bg-[#226192] hover:bg-[#1b4f77] active:scale-[0.98] text-white text-xs sm:text-sm font-sans font-semibold px-5 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-[0_4px_16px_rgba(34,97,146,0.3)] transition-all cursor-pointer group"
                 >
-                  <span
-                    className={`block rounded-full transition-all duration-300 ${
-                      idx === activeIndex
-                        ? "w-2.5 h-2.5 bg-[#EF8557] ring-4 ring-[#EF8557]/20"
-                        : "w-1 h-1 bg-[#121214]/30 group-hover:bg-[#121214]/70"
-                    }`}
-                  />
+                  <span>Explore Engagement</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+
+                <button
+                  type="button"
+                  onClick={() => goToCard((activeIndex + 1) % CASE_STUDIES.length)}
+                  aria-label="Next Case Study"
+                  className="inline-flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-[#121214]/15 bg-white/70 hover:bg-white text-[#121214] transition-all cursor-pointer active:scale-95 shadow-sm"
+                >
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
-              ))}
+              </div>
+
             </div>
 
-            {/* Glowing Active Position Marker (Steel Blue + Terracotta Pulse) */}
-            <motion.div
-              animate={{ top: `${indicatorTopPercent}%` }}
-              transition={{ type: "spring", stiffness: 220, damping: 26 }}
-              className="absolute -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-[#226192] shadow-[0_0_12px_rgba(34,97,146,0.6)] pointer-events-none flex items-center justify-center"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-[#EF8557]" />
-            </motion.div>
+            {/* ==============================================================
+                CENTER COLUMN: 3D CASCADING DECK STAGE
+                ============================================================== */}
+            <div className="lg:col-span-6 relative h-[360px] xs:h-[400px] sm:h-[450px] lg:h-[500px] flex items-center justify-center">
+              <div
+                className="relative w-full h-full flex items-center justify-center"
+                style={{ perspective: "1400px" }}
+              >
+                {CASE_STUDIES.map((card, idx) => (
+                  <DeckCard
+                    key={card.id}
+                    card={card}
+                    index={idx}
+                    total={CASE_STUDIES.length}
+                    smoothProgress={smoothProgress}
+                    onSelect={() => goToCard(idx)}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* ==============================================================
+                RIGHT COLUMN: VERTICAL TIMELINE TRACK & COUNTER (DESKTOP)
+                ============================================================== */}
+            <div className="hidden lg:flex lg:col-span-1 flex-col items-center justify-center h-full z-20">
+              
+              <div className="flex items-baseline font-mono mb-5">
+                <span className="text-2xl font-extrabold tracking-tighter text-[#121214]">
+                  {String(activeIndex + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[11px] text-[#121214]/40 font-semibold ml-0.5">
+                  /{String(CASE_STUDIES.length).padStart(2, "0")}
+                </span>
+              </div>
+
+              {/* Vertical Track */}
+              <div className="relative h-[220px] w-[18px] flex justify-center">
+                <div className="w-[1.5px] h-full bg-[#121214]/15 relative" />
+
+                <div className="absolute inset-0 flex flex-col justify-between items-center">
+                  {CASE_STUDIES.map((c, idx) => (
+                    <button
+                      key={c.id}
+                      onClick={() => goToCard(idx)}
+                      aria-label={`Go to ${c.client}`}
+                      className="w-4 h-3 flex items-center justify-center group cursor-pointer focus:outline-none"
+                    >
+                      <span
+                        className={`block rounded-full transition-all duration-300 ${
+                          idx === activeIndex
+                            ? "w-2.5 h-2.5 bg-[#EF8557] ring-4 ring-[#EF8557]/20"
+                            : "w-1 h-1 bg-[#121214]/30 group-hover:bg-[#121214]/70"
+                        }`}
+                      />
+                    </button>
+                  ))}
+                </div>
+
+                <motion.div
+                  animate={{ top: `${indicatorTopPercent}%` }}
+                  transition={{ type: "spring", stiffness: 220, damping: 26 }}
+                  className="absolute -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-[#226192] shadow-[0_0_12px_rgba(34,97,146,0.6)] pointer-events-none flex items-center justify-center"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#EF8557]" />
+                </motion.div>
+              </div>
+
+              {/* Vertical Title Indicator */}
+              <div className="mt-6 h-24 flex items-center justify-center overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={activeCard.client}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.25 }}
+                    className="text-[9px] font-mono tracking-[0.24em] uppercase text-[#121214]/50"
+                    style={{ writingMode: "vertical-rl" }}
+                  >
+                    {activeCard.client}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
+
+            </div>
+
           </div>
 
-          {/* Vertical Client Label */}
-          <div className="mt-8 h-28 flex items-center justify-center overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={activeCard.client}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="text-[10px] font-mono tracking-[0.26em] uppercase text-[#121214]/50"
-                style={{ writingMode: "vertical-rl" }}
-              >
-                {activeCard.client}
-              </motion.span>
-            </AnimatePresence>
+          {/* Bottom Micro Tracker for Mobile Devices */}
+          <div className="flex lg:hidden items-center justify-between pt-2 pb-1 border-t border-[#121214]/10 text-[10px] font-mono tracking-widest text-[#121214]/50 uppercase">
+            <span>CHAPTER {String(activeIndex + 1).padStart(2, "0")} / {String(CASE_STUDIES.length).padStart(2, "0")}</span>
+            <span className="text-[#EF8557] font-semibold">{activeCard.client}</span>
           </div>
 
         </div>
-
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
 

@@ -1,0 +1,33 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shopping Cart (Left) -->
+  <path d="M22 62H36L48 126H98L106 78H39" stroke="#226192" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Cart Grid Lines -->
+  <path d="M52 82H102M56 96H100M60 110H96" stroke="#226192" stroke-width="1.6" stroke-linecap="round"/>
+  <path d="M64 78L60 126M78 78L76 126M92 78L90 126" stroke="#226192" stroke-width="1.6" stroke-linecap="round"/>
+  <!-- Cart Wheels -->
+  <circle cx="56" cy="144" r="7" stroke="#226192" stroke-width="2.5"/>
+  <circle cx="92" cy="144" r="7" stroke="#226192" stroke-width="2.5"/>
+  <circle cx="56" cy="144" r="2.5" fill="#226192"/>
+  <circle cx="92" cy="144" r="2.5" fill="#226192"/>
+
+  <!-- Lightning Bolt Shooting Out of Cart -->
+  <path d="M72 40L60 74H76L68 104L96 66H80L90 40H72Z" stroke="#226192" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+
+  <!-- Delivery Express Van / Truck (Right) -->
+  <!-- Van Body -->
+  <path d="M120 102H156L168 114V140H120V102Z" stroke="#226192" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Cargo Box Body -->
+  <path d="M106 90H140V140H106V90Z" stroke="#226192" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Windshield -->
+  <path d="M142 106H154L162 116H142V106Z" stroke="#226192" stroke-width="2" stroke-linejoin="round"/>
+  <!-- Van Wheels -->
+  <circle cx="118" cy="144" r="6" stroke="#226192" stroke-width="2.5"/>
+  <circle cx="154" cy="144" r="6" stroke="#226192" stroke-width="2.5"/>
+  <circle cx="118" cy="144" r="2" fill="#226192"/>
+  <circle cx="154" cy="144" r="2" fill="#226192"/>
+
+  <!-- Speed Motion Lines behind Truck -->
+  <path d="M96 98H102M92 112H100M94 126H102" stroke="#226192" stroke-width="2" stroke-linecap="round"/>
+  <!-- Road Sparks -->
+  <path d="M30 162H176" stroke="#226192" stroke-width="2" stroke-linecap="round" stroke-dasharray="8 6"/>
+</svg>

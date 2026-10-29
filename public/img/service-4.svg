@@ -1,0 +1,38 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Megaphone / Bullhorn (Left) -->
+  <g transform="rotate(-15 80 110)">
+    <!-- Horn Bell -->
+    <path d="M48 98L84 76V124L48 106V98Z" stroke="#226192" stroke-width="2.5" stroke-linejoin="round"/>
+    <!-- Horn Flare Rim -->
+    <ellipse cx="84" cy="100" rx="6" ry="24" stroke="#226192" stroke-width="2.5"/>
+    <!-- Handle -->
+    <path d="M52 108L48 136C47 140 51 142 55 140L61 112" stroke="#226192" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Microphone Mouthpiece -->
+    <path d="M38 98C34 98 32 100 32 102C32 104 34 106 38 106V98Z" stroke="#226192" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M38 96H48V108H38V96Z" stroke="#226192" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Sound Waves Spreading from Flare -->
+    <path d="M96 82C102 92 102 108 96 118" stroke="#226192" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M106 72C116 88 116 112 106 128" stroke="#226192" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bullseye Target (Right) -->
+  <g transform="translate(142, 94)">
+    <!-- Outer Ring -->
+    <circle cx="0" cy="0" r="28" stroke="#226192" stroke-width="2.5"/>
+    <!-- Middle Ring -->
+    <circle cx="0" cy="0" r="19" stroke="#226192" stroke-width="2"/>
+    <!-- Center Ring -->
+    <circle cx="0" cy="0" r="10" stroke="#226192" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" fill="#226192"/>
+
+    <!-- Crosshair Lines -->
+    <path d="M0 -34V-28M0 28V34M-34 0H-28M28 0H34" stroke="#226192" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Arrow in Center / Bullseye -->
+    <path d="M-18 -18L0 0" stroke="#226192" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M-22 -14L-14 -22M-26 -18L-18 -26" stroke="#226192" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Direct Aim Trajectory Dots -->
+  <path d="M88 94C102 92 116 93 126 94" stroke="#226192" stroke-width="2" stroke-linecap="round" stroke-dasharray="3 4"/>
+</svg>

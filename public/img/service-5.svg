@@ -1,0 +1,27 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Mountain Summit Outline -->
+  <!-- Main High Peak (Center) -->
+  <path d="M120 74L168 162H32L92 78L120 74Z" stroke="#226192" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Secondary Peak (Left) -->
+  <path d="M64 122L42 162" stroke="#226192" stroke-width="2" stroke-linecap="round"/>
+  <!-- Center Ridge dividing light and shadow -->
+  <path d="M120 74L114 108L122 138L116 162" stroke="#226192" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Shading Hatch Marks on Left Slope -->
+  <path d="M110 88L96 102M112 102L90 120M116 116L86 138M118 132L92 152M120 146L102 160" stroke="#226192" stroke-width="1.6" stroke-linecap="round"/>
+
+  <!-- Snowcap Zag Line -->
+  <path d="M106 100L114 108L120 98L128 104L136 96" stroke="#226192" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Flagpole at Peak Summit -->
+  <path d="M120 32V74" stroke="#226192" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="120" cy="30" r="3" stroke="#226192" stroke-width="2"/>
+
+  <!-- Waving Flag with Shield Crest -->
+  <path d="M120 34C136 32 148 38 162 34V60C148 64 136 58 120 62V34Z" stroke="#226192" stroke-width="2.2" stroke-linejoin="round"/>
+  <!-- Shield Icon inside Flag -->
+  <path d="M136 41H146C146 48 141 53 141 53C141 53 136 48 136 41Z" stroke="#226192" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- Ground Horizon Base -->
+  <path d="M22 162H178" stroke="#226192" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

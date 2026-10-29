@@ -4,7 +4,8 @@ import QuestionsSection from "@/components/sections/QuestionsSection";
 import ExpertiseSection from "@/components/sections/ExpertiseSection";
 import { ProcessSection } from "@/components/sections/ProcessSection";
 import { ExecutionSection } from "@/components/sections/ExecutionSection";
-import CaseStudiesDeck from "@/components/sections/CaseStudiesDeck";
+import SuccessStories from "@/components/sections/SuccessStories";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -15,7 +16,8 @@ export default function Home() {
       <ExpertiseSection />
       <ProcessSection />
       <ExecutionSection />
-      <CaseStudiesDeck />
+      <SuccessStories />
+      <Footer />
     </main>
   );
 }

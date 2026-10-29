@@ -54,15 +54,15 @@ export function Footer() {
       className="relative w-full text-[#FAF9F6] pt-16 sm:pt-24 lg:pt-32 pb-10 sm:pb-14 px-5 sm:px-10 lg:px-16 overflow-hidden select-none"
     >
       <div className="max-w-7xl mx-auto flex flex-col justify-between">
-        
+
         {/* ==============================================================
             TOP / MAIN GRID SECTION
             ============================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start pb-16 sm:pb-24">
-          
+
           {/* Left Column: Monogram & Large Impactful Question */}
           <div className="md:col-span-6 lg:col-span-5 flex flex-col items-start">
-            
+
             {/* Logo Monogram */}
             <Link
               href="/"
@@ -146,7 +146,7 @@ export function Footer() {
             BOTTOM BAR: COPYRIGHT & METRICS
             ============================================================== */}
         <div className="pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono tracking-[0.2em] uppercase text-white/75">
-          
+
           {/* Left: Copyright */}
           <div className="flex items-center gap-3">
             <span>© 2026 ARHAAN SHAIKH</span>

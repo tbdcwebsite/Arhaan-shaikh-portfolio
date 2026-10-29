@@ -1,0 +1,45 @@
+<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gear 1 (Upper Left) -->
+  <g transform="translate(48, 52)">
+    <circle cx="0" cy="0" r="14" stroke="#226192" stroke-width="2.5"/>
+    <circle cx="0" cy="0" r="6" stroke="#226192" stroke-width="2"/>
+    <!-- Gear Teeth -->
+    <path d="M0 -18V-14M0 14V18M-18 0H-14M14 0H18M-13 -13L-10 -10M10 10L13 13M-13 13L-10 10M10 -10L13 -13" stroke="#226192" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Gear 2 (Interlocking Small) -->
+  <g transform="translate(76, 70)">
+    <circle cx="0" cy="0" r="9" stroke="#226192" stroke-width="2"/>
+    <circle cx="0" cy="0" r="3.5" stroke="#226192" stroke-width="1.8"/>
+    <path d="M0 -12V-9M0 9V12M-12 0H-9M9 0H12M-8 -8L-6 -6M6 6L8 8M-8 8L-6 6M6 -6L8 -8" stroke="#226192" stroke-width="2.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Ground Line -->
+  <path d="M28 168H172" stroke="#226192" stroke-width="2.5" stroke-linecap="round"/>
+
+  <!-- Bar Chart Columns -->
+  <!-- Column 1 -->
+  <path d="M42 168V134H58V168" stroke="#226192" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 142H54M46 150H54M46 158H54" stroke="#226192" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Column 2 -->
+  <path d="M68 168V114H86V168" stroke="#226192" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M73 124H81M73 134H81M73 144H81M73 154H81" stroke="#226192" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Column 3 -->
+  <path d="M96 168V90H116V168" stroke="#226192" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M101 102H111M101 114H111M101 126H111M101 138H111M101 150H111" stroke="#226192" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Column 4 (Tallest) -->
+  <path d="M126 168V68H148V168" stroke="#226192" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M132 80H142M132 94H142M132 108H142M132 122H142M132 136H142M132 150H142" stroke="#226192" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Big Bold Rising Arrow Across Graph -->
+  <path d="M34 148L80 108L112 86L162 44" stroke="#226192" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M142 42H164V64" stroke="#226192" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Organic Sprout / Seedling at Bottom Right -->
+  <path d="M162 168C162 156 160 148 158 140" stroke="#226192" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M158 140C152 136 146 138 146 144C146 150 152 150 158 148" stroke="#226192" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M159 144C164 138 172 138 174 144C175 149 168 153 160 149" stroke="#226192" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

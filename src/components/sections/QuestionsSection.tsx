@@ -1,214 +1,376 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useReducedMotion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
-interface QuestionItem {
+interface ServiceCard {
   id: string;
   number: string;
-  question: string;
+  title: string;
   href: string;
+  theme: "cream" | "terracotta" | "blue";
+  iconSrc: string;
+  alt: string;
 }
 
-const QUESTIONS: QuestionItem[] = [
+const SERVICES_DATA: ServiceCard[] = [
   {
-    id: "q1",
+    id: "s1",
     number: "01",
-    question: "Where do I even begin with marketing?",
-    href: "/#contact",
+    title: "Go-To-Market Strategy",
+    href: "/services/go-to-market",
+    theme: "cream",
+    iconSrc: "/img/service-1.svg",
+    alt: "Go To Market Strategy Vector",
   },
   {
-    id: "q2",
+    id: "s2",
     number: "02",
-    question: "What's the right marketing budget and media split for a new brand?",
-    href: "/#contact",
+    title: "Growth Strategy",
+    href: "/services/growth-strategy",
+    theme: "terracotta",
+    iconSrc: "/img/service-2.svg",
+    alt: "Growth Strategy Vector",
   },
   {
-    id: "q3",
+    id: "s3",
     number: "03",
-    question: "Which E-commerce platform is right for my brand?",
-    href: "/#contact",
+    title: "E-Commerce & Quick Commerce",
+    href: "/services/ecommerce",
+    theme: "blue",
+    iconSrc: "/img/service-3.svg",
+    alt: "E-Commerce & Quick Commerce Vector",
   },
   {
-    id: "q4",
+    id: "s4",
     number: "04",
-    question: "How do I price my product right?",
-    href: "/#contact",
+    title: "Marketing Strategy",
+    href: "/services/marketing-strategy",
+    theme: "cream",
+    iconSrc: "/img/service-4.svg",
+    alt: "Marketing Strategy Vector",
   },
   {
-    id: "q5",
+    id: "s5",
     number: "05",
-    question: "How do I increase my ROAS?",
-    href: "/#contact",
+    title: "Brand Positioning",
+    href: "/services/brand-positioning",
+    theme: "terracotta",
+    iconSrc: "/img/service-5.svg",
+    alt: "Brand Positioning Vector",
   },
   {
-    id: "q6",
+    id: "s6",
     number: "06",
-    question: "How do we turn more traffic into sales?",
-    href: "/#contact",
-  },
-  {
-    id: "q7",
-    number: "07",
-    question: "Are we ready to scale?",
-    href: "/#contact",
-  },
-  {
-    id: "q8",
-    number: "08",
-    question: "How do we improve customer retention?",
-    href: "/#contact",
+    title: "Digital Strategy",
+    href: "/services/digital-strategy",
+    theme: "blue",
+    iconSrc: "/img/service-6.svg",
+    alt: "Digital Strategy Vector",
   },
 ];
 
 export default function QuestionsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  const [activeHoverId, setActiveHoverId] = useState<string | null>(null);
-  const reduceMotion = useReducedMotion();
+  const trackRef = useRef<HTMLDivElement>(null);
+  const desktopViewportRef = useRef<HTMLDivElement>(null);
+  const desktopTrackRef = useRef<HTMLDivElement>(null);
+  const [maxScrollX, setMaxScrollX] = useState(0);
 
-  // Pre-triggers animation 100px before scrolling in, preventing blank screen
-  const isHeaderInView = useInView(headerRef, { once: true, margin: "100px 0px -40px 0px" });
-
-  // Scroll-driven compass rotation
+  // Scroll distance binding (240vh tight runway)
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
+    target: trackRef,
+    offset: ["start start", "end end"],
   });
 
-  const compassRotation = useTransform(scrollYProgress, [0, 1], [-45, 225]);
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 26,
+    mass: 0.5,
+  });
+
+  // Calculate pixel-perfect desktop horizontal translation with ResizeObserver
+  useEffect(() => {
+    const calculateDistance = () => {
+      if (desktopTrackRef.current && desktopViewportRef.current) {
+        const viewportWidth = desktopViewportRef.current.clientWidth;
+        const lastCard = desktopTrackRef.current.lastElementChild as HTMLElement | null;
+
+        if (lastCard) {
+          const exactMax = Math.max(0, lastCard.offsetLeft + lastCard.offsetWidth - viewportWidth);
+          setMaxScrollX(exactMax);
+        } else {
+          const fullTrackWidth = desktopTrackRef.current.scrollWidth;
+          setMaxScrollX(Math.max(0, fullTrackWidth - viewportWidth));
+        }
+      }
+    };
+
+    calculateDistance();
+
+    const resizeObserver = new ResizeObserver(() => {
+      calculateDistance();
+    });
+
+    if (desktopViewportRef.current) {
+      resizeObserver.observe(desktopViewportRef.current);
+    }
+    if (desktopTrackRef.current) {
+      resizeObserver.observe(desktopTrackRef.current);
+    }
+
+    window.addEventListener("resize", calculateDistance);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", calculateDistance);
+    };
+  }, []);
+
+  // Map 0 -> 0.94 to full translation so Card 06 docks flush and scroll flows into next section
+  const desktopTranslateX = useTransform(smoothProgress, [0, 0.94], [0, -maxScrollX], {
+    clamp: true,
+  });
 
   return (
-    <section
-      ref={sectionRef}
-      id="questions"
-      style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-24 sm:py-32 lg:py-40 px-5 sm:px-8 md:px-12 lg:px-16 overflow-hidden border-t border-[#121214]/10 select-none"
+    // Outer scroll runway (240vh for snappy, seamless transition)
+    <div
+      ref={trackRef}
+      id="services"
+      className="relative w-full"
+      style={{ height: "240vh" }}
     >
-      {/* Top-Right Rotating Compass Widget */}
-      <motion.div
-        initial={reduceMotion ? false : { opacity: 0, scale: 0.85, y: 30 }}
-        whileInView={{ opacity: 0.95, scale: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.1 }}
-        transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] as const }}
-        style={{ rotate: reduceMotion ? 0 : compassRotation }}
-        className="pointer-events-none absolute -right-8 sm:-right-4 top-8 sm:top-12 w-48 sm:w-64 md:w-80 lg:w-96 aspect-square z-10 will-change-transform select-none"
+      {/* Fallback anchor for old links */}
+      <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
+
+      {/* Pinned 100vh Sticky Viewport */}
+      <section
+        style={{ backgroundColor: "#EAE6DE" }}
+        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between pt-6 pb-8 sm:pt-8 sm:pb-10 lg:pt-9 lg:pb-10 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10"
       >
-        <Image
-          src="/images/compass-img.png"
-          alt="Vintage Compass"
-          width={384}
-          height={384}
-          priority
-          className="w-full h-full object-contain pointer-events-none drop-shadow-2xl"
-        />
-      </motion.div>
-
-      {/* Main Content Container */}
-      <div className="max-w-7xl mx-auto w-full relative z-20">
-        
-        {/* Header Block with Guaranteed Visible Mask Reveal */}
-        <div ref={headerRef} className="mb-14 sm:mb-20 max-w-4xl">
-          <div className="space-y-1 sm:space-y-2">
-            
-            {/* Line 1: Growth Starts With Clarity (Mont Sans) */}
-            <div className="overflow-hidden py-1">
-              <motion.h2
-                initial={reduceMotion ? false : { y: "100%", opacity: 0 }}
-                animate={isHeaderInView ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
-                transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] as const }}
-                className="font-sans font-bold text-3xl sm:text-5xl md:text-6xl xl:text-7xl tracking-tight leading-[1.08] text-[#121214]"
-              >
-                Growth Starts With Clarity.
-              </motion.h2>
+        <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
+          
+          {/* ==============================================================
+              SECTION HEADER (PINNED TOP IN 100VH)
+              ============================================================== */}
+          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#121214]/10 pb-4 sm:pb-6 shrink-0">
+            {/* Title */}
+            <div className="flex flex-col">
+              <h2 className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.08] text-[#121214]">
+                Where I Usually
+              </h2>
+              <span className="font-serif italic font-normal text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.08] text-[#EF8557] mt-0.5">
+                Enter The Picture.
+              </span>
             </div>
 
-            {/* Line 2: Clarity Starts Here (Butler Serif Italic in Terracotta) */}
-            <div className="overflow-hidden py-1">
-              <motion.span
-                initial={reduceMotion ? false : { y: "100%", opacity: 0 }}
-                animate={isHeaderInView ? { y: "0%", opacity: 1 } : { y: "100%", opacity: 0 }}
-                transition={{ duration: 0.95, delay: 0.1, ease: [0.16, 1, 0.3, 1] as const }}
-                className="block font-serif italic font-normal text-3xl sm:text-5xl md:text-6xl xl:text-7xl tracking-tight leading-[1.08] text-[#EF8557]"
-              >
-                Clarity Starts Here.
-              </motion.span>
+            {/* Right Action Hint */}
+            <div className="flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#121214]/65 self-start md:self-end pb-1">
+              <span>KEEP SCROLLING</span>
+              <span className="text-[#EF8557] font-sans text-base">→</span>
             </div>
-
           </div>
+
+          {/* ==============================================================
+              DESKTOP VIEW: 3.5 CARDS RATIO + TALL EDITORIAL CARDS
+              ============================================================== */}
+          <div
+            ref={desktopViewportRef}
+            className="hidden lg:flex w-full flex-1 items-center overflow-hidden my-auto [container-type:inline-size]"
+          >
+            <motion.div
+              ref={desktopTrackRef}
+              style={{ x: desktopTranslateX }}
+              className="flex items-center gap-5 will-change-transform py-2"
+            >
+              {SERVICES_DATA.map((card) => {
+                const isCream = card.theme === "cream";
+                const isTerracotta = card.theme === "terracotta";
+
+                return (
+                  <Link
+                    key={card.id}
+                    href={card.href}
+                    // Container Query Math: exactly 3.5 cards visible at rest
+                    style={{
+                      width: "calc((100cqw - 60px) / 3.5)",
+                    }}
+                    className={`group shrink-0 h-[470px] lg:h-[510px] xl:h-[550px] max-h-[68vh] rounded-[24px] sm:rounded-[28px] p-5 xl:p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none will-change-transform shadow-[0_12px_30px_rgba(18,18,20,0.08)] hover:shadow-[0_20px_42px_rgba(18,18,20,0.16)] ${
+                      isCream
+                        ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
+                        : isTerracotta
+                        ? "bg-[#EF8557] text-white"
+                        : "bg-[#226192] text-white"
+                    }`}
+                  >
+                    {/* Top: Butler Italic Number */}
+                    <div className="w-full flex items-start justify-start">
+                      <span
+                        className={`font-serif italic text-3xl sm:text-4xl leading-none select-none ${
+                          isCream ? "text-[#226192]" : "text-white"
+                        }`}
+                      >
+                        {card.number}
+                      </span>
+                    </div>
+
+                    {/* Center: Vector Illustration from /img/ folder */}
+                    <div className="relative w-full h-44 lg:h-52 flex items-center justify-center my-auto px-2">
+                      <Image
+                        src={card.iconSrc}
+                        alt={card.alt}
+                        width={200}
+                        height={200}
+                        className={`w-full h-full object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 ${
+                          !isCream ? "brightness-0 invert" : ""
+                        }`}
+                        onError={(e) => {
+                          (e.target as HTMLElement).style.opacity = "0.7";
+                        }}
+                      />
+                    </div>
+
+                    {/* Bottom Row: Title + 45° Hover Arrow */}
+                    <div className="w-full flex items-end justify-between gap-2.5 pt-3 border-t border-current/10">
+                      <h3
+                        className={`font-sans font-bold text-xs sm:text-sm lg:text-[13px] xl:text-[14px] leading-snug tracking-tight max-w-[150px] ${
+                          isCream ? "text-[#121214]" : "text-white"
+                        }`}
+                      >
+                        {card.title}
+                      </h3>
+
+                      {/* Circular Button with 45° Rotating Arrow on Card Hover */}
+                      <div
+                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 shadow-sm ${
+                          isCream
+                            ? "bg-[#226192] text-white"
+                            : isTerracotta
+                            ? "bg-white text-[#EF8557]"
+                            : "bg-white text-[#226192]"
+                        }`}
+                      >
+                        <ArrowRight className="w-3.5 h-3.5 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </motion.div>
+          </div>
+
+          {/* ==============================================================
+              MOBILE / TABLET VIEW: STICKY STACKING CARDS
+              ============================================================== */}
+          <div className="flex lg:hidden w-full flex-1 items-center justify-center relative overflow-hidden my-auto py-2">
+            <div className="relative w-full max-w-[320px] h-[340px] sm:h-[360px] flex items-center justify-center">
+              {SERVICES_DATA.map((card, idx) => {
+                const isCream = card.theme === "cream";
+                const isTerracotta = card.theme === "terracotta";
+
+                const step = 1 / SERVICES_DATA.length;
+                const start = (idx - 0.2) * step;
+                const end = idx * step;
+
+                const y = useTransform(
+                  smoothProgress,
+                  [Math.max(0, start), Math.min(1, end)],
+                  [idx === 0 ? 0 : 250, 0]
+                );
+
+                const scale = useTransform(
+                  smoothProgress,
+                  [end, Math.min(1, end + step * 2)],
+                  [1, 0.94]
+                );
+
+                const opacity = useTransform(
+                  smoothProgress,
+                  [Math.max(0, start - 0.05), Math.max(0, start)],
+                  [idx === 0 ? 1 : 0, 1]
+                );
+
+                return (
+                  <motion.div
+                    key={card.id}
+                    style={{
+                      y: idx === 0 ? 0 : y,
+                      scale,
+                      opacity,
+                      top: `${idx * 8}px`,
+                      zIndex: idx + 10,
+                    }}
+                    className="absolute inset-x-0 will-change-transform"
+                  >
+                    <Link
+                      href={card.href}
+                      className={`group w-full h-[320px] sm:h-[340px] rounded-[24px] p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none shadow-[0_16px_36px_rgba(18,18,20,0.14)] ${
+                        isCream
+                          ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
+                          : isTerracotta
+                          ? "bg-[#EF8557] text-white"
+                          : "bg-[#226192] text-white"
+                      }`}
+                    >
+                      <div className="w-full flex items-start justify-start">
+                        <span
+                          className={`font-serif italic text-3xl leading-none ${
+                            isCream ? "text-[#226192]" : "text-white"
+                          }`}
+                        >
+                          {card.number}
+                        </span>
+                      </div>
+
+                      <div className="relative w-full h-32 flex items-center justify-center my-auto px-2">
+                        <Image
+                          src={card.iconSrc}
+                          alt={card.alt}
+                          width={130}
+                          height={130}
+                          className={`w-full h-full object-contain pointer-events-none ${
+                            !isCream ? "brightness-0 invert" : ""
+                          }`}
+                          onError={(e) => {
+                            (e.target as HTMLElement).style.opacity = "0.7";
+                          }}
+                        />
+                      </div>
+
+                      <div className="w-full flex items-end justify-between gap-2 pt-2.5 border-t border-current/10">
+                        <h3
+                          className={`font-sans font-bold text-xs sm:text-sm leading-snug tracking-tight max-w-[180px] ${
+                            isCream ? "text-[#121214]" : "text-white"
+                          }`}
+                        >
+                          {card.title}
+                        </h3>
+
+                        <div
+                          className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 shadow-sm ${
+                            isCream
+                              ? "bg-[#226192] text-white"
+                              : isTerracotta
+                              ? "bg-white text-[#EF8557]"
+                              : "bg-white text-[#226192]"
+                          }`}
+                        >
+                          <ArrowRight className="w-3.5 h-3.5 stroke-[2.4] transition-transform duration-300 group-hover:-rotate-45" />
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
-
-        {/* Questions Interactive Stack */}
-        <ol role="list" className="relative w-full border-b border-[#121214]/12">
-          {QUESTIONS.map((item, index) => {
-            const isIndented = index % 2 !== 0;
-
-            return (
-              <motion.li
-                key={item.id}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{
-                  duration: 0.6,
-                  delay: index * 0.04,
-                  ease: [0.16, 1, 0.3, 1] as const,
-                }}
-                className="w-full relative"
-              >
-                {/* Horizontal Hairline Divider */}
-                <div className="w-full h-[1px] bg-[#121214]/12 absolute top-0 left-0" />
-
-                <Link
-                  href={item.href}
-                  onMouseEnter={() => setActiveHoverId(item.id)}
-                  onMouseLeave={() => setActiveHoverId(null)}
-                  className="group w-full flex items-center justify-between py-5 sm:py-6 px-4 sm:px-6 md:px-8 rounded-none transition-colors duration-300 cursor-pointer touch-manipulation hover:bg-[#226192] active:bg-[#226192] focus-visible:outline-none focus-visible:bg-[#226192]"
-                >
-                  {/* Left: Serif Number + Question Text */}
-                  <div
-                    className={`flex items-baseline gap-4 sm:gap-8 transition-transform duration-300 group-hover:translate-x-2 sm:group-hover:translate-x-3.5 ${
-                      isIndented ? "lg:pl-[11%]" : ""
-                    }`}
-                  >
-                    {/* Italic Serif Index (Butler) */}
-                    <span
-                      className="font-serif italic text-3xl sm:text-4xl md:text-5xl leading-none tracking-tight text-[#121214]/40 transition-colors duration-300 group-hover:text-white"
-                    >
-                      {item.number}
-                    </span>
-
-                    {/* Question Title (Mont Sans) */}
-                    <span
-                      className="font-sans font-medium sm:font-semibold text-base sm:text-xl md:text-2xl tracking-[-0.015em] text-[#121214] transition-colors duration-300 group-hover:text-white"
-                    >
-                      {item.question}
-                    </span>
-                  </div>
-
-                  {/* Right Pop-In Circular Arrow Button (Terracotta Accent on Hover) */}
-                  <div
-                    className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#EF8557] text-white flex items-center justify-center shrink-0 ml-4 transition-all duration-300 shadow-md ${
-                      activeHoverId === item.id
-                        ? "scale-100 opacity-100"
-                        : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 group-active:scale-100 group-active:opacity-100"
-                    }`}
-                    aria-hidden="true"
-                  >
-                    <ArrowRight className="w-4 h-4 stroke-[2.4]" />
-                  </div>
-                </Link>
-              </motion.li>
-            );
-          })}
-        </ol>
-
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
 
-export { QuestionsSection };
+export { QuestionsSection, QuestionsSection as ServicesSection };

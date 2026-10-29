@@ -2,177 +2,331 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowUp, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 
-const NAV_PAGES = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/#about" },
-  { name: "Services", href: "/#services" },
-  { name: "Success Stories", href: "/#success-stories" },
-  { name: "Journal", href: "/#journal" },
-  { name: "Contact Us", href: "/#contact" },
-];
+/* ------------------------------------------------------------------
+   PRECISE INLINE BRAND SOCIAL ICONS (Zero external dependency issues)
+   ------------------------------------------------------------------ */
+function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  );
+}
 
-const SERVICES_LIST = [
-  { number: "01", name: "Go-to-market strategy", href: "/services/go-to-market-strategy" },
-  { number: "02", name: "Growth & performance", href: "/services/growth-strategy" },
-  { number: "03", name: "E-commerce | Quick commerce", href: "/services/ecommerce-quick-commerce" },
-  { number: "04", name: "Marketing strategy", href: "/services/marketing-strategy" },
-  { number: "05", name: "Brand positioning", href: "/services/brand-positioning" },
-  { number: "06", name: "Digital strategy", href: "/services/digital-strategy" },
-];
+function LinkedinIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 
-export function Footer() {
+function YoutubeIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" />
+      <polygon points="10 15 15 12 10 9 10 15" fill="currentColor" />
+    </svg>
+  );
+}
+
+function TwitterXIcon({ className = "w-3.5 h-3.5" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  );
+}
+
+export default function Footer() {
   const [currentTime, setCurrentTime] = useState("");
 
-  // Live IST Clock for editorial polish
+  const email = "hello@arhaanshaikh.com";
+  const phone = "+91 91524 96555";
+  const phoneTel = "+919152496555";
+
+  // Live Mumbai Time Clock
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const istTime = now.toLocaleTimeString("en-US", {
-        timeZone: "Asia/Kolkata",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      });
-      setCurrentTime(istTime);
+      setCurrentTime(
+        now.toLocaleTimeString("en-IN", {
+          timeZone: "Asia/Kolkata",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        })
+      );
     };
-
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer
-      id="site-footer"
-      style={{ backgroundColor: "#EF8557" }}
-      className="relative w-full text-[#FAF9F6] pt-16 sm:pt-24 lg:pt-32 pb-10 sm:pb-14 px-5 sm:px-10 lg:px-16 overflow-hidden select-none"
+      style={{ backgroundColor: "#226192" }}
+      className="relative w-full text-white pt-14 sm:pt-18 lg:pt-20 pb-10 px-5 sm:px-8 md:px-12 lg:px-16 overflow-hidden select-none"
     >
-      <div className="max-w-7xl mx-auto flex flex-col justify-between">
+      {/* ==============================================================
+          BACKGROUND WATERMARK: GHOST TYPOGRAPHY FOR DEPTH
+          ============================================================== */}
+      <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none whitespace-nowrap opacity-[0.035] font-serif italic text-[160px] sm:text-[220px] lg:text-[280px] leading-none text-white z-0">
+        Arhaan Shaikh
+      </div>
 
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        
         {/* ==============================================================
-            TOP / MAIN GRID SECTION
+            PRE-FOOTER CALLOUT ROW: REMOVES PLAINNESS INSTANTLY
             ============================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 items-start pb-16 sm:pb-24">
-
-          {/* Left Column: Monogram & Large Impactful Question */}
-          <div className="md:col-span-6 lg:col-span-5 flex flex-col items-start">
-
-            {/* Logo Monogram */}
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 mb-8 sm:mb-12 group focus:outline-none"
-            >
-              <span className="font-sans font-black text-2xl tracking-tighter text-[#FAF9F6] border-2 border-[#FAF9F6] px-2 py-0.5 rounded-sm">
-                A&apos;
+        <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-6 pb-12 sm:pb-14 border-b border-white/15">
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
+              <span className="font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#EF8557]">
+                START A COLLABORATION
               </span>
-              <div className="flex flex-col leading-none font-sans font-bold text-[11px] tracking-[0.2em] uppercase text-[#FAF9F6]">
-                <span>ARHAAN</span>
-                <span className="opacity-80">SHAIKH</span>
-              </div>
-            </Link>
-
-            {/* Impact Headline */}
-            <h2 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.04] text-[#FAF9F6] uppercase max-w-lg">
-              <span>HAVE A BUSINESS PROBLEM </span>
-              <span className="font-serif italic font-normal normal-case text-white inline-block">
-                worth solving?
+            </div>
+            <h2 className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl tracking-tight text-white">
+              Have an ambitious project in{" "}
+              <span className="font-serif italic font-normal text-[#EF8557]">
+                mind?
               </span>
             </h2>
+          </div>
 
-            {/* Quick Action Trigger */}
-            <div className="mt-8 sm:mt-10">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#121214] text-[#FAF9F6] font-sans font-semibold text-xs tracking-wider uppercase shadow-[0_8px_24px_rgba(18,18,20,0.25)] hover:bg-black active:scale-95 transition-all"
+          <Link
+            href="/#contact"
+            style={{ backgroundColor: "#EF8557" }}
+            className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-sans font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl self-start md:self-auto shrink-0"
+          >
+            <span>Let&apos;s Build Together</span>
+            <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </Link>
+        </div>
+
+        {/* ==============================================================
+            MAIN 4-COLUMN GRID
+            ============================================================== */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 py-12 sm:py-14">
+          
+          {/* COLUMN 1: BIO + SOCIAL ICONS (Span 4) */}
+          <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-8">
+            <h3 className="font-sans font-bold text-2xl tracking-tight text-white mb-3">
+              Arhaan Shaikh
+            </h3>
+            <p className="font-sans text-sm text-white/80 leading-relaxed max-w-sm mb-6">
+              Empowering businesses with scalable growth strategies, tailored marketing systems, and high-performance digital infrastructure.
+            </p>
+
+            {/* Social Icons row placed under bio */}
+            <div className="flex items-center gap-3">
+              <a
+                href="https://in.linkedin.com/in/arhaan555"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
               >
-                <span>Start a conversation</span>
-                <ArrowUpRight className="w-4 h-4 stroke-[2.2]" />
-              </Link>
+                <LinkedinIcon className="w-4 h-4" />
+              </a>
+              {/* Twitter / X (Retained for future activation)
+              <a
+                href="https://x.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X (Twitter)"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+              >
+                <TwitterXIcon className="w-3.5 h-3.5" />
+              </a>
+              */}
+              <a
+                href="https://www.instagram.com/arhaanshaikh.co/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+              >
+                <InstagramIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+              >
+                <YoutubeIcon className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
-          {/* Middle Column: Pages Navigation */}
-          <div className="md:col-span-3 lg:col-span-3 flex flex-col items-start md:pl-4">
-            <span className="font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-white/60 mb-5 sm:mb-7">
-              PAGES
-            </span>
-
-            <nav className="flex flex-col space-y-2.5 sm:space-y-3.5">
-              {NAV_PAGES.map((page) => (
+          {/* COLUMN 2: EXPLORE (Span 2) */}
+          <div className="lg:col-span-2 flex flex-col items-start">
+            <h4 className="font-mono text-xs font-semibold tracking-[0.22em] text-white/60 mb-5">
+              EXPLORE
+            </h4>
+            <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm tracking-wide text-white/85">
+              <li>
                 <Link
-                  key={page.name}
-                  href={page.href}
-                  className="font-sans font-bold text-sm sm:text-base tracking-wider uppercase text-[#FAF9F6]/90 hover:text-white transition-all duration-200 hover:translate-x-1.5 inline-block w-fit"
+                  href="/#about"
+                  className="transition-colors duration-200 hover:text-[#EF8557]"
                 >
-                  {page.name}
+                  About
                 </Link>
-              ))}
-            </nav>
+              </li>
+              <li>
+                <Link
+                  href="/#services"
+                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#process"
+                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                >
+                  Process
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#success-stories"
+                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                >
+                  Success Stories
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Right Column: Services Navigation */}
-          <div className="md:col-span-3 lg:col-span-4 flex flex-col items-start">
-            <span className="font-mono text-[11px] font-bold tracking-[0.26em] uppercase text-white/60 mb-5 sm:mb-7">
-              SERVICES
-            </span>
-
-            <nav className="flex flex-col space-y-2.5 sm:space-y-3.5 w-full">
-              {SERVICES_LIST.map((srv) => (
+          {/* COLUMN 3: EXPERTISE (Span 3) */}
+          <div className="lg:col-span-3 flex flex-col items-start">
+            <h4 className="font-mono text-xs font-semibold tracking-[0.22em] text-white/60 mb-5">
+              EXPERTISE
+            </h4>
+            <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm text-white/85">
+              <li>
                 <Link
-                  key={srv.number}
-                  href={srv.href}
-                  className="group flex items-baseline gap-3 text-sm sm:text-[15px] text-[#FAF9F6]/90 hover:text-white transition-all duration-200 hover:translate-x-1.5 w-fit"
+                  href="/services/go-to-market"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
                 >
-                  <span className="font-mono text-[11px] text-white/50 group-hover:text-white transition-colors">
-                    {srv.number}
-                  </span>
-                  <span className="font-sans font-medium tracking-normal">
-                    {srv.name}
-                  </span>
+                  <span>Go-To-Market Strategy</span>
                 </Link>
-              ))}
-            </nav>
+              </li>
+              <li>
+                <Link
+                  href="/services/growth-strategy"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                >
+                  <span>Growth Strategy</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/ecommerce"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                >
+                  <span>E-Commerce & Q-Commerce</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services/brand-positioning"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                >
+                  <span>Brand Positioning</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* COLUMN 4: CONTACT US (Span 3) */}
+          <div className="lg:col-span-3 flex flex-col items-start">
+            <h4 className="font-mono text-xs font-semibold tracking-[0.22em] uppercase text-white/60 mb-5">
+              CONTACT US
+            </h4>
+
+            {/* Standard Contact Items */}
+            <div className="flex flex-col gap-4 w-full font-sans text-xs sm:text-sm text-white/85">
+              
+              {/* Email */}
+              <a
+                href={`mailto:${email}`}
+                className="flex items-center gap-2.5 hover:text-[#EF8557] transition-colors"
+              >
+                <Mail className="w-4 h-4 text-[#EF8557] shrink-0" />
+                <span>{email}</span>
+              </a>
+
+              {/* Phone */}
+              <a
+                href={`tel:${phoneTel}`}
+                className="flex items-center gap-2.5 hover:text-[#EF8557] transition-colors"
+              >
+                <Phone className="w-4 h-4 text-[#EF8557] shrink-0" />
+                <span>{phone}</span>
+              </a>
+
+              {/* Address */}
+              <div className="flex items-start gap-2.5 text-white/70">
+                <MapPin className="w-4 h-4 text-[#EF8557] shrink-0 mt-0.5" />
+                <span className="leading-relaxed text-xs sm:text-[13px]">
+                  The Bombay Digital Company, Plot no.381, RSC Rd Number 1A, Near Axis bank, opposite Shivneri building, Gorai 2, Borivali West, Mumbai, Maharashtra 400091
+                </span>
+              </div>
+
+            </div>
           </div>
 
         </div>
 
         {/* ==============================================================
-            BOTTOM BAR: COPYRIGHT & METRICS
+            BOTTOM DIVIDER & COPYRIGHT ROW (WITH LIVE TIME CLOCK)
             ============================================================== */}
-        <div className="pt-8 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono tracking-[0.2em] uppercase text-white/75">
+        <div className="w-full border-t border-white/15 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+          <p>© 2026 Arhaan Shaikh. All rights reserved.</p>
 
-          {/* Left: Copyright */}
-          <div className="flex items-center gap-3">
-            <span>© 2026 ARHAAN SHAIKH</span>
-            <span className="hidden sm:inline text-white/40">•</span>
-            <span className="hidden sm:inline text-[11px] text-white/80">
-              MUMBAI, IN {currentTime && `[${currentTime}]`}
-            </span>
+          {/* Live Clock Badge */}
+          <div className="flex items-center gap-2 font-mono text-[11px] text-white/50" suppressHydrationWarning>
+            <span>MUMBAI, IN</span>
+            <span>•</span>
+            <span className="text-white/80">{currentTime || "09:30 PM IST"}</span>
           </div>
-
-          {/* Center / Right: Tagline & Back to Top */}
-          <div className="flex items-center gap-6">
-            <span className="hidden lg:inline text-white/90 font-medium">
-              GROWTH STARTS WITH CLARITY.
-            </span>
-
-            <button
-              type="button"
-              onClick={scrollToTop}
-              aria-label="Scroll back to top"
-              className="inline-flex items-center gap-1.5 text-white hover:text-[#121214] transition-colors cursor-pointer group"
-            >
-              <span>TOP</span>
-              <ArrowUp className="w-3.5 h-3.5 transition-transform duration-200 group-hover:-translate-y-0.5" />
-            </button>
-          </div>
-
         </div>
 
       </div>
@@ -180,4 +334,4 @@ export function Footer() {
   );
 }
 
-export default Footer;
+export { Footer };

@@ -15,6 +15,7 @@ const config: Config = {
         "18": "4.5rem",
         "22": "5.5rem",
         "26": "6.5rem",
+        "54": "13.5rem",
       },
       colors: {
         primary: "#CDF225",

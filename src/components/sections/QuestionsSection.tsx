@@ -3,7 +3,13 @@
 import React, { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 interface ServiceCard {
@@ -16,6 +22,7 @@ interface ServiceCard {
   alt: string;
 }
 
+// Exact asset mappings matching public/images/ directory
 const SERVICES_DATA: ServiceCard[] = [
   {
     id: "s1",
@@ -23,8 +30,8 @@ const SERVICES_DATA: ServiceCard[] = [
     title: "Go-To-Market Strategy",
     href: "/services/go-to-market",
     theme: "cream",
-    iconSrc: "/img/service-1.svg",
-    alt: "Go To Market Strategy Vector",
+    iconSrc: "/images/Go-To-Market Startegy.png",
+    alt: "Go To Market Strategy Illustration",
   },
   {
     id: "s2",
@@ -32,8 +39,8 @@ const SERVICES_DATA: ServiceCard[] = [
     title: "Growth Strategy",
     href: "/services/growth-strategy",
     theme: "terracotta",
-    iconSrc: "/img/service-2.svg",
-    alt: "Growth Strategy Vector",
+    iconSrc: "/images/Growth Strategy.png",
+    alt: "Growth Strategy Illustration",
   },
   {
     id: "s3",
@@ -41,8 +48,8 @@ const SERVICES_DATA: ServiceCard[] = [
     title: "E-Commerce & Quick Commerce",
     href: "/services/ecommerce",
     theme: "blue",
-    iconSrc: "/img/service-3.svg",
-    alt: "E-Commerce & Quick Commerce Vector",
+    iconSrc: "/images/E-Commerce & Quick Commerce.png",
+    alt: "E-Commerce & Quick Commerce Illustration",
   },
   {
     id: "s4",
@@ -50,8 +57,8 @@ const SERVICES_DATA: ServiceCard[] = [
     title: "Marketing Strategy",
     href: "/services/marketing-strategy",
     theme: "cream",
-    iconSrc: "/img/service-4.svg",
-    alt: "Marketing Strategy Vector",
+    iconSrc: "/images/Marketing Strategy.png",
+    alt: "Marketing Strategy Illustration",
   },
   {
     id: "s5",
@@ -59,8 +66,8 @@ const SERVICES_DATA: ServiceCard[] = [
     title: "Brand Positioning",
     href: "/services/brand-positioning",
     theme: "terracotta",
-    iconSrc: "/img/service-5.svg",
-    alt: "Brand Positioning Vector",
+    iconSrc: "/images/Brand Positioning.png",
+    alt: "Brand Positioning Illustration",
   },
   {
     id: "s6",
@@ -68,87 +75,207 @@ const SERVICES_DATA: ServiceCard[] = [
     title: "Digital Strategy",
     href: "/services/digital-strategy",
     theme: "blue",
-    iconSrc: "/img/service-6.svg",
-    alt: "Digital Strategy Vector",
+    iconSrc: "/images/Digital Strategy .png",
+    alt: "Digital Strategy Illustration",
   },
 ];
 
+// =========================================================================
+// MOBILE CARD ITEM (OPTIMIZED TIMING & TOUCH ELEVATION)
+// =========================================================================
+function MobileCardItem({
+  card,
+  index,
+  total,
+  smoothProgress,
+}: {
+  card: ServiceCard;
+  index: number;
+  total: number;
+  smoothProgress: MotionValue<number>;
+}) {
+  const isCream = card.theme === "cream";
+  const isTerracotta = card.theme === "terracotta";
+
+  const stepDuration = 0.14;
+  const stepGap = 0.02;
+
+  const start = 0.08 + (index - 1) * (stepDuration + stepGap);
+  const end = start + stepDuration;
+  const nextStart = end + stepGap;
+  const nextEnd = nextStart + stepDuration;
+
+  const y = useTransform(
+    smoothProgress,
+    index === 0
+      ? [0, 1]
+      : [Math.max(0, start - 0.04), Math.max(0, start), Math.min(1, end)],
+    index === 0 ? [0, 0] : [560, 560, 0]
+  );
+
+  const opacity = useTransform(
+    smoothProgress,
+    index === 0
+      ? [0, 1]
+      : [Math.max(0, start - 0.03), Math.max(0, start + 0.02)],
+    index === 0 ? [1, 1] : [0, 1]
+  );
+
+  const scale = useTransform(
+    smoothProgress,
+    index === total - 1
+      ? [0, 1]
+      : index === 0
+      ? [0, 0.08, 0.22, 1]
+      : [0, start, end, nextStart, Math.min(1, nextEnd), 1],
+    index === total - 1
+      ? [1, 1]
+      : index === 0
+      ? [1, 1, 0.94, 0.94]
+      : [1, 1, 1, 1, 0.94, 0.94]
+  );
+
+  return (
+    <motion.div
+      style={{
+        y,
+        scale,
+        opacity,
+        top: `${index * 8}px`,
+        zIndex: index + 10,
+      }}
+      className="absolute inset-x-0 will-change-transform flex justify-center"
+    >
+      <Link
+        href={card.href}
+        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[28px] xs:rounded-[32px] p-6 xs:p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none shadow-[0_20px_48px_rgba(18,18,20,0.16)] ${
+          isCream
+            ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
+            : isTerracotta
+            ? "bg-[#EF8557] text-white"
+            : "bg-[#226192] text-white"
+        }`}
+      >
+        <div className="w-full flex items-start justify-start">
+          <span
+            className={`font-serif italic text-4xl xs:text-5xl leading-none select-none ${
+              isCream ? "text-[#226192]" : "text-white"
+            }`}
+          >
+            {card.number}
+          </span>
+        </div>
+
+        {/* Real Image Illustration Container */}
+        <div className="relative w-full h-36 xs:h-40 flex items-center justify-center my-auto px-6 py-2">
+          <Image
+            src={card.iconSrc}
+            alt={card.alt}
+            width={160}
+            height={160}
+            priority={index <= 2}
+            className="max-h-[130px] xs:max-h-[145px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-sm"
+          />
+        </div>
+
+        <div className="w-full flex items-end justify-between gap-3 pt-3.5 border-t border-current/10">
+          <h3
+            className={`font-sans font-bold text-base xs:text-lg leading-snug tracking-tight max-w-[210px] ${
+              isCream ? "text-[#121214]" : "text-white"
+            }`}
+          >
+            {card.title}
+          </h3>
+
+          <div
+            className={`w-9 h-9 xs:w-10 xs:h-10 rounded-full flex items-center justify-center shrink-0 shadow-sm transition-transform duration-300 ${
+              isCream
+                ? "bg-[#226192] text-white"
+                : isTerracotta
+                ? "bg-white text-[#EF8557]"
+                : "bg-white text-[#226192]"
+            }`}
+          >
+            <ArrowRight className="w-4 h-4 xs:w-4.5 xs:h-4.5 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
+          </div>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+// =========================================================================
+// MAIN QUESTIONS / SERVICES SECTION
+// =========================================================================
 export default function QuestionsSection() {
   const trackRef = useRef<HTMLDivElement>(null);
   const desktopViewportRef = useRef<HTMLDivElement>(null);
-  const desktopTrackRef = useRef<HTMLDivElement>(null);
-  const [maxScrollX, setMaxScrollX] = useState(0);
 
-  // Scroll distance binding
+  const [cardWidth, setCardWidth] = useState<number>(320);
+  const [maxScrollX, setMaxScrollX] = useState<number>(0);
+
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start start", "end end"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 140,
-    damping: 26,
-    mass: 0.5,
+    stiffness: 180,
+    damping: 30,
+    mass: 0.45,
   });
 
-  // Calculate pixel-perfect desktop horizontal translation with exact flush docking
+  // Calculate 3.5 cards desktop width and exact right docking
   useEffect(() => {
-    const calculateDistance = () => {
-      if (desktopViewportRef.current) {
-        const W = desktopViewportRef.current.clientWidth;
-        if (W > 0) {
-          const cardWidth = (W - 3 * 20) / 3.5;
-          const exactShift = 2.5 * cardWidth + 2 * 20;
-          setMaxScrollX(Math.max(0, exactShift));
-        }
-      }
+    const updateMetrics = () => {
+      if (!desktopViewportRef.current) return;
+      const viewportWidth = desktopViewportRef.current.clientWidth;
+      const gap = 20;
+
+      const calculatedWidth = (viewportWidth - 3 * gap) / 3.5;
+      const exactShift = 2.5 * calculatedWidth + 2 * gap;
+
+      setCardWidth(calculatedWidth);
+      setMaxScrollX(Math.max(0, exactShift));
     };
 
-    calculateDistance();
+    updateMetrics();
 
     const resizeObserver = new ResizeObserver(() => {
-      calculateDistance();
+      updateMetrics();
     });
 
     if (desktopViewportRef.current) {
       resizeObserver.observe(desktopViewportRef.current);
     }
-    if (desktopTrackRef.current) {
-      resizeObserver.observe(desktopTrackRef.current);
-    }
 
-    window.addEventListener("resize", calculateDistance);
-
+    window.addEventListener("resize", updateMetrics);
     return () => {
       resizeObserver.disconnect();
-      window.removeEventListener("resize", calculateDistance);
+      window.removeEventListener("resize", updateMetrics);
     };
   }, []);
 
   const desktopTranslateX = useTransform(smoothProgress, [0, 1], [0, -maxScrollX]);
 
   return (
-    // Outer scroll runway
     <div
       ref={trackRef}
       id="services"
-      className="relative w-full h-[460vh] lg:h-[190vh]"
+      className="relative w-full"
+      style={{ height: "180vh" }}
     >
-      {/* Fallback anchor for old links */}
       <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
 
-      {/* Pinned 100vh Sticky Viewport */}
+      {/* 100vh Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-5 sm:py-7 lg:py-8 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10"
+        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between pt-5 pb-6 sm:pt-7 sm:pb-8 lg:pt-9 lg:pb-10 px-4 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10"
       >
         <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
-
-          {/* ==============================================================
-              SECTION HEADER (PINNED TOP IN 100VH)
-              ============================================================== */}
-          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#121214]/10 pb-4 sm:pb-5 shrink-0">
-            {/* Title */}
+          
+          {/* Header Row */}
+          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-3 sm:pb-4 shrink-0">
             <div className="flex flex-col">
               <h2 className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.08] text-[#121214]">
                 Where I Usually
@@ -158,7 +285,6 @@ export default function QuestionsSection() {
               </span>
             </div>
 
-            {/* Right Action Hint: Hidden on mobile (<768px), visible on md+ */}
             <div className="hidden md:flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#121214]/65 self-start md:self-end pb-1">
               <span>KEEP SCROLLING</span>
               <span className="text-[#EF8557] font-sans text-base">→</span>
@@ -166,18 +292,17 @@ export default function QuestionsSection() {
           </div>
 
           {/* ==============================================================
-              DESKTOP VIEW: 3.5 CARDS RATIO + ZERO CLIPPING VERTICAL PADDING
+              DESKTOP VIEW: 3.5 CARDS & REAL HIGH-RES PNG ARTWORK
               ============================================================== */}
           <div
             ref={desktopViewportRef}
-            className="hidden lg:flex w-full flex-1 items-center overflow-hidden my-auto py-5 lg:py-8 [container-type:inline-size]"
+            className="hidden lg:flex w-full flex-1 items-center overflow-hidden my-auto py-4 lg:py-6"
           >
             <motion.div
-              ref={desktopTrackRef}
               style={{ x: desktopTranslateX }}
-              className="flex items-center gap-5 will-change-transform py-4 lg:py-5"
+              className="flex items-center gap-5 will-change-transform py-3"
             >
-              {SERVICES_DATA.map((card) => {
+              {SERVICES_DATA.map((card, idx) => {
                 const isCream = card.theme === "cream";
                 const isTerracotta = card.theme === "terracotta";
 
@@ -185,61 +310,61 @@ export default function QuestionsSection() {
                   <Link
                     key={card.id}
                     href={card.href}
-                    // Container Query Math: exactly 3.5 cards visible at rest
                     style={{
-                      width: "calc((100cqw - 60px) / 3.5)",
+                      width: `${cardWidth}px`,
+                      minWidth: `${cardWidth}px`,
                     }}
-                    className={`group shrink-0 h-[420px] lg:h-[460px] xl:h-[490px] max-h-[60vh] rounded-[28px] lg:rounded-[32px] p-5 xl:p-6 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none will-change-transform shadow-[0_12px_30px_rgba(18,18,20,0.08)] hover:shadow-[0_22px_45px_rgba(18,18,20,0.16)] ${isCream
+                    className={`group shrink-0 h-[430px] lg:h-[470px] xl:h-[500px] max-h-[62vh] rounded-[28px] lg:rounded-[32px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none will-change-transform shadow-[0_14px_36px_rgba(18,18,20,0.08)] hover:shadow-[0_22px_48px_rgba(18,18,20,0.16)] hover:-translate-y-1 ${
+                      isCream
                         ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
                         : isTerracotta
-                          ? "bg-[#EF8557] text-white"
-                          : "bg-[#226192] text-white"
-                      }`}
+                        ? "bg-[#EF8557] text-white"
+                        : "bg-[#226192] text-white"
+                    }`}
                   >
-                    {/* Top: Butler Italic Number */}
-                    <div className="w-full flex items-start justify-start">
+                    {/* Number */}
+                    <div className="w-full flex items-start justify-start pt-0.5">
                       <span
-                        className={`font-serif italic text-3xl sm:text-4xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
-                          }`}
+                        className={`font-serif italic text-3xl sm:text-4xl lg:text-[40px] leading-none select-none ${
+                          isCream ? "text-[#226192]" : "text-white"
+                        }`}
                       >
                         {card.number}
                       </span>
                     </div>
 
-                    {/* Center: Vector Illustration from /img/ folder */}
-                    <div className="relative w-full h-36 lg:h-44 flex items-center justify-center my-auto px-2">
+                    {/* Real PNG Image Centerpiece */}
+                    <div className="relative w-full h-32 lg:h-36 flex items-center justify-center my-auto px-6 py-2">
                       <Image
                         src={card.iconSrc}
                         alt={card.alt}
-                        width={180}
-                        height={180}
-                        className={`w-full h-full object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 ${!isCream ? "brightness-0 invert" : ""
-                          }`}
-                        onError={(e) => {
-                          (e.target as HTMLElement).style.opacity = "0.7";
-                        }}
+                        width={150}
+                        height={150}
+                        priority={idx < 4}
+                        className="max-h-[120px] lg:max-h-[135px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-sm"
                       />
                     </div>
 
-                    {/* Bottom Row: Title + 45° Hover Arrow */}
-                    <div className="w-full flex items-end justify-between gap-2.5 pt-3 border-t border-current/10">
+                    {/* Title + 45° Hover Arrow */}
+                    <div className="w-full flex items-end justify-between gap-3 pt-3.5 border-t border-current/10">
                       <h3
-                        className={`font-sans font-bold text-xs sm:text-sm lg:text-[13px] xl:text-[14px] leading-snug tracking-tight max-w-[150px] ${isCream ? "text-[#121214]" : "text-white"
-                          }`}
+                        className={`font-sans font-bold text-sm lg:text-base leading-snug tracking-tight max-w-[170px] ${
+                          isCream ? "text-[#121214]" : "text-white"
+                        }`}
                       >
                         {card.title}
                       </h3>
 
-                      {/* Circular Button with 45° Rotating Arrow on Card Hover */}
                       <div
-                        className={`w-7 h-7 sm:w-8 sm:h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 shadow-sm ${isCream
+                        className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 shadow-sm group-hover:scale-105 ${
+                          isCream
                             ? "bg-[#226192] text-white"
                             : isTerracotta
-                              ? "bg-white text-[#EF8557]"
-                              : "bg-white text-[#226192]"
-                          }`}
+                            ? "bg-white text-[#EF8557]"
+                            : "bg-white text-[#226192]"
+                        }`}
                       >
-                        <ArrowRight className="w-3.5 h-3.5 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
+                        <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
                       </div>
                     </div>
                   </Link>
@@ -249,106 +374,19 @@ export default function QuestionsSection() {
           </div>
 
           {/* ==============================================================
-              MOBILE / TABLET VIEW: STICKY STACKING CARDS
+              MOBILE VIEW: HIGH-RES PNGs ON STACKED CARDS
               ============================================================== */}
           <div className="flex lg:hidden w-full flex-1 items-center justify-center relative overflow-hidden my-auto py-2">
-            <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] flex items-center justify-center">
-              {SERVICES_DATA.map((card, idx) => {
-                const isCream = card.theme === "cream";
-                const isTerracotta = card.theme === "terracotta";
-
-                // Paced stacking runway: 0.0 to 0.86 distributes cards 1-5, with 0.86 to 1.00 buffer for Card 06
-                const activeRange = 0.86;
-                const totalCards = SERVICES_DATA.length;
-                const step = activeRange / (totalCards - 1);
-                const start = idx === 0 ? 0 : (idx - 1) * step;
-                const end = idx === 0 ? 0 : idx * step;
-
-                const y = useTransform(
-                  smoothProgress,
-                  [Math.max(0, start), Math.min(1, end)],
-                  [idx === 0 ? 0 : 380, 0]
-                );
-
-                const scale = useTransform(
-                  smoothProgress,
-                  [end, Math.min(1, end + step)],
-                  [1, 0.94]
-                );
-
-                const opacity = useTransform(
-                  smoothProgress,
-                  [Math.max(0, start - 0.04), Math.max(0, start + 0.03)],
-                  [idx === 0 ? 1 : 0, 1]
-                );
-
-                return (
-                  <motion.div
-                    key={card.id}
-                    style={{
-                      y: idx === 0 ? 0 : y,
-                      scale: idx === totalCards - 1 ? 1 : scale,
-                      opacity,
-                      top: `${idx * 8}px`,
-                      zIndex: idx + 10,
-                    }}
-                    className="absolute inset-x-0 will-change-transform"
-                  >
-                    <Link
-                      href={card.href}
-                      className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[28px] xs:rounded-[32px] p-6 xs:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none shadow-[0_16px_36px_rgba(18,18,20,0.14)] ${isCream
-                          ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
-                          : isTerracotta
-                            ? "bg-[#EF8557] text-white"
-                            : "bg-[#226192] text-white"
-                        }`}
-                    >
-                      <div className="w-full flex items-start justify-start">
-                        <span
-                          className={`font-serif italic text-4xl xs:text-5xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
-                            }`}
-                        >
-                          {card.number}
-                        </span>
-                      </div>
-
-                      <div className="relative w-full h-48 xs:h-54 sm:h-60 flex items-center justify-center my-auto px-2">
-                        <Image
-                          src={card.iconSrc}
-                          alt={card.alt}
-                          width={240}
-                          height={240}
-                          className={`w-full h-full object-contain pointer-events-none select-none ${!isCream ? "brightness-0 invert" : ""
-                            }`}
-                          onError={(e) => {
-                            (e.target as HTMLElement).style.opacity = "0.7";
-                          }}
-                        />
-                      </div>
-
-                      <div className="w-full flex items-end justify-between gap-3 pt-3.5 border-t border-current/10">
-                        <h3
-                          className={`font-sans font-bold text-base xs:text-lg leading-snug tracking-tight max-w-[220px] ${isCream ? "text-[#121214]" : "text-white"
-                            }`}
-                        >
-                          {card.title}
-                        </h3>
-
-                        <div
-                          className={`w-8 h-8 xs:w-9 xs:h-9 rounded-full flex items-center justify-center shrink-0 shadow-sm ${isCream
-                              ? "bg-[#226192] text-white"
-                              : isTerracotta
-                                ? "bg-white text-[#EF8557]"
-                                : "bg-white text-[#226192]"
-                            }`}
-                        >
-                          <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
-                        </div>
-                      </div>
-                    </Link>
-                  </motion.div>
-                );
-              })}
+            <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[480px] xs:h-[520px] sm:h-[550px] max-h-[68dvh] flex items-center justify-center">
+              {SERVICES_DATA.map((card, idx) => (
+                <MobileCardItem
+                  key={card.id}
+                  card={card}
+                  index={idx}
+                  total={SERVICES_DATA.length}
+                  smoothProgress={smoothProgress}
+                />
+              ))}
             </div>
           </div>
 

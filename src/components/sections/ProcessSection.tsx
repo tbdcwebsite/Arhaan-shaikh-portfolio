@@ -62,12 +62,7 @@ export default function ProcessSection() {
   const node1Bg = useTransform(smoothProgress, [0, 0.05], ["#226192", "#226192"]);
   const node1IconColor = useTransform(smoothProgress, [0, 0.05], ["#FFFFFF", "#FFFFFF"]);
 
-  // Line 1: Fills from Node 1 to Node 2 (0.05 -> 0.32)
-  const line1Scale = useTransform(smoothProgress, [0.05, 0.32], [0, 1], {
-    clamp: true,
-  });
-
-  // Step 2: Audit (Fills when Line 1 reaches it at ~0.32)
+  // Step 2: Audit (Fills when continuous line reaches it at ~0.33)
   const node2Bg = useTransform(smoothProgress, [0.30, 0.34], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
@@ -75,12 +70,7 @@ export default function ProcessSection() {
     clamp: true,
   });
 
-  // Line 2: Fills from Node 2 to Node 3 (0.35 -> 0.62)
-  const line2Scale = useTransform(smoothProgress, [0.35, 0.62], [0, 1], {
-    clamp: true,
-  });
-
-  // Step 3: Strategize (Fills when Line 2 reaches it at ~0.62)
+  // Step 3: Strategize (Fills when continuous line reaches it at ~0.62)
   const node3Bg = useTransform(smoothProgress, [0.60, 0.64], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
@@ -88,16 +78,16 @@ export default function ProcessSection() {
     clamp: true,
   });
 
-  // Line 3: Fills from Node 3 to Node 4 (0.65 -> 0.90)
-  const line3Scale = useTransform(smoothProgress, [0.65, 0.90], [0, 1], {
-    clamp: true,
-  });
-
-  // Step 4: Execute (Fills when Line 3 reaches it at ~0.90)
+  // Step 4: Execute (Fills when continuous line reaches it at ~0.90)
   const node4Bg = useTransform(smoothProgress, [0.88, 0.92], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
   const node4IconColor = useTransform(smoothProgress, [0.88, 0.92], ["#226192", "#FFFFFF"], {
+    clamp: true,
+  });
+
+  // Continuous desktop horizontal rail fill (0.05 -> 0.90)
+  const desktopLineScale = useTransform(smoothProgress, [0.05, 0.90], [0, 1], {
     clamp: true,
   });
 
@@ -108,7 +98,6 @@ export default function ProcessSection() {
 
   const nodeBgs = [node1Bg, node2Bg, node3Bg, node4Bg];
   const nodeColors = [node1IconColor, node2IconColor, node3IconColor, node4IconColor];
-  const lineScales = [line1Scale, line2Scale, line3Scale];
 
   return (
     <div
@@ -152,55 +141,63 @@ export default function ProcessSection() {
               DESKTOP VIEW: HORIZONTAL CONNECTED ROADMAP (IMAGE 1:1)
               ============================================================== */}
           <div className="hidden md:flex w-full flex-1 items-center justify-between relative my-auto py-10">
-            {ROADMAP_STEPS.map((step, idx) => {
-              const IconComponent = step.icon;
-              const hasNext = idx < ROADMAP_STEPS.length - 1;
+            <div className="relative w-full">
+              {/* Single Continuous Collinear Rail */}
+              <div className="absolute left-[12.5%] right-[12.5%] top-[48px] lg:top-[56px] -translate-y-1/2 h-[2px] bg-[#121214]/15 z-0">
+                {/* Terracotta Accent Dots at Segment Midpoints */}
+                <span className="absolute left-[16.67%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] ring-4 ring-[#EAE6DE] z-10 shadow-sm" />
+                <span className="absolute left-[50%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] ring-4 ring-[#EAE6DE] z-10 shadow-sm" />
+                <span className="absolute left-[83.33%] top-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] ring-4 ring-[#EAE6DE] z-10 shadow-sm" />
 
-              return (
-                <div
-                  key={step.id}
-                  className="relative flex-1 flex flex-col items-center text-center px-2"
-                >
-                  {hasNext && (
-                    <div className="absolute top-10 left-[50%] right-[-50%] h-[2px] z-0 flex items-center">
-                      <div className="w-full h-full bg-[#121214]/15 relative">
-                        <span className="absolute left-1/2 -top-[3px] -translate-x-1/2 w-2 h-2 rounded-full bg-[#EF8557] z-10 shadow-sm" />
-                        <motion.div
-                          style={{
-                            scaleX: lineScales[idx],
-                            transformOrigin: "left",
-                          }}
-                          className="absolute inset-0 h-full bg-[#226192] will-change-transform"
-                        />
+                {/* Animated Active Fill */}
+                <motion.div
+                  style={{
+                    scaleX: desktopLineScale,
+                    transformOrigin: "left",
+                  }}
+                  className="w-full h-full bg-[#226192] origin-left will-change-transform"
+                />
+              </div>
+
+              {/* 4 Step Columns */}
+              <div className="w-full grid grid-cols-4 items-start">
+                {ROADMAP_STEPS.map((step, idx) => {
+                  const IconComponent = step.icon;
+
+                  return (
+                    <div
+                      key={step.id}
+                      className="relative flex flex-col items-center text-center px-2"
+                    >
+                      {/* Circular Node with Optical Isolation Ring */}
+                      <motion.div
+                        style={{
+                          backgroundColor: nodeBgs[idx],
+                        }}
+                        className="relative z-10 w-24 h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center border border-[#121214]/15 shadow-[0_10px_25px_rgba(18,18,20,0.08)] mb-6 cursor-default ring-8 ring-[#EAE6DE]"
+                      >
+                        <motion.div style={{ color: nodeColors[idx] }}>
+                          <IconComponent className="w-9 h-9 lg:w-11 lg:h-11 stroke-[1.6]" />
+                        </motion.div>
+                      </motion.div>
+
+                      {/* Enlarged Typography */}
+                      <div className="flex flex-col items-center max-w-[260px]">
+                        <span className="font-serif italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
+                          {step.number}
+                        </span>
+                        <h3 className="font-sans font-bold text-2xl lg:text-3xl text-[#121214] tracking-tight mb-2">
+                          {step.title}
+                        </h3>
+                        <p className="font-sans text-sm lg:text-[15px] text-[#121214]/75 leading-relaxed max-w-[260px]">
+                          {step.description}
+                        </p>
                       </div>
                     </div>
-                  )}
-
-                  <motion.div
-                    style={{
-                      backgroundColor: nodeBgs[idx],
-                    }}
-                    className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center border border-[#121214]/15 shadow-[0_10px_25px_rgba(18,18,20,0.08)] mb-6 cursor-default"
-                  >
-                    <motion.div style={{ color: nodeColors[idx] }}>
-                      <IconComponent className="w-8 h-8 stroke-[1.6]" />
-                    </motion.div>
-                  </motion.div>
-
-                  <div className="flex flex-col items-center max-w-[210px]">
-                    <span className="font-serif italic text-2xl text-[#EF8557] mb-1">
-                      {step.number}
-                    </span>
-                    <h3 className="font-sans font-bold text-xl text-[#121214] tracking-tight mb-2">
-                      {step.title}
-                    </h3>
-                    <p className="font-sans text-xs sm:text-sm text-[#121214]/70 leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
           {/* ==============================================================

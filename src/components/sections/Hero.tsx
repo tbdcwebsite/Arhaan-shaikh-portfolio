@@ -46,14 +46,14 @@ export function Hero() {
   return (
     // Hard-locked 100dvh container without vertical scrollbar leaks
     <section className="relative w-full h-[100dvh] max-h-[100dvh] bg-[#EAE6DE] text-[#121214] pt-24 xs:pt-26 sm:pt-28 lg:pt-24 pb-4 sm:pb-6 px-4 xs:px-6 sm:px-8 lg:px-16 flex flex-col justify-between items-center overflow-hidden select-none">
-      
+
       {/* Floating Top Navbar Container */}
       <div className="absolute top-0 left-0 w-full z-50">
         <Navbar />
       </div>
 
       <div className="max-w-7xl mx-auto w-full flex-1 flex flex-col justify-between items-center lg:grid lg:grid-cols-12 gap-3 sm:gap-6 lg:gap-10 relative z-10 min-h-0">
-        
+
         {/* ==============================================================
             TOP/LEFT: CLEAN CLEARANCE HEADLINE & ACTIONS
             ============================================================== */}

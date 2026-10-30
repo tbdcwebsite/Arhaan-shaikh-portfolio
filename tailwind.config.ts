@@ -11,6 +11,9 @@ const config: Config = {
       screens: {
         xs: "380px",
       },
+      scale: {
+        "108": "1.08",
+      },
       spacing: {
         "18": "4.5rem",
         "22": "5.5rem",

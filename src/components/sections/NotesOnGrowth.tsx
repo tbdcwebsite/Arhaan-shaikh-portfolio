@@ -331,6 +331,9 @@ export default function NotesOnGrowth() {
       style={{ backgroundColor: "#FAF9F6" }}
       className="relative w-full text-[#121214] py-16 sm:py-20 lg:py-24 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
     >
+      {/* Anchor alias to catch legacy /#success-stories links seamlessly */}
+      <span id="success-stories" className="absolute -top-24 pointer-events-none opacity-0" />
+
       <div className="max-w-7xl mx-auto w-full">
         
         {/* ==============================================================

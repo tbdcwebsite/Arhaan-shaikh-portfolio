@@ -16,7 +16,7 @@ interface NavItem {
 const navItems: NavItem[] = [
   { name: "ABOUT", href: "/#about", hoverDisplay: "About" },
   { name: "SERVICES", href: "/#services", hoverDisplay: "Services" },
-  { name: "SUCCESS STORIES", href: "/#success-stories", hoverDisplay: "Success Stories" },
+  { name: "PROCESS", href: "/#process", hoverDisplay: "Process" },
   { name: "JOURNAL", href: "/#journal", hoverDisplay: "Journal" },
 ];
 

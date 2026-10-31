@@ -175,10 +175,10 @@ export default function AboutSection() {
             <span className="reveal-dropcap inline-block float-left text-5xl sm:text-6xl font-serif text-[#EF8557] leading-none pr-3 pt-1 font-normal select-none will-change-transform">
               I
             </span>
-            ’ve spent the last decade moving between strategy rooms and delivery calendars—building positioning for founders, running campaigns, shaping brands, and sitting with teams on the days the plan meets reality.
+            ’ve spent the last decade moving between strategy rooms and delivery calendars, building positioning for founders, running campaigns, shaping brands, and sitting with teams on the days the plan meets reality.
           </p>
           <p className="reveal-paragraph">
-            That mix is the point. I’ve consulted for businesses across categories and markets, and I’ve also built and led the teams that execute: brand, content, digital, performance, and production.
+            That mix is the point. I’ve consulted for businesses across categories and markets, and I’ve also built and led the teams that execute brand, content, digital, performance, and production.
           </p>
           <p className="reveal-paragraph pt-1 text-[#121214]/90">
             So my advice doesn’t stay on paper. It’s shaped by years of building the teams that make growth happen.

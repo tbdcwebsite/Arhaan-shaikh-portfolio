@@ -70,29 +70,29 @@ export default function ProcessSection() {
     clamp: true,
   });
 
-  // Step 3: Strategize (Fills when continuous line reaches it at ~0.62)
-  const node3Bg = useTransform(smoothProgress, [0.60, 0.64], ["#FFFFFF", "#226192"], {
+  // Step 3: Strategize (Fills when continuous line reaches it at ~0.61)
+  const node3Bg = useTransform(smoothProgress, [0.58, 0.62], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
-  const node3IconColor = useTransform(smoothProgress, [0.60, 0.64], ["#226192", "#FFFFFF"], {
-    clamp: true,
-  });
-
-  // Step 4: Execute (Fills when continuous line reaches it at ~0.90)
-  const node4Bg = useTransform(smoothProgress, [0.88, 0.92], ["#FFFFFF", "#226192"], {
-    clamp: true,
-  });
-  const node4IconColor = useTransform(smoothProgress, [0.88, 0.92], ["#226192", "#FFFFFF"], {
+  const node3IconColor = useTransform(smoothProgress, [0.58, 0.62], ["#226192", "#FFFFFF"], {
     clamp: true,
   });
 
-  // Continuous desktop horizontal rail fill (0.05 -> 0.90)
-  const desktopLineScale = useTransform(smoothProgress, [0.05, 0.90], [0, 1], {
+  // Step 4: Execute (Fills when continuous line reaches it at ~0.88)
+  const node4Bg = useTransform(smoothProgress, [0.85, 0.88], ["#FFFFFF", "#226192"], {
+    clamp: true,
+  });
+  const node4IconColor = useTransform(smoothProgress, [0.85, 0.88], ["#226192", "#FFFFFF"], {
     clamp: true,
   });
 
-  // Continuous mobile vertical rail fill (0.05 -> 0.90)
-  const mobileLineScale = useTransform(smoothProgress, [0.05, 0.90], [0, 1], {
+  // Continuous desktop horizontal rail fill (0.05 -> 0.88)
+  const desktopLineScale = useTransform(smoothProgress, [0.05, 0.88], [0, 1], {
+    clamp: true,
+  });
+
+  // Continuous mobile vertical rail fill (0.05 -> 0.88)
+  const mobileLineScale = useTransform(smoothProgress, [0.05, 0.88], [0, 1], {
     clamp: true,
   });
 
@@ -103,7 +103,8 @@ export default function ProcessSection() {
     <div
       ref={containerRef}
       id="process"
-      className="relative w-full h-[220vh] md:h-[240vh]"
+      style={{ backgroundColor: "#EAE6DE" }}
+      className="relative w-full h-[165vh] bg-[#EAE6DE]"
     >
       {/* 100vh Sticky Viewport */}
       <section

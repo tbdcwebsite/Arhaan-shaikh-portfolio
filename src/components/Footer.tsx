@@ -225,10 +225,10 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/#success-stories"
+                  href="/#journal"
                   className="transition-colors duration-200 hover:text-[#EF8557]"
                 >
-                  Success Stories
+                  Journal
                 </Link>
               </li>
             </ul>

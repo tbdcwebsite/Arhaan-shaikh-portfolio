@@ -8,7 +8,6 @@ import {
   useScroll,
   useTransform,
   useSpring,
-  useReducedMotion,
   MotionValue,
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -81,140 +80,78 @@ const SERVICES_DATA: ServiceCard[] = [
 ];
 
 // =========================================================================
-// SEQUENTIAL CARD SCHEDULE CONFIGURATION (6 CARDS ACROSS [0.0, 1.0])
-// =========================================================================
-interface CardTimelineConfig {
-  yInput: number[];
-  yOutput: number[];
-  opInput: number[];
-  opOutput: number[];
-  visRange: [number, number];
-  plateau: [number, number];
-}
-
-const MOBILE_CARD_SCHEDULES: CardTimelineConfig[] = [
-  // Card 0: Resting [0.00, 0.12], Exits [0.12, 0.17]
-  {
-    yInput: [0.0, 0.12, 0.17, 1.0],
-    yOutput: [0, 0, -60, -60],
-    opInput: [0.0, 0.12, 0.17, 1.0],
-    opOutput: [1, 1, 0, 0],
-    visRange: [0.0, 0.175],
-    plateau: [0.0, 0.12],
-  },
-  // Card 1: Enters [0.12, 0.17], Resting [0.17, 0.29], Exits [0.29, 0.34]
-  {
-    yInput: [0.0, 0.12, 0.17, 0.29, 0.34, 1.0],
-    yOutput: [60, 60, 0, 0, -60, -60],
-    opInput: [0.0, 0.12, 0.17, 0.29, 0.34, 1.0],
-    opOutput: [0, 0, 1, 1, 0, 0],
-    visRange: [0.115, 0.345],
-    plateau: [0.17, 0.29],
-  },
-  // Card 2: Enters [0.29, 0.34], Resting [0.34, 0.46], Exits [0.46, 0.51]
-  {
-    yInput: [0.0, 0.29, 0.34, 0.46, 0.51, 1.0],
-    yOutput: [60, 60, 0, 0, -60, -60],
-    opInput: [0.0, 0.29, 0.34, 0.46, 0.51, 1.0],
-    opOutput: [0, 0, 1, 1, 0, 0],
-    visRange: [0.285, 0.515],
-    plateau: [0.34, 0.46],
-  },
-  // Card 3: Enters [0.46, 0.51], Resting [0.51, 0.63], Exits [0.63, 0.68]
-  {
-    yInput: [0.0, 0.46, 0.51, 0.63, 0.68, 1.0],
-    yOutput: [60, 60, 0, 0, -60, -60],
-    opInput: [0.0, 0.46, 0.51, 0.63, 0.68, 1.0],
-    opOutput: [0, 0, 1, 1, 0, 0],
-    visRange: [0.455, 0.685],
-    plateau: [0.51, 0.63],
-  },
-  // Card 4: Enters [0.63, 0.68], Resting [0.68, 0.80], Exits [0.80, 0.85]
-  {
-    yInput: [0.0, 0.63, 0.68, 0.8, 0.85, 1.0],
-    yOutput: [60, 60, 0, 0, -60, -60],
-    opInput: [0.0, 0.63, 0.68, 0.8, 0.85, 1.0],
-    opOutput: [0, 0, 1, 1, 0, 0],
-    visRange: [0.625, 0.855],
-    plateau: [0.68, 0.8],
-  },
-  // Card 5: Enters [0.80, 0.85], Resting [0.85, 1.00]
-  {
-    yInput: [0.0, 0.8, 0.85, 1.0],
-    yOutput: [60, 60, 0, 0],
-    opInput: [0.0, 0.8, 0.85, 1.0],
-    opOutput: [0, 0, 1, 1],
-    visRange: [0.795, 1.0],
-    plateau: [0.85, 1.0],
-  },
-];
-
-// =========================================================================
-// MOBILE CARD ITEM (PURE ONE-CARD VISIBILITY & ZERO OVERLAP)
+// PREVIOUS MOBILE STACKED CARD (WITH SLOWER, CALIBRATED TIMING)
 // =========================================================================
 function MobileCardItem({
   card,
   index,
+  total,
   smoothProgress,
 }: {
   card: ServiceCard;
   index: number;
+  total: number;
   smoothProgress: MotionValue<number>;
 }) {
-  const shouldReduceMotion = useReducedMotion();
-  const config = MOBILE_CARD_SCHEDULES[index];
-
   const isCream = card.theme === "cream";
   const isTerracotta = card.theme === "terracotta";
 
-  // Calibrated vertical motion (bypassed if reduced motion is requested)
+  // Calibrated step duration and gap for slower, relaxed stacking
+  const stepDuration = 0.13;
+  const stepGap = 0.035;
+
+  const start = 0.06 + (index - 1) * (stepDuration + stepGap);
+  const end = start + stepDuration;
+  const nextStart = end + stepGap;
+  const nextEnd = nextStart + stepDuration;
+
+  // Vertical arrival from bottom
   const y = useTransform(
     smoothProgress,
-    config.yInput,
-    shouldReduceMotion ? config.yOutput.map(() => 0) : config.yOutput,
-    { clamp: true }
+    index === 0
+      ? [0, 1]
+      : [Math.max(0, start - 0.05), Math.max(0, start), Math.min(1, end)],
+    index === 0 ? [0, 0] : [520, 520, 0]
   );
 
-  // Dedicated, non-overlapping opacity fade
-  const opacity = useTransform(smoothProgress, config.opInput, config.opOutput, {
-    clamp: true,
-  });
+  // Soft arrival opacity
+  const opacity = useTransform(
+    smoothProgress,
+    index === 0
+      ? [0, 1]
+      : [Math.max(0, start - 0.04), Math.max(0, start + 0.03)],
+    index === 0 ? [1, 1] : [0, 1]
+  );
 
-  // Strict visibility gating: hidden when outside active transition boundaries
-  const visibility = useTransform(smoothProgress, (p) => {
-    return p >= config.visRange[0] && p <= config.visRange[1]
-      ? "visible"
-      : "hidden";
-  });
-
-  // Strict pointer events: only clickable when resting in dominant reading position
-  const pointerEvents = useTransform(smoothProgress, (p) => {
-    return p >= config.plateau[0] - 0.015 && p <= config.plateau[1] + 0.015
-      ? "auto"
-      : "none";
-  });
-
-  // Dynamic elevation: incoming and active cards always render on top
-  const zIndex = useTransform(smoothProgress, (p) => {
-    if (p < config.visRange[0] || p > config.visRange[1]) return 0;
-    if (p >= config.plateau[0] && p <= config.plateau[1]) return 20;
-    return 10;
-  });
+  // Stacking depth scale: compresses slightly as next card covers it
+  const scale = useTransform(
+    smoothProgress,
+    index === total - 1
+      ? [0, 1]
+      : index === 0
+      ? [0, 0.06, 0.22, 1]
+      : [0, start, end, nextStart, Math.min(1, nextEnd), 1],
+    index === total - 1
+      ? [1, 1]
+      : index === 0
+      ? [1, 1, 0.94, 0.94]
+      : [1, 1, 1, 1, 0.94, 0.94]
+  );
 
   return (
     <motion.div
       style={{
         y,
+        scale,
         opacity,
-        visibility,
-        pointerEvents,
-        zIndex,
+        top: `${index * 8}px`,
+        zIndex: index + 10,
       }}
-      className="absolute inset-0 flex items-center justify-center will-change-transform"
+      className="absolute inset-x-0 will-change-transform flex justify-center"
     >
       <Link
         href={card.href}
-        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[28px] xs:rounded-[32px] p-6 xs:p-7 sm:p-8 flex flex-col justify-between transition-shadow duration-300 cursor-pointer focus:outline-none shadow-[0_20px_48px_rgba(18,18,20,0.14)] ${
+        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[28px] xs:rounded-[32px] p-6 xs:p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none shadow-[0_20px_48px_rgba(18,18,20,0.16)] ${
           isCream
             ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
             : isTerracotta
@@ -222,7 +159,6 @@ function MobileCardItem({
             : "bg-[#226192] text-white"
         }`}
       >
-        {/* Top: Large Butler Number */}
         <div className="w-full flex items-start justify-start">
           <span
             className={`font-serif italic text-4xl xs:text-5xl leading-none select-none ${
@@ -233,19 +169,18 @@ function MobileCardItem({
           </span>
         </div>
 
-        {/* Center: Real Artwork Illustration */}
+        {/* Refined Centerpiece Image */}
         <div className="relative w-full h-36 xs:h-40 flex items-center justify-center my-auto px-6 py-2">
           <Image
             src={card.iconSrc}
             alt={card.alt}
             width={160}
             height={160}
-            priority={index === 0}
+            priority={index <= 2}
             className="max-h-[130px] xs:max-h-[145px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-sm"
           />
         </div>
 
-        {/* Bottom Row: Title + Action Arrow Button */}
         <div className="w-full flex items-end justify-between gap-3 pt-3.5 border-t border-current/10">
           <h3
             className={`font-sans font-bold text-base xs:text-lg leading-snug tracking-tight max-w-[210px] ${
@@ -281,33 +216,19 @@ export default function QuestionsSection() {
 
   const [cardWidth, setCardWidth] = useState<number>(320);
   const [maxScrollX, setMaxScrollX] = useState<number>(0);
-  const [activeCardIndex, setActiveCardIndex] = useState<number>(0);
 
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start start", "end end"],
   });
 
-  // Balanced spring parameters provide direct thumb synchronization without latency
+  // Soft dampened spring for smoother, slower pacing
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 240,
-    damping: 32,
-    mass: 0.35,
+    stiffness: 130,
+    damping: 26,
+    mass: 0.5,
   });
 
-  // Track active index for the micro mobile step indicator
-  useEffect(() => {
-    return smoothProgress.on("change", (latest) => {
-      if (latest < 0.145) setActiveCardIndex(0);
-      else if (latest < 0.315) setActiveCardIndex(1);
-      else if (latest < 0.485) setActiveCardIndex(2);
-      else if (latest < 0.655) setActiveCardIndex(3);
-      else if (latest < 0.825) setActiveCardIndex(4);
-      else setActiveCardIndex(5);
-    });
-  }, [smoothProgress]);
-
-  // Desktop horizontal calculations
   useEffect(() => {
     const updateMetrics = () => {
       if (!desktopViewportRef.current) return;
@@ -341,11 +262,11 @@ export default function QuestionsSection() {
   const desktopTranslateX = useTransform(smoothProgress, [0, 1], [0, -maxScrollX]);
 
   return (
-    // 480vh on mobile ensures ~76vh of scroll per card step; 190vh on desktop
+    // Runway increased to 620vh on mobile to drastically slow down stacking scroll speed
     <div
       ref={trackRef}
       id="services"
-      className="relative w-full h-[480vh] lg:h-[190vh]"
+      className="relative w-full h-[620vh] lg:h-[190vh]"
     >
       <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
 
@@ -367,7 +288,6 @@ export default function QuestionsSection() {
               </span>
             </div>
 
-            {/* Desktop Only Kicker */}
             <div className="hidden md:flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#121214]/65 self-start md:self-end pb-1">
               <span>KEEP SCROLLING</span>
               <span className="text-[#EF8557] font-sans text-base">→</span>
@@ -375,7 +295,7 @@ export default function QuestionsSection() {
           </div>
 
           {/* ==============================================================
-              DESKTOP VIEW: UNCHANGED 3.5-CARD HORIZONTAL CAROUSEL
+              DESKTOP VIEW: 3.5 CARDS & REFINED PROPORTIONS (UNCHANGED)
               ============================================================== */}
           <div
             ref={desktopViewportRef}
@@ -454,31 +374,17 @@ export default function QuestionsSection() {
           </div>
 
           {/* ==============================================================
-              MOBILE VIEW: PURE ONE-SCROLL-ONE-CARD DEDICATED VIEWPORT
+              MOBILE VIEW: LAYERED STACKING CARDS (SLOW & SMOOTH SPEED)
               ============================================================== */}
-          <div className="flex lg:hidden w-full flex-1 flex-col items-center justify-center relative overflow-hidden my-auto py-2">
-            {/* Dedicated Single Card Stage (Zero Stacking Offsets) */}
-            <div className="relative w-full max-w-[340px] xs:max-w-[370px] sm:max-w-[420px] h-[480px] xs:h-[520px] sm:h-[550px] max-h-[68dvh] flex items-center justify-center">
+          <div className="flex lg:hidden w-full flex-1 items-center justify-center relative overflow-hidden my-auto py-2">
+            <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[480px] xs:h-[520px] sm:h-[550px] max-h-[68dvh] flex items-center justify-center">
               {SERVICES_DATA.map((card, idx) => (
                 <MobileCardItem
                   key={card.id}
                   card={card}
                   index={idx}
+                  total={SERVICES_DATA.length}
                   smoothProgress={smoothProgress}
-                />
-              ))}
-            </div>
-
-            {/* Minimalist 6-Step Pagination Indicator */}
-            <div className="flex items-center justify-center gap-1.5 pt-4">
-              {SERVICES_DATA.map((_, dotIdx) => (
-                <span
-                  key={dotIdx}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    activeCardIndex === dotIdx
-                      ? "w-6 bg-[#EF8557]"
-                      : "w-1.5 bg-[#121214]/20"
-                  }`}
                 />
               ))}
             </div>

@@ -20,25 +20,27 @@
   --color-primary: #CDF225;
   --color-secondary: #520000;
   --color-tertiary: #28282B;
-  --color-neutral: #F8F8F5;
+  --color-neutral: #EAE6DE;
 
-  --font-manrope: var(--font-manrope);
-  --font-inter: var(--font-inter);
-  --font-headline: var(--font-manrope);
-  --font-heading: var(--font-manrope);
-  --font-body: var(--font-inter);
+  --font-mont: var(--font-mont);
+  --font-butler: var(--font-butler);
+  --font-sans: var(--font-mont);
+  --font-serif: var(--font-butler);
+  --font-headline: var(--font-mont);
+  --font-heading: var(--font-mont);
+  --font-body: var(--font-mont);
 }
 
 html {
-  background-color: #F8F8F5 !important;
-  color: #28282B;
-  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #EAE6DE !important;
+  color: #121214;
+  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background-color: #F8F8F5 !important;
-  color: #28282B;
-  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #EAE6DE !important;
+  color: #121214;
+  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 h1,
@@ -47,17 +49,16 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-manrope), sans-serif;
-  text-transform: capitalize;
+  font-family: var(--font-mont), sans-serif;
 }
 
 .font-heading,
 .font-headline {
-  font-family: var(--font-manrope), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .font-body {
-  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 @layer components {

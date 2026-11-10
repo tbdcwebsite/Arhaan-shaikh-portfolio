@@ -1,57 +1,37 @@
-import React from "react";
 import { notFound } from "next/navigation";
-import { SERVICES } from "@/lib/services-data";
-import { Navbar } from "@/components/Navbar";
-import { ServiceDetailClient } from "@/components/services/ServiceDetailClient";
-import Footer from "@/components/Footer";
 import type { Metadata } from "next";
+import { services, serviceSlugs } from "@/lib/services";
+import ServicePage from "@/components/ServicePage";
 
-interface PageProps {
+export function generateStaticParams() {
+  return serviceSlugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
   params: Promise<{ slug: string }>;
-}
-
-const SLUG_ALIASES: Record<string, string> = {
-  "go-to-market": "go-to-market-strategy",
-  "ecommerce": "ecommerce-quick-commerce",
-};
-
-export async function generateStaticParams() {
-  const base = SERVICES.map((s) => ({
-    slug: s.slug,
-  }));
-  return [
-    ...base,
-    { slug: "go-to-market" },
-    { slug: "ecommerce" },
-  ];
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+}): Promise<Metadata> {
   const { slug } = await params;
-  const resolvedSlug = SLUG_ALIASES[slug] || slug;
-  const service = SERVICES.find((s) => s.slug === resolvedSlug);
-  if (!service) return { title: "Practice Area Not Found" };
-
+  const service = services[slug];
+  if (!service) return {};
   return {
-    title: `${service.title} | Arhaan Shaikh`,
-    description: service.executiveSummary.slice(0, 160),
+    title: `${service.label} — Arhaan Shaikh`,
+    description: service.metaDescription,
+    openGraph: {
+      title: `${service.label} — Arhaan Shaikh`,
+      description: service.metaDescription,
+    },
   };
 }
 
-export default async function ServiceDetailPage({ params }: PageProps) {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
-  const resolvedSlug = SLUG_ALIASES[slug] || slug;
-  const service = SERVICES.find((s) => s.slug === resolvedSlug);
-
-  if (!service) {
-    notFound();
-  }
-
-  return (
-    <>
-      <Navbar />
-      <ServiceDetailClient service={service} />
-      <Footer />
-    </>
-  );
+  const service = services[slug];
+  if (!service) notFound();
+  return <ServicePage service={service} />;
 }

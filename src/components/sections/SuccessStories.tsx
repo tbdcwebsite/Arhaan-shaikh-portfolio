@@ -15,7 +15,7 @@ interface CampaignStory {
 const CAMPAIGNS_DATA: CampaignStory[] = [
   {
     id: "camp-1",
-    tag: "15 BUTTONS / FASHION",
+    tag: "15 BUTTONS",
     imageSrc: "/images/15-buttons-case-study.webp",
     href: "/case-studies/15-buttons",
   },
@@ -47,9 +47,9 @@ export default function SuccessStories() {
       className="relative w-full text-[#121214] py-16 sm:py-20 lg:py-24 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        
+
         {/* ==============================================================
-            HEADER ROW (LEFT-ALIGNED WITH TERRACOTTA PILL BAR)
+            HEADER ROW
             ============================================================== */}
         <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
           {/* Eyebrow with Terracotta Pill Bar */}
@@ -75,19 +75,20 @@ export default function SuccessStories() {
         </div>
 
         {/* ==============================================================
-            4-COLUMN EDITORIAL CAMPAIGN CARDS (CLEAN & METRICS REMOVED)
+            4-COLUMN EDITORIAL CARDS
             ============================================================== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-7 w-full">
           {CAMPAIGNS_DATA.map((campaign) => (
             <Link
               key={campaign.id}
               href={campaign.href}
-              className="group relative w-full h-[420px] xs:h-[450px] lg:h-[470px] xl:h-[490px] rounded-[28px] lg:rounded-[32px] overflow-hidden 
-                border border-white/90 shadow-[0_14px_36px_rgba(18,18,20,0.08)] hover:shadow-[0_24px_50px_rgba(34,97,146,0.18)]
-                transition-all duration-500 hover:-translate-y-2 flex flex-col justify-end p-5 sm:p-6 focus:outline-none"
+              className="group flex flex-col focus:outline-none"
             >
-              {/* FULL-BLEED CAMPAIGN PHOTOGRAPHY */}
-              <div className="absolute inset-0 z-0 bg-[#141517]">
+              {/* 🌟 1. CARD FRAME: 100% CLEAN IMAGE ONLY (ZERO OVERLAY / ZERO BUTTONS INSIDE) */}
+              <div className="relative w-full h-[380px] xs:h-[400px] lg:h-[420px] rounded-[24px] lg:rounded-[28px] overflow-hidden 
+                bg-[#161618] border border-white/80 shadow-[0_12px_32px_rgba(18,18,20,0.06)] 
+                hover:shadow-[0_22px_44px_rgba(34,97,146,0.16)] transition-all duration-500 hover:-translate-y-1.5"
+              >
                 <Image
                   src={campaign.imageSrc}
                   alt={campaign.tag}
@@ -95,24 +96,21 @@ export default function SuccessStories() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover object-center pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-106"
                   onError={(e) => {
-                    (e.target as HTMLElement).style.opacity = "0.7";
+                    (e.target as HTMLElement).style.opacity = "0.75";
                   }}
                 />
-                
-                {/* Subtle Bottom Vignette for Crisp Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent z-0 transition-opacity duration-300 group-hover:opacity-90" />
               </div>
 
-              {/* CARD BOTTOM: BRAND / TYPE PILL (LEFT) + ACTIVE ARROW BUTTON (RIGHT) */}
-              <div className="w-full flex items-center justify-between z-10">
-                {/* Brand / Type Tag */}
-                <span className="font-mono text-[10px] sm:text-[11px] font-semibold tracking-[0.16em] uppercase text-white/95 bg-black/50 px-3.5 py-1.5 rounded-full border border-white/20 backdrop-blur-md truncate max-w-[calc(100%-48px)] shadow-md">
+              {/* 🌟 2. METADATA ROW: POSITIONED DIRECTLY BELOW THE CARD */}
+              <div className="w-full flex items-center justify-between pt-3.5 px-1">
+                {/* Brand Name / Type */}
+                <span className="font-mono text-xs sm:text-[13px] font-semibold tracking-[0.14em] uppercase text-[#121214] group-hover:text-[#EF8557] transition-colors duration-200 truncate pr-2">
                   {campaign.tag}
                 </span>
 
-                {/* Permanent Active Circle Arrow Button */}
-                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-[#EF8557] text-white flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:bg-[#226192] shrink-0 ml-2">
-                  <ArrowUpRight className="w-4 h-4 sm:w-4.5 sm:h-4.5 stroke-[2.4] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                {/* Circular Arrow Button */}
+                <div className="w-8 h-8 rounded-full bg-[#EF8557] text-white flex items-center justify-center shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-[#226192] shrink-0">
+                  <ArrowUpRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
               </div>
             </Link>

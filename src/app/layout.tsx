@@ -1,22 +1,44 @@
 import type { Metadata } from "next";
-import { Inter, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
-  subsets: ["latin"],
+const mont = localFont({
+  src: [
+    {
+      path: "./fonts/Mont-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Mont-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-mont",
   display: "swap",
 });
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const butler = localFont({
+  src: [
+    {
+      path: "./fonts/Butler-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/Butler-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+  ],
+  variable: "--font-butler",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Create Next App",
-  description: "Next.js App with Tailwind CSS",
+  title: "Arhaan Shaikh | Growth Strategist & Marketing Architect",
+  description: "Senior Growth Strategist & Digital Architect delivering scalable brand equity and commercial ROI.",
 };
 
 export default function RootLayout({
@@ -27,12 +49,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${manrope.variable} min-h-full antialiased bg-[#F8F8F5]`}
-      style={{ backgroundColor: "#F8F8F5" }}
+      className={`${mont.variable} ${butler.variable} min-h-full antialiased bg-[#EAE6DE]`}
+      style={{ backgroundColor: "#EAE6DE" }}
     >
       <body
-        className="min-h-full flex flex-col bg-[#F8F8F5] text-[#28282B]"
-        style={{ backgroundColor: "#F8F8F5" }}
+        className={`${mont.variable} ${butler.variable} font-sans min-h-full flex flex-col bg-[#EAE6DE] text-[#121214]`}
+        style={{ backgroundColor: "#EAE6DE" }}
       >
         {children}
       </body>

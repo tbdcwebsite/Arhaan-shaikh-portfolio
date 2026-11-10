@@ -1,47 +1,49 @@
 "use client";
 
 import React, { useRef } from "react";
+import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { Ear, Search, Compass, TrendingUp } from "lucide-react";
 
 interface RoadmapStep {
   id: string;
   number: string;
   title: string;
   description: string;
-  icon: React.ComponentType<{ className?: string }>;
+  iconSrc: string;
 }
 
-const ROADMAP_STEPS: RoadmapStep[] = [
+const PROCESS_STEPS: RoadmapStep[] = [
   {
     id: "step-1",
     number: "01",
     title: "Listen",
     description: "Understand the business, goals and audience.",
-    icon: Ear,
+    iconSrc: "/icons/listen.svg",
   },
   {
     id: "step-2",
     number: "02",
     title: "Audit",
     description: "Find the gaps across brand, content, channels and performance.",
-    icon: Search,
+    iconSrc: "/icons/audit.svg",
   },
   {
     id: "step-3",
     number: "03",
     title: "Strategize",
     description: "Build a tailored roadmap with clear priorities.",
-    icon: Compass,
+    iconSrc: "/icons/strategize.svg",
   },
   {
     id: "step-4",
     number: "04",
     title: "Execute",
     description: "Turn plans into results with the right team and tools.",
-    icon: TrendingUp,
+    iconSrc: "/icons/execute.svg",
   },
 ];
+
+const ROADMAP_STEPS = PROCESS_STEPS;
 
 export default function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,13 +62,13 @@ export default function ProcessSection() {
 
   // Step 1: Listen (Active upon entering)
   const node1Bg = useTransform(smoothProgress, [0, 0.05], ["#226192", "#226192"]);
-  const node1IconColor = useTransform(smoothProgress, [0, 0.05], ["#FFFFFF", "#FFFFFF"]);
+  const node1Filter = useTransform(smoothProgress, [0, 0.05], ["brightness(0) invert(1)", "brightness(0) invert(1)"]);
 
   // Step 2: Audit (Fills when continuous line reaches it at ~0.33)
   const node2Bg = useTransform(smoothProgress, [0.30, 0.34], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
-  const node2IconColor = useTransform(smoothProgress, [0.30, 0.34], ["#226192", "#FFFFFF"], {
+  const node2Filter = useTransform(smoothProgress, [0.30, 0.34], ["none", "brightness(0) invert(1)"], {
     clamp: true,
   });
 
@@ -74,7 +76,7 @@ export default function ProcessSection() {
   const node3Bg = useTransform(smoothProgress, [0.58, 0.62], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
-  const node3IconColor = useTransform(smoothProgress, [0.58, 0.62], ["#226192", "#FFFFFF"], {
+  const node3Filter = useTransform(smoothProgress, [0.58, 0.62], ["none", "brightness(0) invert(1)"], {
     clamp: true,
   });
 
@@ -82,7 +84,7 @@ export default function ProcessSection() {
   const node4Bg = useTransform(smoothProgress, [0.85, 0.88], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
-  const node4IconColor = useTransform(smoothProgress, [0.85, 0.88], ["#226192", "#FFFFFF"], {
+  const node4Filter = useTransform(smoothProgress, [0.85, 0.88], ["none", "brightness(0) invert(1)"], {
     clamp: true,
   });
 
@@ -97,7 +99,7 @@ export default function ProcessSection() {
   });
 
   const nodeBgs = [node1Bg, node2Bg, node3Bg, node4Bg];
-  const nodeColors = [node1IconColor, node2IconColor, node3IconColor, node4IconColor];
+  const nodeFilters = [node1Filter, node2Filter, node3Filter, node4Filter];
 
   return (
     <div
@@ -112,7 +114,7 @@ export default function ProcessSection() {
         className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-6 xs:py-8 sm:py-10 lg:py-14 px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10"
       >
         <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
-          
+
           {/* ==============================================================
               SECTION HEADER
               ============================================================== */}
@@ -162,41 +164,43 @@ export default function ProcessSection() {
 
               {/* 4 Step Columns */}
               <div className="w-full grid grid-cols-4 items-start">
-                {ROADMAP_STEPS.map((step, idx) => {
-                  const IconComponent = step.icon;
-
-                  return (
-                    <div
-                      key={step.id}
-                      className="relative flex flex-col items-center text-center px-2"
+                {ROADMAP_STEPS.map((step, idx) => (
+                  <div
+                    key={step.id}
+                    className="relative flex flex-col items-center text-center px-2"
+                  >
+                    {/* Circular Node with Optical Isolation Ring */}
+                    <motion.div
+                      style={{
+                        backgroundColor: nodeBgs[idx],
+                      }}
+                      className="relative z-10 w-24 h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center border border-[#121214]/15 shadow-[0_10px_25px_rgba(18,18,20,0.08)] mb-6 cursor-default ring-8 ring-[#EAE6DE]"
                     >
-                      {/* Circular Node with Optical Isolation Ring */}
-                      <motion.div
-                        style={{
-                          backgroundColor: nodeBgs[idx],
-                        }}
-                        className="relative z-10 w-24 h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center border border-[#121214]/15 shadow-[0_10px_25px_rgba(18,18,20,0.08)] mb-6 cursor-default ring-8 ring-[#EAE6DE]"
-                      >
-                        <motion.div style={{ color: nodeColors[idx] }}>
-                          <IconComponent className="w-9 h-9 lg:w-11 lg:h-11 stroke-[1.6]" />
-                        </motion.div>
+                      <motion.div style={{ filter: nodeFilters[idx] }} className="flex items-center justify-center">
+                        <Image
+                          src={step.iconSrc}
+                          alt={step.title}
+                          width={32}
+                          height={32}
+                          className="w-7 h-7 sm:w-8 sm:h-8 object-contain"
+                        />
                       </motion.div>
+                    </motion.div>
 
-                      {/* Enlarged Typography */}
-                      <div className="flex flex-col items-center max-w-[260px]">
-                        <span className="font-serif italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
-                          {step.number}
-                        </span>
-                        <h3 className="font-sans font-bold text-2xl lg:text-3xl text-[#121214] tracking-tight mb-2">
-                          {step.title}
-                        </h3>
-                        <p className="font-sans text-sm lg:text-[15px] text-[#121214]/75 leading-relaxed max-w-[260px]">
-                          {step.description}
-                        </p>
-                      </div>
+                    {/* Enlarged Typography */}
+                    <div className="flex flex-col items-center max-w-[260px]">
+                      <span className="font-serif italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
+                        {step.number}
+                      </span>
+                      <h3 className="font-sans font-bold text-2xl lg:text-3xl text-[#121214] tracking-tight mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="font-sans text-sm lg:text-[15px] text-[#121214]/75 leading-relaxed max-w-[260px]">
+                        {step.description}
+                      </p>
                     </div>
-                  );
-                })}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -223,43 +227,45 @@ export default function ProcessSection() {
             </div>
 
             {/* 4 Steps Spaced Evenly Across Available Height */}
-            {ROADMAP_STEPS.map((step, idx) => {
-              const IconComponent = step.icon;
-
-              return (
-                <div
-                  key={step.id}
-                  className="relative z-10 flex items-center gap-4 xs:gap-5"
+            {ROADMAP_STEPS.map((step, idx) => (
+              <div
+                key={step.id}
+                className="relative z-10 flex items-center gap-4 xs:gap-5"
+              >
+                {/* Circular Node Icon (Calibrated w-14/w-16) */}
+                <motion.div
+                  style={{
+                    backgroundColor: nodeBgs[idx],
+                  }}
+                  className="relative w-14 h-14 xs:w-16 xs:h-16 rounded-full shrink-0 flex items-center justify-center border border-[#121214]/15 shadow-[0_6px_16px_rgba(18,18,20,0.06)]"
                 >
-                  {/* Circular Node Icon (Calibrated w-14/w-16) */}
-                  <motion.div
-                    style={{
-                      backgroundColor: nodeBgs[idx],
-                    }}
-                    className="relative w-14 h-14 xs:w-16 xs:h-16 rounded-full shrink-0 flex items-center justify-center border border-[#121214]/15 shadow-[0_6px_16px_rgba(18,18,20,0.06)]"
-                  >
-                    <motion.div style={{ color: nodeColors[idx] }}>
-                      <IconComponent className="w-6 h-6 xs:w-7 xs:h-7 stroke-[1.8]" />
-                    </motion.div>
+                  <motion.div style={{ filter: nodeFilters[idx] }} className="flex items-center justify-center">
+                    <Image
+                      src={step.iconSrc}
+                      alt={step.title}
+                      width={32}
+                      height={32}
+                      className="w-6 h-6 xs:w-7 xs:h-7 object-contain"
+                    />
                   </motion.div>
+                </motion.div>
 
-                  {/* Step Metadata */}
-                  <div className="flex flex-col items-start pr-1">
-                    <div className="flex items-baseline gap-2 mb-0.5">
-                      <span className="font-serif italic text-xl xs:text-2xl text-[#EF8557]">
-                        {step.number}
-                      </span>
-                      <h3 className="font-sans font-bold text-lg xs:text-xl text-[#121214] tracking-tight">
-                        {step.title}
-                      </h3>
-                    </div>
-                    <p className="font-sans text-xs xs:text-sm text-[#121214]/75 leading-relaxed max-w-[260px] xs:max-w-xs">
-                      {step.description}
-                    </p>
+                {/* Step Metadata */}
+                <div className="flex flex-col items-start pr-1">
+                  <div className="flex items-baseline gap-2 mb-0.5">
+                    <span className="font-serif italic text-xl xs:text-2xl text-[#EF8557]">
+                      {step.number}
+                    </span>
+                    <h3 className="font-sans font-bold text-lg xs:text-xl text-[#121214] tracking-tight">
+                      {step.title}
+                    </h3>
                   </div>
+                  <p className="font-sans text-xs xs:text-sm text-[#121214]/75 leading-relaxed max-w-[260px] xs:max-w-xs">
+                    {step.description}
+                  </p>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
 
         </div>

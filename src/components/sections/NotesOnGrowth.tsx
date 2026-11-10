@@ -19,7 +19,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-1",
     number: "01",
     title: "Disrupt The Market",
-    imageSrc: "/Blogs img/Disrupt the market.svg",
+    imageSrc: "/Blogs img/Disrupt the market.png",
     alt: "Disrupt The Market",
     href: "/journal/disrupt-the-market",
   },
@@ -27,7 +27,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-2",
     number: "02",
     title: "Clarity Before Channels",
-    imageSrc: "/Blogs img/Disrupt the market.svg",
+    imageSrc: "/Blogs img/Clarity Before Channels.png",
     alt: "Clarity Before Channels",
     href: "/journal/clarity-before-channels",
   },
@@ -35,7 +35,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-3",
     number: "03",
     title: "Bad Positioning Is Expensive",
-    imageSrc: "/Blogs img/Disrupt the market.svg",
+    imageSrc: "/Blogs img/Bad Positioning is Expensive.png",
     alt: "Bad Positioning Is Expensive",
     href: "/journal/bad-positioning-is-expensive",
   },
@@ -43,7 +43,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-4",
     number: "04",
     title: "Virality Is A Piece Of Art",
-    imageSrc: "/Blogs img/Disrupt the market.svg",
+    imageSrc: "/Blogs img/Virality is a Piece of Art.png",
     alt: "Virality Is A Piece Of Art",
     href: "/journal/virality-is-a-piece-of-art",
   },
@@ -51,7 +51,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-5",
     number: "05",
     title: "Conversion Is A Context Problem",
-    imageSrc: "/Blogs img/Disrupt the market.svg",
+    imageSrc: "/Blogs img/Conversion Is A Context Problem.png",
     alt: "Conversion Is A Context Problem",
     href: "/journal/conversion-is-a-context-problem",
   },
@@ -160,82 +160,82 @@ export default function NotesOnGrowth() {
                 bg-[#FAF9F6] border border-white/90 shadow-[0_14px_36px_rgba(18,18,20,0.06)] hover:shadow-[0_22px_48px_rgba(34,97,146,0.12)] hover:-translate-y-1.5
                 w-[280px] xs:w-[310px] sm:w-[330px] lg:w-[calc((100%-3*24px)/4)] lg:min-w-[calc((100%-3*24px)/4)] h-[440px] lg:h-[470px]"
             >
-                {/* 🌟 IMAGE AS FULL CARD BACKGROUND */}
-                <div className="absolute inset-0 z-0 overflow-hidden">
-                  <Image
-                    src={note.imageSrc}
-                    alt={note.alt}
-                    fill
-                    sizes="(max-width: 1024px) 85vw, 25vw"
-                    className="object-cover object-center pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105"
-                  />
-                </div>
-
-                {/* TOP: NUMBER + TITLE (Sits over the background image) */}
-                <div className="w-full flex flex-col items-start pt-1 relative z-10">
-                  <div className="flex items-center gap-2 mb-2">
-                      <span className="font-serif italic text-2xl lg:text-3xl text-[#EF8557] select-none leading-none drop-shadow-sm">
-                        {note.number}
-                      </span>
-                      <span className="w-6 h-[1.5px] bg-[#EF8557]/45 rounded-full" />
-                  </div>
-
-                    <h3 className="font-sans font-bold text-base lg:text-lg leading-snug tracking-tight text-[#121214] max-w-[210px] drop-shadow-sm">
-                      {note.title}
-                    </h3>
-                </div>
-
-                  {/* BOTTOM: ARROW BUTTON (Sits over the background image) */}
-                  <div className="w-full flex items-center justify-start pt-2 relative z-10">
-                    <div className="w-10 h-10 rounded-full bg-[#226192] text-white flex items-center justify-center shadow-md transition-all duration-300 group-hover:bg-[#EF8557] group-hover:scale-110">
-                      <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 group-hover:translate-x-0.5" />
-                    </div>
-                  </div>
-                </Link>
-          ))}
+              {/* 🌟 IMAGE AS FULL CARD BACKGROUND */}
+              <div className="absolute inset-0 z-0 overflow-hidden">
+                <Image
+                  src={note.imageSrc}
+                  alt={note.alt}
+                  fill
+                  sizes="(max-width: 1024px) 85vw, 25vw"
+                  className="object-cover object-center pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105"
+                />
               </div>
 
-              {/* ==============================================================
+              {/* TOP: NUMBER + TITLE (Sits over the background image) */}
+              <div className="w-full flex flex-col items-start pt-1 relative z-10">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="font-serif italic text-2xl lg:text-3xl text-[#EF8557] select-none leading-none drop-shadow-sm">
+                    {note.number}
+                  </span>
+                  <span className="w-6 h-[1.5px] bg-[#EF8557]/45 rounded-full" />
+                </div>
+
+                <h3 className="font-sans font-bold text-base lg:text-lg leading-snug tracking-tight text-[#121214] max-w-[210px] drop-shadow-sm">
+                  {note.title}
+                </h3>
+              </div>
+
+              {/* BOTTOM: ARROW BUTTON (Sits over the background image) */}
+              <div className="w-full flex items-center justify-start pt-2 relative z-10">
+                <div className="w-10 h-10 rounded-full bg-[#226192] text-white flex items-center justify-center shadow-md transition-all duration-300 group-hover:bg-[#EF8557] group-hover:scale-110">
+                  <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 group-hover:translate-x-0.5" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {/* ==============================================================
             BOTTOM SCRUBBER & RESTORED CHEVRON BUTTONS (< & >)
             ============================================================== */}
-              <div className="w-full flex items-center justify-center gap-4 pt-10 sm:pt-12">
-                {/* Previous Button (<) */}
-                <button
-                  type="button"
-                  onClick={() => scrollByStep("left")}
-                  disabled={!canScrollLeft}
-                  aria-label="Scroll left"
-                  className="w-9 h-9 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm"
-                >
-                  <ChevronLeft className="w-4 h-4 stroke-[2.2]" />
-                </button>
+        <div className="w-full flex items-center justify-center gap-4 pt-10 sm:pt-12">
+          {/* Previous Button (<) */}
+          <button
+            type="button"
+            onClick={() => scrollByStep("left")}
+            disabled={!canScrollLeft}
+            aria-label="Scroll left"
+            className="w-9 h-9 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm"
+          >
+            <ChevronLeft className="w-4 h-4 stroke-[2.2]" />
+          </button>
 
-                {/* Synchronized Progress Track */}
-                  <div className="w-44 sm:w-60 md:w-72 h-[3px] bg-[#121214]/15 rounded-full relative overflow-hidden">
-                    <div
-                      style={{
-                        width: "42%",
-                        transform: `translateX(${scrollProgress * 138}%)`,
-                      }}
-                      className="h-full bg-[#EF8557] rounded-full transition-transform duration-100 ease-out will-change-transform shadow-sm"
-                    />
-                  </div>
+          {/* Synchronized Progress Track */}
+          <div className="w-44 sm:w-60 md:w-72 h-[3px] bg-[#121214]/15 rounded-full relative overflow-hidden">
+            <div
+              style={{
+                width: "42%",
+                transform: `translateX(${scrollProgress * 138}%)`,
+              }}
+              className="h-full bg-[#EF8557] rounded-full transition-transform duration-100 ease-out will-change-transform shadow-sm"
+            />
+          </div>
 
-                  {/* Next Button (>) */}
-                  <button
-                    type="button"
-                    onClick={() => scrollByStep("right")}
-                    disabled={!canScrollRight}
-                    aria-label="Scroll right"
-                    className="w-9 h-9 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm"
-                  >
-                    <ChevronRight className="w-4 h-4 stroke-[2.2]" />
-                  </button>
-                </div>
+          {/* Next Button (>) */}
+          <button
+            type="button"
+            onClick={() => scrollByStep("right")}
+            disabled={!canScrollRight}
+            aria-label="Scroll right"
+            className="w-9 h-9 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm"
+          >
+            <ChevronRight className="w-4 h-4 stroke-[2.2]" />
+          </button>
+        </div>
 
-              </div>
-            </section>
-          );
+      </div>
+    </section>
+  );
 }
 
-          export {NotesOnGrowth, NotesOnGrowth as JournalSection};
+export { NotesOnGrowth, NotesOnGrowth as JournalSection };

@@ -213,7 +213,7 @@ export function Navbar() {
             className="relative flex items-center justify-center py-0.5 transition-opacity duration-200 hover:opacity-80 focus:outline-none"
           >
             <Image
-              src="/images/signature.png"
+              src="/images/signature-logo.WEBP"
               alt="Arhaan Shaikh"
               width={160}
               height={38}

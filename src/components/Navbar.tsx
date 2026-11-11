@@ -5,7 +5,33 @@ import Link from "next/link";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
-import { SERVICES } from "@/lib/services-data";
+interface ServiceDropdownItem {
+  title: string;
+  href: string;
+}
+
+const NAV_SERVICES: ServiceDropdownItem[] = [
+  {
+    title: "Go-to-market strategy",
+    href: "/services/go-to-market",
+  },
+  {
+    title: "Growth strategy",
+    href: "/services/growth-strategy",
+  },
+  {
+    title: "E-commerce strategy | Quick commerce",
+    href: "/services/ecommerce",
+  },
+  {
+    title: "Marketing and Content strategy",
+    href: "/services/marketing-and-content-strategy",
+  },
+  {
+    title: "Brand positioning",
+    href: "/services/brand-positioning",
+  },
+];
 
 interface NavItem {
   name: string;
@@ -250,11 +276,11 @@ export function Navbar() {
                           transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
                           className="absolute top-full left-0 pt-3 z-50 pointer-events-auto"
                         >
-                          <div className="w-[310px] rounded-2xl border border-white/10 bg-[#161619]/95 backdrop-blur-2xl p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.7)] flex flex-col gap-0.5">
-                            {SERVICES.map((s) => (
+                          <div className="w-[320px] rounded-2xl border border-white/10 bg-[#1E1E20]/95 backdrop-blur-2xl p-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.7)] flex flex-col gap-0.5">
+                            {NAV_SERVICES.map((s) => (
                               <Link
-                                key={s.slug}
-                                href={`/services/${s.slug}`}
+                                key={s.href}
+                                href={s.href}
                                 onClick={() => setServicesHovered(false)}
                                 className="group px-3.5 py-2.5 rounded-xl flex items-center text-left transition-all duration-200 hover:bg-white/[0.06]"
                               >
@@ -454,10 +480,10 @@ export function Navbar() {
                                     transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                                     className="overflow-hidden flex flex-col gap-1 pl-4 pr-1 pt-1 pb-1"
                                   >
-                                    {SERVICES.map((s) => (
+                                    {NAV_SERVICES.map((s) => (
                                       <Link
-                                        key={s.slug}
-                                        href={`/services/${s.slug}`}
+                                        key={s.href}
+                                        href={s.href}
                                         onClick={() => {
                                           setMobileMenuOpen(false);
                                           setMobileServicesOpen(false);

@@ -53,29 +53,20 @@ const SERVICES_DATA: ServiceCard[] = [
   {
     id: "s4",
     number: "04",
-    title: "Marketing Strategy",
-    href: "/services/marketing-strategy",
-    theme: "cream",
-    iconSrc: "/images/Marketing Strategy.png",
-    alt: "Marketing Strategy Illustration",
-  },
-  {
-    id: "s5",
-    number: "05",
     title: "Brand Positioning",
     href: "/services/brand-positioning",
-    theme: "terracotta",
+    theme: "cream",
     iconSrc: "/images/Brand Positioning.png",
     alt: "Brand Positioning Illustration",
   },
   {
-    id: "s6",
-    number: "06",
-    title: "Digital Strategy",
-    href: "/services/digital-strategy",
-    theme: "blue",
-    iconSrc: "/images/Digital Strategy .png",
-    alt: "Digital Strategy Illustration",
+    id: "s5",
+    number: "05",
+    title: "Marketing and Content Strategy",
+    href: "/services/marketing-and-content-strategy",
+    theme: "terracotta",
+    iconSrc: "/images/Marketing Strategy.png",
+    alt: "Marketing and Content Strategy Illustration",
   },
 ];
 
@@ -236,7 +227,8 @@ export default function QuestionsSection() {
       const gap = 20;
 
       const calculatedWidth = (viewportWidth - 3 * gap) / 3.5;
-      const exactShift = 2.5 * calculatedWidth + 2 * gap;
+      const remainingCards = Math.max(0, SERVICES_DATA.length - 3.5);
+      const exactShift = remainingCards * (calculatedWidth + gap);
 
       setCardWidth(calculatedWidth);
       setMaxScrollX(Math.max(0, exactShift));
@@ -262,11 +254,11 @@ export default function QuestionsSection() {
   const desktopTranslateX = useTransform(smoothProgress, [0, 1], [0, -maxScrollX]);
 
   return (
-    // Runway increased to 620vh on mobile to drastically slow down stacking scroll speed
+    // Runway calibrated to 520vh on mobile to provide relaxed stacking scroll pacing for 5 cards
     <div
       ref={trackRef}
       id="services"
-      className="relative w-full h-[620vh] lg:h-[190vh]"
+      className="relative w-full h-[520vh] lg:h-[190vh]"
     >
       <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
 

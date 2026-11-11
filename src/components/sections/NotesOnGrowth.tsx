@@ -19,7 +19,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-1",
     number: "01",
     title: "Disrupt The Market",
-    imageSrc: "/Blogs img/Disrupt the market.png",
+    imageSrc: "/Blogs%20img/Disrupt the market.png",
     alt: "Disrupt The Market",
     href: "/journal/disrupt-the-market",
   },
@@ -27,7 +27,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-2",
     number: "02",
     title: "Clarity Before Channels",
-    imageSrc: "/Blogs img/Clarity Before Channels.png",
+    imageSrc: "/Blogs%20img/Clarity before channels.png",
     alt: "Clarity Before Channels",
     href: "/journal/clarity-before-channels",
   },
@@ -35,7 +35,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-3",
     number: "03",
     title: "Bad Positioning Is Expensive",
-    imageSrc: "/Blogs img/Bad Positioning is Expensive.png",
+    imageSrc: "/Blogs%20img/Bad positioning is expensive.png",
     alt: "Bad Positioning Is Expensive",
     href: "/journal/bad-positioning-is-expensive",
   },
@@ -43,7 +43,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-4",
     number: "04",
     title: "Virality Is A Piece Of Art",
-    imageSrc: "/Blogs img/Virality is a Piece of Art.png",
+    imageSrc: "/Blogs%20img/Virality is a piece of art.png",
     alt: "Virality Is A Piece Of Art",
     href: "/journal/virality-is-a-piece-of-art",
   },
@@ -51,7 +51,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-5",
     number: "05",
     title: "Conversion Is A Context Problem",
-    imageSrc: "/Blogs img/Conversion Is A Context Problem.png",
+    imageSrc: "/Blogs%20img/Conversion is a science.png",
     alt: "Conversion Is A Context Problem",
     href: "/journal/conversion-is-a-context-problem",
   },
@@ -155,38 +155,28 @@ export default function NotesOnGrowth() {
             <Link
               key={note.id}
               href={note.href}
-              className="group snap-start shrink-0 rounded-[28px] lg:rounded-[32px] p-6 lg:p-7 flex flex-col justify-between 
+              className="group snap-start shrink-0 rounded-[28px] lg:rounded-[32px] p-6 lg:p-7 flex flex-col justify-end 
                 relative overflow-hidden cursor-pointer transition-all duration-300
                 bg-[#FAF9F6] border border-white/90 shadow-[0_14px_36px_rgba(18,18,20,0.06)] hover:shadow-[0_22px_48px_rgba(34,97,146,0.12)] hover:-translate-y-1.5
                 w-[280px] xs:w-[310px] sm:w-[330px] lg:w-[calc((100%-3*24px)/4)] lg:min-w-[calc((100%-3*24px)/4)] h-[440px] lg:h-[470px]"
             >
-              {/* 🌟 IMAGE AS FULL CARD BACKGROUND */}
-              <div className="absolute inset-0 z-0 overflow-hidden">
+              {/* Accessibility / SEO Title */}
+              <span className="sr-only">{note.title}</span>
+
+              {/* CARD IMAGE FRAME (FULL BACKGROUND ASSET) */}
+              <div className="absolute inset-0 z-0 bg-[#FAF9F6]">
                 <Image
                   src={note.imageSrc}
                   alt={note.alt}
                   fill
-                  sizes="(max-width: 1024px) 85vw, 25vw"
-                  className="object-cover object-center pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105"
+                  sizes="340px"
+                  unoptimized={true}
+                  className="object-cover object-center pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-104"
                 />
               </div>
 
-              {/* TOP: NUMBER + TITLE (Sits over the background image) */}
-              <div className="w-full flex flex-col items-start pt-1 relative z-10">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="font-serif italic text-2xl lg:text-3xl text-[#EF8557] select-none leading-none drop-shadow-sm">
-                    {note.number}
-                  </span>
-                  <span className="w-6 h-[1.5px] bg-[#EF8557]/45 rounded-full" />
-                </div>
-
-                <h3 className="font-sans font-bold text-base lg:text-lg leading-snug tracking-tight text-[#121214] max-w-[210px] drop-shadow-sm">
-                  {note.title}
-                </h3>
-              </div>
-
-              {/* BOTTOM: ARROW BUTTON (Sits over the background image) */}
-              <div className="w-full flex items-center justify-start pt-2 relative z-10">
+              {/* BOTTOM: ARROW BUTTON */}
+              <div className="w-full flex items-center justify-start relative z-10">
                 <div className="w-10 h-10 rounded-full bg-[#226192] text-white flex items-center justify-center shadow-md transition-all duration-300 group-hover:bg-[#EF8557] group-hover:scale-110">
                   <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 group-hover:translate-x-0.5" />
                 </div>

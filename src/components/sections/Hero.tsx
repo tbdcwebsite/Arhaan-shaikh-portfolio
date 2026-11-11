@@ -7,7 +7,7 @@ import Image from "next/image";
 // =========================================================================
 const HERO_BANNERS = {
   desktopSrc: "/images/hero-var5.png", // 👈 Desktop Banner URL/Path
-  mobileSrc: "/images/smartmoverealgrowth.png",   // 👈 Mobile Banner URL/Path
+  mobileSrc: "/images/smartmove.png",   // 👈 Mobile Banner URL/Path
   alt: "Arhaan Shaikh — Growth Strategist",
 };
 

@@ -5,47 +5,50 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 
-interface CampaignStory {
+interface SuccessStory {
   id: string;
-  tag: string;
+  slug: string;
+  title: string;
   imageSrc: string;
-  href: string;
 }
 
-const CAMPAIGNS_DATA: CampaignStory[] = [
+const SUCCESS_STORIES: SuccessStory[] = [
   {
-    id: "camp-1",
-    tag: "15 Buttons",
-    imageSrc: "/case%20studies/15%20Buttons.png",
-    href: "/case-studies/15-buttons",
+    id: "story-1",
+    slug: "carlos-philip",
+    title: "Carlos Philip",
+    imageSrc: "/case studies/carlos.png",
   },
   {
-    id: "camp-2",
-    tag: "ThatGal",
-    imageSrc: "/case%20studies/ThatGal.png",
-    href: "/case-studies/thatgal",
+    id: "story-2",
+    slug: "atrangi",
+    title: "Atrangi",
+    imageSrc: "/case studies/atrangi.png",
   },
   {
-    id: "camp-3",
-    tag: "15 Buttons",
-    imageSrc: "/case%20studies/15%20Buttons.png",
-    href: "/case-studies/15-buttons",
+    id: "story-3",
+    slug: "thatgal",
+    title: "ThatGal",
+    imageSrc: "/case studies/ThatGal.png",
   },
   {
-    id: "camp-4",
-    tag: "ThatGal",
-    imageSrc: "/case%20studies/ThatGal.png",
-    href: "/case-studies/thatgal",
+    id: "story-4",
+    slug: "living-spaces",
+    title: "Living Spaces",
+    imageSrc: "/case studies/living spaces.png",
   },
 ];
 
 export default function SuccessStories() {
   return (
     <section
-      id="success-stories"
+      id="case-studies"
       style={{ backgroundColor: "#EAE6DE" }}
       className="relative w-full text-[#121214] py-16 sm:py-20 lg:py-24 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
     >
+      {/* Anchor alias for backwards-compatibility */}
+      <span id="success-stories" className="sr-only" />
+
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
         {/* ==============================================================
@@ -75,10 +78,10 @@ export default function SuccessStories() {
             4-COLUMN EDITORIAL CARDS
             ============================================================== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-7 w-full">
-          {CAMPAIGNS_DATA.map((campaign) => (
+          {SUCCESS_STORIES.map((story) => (
             <Link
-              key={campaign.id}
-              href={campaign.href}
+              key={story.id}
+              href={`/case-studies/${story.slug}`}
               className="group flex flex-col focus:outline-none"
             >
               {/* CARD IMAGE FRAME (100% CLEAN IMAGE ONLY) */}
@@ -87,12 +90,12 @@ export default function SuccessStories() {
                 hover:shadow-[0_22px_44px_rgba(34,97,146,0.16)] transition-all duration-500 hover:-translate-y-1.5"
               >
                 <Image
-                  src={campaign.imageSrc}
-                  alt={campaign.tag}
+                  src={story.imageSrc}
+                  alt={story.title}
                   fill
                   unoptimized={true}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  className="object-cover object-center pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-106"
+                  className="object-cover object-center pointer-events-none select-none transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
 
@@ -100,7 +103,7 @@ export default function SuccessStories() {
               <div className="w-full flex items-center justify-between pt-3.5 px-1">
                 {/* Brand Name */}
                 <span className="font-sans font-bold text-base lg:text-[17px] tracking-tight text-[#121214] group-hover:text-[#EF8557] transition-colors duration-200 truncate pr-2">
-                  {campaign.tag}
+                  {story.title}
                 </span>
 
                 {/* Circular Arrow Button */}

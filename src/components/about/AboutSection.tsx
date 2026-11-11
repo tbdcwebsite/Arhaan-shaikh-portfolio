@@ -146,15 +146,27 @@ export default function AboutSection() {
 
                 {/* Outer Rotating Text Ring */}
                 <div className="absolute inset-0 animate-[spin_14s_linear_infinite] origin-center">
-                  <svg className="w-full h-full p-2 origin-center" viewBox="0 0 100 100">
+                  <svg className="w-full h-full origin-center" viewBox="0 0 120 120">
                     <path
                       id={stampPathId}
-                      d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                      d="M60,60 m-42,0 a42,42 0 1,1 84,0 a42,42 0 1,1 -84,0"
                       fill="none"
                     />
-                    <text className="text-[7.2px] font-mono font-bold tracking-[0.2em] uppercase fill-white">
-                      <textPath href={`#${stampPathId}`} startOffset="0%">
-                        • A DECADE IN THE ROOM • A DECADE IN THE ROOM
+                    <text
+                      className="font-mono uppercase fill-white"
+                      style={{
+                        fontSize: "8.8px",
+                        letterSpacing: "0.08em",
+                        fontWeight: 700,
+                      }}
+                    >
+                      <textPath
+                        href={`#${stampPathId}`}
+                        startOffset="0%"
+                        textLength="262"
+                        lengthAdjust="spacing"
+                      >
+                        A DECADE IN THE ROOM · A DECADE IN THE ROOM ·{" "}
                       </textPath>
                     </text>
                   </svg>

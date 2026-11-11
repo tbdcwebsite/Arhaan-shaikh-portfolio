@@ -19,7 +19,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-1",
     number: "01",
     title: "Disrupt The Market",
-    imageSrc: "/Blogs%20img/Disrupt the market.png",
+    imageSrc: "/blogs/blog-01-disrupt.png",
     alt: "Disrupt The Market",
     href: "/journal/disrupt-the-market",
   },
@@ -27,7 +27,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-2",
     number: "02",
     title: "Clarity Before Channels",
-    imageSrc: "/Blogs%20img/Clarity before channels.png",
+    imageSrc: "/blogs/blog-02-clarity.png",
     alt: "Clarity Before Channels",
     href: "/journal/clarity-before-channels",
   },
@@ -35,7 +35,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-3",
     number: "03",
     title: "Bad Positioning Is Expensive",
-    imageSrc: "/Blogs%20img/Bad positioning is expensive.png",
+    imageSrc: "/blogs/blog-03-positioning.png",
     alt: "Bad Positioning Is Expensive",
     href: "/journal/bad-positioning-is-expensive",
   },
@@ -43,7 +43,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-4",
     number: "04",
     title: "Virality Is A Piece Of Art",
-    imageSrc: "/Blogs%20img/Virality is a piece of art.png",
+    imageSrc: "/blogs/blog-04-virality.png",
     alt: "Virality Is A Piece Of Art",
     href: "/journal/virality-is-a-piece-of-art",
   },
@@ -51,7 +51,7 @@ const NOTES_DATA: GrowthNote[] = [
     id: "note-5",
     number: "05",
     title: "Conversion Is A Context Problem",
-    imageSrc: "/Blogs%20img/Conversion is a science.png",
+    imageSrc: "/blogs/blog-05-conversion.png",
     alt: "Conversion Is A Context Problem",
     href: "/journal/conversion-is-a-context-problem",
   },
@@ -164,14 +164,14 @@ export default function NotesOnGrowth() {
               <span className="sr-only">{note.title}</span>
 
               {/* CARD IMAGE FRAME (FULL BACKGROUND ASSET) */}
-              <div className="absolute inset-0 z-0 bg-[#FAF9F6]">
+              <div className="absolute inset-0 z-0 bg-[#F4EDE3] pointer-events-none">
                 <Image
                   src={note.imageSrc}
                   alt={note.alt}
                   fill
                   sizes="340px"
                   unoptimized={true}
-                  className="object-cover object-center pointer-events-none select-none transition-transform duration-700 ease-out group-hover:scale-104"
+                  className="object-cover object-center pointer-events-none select-none"
                 />
               </div>
 

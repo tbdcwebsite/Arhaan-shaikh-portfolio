@@ -127,7 +127,7 @@ export default function Footer() {
           </div>
 
           <Link
-            href="/#contact"
+            href="/contact"
             style={{ backgroundColor: "#EF8557" }}
             className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-sans font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl self-start md:self-auto shrink-0"
           >

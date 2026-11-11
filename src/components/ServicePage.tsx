@@ -90,7 +90,7 @@ export default function ServicePage({ service }: { service: Service }) {
             </h1>
             <p className="sub reveal d3">{s.hero.sub}</p>
             <div className="ctas reveal d4">
-              <a href="#book" className="btn btn-blue">
+              <a href="/contact" className="btn btn-blue">
                 Work with me {S.arrowR}
               </a>
               <a href="/case-studies" className="btn btn-ghost">
@@ -270,7 +270,7 @@ export default function ServicePage({ service }: { service: Service }) {
                 <h3>{p.name}</h3>
                 <div className="price">{p.price}</div>
                 <p className="desc">{p.desc}</p>
-                <a href="#book" className="go">
+                <a href="/contact" className="go">
                   {p.cta} <span className="circ">{S.arrowUpR}</span>
                 </a>
               </div>

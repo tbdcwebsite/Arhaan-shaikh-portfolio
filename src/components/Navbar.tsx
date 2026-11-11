@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
@@ -208,11 +209,17 @@ export function Navbar() {
           {/* Brand Logo */}
           <Link
             href="/"
-            className="flex items-center select-none group py-0.5 focus:outline-none bg-transparent hover:bg-transparent"
+            aria-label="Arhaan Shaikh — Home"
+            className="relative flex items-center justify-center py-0.5 transition-opacity duration-200 hover:opacity-80 focus:outline-none"
           >
-            <span className="font-sans font-bold text-xs sm:text-sm md:text-base tracking-wider text-white">
-              Arhaan Shaikh
-            </span>
+            <Image
+              src="/images/signature.png"
+              alt="Arhaan Shaikh"
+              width={160}
+              height={38}
+              priority
+              className="h-7 sm:h-8 md:h-9 w-auto object-contain select-none pointer-events-none"
+            />
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -343,7 +350,7 @@ export function Navbar() {
           <div className="flex items-center gap-2 bg-transparent">
             {/* Primary Action Button: #EF8557 (Warm Terracotta) */}
             <motion.a
-              href="/#contact"
+              href="/contact"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
@@ -525,7 +532,7 @@ export function Navbar() {
                     className="pt-4 border-t border-white/10 shrink-0"
                   >
                     <a
-                      href="/#contact"
+                      href="/contact"
                       onClick={() => setMobileMenuOpen(false)}
                       className="w-full h-11 rounded-full bg-[#EF8557] text-white font-sans font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-1.5 shadow-[0_8px_24px_rgba(239,133,87,0.35)] hover:bg-[#de7343] active:scale-95 transition-all touch-manipulation"
                     >

@@ -655,11 +655,11 @@ export const services: Record<string, Service> = {
   },
 
   // =========================================================================
-  // PAGE 5: CAMPAIGN & CONTENT STRATEGY (MARKETING STRATEGY)
+  // PAGE 5: MARKETING AND CONTENT STRATEGY
   // =========================================================================
-  "marketing-strategy": {
-    slug: "marketing-strategy",
-    label: "Campaign & Content Strategy",
+  "marketing-and-content-strategy": {
+    slug: "marketing-and-content-strategy",
+    label: "Marketing and Content Strategy",
     metaDescription:
       "Campaigns and content people notice, and act on. Creative direction, messaging pillars, and 90-day calendar.",
     hero: {
@@ -802,21 +802,15 @@ export const services: Record<string, Service> = {
   },
 };
 
-// Aliases to guarantee that every link in QuestionsSection, Navbar, and Footer works 100%
-services["digital-strategy"] = {
-  ...services["growth-strategy"],
-  slug: "digital-strategy",
-  label: "Digital Strategy",
-};
+// Backwards-compatible aliases
+services["marketing-strategy"] = services["marketing-and-content-strategy"];
+services["go-to-market-strategy"] = services["go-to-market"];
+services["ecommerce-quick-commerce"] = services["ecommerce"];
 
-services["go-to-market-strategy"] = {
-  ...services["go-to-market"],
-  slug: "go-to-market-strategy",
-};
-
-services["ecommerce-quick-commerce"] = {
-  ...services["ecommerce"],
-  slug: "ecommerce-quick-commerce",
-};
-
-export const serviceSlugs = Object.keys(services);
+export const serviceSlugs = [
+  "go-to-market",
+  "brand-positioning",
+  "ecommerce",
+  "growth-strategy",
+  "marketing-and-content-strategy",
+];

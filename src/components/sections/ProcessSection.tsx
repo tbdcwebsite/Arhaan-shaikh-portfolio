@@ -127,15 +127,17 @@ export default function ProcessSection() {
                 </span>
               </div>
 
-              <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
-                Roadmap to{" "}
-                <span className="font-serif italic font-normal text-[#EF8557]">
+              <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-[#121214]">
+                <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+                  Roadmap to{" "}
+                </span>
+                <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
                   success.
                 </span>
               </h2>
             </div>
 
-            <p className="font-sans font-normal text-xs xs:text-sm sm:text-base text-[#121214]/75 max-w-xs md:text-right leading-relaxed">
+            <p className="font-sans font-normal text-xs xs:text-sm sm:text-base text-[#121214]/75 max-w-xs md:text-right leading-[1.7]">
               Brand, performance, content and tech working as one connected system.
             </p>
           </div>
@@ -195,7 +197,7 @@ export default function ProcessSection() {
                       <h3 className="font-sans font-bold text-2xl lg:text-3xl text-[#121214] tracking-tight mb-2">
                         {step.title}
                       </h3>
-                      <p className="font-sans text-sm lg:text-[15px] text-[#121214]/75 leading-relaxed max-w-[260px]">
+                      <p className="font-sans font-normal text-sm lg:text-[15px] text-[#121214]/75 leading-[1.7] max-w-[260px]">
                         {step.description}
                       </p>
                     </div>
@@ -260,7 +262,7 @@ export default function ProcessSection() {
                       {step.title}
                     </h3>
                   </div>
-                  <p className="font-sans text-xs xs:text-sm text-[#121214]/75 leading-relaxed max-w-[260px] xs:max-w-xs">
+                  <p className="font-sans font-normal text-xs xs:text-sm text-[#121214]/75 leading-[1.7] max-w-[260px] xs:max-w-xs">
                     {step.description}
                   </p>
                 </div>

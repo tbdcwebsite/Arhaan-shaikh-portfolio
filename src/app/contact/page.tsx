@@ -12,9 +12,9 @@ const TOKENS = {
   line: "rgba(18, 18, 20, 0.14)", // Hairline borders
   accent: "#EF8557", // Warm Terracotta
   blue: "#226192", // Steel Blue
-  fontDisplay: "var(--font-mont), system-ui, -apple-system, sans-serif",
-  fontSerif: "var(--font-butler), Georgia, serif",
-  fontSans: "var(--font-mont), system-ui, -apple-system, sans-serif",
+  fontDisplay: '"Mont", sans-serif',
+  fontSerif: '"Butler", Georgia, serif',
+  fontSans: '"Mont", sans-serif',
 } as const;
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -122,7 +122,7 @@ export default function ContactPage() {
           <h1 className="title">
             Have an ambitious
             <br />
-            project <em className="accent-serif">in mind?</em>
+            project <em className="accent-serif font-serif italic font-normal">in mind?</em>
           </h1>
           <p className="lede">
             Brand, performance, content and distribution working as one connected system.
@@ -150,7 +150,7 @@ export default function ContactPage() {
           {/* Left Column — Studio Details */}
           <aside className="details">
             <h2 className="col-label">
-              <span className="num">01</span> Direct Reach
+              <span className="num font-serif italic font-normal">01</span> Direct Reach
             </h2>
 
             <ul className="channels">
@@ -204,7 +204,7 @@ export default function ContactPage() {
           {/* Right Column — Form Card */}
           <div className="form-card">
             <h2 className="col-label">
-              <span className="num">02</span> Start A Collaboration
+              <span className="num font-serif italic font-normal">02</span> Start A Collaboration
             </h2>
 
             {status === "success" ? (
@@ -358,23 +358,24 @@ export default function ContactPage() {
         }
         .title {
           font-family: var(--font-display-local);
-          font-weight: 700;
-          line-height: 1.02;
-          letter-spacing: -0.035em;
+          font-weight: 400;
+          line-height: 1.08;
+          letter-spacing: -0.025em;
           font-size: clamp(2.75rem, 6.8vw, 5.4rem);
           margin: 0;
         }
         .accent-serif {
-          font-family: var(--font-serif-local);
-          font-style: italic;
-          font-weight: 400;
+          font-family: "Butler", Georgia, serif !important;
+          font-style: italic !important;
+          font-weight: 400 !important;
+          line-height: 1.1;
           color: var(--accent);
         }
         .lede {
           margin-top: 1.5rem;
-          max-width: 36rem;
+          max-width: 54ch;
           font-size: clamp(1rem, 1.4vw, 1.15rem);
-          line-height: 1.6;
+          line-height: 1.7;
           color: var(--ink-soft);
         }
 
@@ -445,8 +446,9 @@ export default function ContactPage() {
         }
         .num {
           color: var(--accent);
-          font-family: var(--font-serif-local);
-          font-style: italic;
+          font-family: "Butler", Georgia, serif !important;
+          font-style: italic !important;
+          font-weight: 400 !important;
           font-size: 1.1rem;
         }
 

@@ -113,7 +113,7 @@ export default function NotesOnGrowth() {
     <section
       id="journal"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-16 sm:py-20 lg:py-24 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
 
@@ -128,14 +128,16 @@ export default function NotesOnGrowth() {
             </span>
           </div>
 
-          <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
-            Notes On{" "}
-            <span className="font-serif italic font-normal text-[#EF8557]">
+          <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-[#121214]">
+            <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+              Notes On{" "}
+            </span>
+            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
               Growth.
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-sm sm:text-base text-[#121214]/65 mt-2 tracking-tight">
+          <p className="font-sans font-normal text-sm sm:text-base text-[#121214]/65 mt-3 max-w-[54ch] leading-[1.7]">
             Ideas worth thinking about.
           </p>
         </div>

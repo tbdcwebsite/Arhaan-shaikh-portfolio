@@ -6,7 +6,7 @@ import React from "react";
  * ExecutionSection
  * ----------------
  * "Big Thinking, Real Execution." section with two crossed diagonal marquee ribbons
- * moving in opposite directions, faded through the centre for crisp readability.
+ * moving in opposite directions, smoothly faded through the center for crisp readability.
  */
 
 interface ExecutionSectionProps {
@@ -17,9 +17,9 @@ interface ExecutionSectionProps {
   tagline?: string;
 }
 
-const NAVY_WORDS = ["BIG THINKING", "REAL EXECUTION", "MEASURABLE OUTCOMES"];
-const LIGHT_WORDS = ["STRATEGY", "CONTENT", "DIGITAL", "PERFORMANCE"];
-const REPEAT = 4; // Repeats inside each half-track for seamless 50% loop
+const NAVY_WORDS = ["BIG THINKING", "REAL EXECUTION", "MEASURABLE IMPACT"];
+const LIGHT_WORDS = ["STRATEGY", "PERFORMANCE"];
+const REPEAT = 6; // Seamless 50% loop
 
 function RibbonTrack({ words }: { words: string[] }) {
   const items: React.ReactNode[] = [];
@@ -76,8 +76,8 @@ export default function ExecutionSection({
         </span>
 
         <h2 id="es-heading" className="es-heading">
-          <span className="es-heading-top">{titleTop}</span>
-          <span className="es-heading-accent">{titleAccent}</span>
+          <span className="es-heading-top font-sans font-bold">{titleTop}</span>
+          <span className="es-heading-accent font-serif italic font-normal">{titleAccent}</span>
         </h2>
 
         <p className="es-subtitle">{subtitle}</p>
@@ -88,25 +88,24 @@ export default function ExecutionSection({
         dangerouslySetInnerHTML={{
           __html: `
 .es-root {
-  --es-bg: #EAE6DE;
-  --es-navy: #226192;
+  --es-bg: #F4F0E5;
+  --es-navy: #1D507E;
   --es-orange: #EF8557;
   --es-ink: #121214;
   --es-ribbon-light: #FAF8F5;
-  --es-muted: #5A554E;
-  --es-font-display: var(--font-mont), system-ui, -apple-system, sans-serif;
-  --es-font-serif: var(--font-butler), Georgia, serif;
+  --es-muted: #8C867E;
+  --es-font-display: "Mont", sans-serif;
+  --es-font-serif: "Butler", Georgia, serif;
 
   position: relative;
   overflow: hidden;
   isolation: isolate;
   background: var(--es-bg);
-  padding: clamp(4.5rem, 10vw, 9rem) 1.25rem;
+  padding: clamp(5.5rem, 11vw, 9.5rem) 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  border-top: 1px solid rgba(18, 18, 20, 0.08);
 }
 
 /* ---- Ribbons ---- */
@@ -122,10 +121,10 @@ export default function ExecutionSection({
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 180%;
+  width: 220%;
   overflow: hidden;
   display: flex;
-  padding-block: clamp(0.55rem, 1.1vw, 0.9rem);
+  padding-block: clamp(0.7rem, 1.35vw, 1.15rem);
 }
 
 /* Continuous Marquee Wrapper */
@@ -147,13 +146,13 @@ export default function ExecutionSection({
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  gap: clamp(0.75rem, 1.5vw, 1.25rem);
-  padding-right: clamp(0.75rem, 1.5vw, 1.25rem);
+  gap: clamp(0.85rem, 1.6vw, 1.4rem);
+  padding-right: clamp(0.85rem, 1.6vw, 1.4rem);
   white-space: nowrap;
-  font-family: var(--es-font-display);
-  font-size: clamp(0.65rem, 1.1vw, 0.9rem);
+  font-family: var(--font-mont), sans-serif;
+  font-size: clamp(0.72rem, 1.1vw, 0.95rem);
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -182,22 +181,24 @@ export default function ExecutionSection({
   }
 }
 
-/* Crossed Angles + Center Fade Mask */
+/* Crossed Angles + Smooth Center Fade */
 .es-ribbon--navy {
-  transform: translate(-50%, -50%) rotate(17deg);
+  z-index: 1;
+  transform: translate(-50%, -50%) rotate(13deg);
   background: var(--es-navy);
   color: #ffffff;
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 32%, transparent 46%, transparent 54%, #000 68%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 32%, transparent 46%, transparent 54%, #000 68%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 24%, rgba(0,0,0,0.12) 42%, transparent 48%, transparent 52%, rgba(0,0,0,0.12) 58%, #000 76%, #000 95%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 24%, rgba(0,0,0,0.12) 42%, transparent 48%, transparent 52%, rgba(0,0,0,0.12) 58%, #000 76%, #000 95%, transparent 100%);
 }
 
 .es-ribbon--light {
-  transform: translate(-50%, -50%) rotate(-17deg);
+  z-index: 2;
+  transform: translate(-50%, -50%) rotate(-13deg);
   background: var(--es-ribbon-light);
   color: var(--es-ink);
-  box-shadow: 0 4px 20px rgba(18, 18, 20, 0.05);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 32%, transparent 46%, transparent 54%, #000 68%, #000 92%, transparent 100%);
-          mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 32%, transparent 46%, transparent 54%, #000 68%, #000 92%, transparent 100%);
+  box-shadow: 0 10px 32px rgba(18, 18, 20, 0.08);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 25%, rgba(0,0,0,0.18) 42%, transparent 48%, transparent 52%, rgba(0,0,0,0.18) 58%, #000 75%, #000 95%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 25%, rgba(0,0,0,0.18) 42%, transparent 48%, transparent 52%, rgba(0,0,0,0.18) 58%, #000 75%, #000 95%, transparent 100%);
 }
 
 .es-star {
@@ -208,28 +209,28 @@ export default function ExecutionSection({
   display: inline-block;
 }
 
-/* ---- Content ---- */
+/* ---- Foreground Content ---- */
 .es-content {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   max-width: 56rem;
   margin: 0 auto;
 }
 
-/* Soft radial halo lifts text cleanly off the crossed ribbons */
+/* Soft luminous halo lifts text cleanly off the crossed ribbons */
 .es-content::before {
   content: "";
   position: absolute;
   left: 50%;
-  top: 50%;
-  width: 125%;
-  height: 160%;
+  top: 48%;
+  width: 120%;
+  height: 150%;
   transform: translate(-50%, -50%);
   background: radial-gradient(
     ellipse at center,
-    rgba(234, 230, 222, 0.94) 0%,
-    rgba(234, 230, 222, 0.75) 40%,
-    rgba(234, 230, 222, 0) 72%
+    rgba(244, 240, 229, 0.88) 0%,
+    rgba(244, 240, 229, 0.55) 45%,
+    rgba(244, 240, 229, 0) 78%
   );
   z-index: -1;
   pointer-events: none;
@@ -243,60 +244,63 @@ export default function ExecutionSection({
   color: var(--es-ink);
   border: 1px solid rgba(18, 18, 20, 0.08);
   border-radius: 999px;
-  padding: 0.5rem 1.1rem;
+  padding: 0.45rem 1.15rem;
   font-family: var(--es-font-display);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  box-shadow: 0 10px 30px -12px rgba(18, 18, 20, 0.18);
+  box-shadow: 0 4px 16px -2px rgba(18, 18, 20, 0.08);
 }
 
 .es-dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 999px;
   background: var(--es-orange);
 }
 
 .es-heading {
-  margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
-  font-family: var(--es-font-display);
-  font-weight: 700;
-  line-height: 0.98;
-  letter-spacing: -0.03em;
-  font-size: clamp(2.5rem, 1.4rem + 4.5vw, 5.25rem);
+  margin: clamp(1.4rem, 3.5vw, 2.25rem) 0 0;
+  font-size: clamp(2.75rem, 1.4rem + 5vw, 5.75rem);
 }
 
 .es-heading-top {
   display: block;
+  font-family: var(--es-font-display);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.03em;
   color: var(--es-ink);
 }
 
 .es-heading-accent {
   display: block;
+  font-family: "Butler", Georgia, serif !important;
+  font-style: italic !important;
+  font-weight: 400 !important;
+  line-height: 1.04;
+  letter-spacing: -0.015em;
   color: var(--es-orange);
-  font-family: var(--es-font-serif);
-  font-style: italic;
-  font-weight: 400;
+  margin-top: 0.08em;
 }
 
 .es-subtitle {
-  margin: clamp(1.25rem, 3vw, 2rem) auto 0;
-  max-width: 44ch;
-  color: #3E3D3A;
+  margin: clamp(1.4rem, 3vw, 2.1rem) auto 0;
+  max-width: 54ch;
+  color: #383531;
   font-family: var(--es-font-display);
   font-weight: 400;
-  font-size: clamp(1rem, 1.5vw, 1.25rem);
-  line-height: 1.6;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  line-height: 1.65;
 }
 
 .es-tagline {
-  margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
   font-family: var(--es-font-display);
-  font-size: clamp(0.65rem, 1vw, 0.78rem);
+  font-size: clamp(0.68rem, 0.9vw, 0.78rem);
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--es-muted);
 }
@@ -304,13 +308,13 @@ export default function ExecutionSection({
 /* Mobile Responsive Angles */
 @media (max-width: 640px) {
   .es-ribbon {
-    width: 260%;
+    width: 320%;
   }
   .es-ribbon--navy {
-    transform: translate(-50%, -50%) rotate(22deg);
+    transform: translate(-50%, -50%) rotate(20deg);
   }
   .es-ribbon--light {
-    transform: translate(-50%, -50%) rotate(-22deg);
+    transform: translate(-50%, -50%) rotate(-20deg);
   }
 }
 `,

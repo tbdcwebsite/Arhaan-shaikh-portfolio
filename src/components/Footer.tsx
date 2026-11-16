@@ -118,9 +118,11 @@ export default function Footer() {
                 START A COLLABORATION
               </span>
             </div>
-            <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-white">
-              Have an ambitious project in{" "}
-              <span className="font-serif italic font-normal text-[#EF8557]">
+            <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-white">
+              <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+                Have an ambitious project in{" "}
+              </span>
+              <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
                 mind?
               </span>
             </h2>
@@ -146,7 +148,7 @@ export default function Footer() {
             <h3 className="font-sans font-bold text-2xl tracking-tight text-white mb-3">
               Arhaan Shaikh
             </h3>
-            <p className="font-sans text-sm text-white/80 leading-relaxed max-w-sm mb-6">
+            <p className="font-sans font-normal text-sm text-white/80 leading-[1.7] max-w-[54ch] mb-6">
               Empowering businesses with scalable growth strategies, tailored marketing systems, and high-performance digital infrastructure.
             </p>
 

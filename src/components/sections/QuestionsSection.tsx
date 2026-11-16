@@ -267,9 +267,11 @@ export default function QuestionsSection() {
 
           {/* Header Row */}
           <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-3 sm:pb-4 shrink-0">
-            <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
-              <span className="block">Where I Usually</span>
-              <span className="block font-serif italic font-normal text-[#EF8557] mt-0.5">
+            <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-[#121214]">
+              <span className="block font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+                Where I Usually
+              </span>
+              <span className="block font-serif italic font-normal text-[#EF8557] leading-[1.1] mt-0.5">
                 Enter The Picture.
               </span>
             </h2>

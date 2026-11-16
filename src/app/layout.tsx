@@ -5,12 +5,12 @@ import "./globals.css";
 const mont = localFont({
   src: [
     {
-      path: "./fonts/Mont-Regular.woff2",
+      path: "../../public/font/fonnts.com-Mont_Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Mont-Bold.woff2",
+      path: "../../public/font/fonnts.com-Mont_Bold.ttf",
       weight: "700",
       style: "normal",
     },
@@ -22,14 +22,34 @@ const mont = localFont({
 const butler = localFont({
   src: [
     {
-      path: "./fonts/Butler-Regular.woff2",
+      path: "../../public/font/Butler_Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../../public/font/Butler_Regular.otf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "./fonts/Butler-Italic.woff2",
+      path: "../../public/font/Butler-Italic.woff2",
       weight: "400",
       style: "italic",
+    },
+    {
+      path: "../../public/font/Butler-Medium.woff2",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/font/Butler_Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../../public/font/Butler_Black.otf",
+      weight: "900",
+      style: "normal",
     },
   ],
   variable: "--font-butler",

@@ -20,14 +20,17 @@ export default function Hero() {
     >
       {/* Semantic H1 for SEO & Accessibility without altering visual layout */}
       <h1 className="sr-only">
-        Arhaan Shaikh — Growth Strategist &amp; Marketing Architect
+        <span className="font-sans font-normal">Smart moves, </span>
+        <span className="font-serif italic font-normal text-[#226192]">real growth.</span>
+        <span> — Arhaan Shaikh | Growth Strategist &amp; Marketing Architect</span>
       </h1>
 
       <div className="w-full max-w-[1920px] mx-auto">
         {/* ==============================================================
             1. DESKTOP BANNER (Visible on Tablet & Desktop: md:block)
+            Guaranteed single 100vh desktop viewport fold fit.
             ============================================================== */}
-        <div className="hidden md:block w-full">
+        <div className="hidden md:flex items-center justify-center w-full max-h-[100dvh] overflow-hidden">
           <Image
             src={HERO_BANNERS.desktopSrc}
             alt={HERO_BANNERS.alt}
@@ -36,7 +39,7 @@ export default function Hero() {
             priority
             quality={95}
             sizes="100vw"
-            className="w-full h-auto object-contain block"
+            className="w-full h-auto max-h-[100dvh] object-contain block"
           />
         </div>
 

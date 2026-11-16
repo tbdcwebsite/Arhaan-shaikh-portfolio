@@ -1,5 +1,59 @@
 @import "tailwindcss";
 
+/* =========================================================================
+   DIRECT @font-face DECLARATIONS (Direct /font/ asset resolution)
+   Zero CSS variable scoping issues; direct HTTP 200 font binary downloads.
+   ========================================================================= */
+@font-face {
+  font-family: "Butler";
+  src: url("/font/Butler_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Butler";
+  src: url("/font/Butler-Italic.woff2") format("woff2"),
+       url("/font/Butler_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Butler";
+  src: url("/font/Butler-Medium.woff2") format("woff2"),
+       url("/font/Butler_Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Butler";
+  src: url("/font/Butler_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("/font/fonnts.com-Mont_Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mont";
+  src: url("/font/fonnts.com-Mont_Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #F8F8F5;
   --foreground: #28282B;
@@ -16,8 +70,10 @@
   --color-tertiary: #28282B;
 
   /* Global Typography System (Mont + Butler only) */
-  --font-sans: var(--font-mont), system-ui, -apple-system, sans-serif;
-  --font-serif: var(--font-butler), Georgia, serif;
+  --font-display: "Mont", var(--font-mont), sans-serif;
+  --font-body: "Mont", var(--font-mont), sans-serif;
+  --font-sans: "Mont", var(--font-mont), sans-serif;
+  --font-serif: "Butler", Georgia, serif;
 
   /* Fluid Typography Scale */
   --text-display: clamp(2.5rem, 1.4rem + 4.5vw, 5rem);
@@ -40,25 +96,26 @@
   --color-tertiary: #28282B;
   --color-neutral: #EAE6DE;
 
-  --font-mont: var(--font-mont);
-  --font-butler: var(--font-butler);
-  --font-sans: var(--font-mont);
-  --font-serif: var(--font-butler);
-  --font-headline: var(--font-mont);
-  --font-heading: var(--font-mont);
-  --font-body: var(--font-mont);
+  --font-mont: "Mont", sans-serif;
+  --font-butler: "Butler", Georgia, serif;
+  --font-sans: "Mont", sans-serif;
+  --font-serif: "Butler", Georgia, serif;
+  --font-display: "Mont", sans-serif;
+  --font-body: "Mont", sans-serif;
+  --font-headline: "Mont", sans-serif;
+  --font-heading: "Mont", sans-serif;
 }
 
 html {
   background-color: #EAE6DE !important;
   color: #121214;
-  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Mont", var(--font-mont), sans-serif;
 }
 
 body {
   background-color: #EAE6DE !important;
   color: #121214;
-  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Mont", var(--font-mont), sans-serif;
 }
 
 h1,
@@ -67,16 +124,30 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-mont), sans-serif;
+  font-family: "Mont", var(--font-mont), sans-serif;
 }
 
 .font-heading,
-.font-headline {
-  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+.font-headline,
+.font-display {
+  font-family: "Mont", var(--font-mont), sans-serif;
 }
 
-.font-body {
-  font-family: var(--font-mont), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+.font-body,
+.font-sans {
+  font-family: "Mont", var(--font-mont), sans-serif;
+}
+
+/* Enforce Butler explicitly for all serif utilities, overriding heading cascade */
+.font-serif {
+  font-family: "Butler", Georgia, serif !important;
+}
+
+.type-serif-accent,
+.accent-serif,
+em.hl {
+  font-family: "Butler", Georgia, serif !important;
+  font-style: italic;
 }
 
 /* =========================================================================
@@ -124,22 +195,37 @@ h6 {
 .type-body-lg {
   font-family: var(--font-sans);
   font-size: var(--text-body-lg);
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
 }
 
 .type-body-reg {
   font-family: var(--font-sans);
   font-size: var(--text-body-reg);
-  line-height: 1.6;
+  line-height: 1.7;
   font-weight: 400;
 }
 
 .type-body-sm {
   font-family: var(--font-sans);
   font-size: var(--text-body-sm);
-  line-height: 1.55;
+  line-height: 1.7;
   font-weight: 400;
+}
+
+.type-two-tone-primary {
+  font-family: var(--font-mont), sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+
+.type-two-tone-accent {
+  font-family: var(--font-butler), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1;
+  color: #EF8557;
 }
 
 .type-eyebrow {
@@ -168,7 +254,7 @@ h6 {
 }
 
 .type-serif-accent {
-  font-family: var(--font-serif);
+  font-family: "Butler", Georgia, serif !important;
   font-style: italic;
   font-weight: 400;
 }

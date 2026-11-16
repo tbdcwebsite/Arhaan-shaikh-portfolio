@@ -123,19 +123,19 @@ export default function NotesOnGrowth() {
         <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
           <div className="flex items-center gap-2.5 mb-2.5">
             <span className="w-8 h-1.5 rounded-full bg-[#EF8557]" />
-            <span className="font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#121214]/75">
+            <span className="font-sans font-bold text-xs tracking-[0.12em] uppercase text-[#121214]/75">
               NOTES ON GROWTH
             </span>
           </div>
 
-          <h2 className="font-sans font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-[#121214]">
+          <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
             Notes On{" "}
             <span className="font-serif italic font-normal text-[#EF8557]">
               Growth.
             </span>
           </h2>
 
-          <p className="font-sans text-sm sm:text-base text-[#121214]/65 mt-2 tracking-tight">
+          <p className="font-sans font-normal text-sm sm:text-base text-[#121214]/65 mt-2 tracking-tight">
             Ideas worth thinking about.
           </p>
         </div>

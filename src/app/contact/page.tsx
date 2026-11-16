@@ -12,9 +12,9 @@ const TOKENS = {
   line: "rgba(18, 18, 20, 0.14)", // Hairline borders
   accent: "#EF8557", // Warm Terracotta
   blue: "#226192", // Steel Blue
-  fontDisplay: "var(--font-mont), var(--font-display), sans-serif",
+  fontDisplay: "var(--font-mont), system-ui, -apple-system, sans-serif",
   fontSerif: "var(--font-butler), Georgia, serif",
-  fontSans: "var(--font-mont), var(--font-body), sans-serif",
+  fontSans: "var(--font-mont), system-ui, -apple-system, sans-serif",
 } as const;
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -358,7 +358,7 @@ export default function ContactPage() {
         }
         .title {
           font-family: var(--font-display-local);
-          font-weight: 800;
+          font-weight: 700;
           line-height: 1.02;
           letter-spacing: -0.035em;
           font-size: clamp(2.75rem, 6.8vw, 5.4rem);
@@ -394,7 +394,7 @@ export default function ContactPage() {
         .ticker-group {
           font-family: var(--font-display-local);
           font-size: clamp(1rem, 1.8vw, 1.35rem);
-          font-weight: 800;
+          font-weight: 700;
           letter-spacing: 0.08em;
           padding-right: 1.5rem;
         }
@@ -504,7 +504,7 @@ export default function ContactPage() {
           color: var(--ink);
           text-decoration: none;
           font-size: 0.95rem;
-          font-weight: 600;
+          font-weight: 700;
           border-bottom: 1px solid var(--line);
           padding-bottom: 2px;
           transition: all 0.2s ease;
@@ -525,7 +525,7 @@ export default function ContactPage() {
           padding: 0.4rem 0.9rem;
           font-size: 0.72rem;
           letter-spacing: 0.14em;
-          font-weight: 600;
+          font-weight: 700;
           color: var(--ink-soft);
           box-shadow: 0 4px 12px rgba(18, 18, 20, 0.04);
         }
@@ -580,7 +580,7 @@ export default function ContactPage() {
           text-transform: none;
           letter-spacing: 0;
           opacity: 0.5;
-          font-weight: 500;
+          font-weight: 400;
         }
         input,
         select,
@@ -619,7 +619,7 @@ export default function ContactPage() {
         }
         .err {
           font-size: 0.75rem;
-          font-weight: 600;
+          font-weight: 700;
           color: var(--accent);
         }
         .form-error {
@@ -680,7 +680,7 @@ export default function ContactPage() {
         }
         .thanks h3 {
           font-family: var(--font-display-local);
-          font-weight: 800;
+          font-weight: 700;
           font-size: 1.6rem;
           margin: 0;
           color: var(--ink);

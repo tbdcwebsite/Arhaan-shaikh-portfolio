@@ -18,7 +18,7 @@ export function HeroMobile() {
           className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#28282B] text-white shadow-sm mb-3.5 select-none"
         >
           <Star className="w-3 h-3 text-[#CDF225] fill-[#CDF225] shrink-0" />
-          <span className="font-body font-medium text-[11px] tracking-tight text-white/95">
+          <span className="font-body font-normal text-[11px] tracking-tight text-white/95">
             Trusted by 100+ Founders &amp; CEOs
           </span>
         </motion.div>
@@ -28,7 +28,7 @@ export function HeroMobile() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.05, ease: [0.16, 1, 0.3, 1] as const }}
-          className="font-heading font-extrabold text-[clamp(1.9rem,8.4vw,2.75rem)] leading-[1.12] tracking-[-0.035em] text-[#28282B] mb-5 text-left w-full"
+          className="font-heading font-bold text-[clamp(1.9rem,8.4vw,2.75rem)] leading-[1.12] tracking-[-0.035em] text-[#28282B] mb-5 text-left w-full"
         >
           <span className="block">Turning Business</span>
           <span className="block">Problems Into</span>
@@ -47,7 +47,7 @@ export function HeroMobile() {
           <motion.a
             href="#contact"
             whileTap={{ scale: 0.95 }}
-            className="flex-1 h-11 px-4 rounded-full bg-[#CDF225] text-[#28282B] font-body font-semibold text-xs sm:text-sm flex items-center justify-center gap-1.5 whitespace-nowrap shadow-[0_6px_18px_rgba(205,242,37,0.45)] cursor-pointer select-none touch-manipulation"
+            className="flex-1 h-11 px-4 rounded-full bg-[#CDF225] text-[#28282B] font-body font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 whitespace-nowrap shadow-[0_6px_18px_rgba(205,242,37,0.45)] cursor-pointer select-none touch-manipulation"
           >
             <span>Work With Me</span>
             <ArrowRight className="w-3.5 h-3.5 stroke-[2.2] shrink-0" />
@@ -56,7 +56,7 @@ export function HeroMobile() {
           <motion.a
             href="#case-studies"
             whileTap={{ scale: 0.95 }}
-            className="flex-1 h-11 px-4 rounded-full bg-white border border-[#28282B]/12 text-[#28282B] font-body font-semibold text-xs sm:text-sm flex items-center justify-center whitespace-nowrap shadow-sm cursor-pointer select-none touch-manipulation"
+            className="flex-1 h-11 px-4 rounded-full bg-white border border-[#28282B]/12 text-[#28282B] font-body font-bold text-xs sm:text-sm flex items-center justify-center whitespace-nowrap shadow-sm cursor-pointer select-none touch-manipulation"
           >
             Case Studies
           </motion.a>

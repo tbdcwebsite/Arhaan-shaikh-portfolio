@@ -18,6 +18,11 @@ export default function Hero() {
       style={{ backgroundColor: "#EAE6DE" }}
       className="relative w-full overflow-hidden select-none"
     >
+      {/* Semantic H1 for SEO & Accessibility without altering visual layout */}
+      <h1 className="sr-only">
+        Arhaan Shaikh — Growth Strategist &amp; Marketing Architect
+      </h1>
+
       <div className="w-full max-w-[1920px] mx-auto">
         {/* ==============================================================
             1. DESKTOP BANNER (Visible on Tablet & Desktop: md:block)

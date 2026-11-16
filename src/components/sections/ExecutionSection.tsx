@@ -94,9 +94,8 @@ export default function ExecutionSection({
   --es-ink: #121214;
   --es-ribbon-light: #FAF8F5;
   --es-muted: #5A554E;
-  --es-font-display: var(--font-mont), var(--es-brand-font, "Inter", "Helvetica Neue", Arial, sans-serif);
+  --es-font-display: var(--font-mont), system-ui, -apple-system, sans-serif;
   --es-font-serif: var(--font-butler), Georgia, serif;
-  --es-font-mono: var(--font-mono), "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   position: relative;
   overflow: hidden;
@@ -151,10 +150,10 @@ export default function ExecutionSection({
   gap: clamp(0.75rem, 1.5vw, 1.25rem);
   padding-right: clamp(0.75rem, 1.5vw, 1.25rem);
   white-space: nowrap;
-  font-family: var(--es-font-mono);
+  font-family: var(--es-font-display);
   font-size: clamp(0.65rem, 1.1vw, 0.9rem);
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
@@ -245,10 +244,10 @@ export default function ExecutionSection({
   border: 1px solid rgba(18, 18, 20, 0.08);
   border-radius: 999px;
   padding: 0.5rem 1.1rem;
-  font-family: var(--es-font-mono);
+  font-family: var(--es-font-display);
   font-size: 0.72rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   box-shadow: 0 10px 30px -12px rgba(18, 18, 20, 0.18);
 }
@@ -263,10 +262,10 @@ export default function ExecutionSection({
 .es-heading {
   margin: clamp(1.5rem, 4vw, 2.5rem) 0 0;
   font-family: var(--es-font-display);
-  font-weight: 800;
-  line-height: 0.96;
+  font-weight: 700;
+  line-height: 0.98;
   letter-spacing: -0.03em;
-  font-size: clamp(2.75rem, 9.5vw, 7.2rem);
+  font-size: clamp(2.5rem, 1.4rem + 4.5vw, 5.25rem);
 }
 
 .es-heading-top {
@@ -287,16 +286,17 @@ export default function ExecutionSection({
   max-width: 44ch;
   color: #3E3D3A;
   font-family: var(--es-font-display);
+  font-weight: 400;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.6;
 }
 
 .es-tagline {
   margin: clamp(1.75rem, 4vw, 2.75rem) 0 0;
-  font-family: var(--es-font-mono);
+  font-family: var(--es-font-display);
   font-size: clamp(0.65rem, 1vw, 0.78rem);
   font-weight: 700;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--es-muted);
 }

@@ -80,13 +80,13 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
         <div className="mb-8 sm:mb-12 flex items-center justify-between border-b border-black/[0.08] pb-4">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[#121214]/60 hover:text-[#121214] transition-colors"
+            className="group inline-flex items-center gap-2 font-sans text-xs uppercase tracking-[0.2em] text-[#121214]/60 hover:text-[#121214] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
             <span>Back to Overview</span>
           </Link>
 
-          <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[#121214]/70">
+          <div className="flex items-center gap-2 font-sans text-[11px] uppercase tracking-[0.2em] text-[#121214]/70">
             <span className="w-2 h-2 rounded-full bg-[#84D400]" />
             <span>{service.shortLabel}</span>
           </div>
@@ -96,13 +96,13 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
             1. HERO: BALANCED EDITORIAL TITLE (THEME-ALIGNED SCALE)
             ============================================================== */}
         <section className="mb-14 sm:mb-20">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] bg-white shadow-sm font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#121214] mb-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/[0.08] bg-white shadow-sm font-sans text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-[#121214] mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[#84D400] animate-pulse" />
             Strategic Practice Area
           </div>
 
           {/* Scaled-down Balanced Typographic Title */}
-          <h1 className="font-display text-3xl sm:text-5xl lg:text-[54px] font-black tracking-tight leading-[1.08] text-[#121214] max-w-5xl">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-[54px] font-bold tracking-tight leading-[1.08] text-[#121214] max-w-5xl">
             {service.headlineLead}{" "}
             <span className="font-serif italic font-normal text-[#6B9C00]">
               {service.italicPunch}
@@ -114,7 +114,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
           </p>
 
           {/* Editorial Metadata Ribbon (No Heavy Box Border) */}
-          <div className="mt-8 pt-6 border-t border-black/[0.08] flex flex-wrap items-center gap-y-4 gap-x-8 font-mono text-xs uppercase tracking-wider text-[#121214]/65">
+          <div className="mt-8 pt-6 border-t border-black/[0.08] flex flex-wrap items-center gap-y-4 gap-x-8 font-sans text-xs uppercase tracking-wider text-[#121214]/65">
             <div className="flex items-center gap-2">
               <Clock className="w-3.5 h-3.5 text-[#6B9C00]" />
               <span className="text-[#121214]/40">Window:</span>
@@ -144,14 +144,14 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
         <section className="mb-20 sm:mb-28">
           <div className="mb-6 flex items-baseline justify-between border-b border-black/[0.08] pb-4">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
+              <span className="font-sans text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
                 01 / Strategic Architecture
               </span>
-              <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-[#121214]">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#121214]">
                 Friction Deconstruction & Engineered Thesis
               </h3>
             </div>
-            <span className="font-mono text-xs text-[#121214]/40 hidden sm:block">SYSTEM FLOW</span>
+            <span className="font-sans text-xs text-[#121214]/40 hidden sm:block">SYSTEM FLOW</span>
           </div>
 
           {/* Asymmetric Visual Flow Diagram */}
@@ -160,7 +160,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
             {/* Left Side: Legacy Market Breakdown List */}
             <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
               <div>
-                <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-red-600 font-bold mb-4">
+                <div className="inline-flex items-center gap-2 text-xs font-sans uppercase tracking-[0.18em] text-red-600 font-bold mb-4">
                   <ShieldAlert className="w-4 h-4" />
                   <span>Market Friction Nodes</span>
                 </div>
@@ -170,7 +170,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                 <div className="space-y-3.5">
                   {service.marketFriction.points.map((pt, i) => (
                     <div key={i} className="flex items-start gap-3 text-xs sm:text-sm text-[#121214]/70 font-sans leading-relaxed">
-                      <span className="w-5 h-5 rounded-full bg-red-50 text-red-600 font-mono text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 border border-red-200">
+                      <span className="w-5 h-5 rounded-full bg-red-50 text-red-600 font-sans text-[11px] font-bold flex items-center justify-center shrink-0 mt-0.5 border border-red-200">
                         ✕
                       </span>
                       <span>{pt}</span>
@@ -194,11 +194,11 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#CDF225]/15 blur-2xl pointer-events-none rounded-full" />
               
               <div className="flex items-center justify-between mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#CDF225]/20 text-[#CDF225] font-mono text-[10px] uppercase tracking-wider font-semibold">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#CDF225]/20 text-[#CDF225] font-sans text-[10px] uppercase tracking-wider font-bold">
                   <Layers className="w-3 h-3" />
                   Proprietary Framework
                 </span>
-                <span className="font-mono text-[11px] text-white/40">Verified Architecture</span>
+                <span className="font-sans text-[11px] text-white/40">Verified Architecture</span>
               </div>
 
               <h4 className="font-heading text-xl font-bold text-white mb-3">
@@ -209,7 +209,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                 {service.strategicThesis.description}
               </p>
 
-              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-white/50 uppercase tracking-widest">
+              <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between font-sans text-[10px] text-white/50 uppercase tracking-widest">
                 <span className="text-[#CDF225]">● Continuous Sprint Loop</span>
                 <span>Zero Speculation</span>
               </div>
@@ -224,10 +224,10 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
         <section className="mb-20 sm:mb-28">
           <div className="mb-6 flex items-baseline justify-between border-b border-black/[0.08] pb-4">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
+              <span className="font-sans text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
                 02 / Telemetry & Impact
               </span>
-              <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-[#121214]">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#121214]">
                 Empirical Performance Benchmarks
               </h3>
             </div>
@@ -240,7 +240,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
               <SpotlightCard key={item.metric} className="p-5 sm:p-6">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                   <div className="md:w-1/3">
-                    <span className="font-mono text-[10px] text-[#6B9C00] font-bold uppercase tracking-wider block mb-1">
+                    <span className="font-sans text-[10px] text-[#6B9C00] font-bold uppercase tracking-wider block mb-1">
                       Target Metric [0{idx + 1}]
                     </span>
                     <h4 className="font-heading text-base font-bold text-[#121214]">
@@ -255,7 +255,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                   <div className="md:w-7/12 flex flex-col justify-center space-y-3">
                     {/* Status Quo Bar */}
                     <div>
-                      <div className="flex justify-between text-[11px] font-mono text-[#121214]/50 mb-1">
+                      <div className="flex justify-between text-[11px] font-sans text-[#121214]/50 mb-1">
                         <span>Industry Average Baseline</span>
                         <span>{item.industryAvg}</span>
                       </div>
@@ -266,12 +266,12 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
 
                     {/* Engineered Target Bar (Animated Motion Spring Bar) */}
                     <div>
-                      <div className="flex justify-between text-xs font-mono font-bold text-[#121214] mb-1">
+                      <div className="flex justify-between text-xs font-sans font-bold text-[#121214] mb-1">
                         <span className="text-[#6B9C00] flex items-center gap-1.5">
                           <span className="w-1.5 h-1.5 rounded-full bg-[#84D400]" />
                           Engineered Benchmark
                         </span>
-                        <span className="text-[#121214] font-extrabold">{item.engineeredBenchmark}</span>
+                        <span className="text-[#121214] font-bold">{item.engineeredBenchmark}</span>
                       </div>
                       <div className="w-full h-2.5 bg-black/[0.06] rounded-full overflow-hidden p-0.5">
                         <motion.div
@@ -296,14 +296,14 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
         <section className="mb-20 sm:mb-28">
           <div className="mb-10 flex items-baseline justify-between border-b border-black/[0.08] pb-4">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
+              <span className="font-sans text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
                 03 / Execution Rhythm
               </span>
-              <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-[#121214]">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#121214]">
                 Linear Sprint Delivery Rail
               </h3>
             </div>
-            <span className="font-mono text-xs text-[#121214]/40 hidden sm:block">
+            <span className="font-sans text-xs text-[#121214]/40 hidden sm:block">
               4 SEQUENTIAL PHASES
             </span>
           </div>
@@ -346,7 +346,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                         <span className="w-2.5 h-2.5 rotate-45 bg-[#CDF225] animate-pulse" />
                       ) : (
                         /* Step Number Core */
-                        <span className="font-mono text-[10px] font-bold text-[#121214]/60 group-hover:text-[#121214]">
+                        <span className="font-sans text-[10px] font-bold text-[#121214]/60 group-hover:text-[#121214]">
                           {phase.phase}
                         </span>
                       )}
@@ -375,7 +375,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                       <div className="flex items-center gap-3">
                         <span
-                          className={`font-mono text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
+                          className={`font-sans text-[11px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider ${
                             isFirst
                               ? "bg-[#CDF225] text-[#121214]"
                               : "bg-black/[0.04] text-[#121214]/70"
@@ -387,7 +387,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                           {phase.title}
                         </h4>
                       </div>
-                      <span className="font-mono text-[10px] sm:text-[11px] text-[#121214]/40 uppercase tracking-wider">
+                      <span className="font-sans text-[10px] sm:text-[11px] text-[#121214]/40 uppercase tracking-wider">
                         Milestone Delivery
                       </span>
                     </div>
@@ -398,7 +398,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
 
                     <div className="mt-4 pt-3 border-t border-black/[0.05] flex items-center gap-2">
                       <Check className="w-4 h-4 text-[#84D400] shrink-0" />
-                      <span className="font-mono text-xs font-semibold text-[#121214]/85">
+                      <span className="font-sans text-xs font-bold text-[#121214]/85">
                         Artifact: {phase.output}
                       </span>
                     </div>
@@ -415,10 +415,10 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
         <section className="mb-20 sm:mb-28">
           <div className="mb-6 flex items-baseline justify-between border-b border-black/[0.08] pb-4">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
+              <span className="font-sans text-[11px] uppercase tracking-[0.24em] text-[#6B9C00] font-bold block mb-1">
                 04 / Handover Assets
               </span>
-              <h3 className="font-heading text-xl sm:text-2xl font-extrabold text-[#121214]">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-[#121214]">
                 Tangible Deliverables & System IP
               </h3>
             </div>
@@ -433,10 +433,10 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="font-mono text-xs font-bold text-[#6B9C00]">
+                    <span className="font-sans text-xs font-bold text-[#6B9C00]">
                       ASSET // 0{idx + 1}
                     </span>
-                    <span className="font-mono text-[10px] uppercase px-2.5 py-0.5 rounded-full bg-black/[0.04] text-[#121214]/60 font-medium">
+                    <span className="font-sans text-[10px] uppercase px-2.5 py-0.5 rounded-full bg-black/[0.04] text-[#121214]/60 font-normal">
                       {artifact.scope}
                     </span>
                   </div>
@@ -446,7 +446,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
                   </h4>
                 </div>
 
-                <p className="font-mono text-[11px] text-[#121214]/45 uppercase tracking-wider mt-4 pt-3 border-t border-black/[0.05]">
+                <p className="font-sans text-[11px] text-[#121214]/45 uppercase tracking-wider mt-4 pt-3 border-t border-black/[0.05]">
                   Format: {artifact.format}
                 </p>
               </SpotlightCard>
@@ -459,10 +459,10 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
             ============================================================== */}
         <section className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#121214] text-[#F8F8F5] shadow-[0_24px_70px_rgba(0,0,0,0.18)] flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8 border border-white/10">
           <div className="max-w-2xl">
-            <span className="font-mono text-xs uppercase tracking-[0.26em] text-[#CDF225] block mb-2 font-semibold">
+            <span className="font-sans text-xs uppercase tracking-[0.26em] text-[#CDF225] block mb-2 font-bold">
               Direct Principal Engagement
             </span>
-            <h3 className="font-display text-2xl sm:text-4xl font-black text-white tracking-tight leading-tight">
+            <h3 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
               Ready to deploy {service.shortLabel.toLowerCase()}?
             </h3>
             <p className="mt-3 text-xs sm:text-sm text-white/70 font-sans font-light leading-relaxed">
@@ -477,7 +477,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
           >
             <Link
               href="/#contact"
-              className="relative group overflow-hidden px-8 py-3.5 rounded-full bg-[#CDF225] text-[#121214] font-heading font-extrabold text-xs uppercase tracking-[0.16em] flex items-center gap-2 hover:bg-[#d8fb3b] shadow-[0_4px_20px_rgba(205,242,37,0.35)] hover:shadow-[0_0_32px_rgba(205,242,37,0.65)] transition-all duration-300 whitespace-nowrap shrink-0"
+              className="relative group overflow-hidden px-8 py-3.5 rounded-full bg-[#CDF225] text-[#121214] font-heading font-bold text-xs uppercase tracking-[0.16em] flex items-center gap-2 hover:bg-[#d8fb3b] shadow-[0_4px_20px_rgba(205,242,37,0.35)] hover:shadow-[0_0_32px_rgba(205,242,37,0.65)] transition-all duration-300 whitespace-nowrap shrink-0"
             >
               {/* Shine sweep effect */}
               <span className="absolute inset-0 w-1/2 h-full bg-white/40 transform -skew-x-12 -translate-x-full group-hover:translate-x-[300%] transition-transform duration-1000 ease-out pointer-events-none" />

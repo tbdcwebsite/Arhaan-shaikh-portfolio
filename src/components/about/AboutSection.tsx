@@ -109,7 +109,7 @@ export default function AboutSection() {
 
         {/* 1. TITLE (Mobile: 1st | Desktop: Left Col Row 1) */}
         <div className="order-1 lg:col-span-7 flex flex-col items-start">
-          <h2 className="text-3xl sm:text-5xl md:text-6xl xl:text-7xl font-sans font-semibold tracking-tight leading-[1.08] text-[#121214]">
+          <h2 className="text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] font-sans font-bold tracking-[-0.025em] leading-[1.05] text-[#121214]">
             <span className="block overflow-hidden py-1 -my-1">
               <span className="headline-mask-inner block">Strategy Rooms</span>
             </span>
@@ -153,7 +153,7 @@ export default function AboutSection() {
                       fill="none"
                     />
                     <text
-                      className="font-mono uppercase fill-white"
+                      className="font-sans uppercase fill-white"
                       style={{
                         fontSize: "8.8px",
                         letterSpacing: "0.08em",
@@ -182,7 +182,7 @@ export default function AboutSection() {
         </div>
 
         {/* 3. BODY PARAGRAPHS (Mobile: 3rd, below Card | Desktop: Left Col Row 2) */}
-        <div className="order-3 lg:col-span-7 flex flex-col space-y-5 text-[#121214]/80 text-base sm:text-lg leading-relaxed max-w-xl font-sans">
+        <div className="order-3 lg:col-span-7 flex flex-col space-y-5 text-[#121214]/80 text-base sm:text-lg leading-[1.6] max-w-xl font-sans font-normal">
           <p className="reveal-paragraph">
             <span className="reveal-dropcap inline-block float-left text-5xl sm:text-6xl font-serif text-[#EF8557] leading-none pr-3 pt-1 font-normal select-none will-change-transform">
               I

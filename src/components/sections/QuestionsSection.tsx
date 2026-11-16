@@ -267,16 +267,14 @@ export default function QuestionsSection() {
 
           {/* Header Row */}
           <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-3 sm:pb-4 shrink-0">
-            <div className="flex flex-col">
-              <h2 className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.08] text-[#121214]">
-                Where I Usually
-              </h2>
-              <span className="font-serif italic font-normal text-2xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.08] text-[#EF8557] mt-0.5">
+            <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
+              <span className="block">Where I Usually</span>
+              <span className="block font-serif italic font-normal text-[#EF8557] mt-0.5">
                 Enter The Picture.
               </span>
-            </div>
+            </h2>
 
-            <div className="hidden md:flex items-center gap-2 font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#121214]/65 self-start md:self-end pb-1">
+            <div className="hidden md:flex items-center gap-2 font-sans font-bold text-xs tracking-[0.12em] uppercase text-[#121214]/65 self-start md:self-end pb-1">
               <span>KEEP SCROLLING</span>
               <span className="text-[#EF8557] font-sans text-base">→</span>
             </div>

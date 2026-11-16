@@ -114,11 +114,11 @@ export default function Footer() {
           <div className="flex flex-col">
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-              <span className="font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#EF8557]">
+              <span className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-[#EF8557]">
                 START A COLLABORATION
               </span>
             </div>
-            <h2 className="font-sans font-bold text-2xl sm:text-4xl lg:text-5xl tracking-tight text-white">
+            <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-white">
               Have an ambitious project in{" "}
               <span className="font-serif italic font-normal text-[#EF8557]">
                 mind?
@@ -195,7 +195,7 @@ export default function Footer() {
 
           {/* COLUMN 2: EXPLORE (Span 2) */}
           <div className="lg:col-span-2 flex flex-col items-start">
-            <h4 className="font-mono text-xs font-semibold tracking-[0.22em] text-white/60 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/60 mb-5">
               EXPLORE
             </h4>
             <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm tracking-wide text-white/85">
@@ -236,7 +236,7 @@ export default function Footer() {
 
           {/* COLUMN 3: EXPERTISE (Span 3) */}
           <div className="lg:col-span-3 flex flex-col items-start">
-            <h4 className="font-mono text-xs font-semibold tracking-[0.22em] text-white/60 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/60 mb-5">
               EXPERTISE
             </h4>
             <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm text-white/85">
@@ -277,7 +277,7 @@ export default function Footer() {
 
           {/* COLUMN 4: CONTACT US (Span 3) */}
           <div className="lg:col-span-3 flex flex-col items-start">
-            <h4 className="font-mono text-xs font-semibold tracking-[0.22em] uppercase text-white/60 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/60 mb-5">
               CONTACT US
             </h4>
 
@@ -322,7 +322,7 @@ export default function Footer() {
           <p>© 2026 Arhaan Shaikh. All rights reserved.</p>
 
           {/* Live Clock Badge */}
-          <div className="flex items-center gap-2 font-mono text-[11px] text-white/50" suppressHydrationWarning>
+          <div className="flex items-center gap-2 font-sans text-[11px] font-normal tracking-[0.06em] text-white/50" suppressHydrationWarning>
             <span>MUMBAI, IN</span>
             <span>•</span>
             <span className="text-white/80">{currentTime || "09:30 PM IST"}</span>

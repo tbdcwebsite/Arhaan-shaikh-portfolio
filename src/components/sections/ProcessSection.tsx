@@ -122,12 +122,12 @@ export default function ProcessSection() {
             <div className="flex flex-col">
               <div className="flex items-center gap-2 mb-2 sm:mb-3">
                 <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-                <span className="font-mono text-[11px] sm:text-xs font-semibold tracking-[0.22em] uppercase text-[#226192]">
+                <span className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-[#226192]">
                   A CLEAR PATH TO GROWTH
                 </span>
               </div>
 
-              <h2 className="font-sans font-bold text-3xl xs:text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-[#121214]">
+              <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
                 Roadmap to{" "}
                 <span className="font-serif italic font-normal text-[#EF8557]">
                   success.
@@ -135,7 +135,7 @@ export default function ProcessSection() {
               </h2>
             </div>
 
-            <p className="font-sans italic text-xs xs:text-sm sm:text-base text-[#121214]/75 max-w-xs md:text-right leading-relaxed">
+            <p className="font-sans font-normal text-xs xs:text-sm sm:text-base text-[#121214]/75 max-w-xs md:text-right leading-relaxed">
               Brand, performance, content and tech working as one connected system.
             </p>
           </div>

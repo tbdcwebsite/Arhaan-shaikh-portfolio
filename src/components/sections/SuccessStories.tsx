@@ -57,19 +57,19 @@ export default function SuccessStories() {
         <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
           <div className="flex items-center gap-2.5 mb-2.5">
             <span className="w-8 h-1.5 rounded-full bg-[#EF8557]" />
-            <span className="font-mono text-xs font-semibold tracking-[0.24em] uppercase text-[#121214]/75">
+            <span className="font-sans font-bold text-xs tracking-[0.12em] uppercase text-[#121214]/75">
               OUR LATEST CAMPAIGNS
             </span>
           </div>
 
-          <h2 className="font-sans font-bold text-3xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.05] text-[#121214]">
+          <h2 className="font-sans font-bold text-[clamp(2rem,1.2rem+3.2vw,3.75rem)] tracking-[-0.025em] leading-[1.05] text-[#121214]">
             Success{" "}
             <span className="font-serif italic font-normal text-[#EF8557]">
               Stories.
             </span>
           </h2>
 
-          <p className="font-sans text-sm sm:text-base text-[#121214]/65 mt-2 tracking-tight">
+          <p className="font-sans font-normal text-sm sm:text-base text-[#121214]/65 mt-2 tracking-tight">
             Selected campaigns delivering measurable ROI and scalable brand equity.
           </p>
         </div>
@@ -102,9 +102,9 @@ export default function SuccessStories() {
               {/* CARD METADATA ROW: BRAND NAME (LEFT) + ARROW BUTTON (RIGHT) */}
               <div className="w-full flex items-center justify-between pt-3.5 px-1">
                 {/* Brand Name */}
-                <span className="font-sans font-bold text-base lg:text-[17px] tracking-tight text-[#121214] group-hover:text-[#EF8557] transition-colors duration-200 truncate pr-2">
+                <h3 className="font-sans font-bold text-base lg:text-[17px] tracking-tight text-[#121214] group-hover:text-[#EF8557] transition-colors duration-200 truncate pr-2">
                   {story.title}
-                </span>
+                </h3>
 
                 {/* Circular Arrow Button */}
                 <div className="w-8 h-8 rounded-full bg-[#EF8557] text-white flex items-center justify-center shadow-sm transition-all duration-300 group-hover:scale-110 group-hover:bg-[#226192] shrink-0">

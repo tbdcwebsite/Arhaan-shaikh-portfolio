@@ -251,7 +251,7 @@ export function Navbar() {
                             hover: { y: "-130%", opacity: 0 },
                           }}
                           transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                          className="block font-sans font-semibold text-xs tracking-[0.14em] text-white/80 whitespace-nowrap bg-transparent"
+                          className="block font-sans font-bold text-xs tracking-[0.12em] text-white/80 whitespace-nowrap bg-transparent"
                         >
                           {item.name}
                         </motion.span>
@@ -266,7 +266,7 @@ export function Navbar() {
                             hover: { y: 0, opacity: 1 },
                           }}
                           transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute inset-0 flex items-center justify-center font-serif italic font-medium text-[15px] tracking-normal text-[#EF8557] whitespace-nowrap bg-transparent"
+                          className="absolute inset-0 flex items-center justify-center font-serif italic font-normal text-[15px] tracking-normal text-[#EF8557] whitespace-nowrap bg-transparent"
                         >
                           {item.hoverDisplay}
                         </motion.span>
@@ -291,7 +291,7 @@ export function Navbar() {
                                 onClick={() => setServicesHovered(false)}
                                 className="group px-3.5 py-2.5 rounded-xl flex items-center text-left transition-all duration-200 hover:bg-white/[0.06]"
                               >
-                                <span className="font-sans text-[13px] font-medium text-white/80 group-hover:text-[#EF8557] transition-colors leading-snug">
+                                <span className="font-sans text-[13px] font-normal text-white/80 group-hover:text-[#EF8557] transition-colors leading-snug">
                                   {s.title}
                                 </span>
                               </Link>
@@ -321,7 +321,7 @@ export function Navbar() {
                         hover: { y: "-130%", opacity: 0 },
                       }}
                       transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="block font-sans font-semibold text-xs tracking-[0.14em] text-white/80 whitespace-nowrap bg-transparent"
+                      className="block font-sans font-bold text-xs tracking-[0.12em] text-white/80 whitespace-nowrap bg-transparent"
                     >
                       {item.name}
                     </motion.span>
@@ -336,7 +336,7 @@ export function Navbar() {
                         hover: { y: 0, opacity: 1 },
                       }}
                       transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0 flex items-center justify-center font-serif italic font-medium text-[15px] tracking-normal text-[#EF8557] whitespace-nowrap bg-transparent"
+                      className="absolute inset-0 flex items-center justify-center font-serif italic font-normal text-[15px] tracking-normal text-[#EF8557] whitespace-nowrap bg-transparent"
                     >
                       {item.hoverDisplay}
                     </motion.span>

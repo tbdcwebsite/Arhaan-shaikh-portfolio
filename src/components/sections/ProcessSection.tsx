@@ -111,7 +111,7 @@ export default function ProcessSection() {
       {/* 100vh Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-6 xs:py-8 sm:py-10 lg:py-14 px-4 xs:px-6 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10"
+        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-6 xs:py-8 sm:py-10 lg:py-14 px-6 sm:px-10 lg:px-16 border-t border-[#121214]/10"
       >
         <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
 
@@ -122,13 +122,13 @@ export default function ProcessSection() {
             <div className="flex flex-col">
               <div className="flex items-center gap-2 mb-2 sm:mb-3">
                 <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-                <span className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-[#226192]">
+                <span className="font-sans text-[12px] lg:text-[13px] leading-[1.4] font-bold tracking-[0.12em] uppercase text-[#226192]">
                   A CLEAR PATH TO GROWTH
                 </span>
               </div>
 
-              <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-[#121214]">
-                <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+              <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+                <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
                   Roadmap to{" "}
                 </span>
                 <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
@@ -137,7 +137,7 @@ export default function ProcessSection() {
               </h2>
             </div>
 
-            <p className="font-sans font-normal text-xs xs:text-sm sm:text-base text-[#121214]/75 max-w-xs md:text-right leading-[1.7]">
+            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right">
               Brand, performance, content and tech working as one connected system.
             </p>
           </div>
@@ -194,10 +194,10 @@ export default function ProcessSection() {
                       <span className="font-serif italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
                         {step.number}
                       </span>
-                      <h3 className="font-sans font-bold text-2xl lg:text-3xl text-[#121214] tracking-tight mb-2">
+                      <h3 className="font-sans font-bold text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mb-2">
                         {step.title}
                       </h3>
-                      <p className="font-sans font-normal text-sm lg:text-[15px] text-[#121214]/75 leading-[1.7] max-w-[260px]">
+                      <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-[260px]">
                         {step.description}
                       </p>
                     </div>
@@ -258,11 +258,11 @@ export default function ProcessSection() {
                     <span className="font-serif italic text-xl xs:text-2xl text-[#EF8557]">
                       {step.number}
                     </span>
-                    <h3 className="font-sans font-bold text-lg xs:text-xl text-[#121214] tracking-tight">
+                    <h3 className="font-sans font-bold text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214]">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="font-sans font-normal text-xs xs:text-sm text-[#121214]/75 leading-[1.7] max-w-[260px] xs:max-w-xs">
+                  <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-[260px] xs:max-w-xs">
                     {step.description}
                   </p>
                 </div>

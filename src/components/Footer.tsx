@@ -96,15 +96,8 @@ export default function Footer() {
   return (
     <footer
       style={{ backgroundColor: "#226192" }}
-      className="relative w-full text-white pt-14 sm:pt-18 lg:pt-20 pb-10 px-5 sm:px-8 md:px-12 lg:px-16 overflow-hidden select-none"
+      className="relative w-full text-white pt-16 sm:pt-20 pb-12 sm:pb-16 px-6 sm:px-10 lg:px-16 overflow-hidden select-none"
     >
-      {/* ==============================================================
-          BACKGROUND WATERMARK: GHOST TYPOGRAPHY FOR DEPTH
-          ============================================================== */}
-      <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 pointer-events-none select-none whitespace-nowrap opacity-[0.035] font-serif italic text-[160px] sm:text-[220px] lg:text-[280px] leading-none text-white z-0">
-        Arhaan Shaikh
-      </div>
-
       <div className="max-w-7xl mx-auto w-full relative z-10">
         
         {/* ==============================================================
@@ -114,12 +107,12 @@ export default function Footer() {
           <div className="flex flex-col">
             <div className="flex items-center gap-2 mb-2">
               <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-              <span className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-[#EF8557]">
+              <span className="font-sans text-[12px] lg:text-[13px] leading-[1.4] font-bold tracking-[0.12em] uppercase text-[#EF8557]">
                 START A COLLABORATION
               </span>
             </div>
-            <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-white">
-              <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+            <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-white">
+              <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
                 Have an ambitious project in{" "}
               </span>
               <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
@@ -131,7 +124,7 @@ export default function Footer() {
           <Link
             href="/contact"
             style={{ backgroundColor: "#EF8557" }}
-            className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-sans font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl self-start md:self-auto shrink-0"
+            className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-sans font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl self-start md:self-auto shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
           >
             <span>Let&apos;s Build Together</span>
             <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -145,9 +138,13 @@ export default function Footer() {
           
           {/* COLUMN 1: BIO + SOCIAL ICONS (Span 4) */}
           <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-8">
-            <h3 className="font-sans font-bold text-2xl tracking-tight text-white mb-3">
+            <Link
+              href="/"
+              aria-label="Arhaan Shaikh — Home"
+              className="font-sans font-bold tracking-[-0.02em] whitespace-nowrap text-xl sm:text-2xl text-white hover:text-[#EF8557] transition-colors duration-200 mb-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+            >
               Arhaan Shaikh
-            </h3>
+            </Link>
             <p className="font-sans font-normal text-sm text-white/80 leading-[1.7] max-w-[54ch] mb-6">
               Empowering businesses with scalable growth strategies, tailored marketing systems, and high-performance digital infrastructure.
             </p>
@@ -159,7 +156,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
@@ -179,7 +176,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -188,7 +185,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
               >
                 <YoutubeIcon className="w-4 h-4" />
               </a>
@@ -197,14 +194,14 @@ export default function Footer() {
 
           {/* COLUMN 2: EXPLORE (Span 2) */}
           <div className="lg:col-span-2 flex flex-col items-start">
-            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/60 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
               EXPLORE
             </h4>
             <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm tracking-wide text-white/85">
               <li>
                 <Link
                   href="/#about"
-                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   About
                 </Link>
@@ -212,7 +209,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#services"
-                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   Services
                 </Link>
@@ -220,7 +217,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#process"
-                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   Process
                 </Link>
@@ -228,7 +225,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#journal"
-                  className="transition-colors duration-200 hover:text-[#EF8557]"
+                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   Journal
                 </Link>
@@ -238,14 +235,14 @@ export default function Footer() {
 
           {/* COLUMN 3: EXPERTISE (Span 3) */}
           <div className="lg:col-span-3 flex flex-col items-start">
-            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/60 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
               EXPERTISE
             </h4>
             <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm text-white/85">
               <li>
                 <Link
                   href="/services/go-to-market"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>Go-To-Market Strategy</span>
                 </Link>
@@ -253,7 +250,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/growth-strategy"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>Growth Strategy</span>
                 </Link>
@@ -261,7 +258,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/ecommerce"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>E-Commerce & Q-Commerce</span>
                 </Link>
@@ -269,7 +266,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/brand-positioning"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5"
+                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>Brand Positioning</span>
                 </Link>
@@ -279,7 +276,7 @@ export default function Footer() {
 
           {/* COLUMN 4: CONTACT US (Span 3) */}
           <div className="lg:col-span-3 flex flex-col items-start">
-            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/60 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
               CONTACT US
             </h4>
 
@@ -289,7 +286,7 @@ export default function Footer() {
               {/* Email */}
               <a
                 href={`mailto:${email}`}
-                className="flex items-center gap-2.5 hover:text-[#EF8557] transition-colors"
+                className="flex items-center gap-2.5 hover:text-[#EF8557] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
               >
                 <Mail className="w-4 h-4 text-[#EF8557] shrink-0" />
                 <span>{email}</span>
@@ -298,7 +295,7 @@ export default function Footer() {
               {/* Phone */}
               <a
                 href={`tel:${phoneTel}`}
-                className="flex items-center gap-2.5 hover:text-[#EF8557] transition-colors"
+                className="flex items-center gap-2.5 hover:text-[#EF8557] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
               >
                 <Phone className="w-4 h-4 text-[#EF8557] shrink-0" />
                 <span>{phone}</span>

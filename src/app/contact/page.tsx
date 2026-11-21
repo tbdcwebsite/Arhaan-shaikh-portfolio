@@ -390,7 +390,11 @@ export default function ContactPage() {
         }
         .ticker-track {
           display: inline-flex;
-          animation: scroll 24s linear infinite;
+        }
+        @media (prefers-reduced-motion: no-preference) {
+          .ticker-track {
+            animation: scroll 24s linear infinite;
+          }
         }
         .ticker-group {
           font-family: var(--font-display-local);

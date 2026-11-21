@@ -3,7 +3,6 @@ import Hero from "@/components/sections/Hero";
 import AboutSection from "@/components/about/AboutSection";
 import QuestionsSection from "@/components/sections/QuestionsSection";
 import ProcessSection from "@/components/sections/ProcessSection";
-import ExecutionSection from "@/components/sections/ExecutionSection";
 import SuccessStories from "@/components/sections/SuccessStories";
 import NotesOnGrowth from "@/components/sections/NotesOnGrowth";
 import Footer from "@/components/Footer";
@@ -19,7 +18,6 @@ export default function Home() {
       <AboutSection />
       <QuestionsSection />
       <ProcessSection />
-      <ExecutionSection />
       
       {/* Success Stories */}
       <SuccessStories />

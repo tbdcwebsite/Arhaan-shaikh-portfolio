@@ -44,7 +44,7 @@ export default function SuccessStories() {
     <section
       id="case-studies"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
     >
       {/* Anchor alias for backwards-compatibility */}
       <span id="success-stories" className="sr-only" />
@@ -57,13 +57,13 @@ export default function SuccessStories() {
         <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
           <div className="flex items-center gap-2.5 mb-2.5">
             <span className="w-8 h-1.5 rounded-full bg-[#EF8557]" />
-            <span className="font-sans font-bold text-xs tracking-[0.12em] uppercase text-[#121214]/75">
+            <span className="font-sans font-bold text-[12px] lg:text-[13px] leading-[1.4] tracking-[0.12em] uppercase text-[#121214]/75">
               OUR LATEST CAMPAIGNS
             </span>
           </div>
 
-          <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-[#121214]">
-            <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+          <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+            <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
               Success{" "}
             </span>
             <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
@@ -71,7 +71,7 @@ export default function SuccessStories() {
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-sm sm:text-base text-[#121214]/65 mt-3 max-w-[54ch] leading-[1.7]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-3 max-w-[54ch]">
             Selected campaigns delivering measurable ROI and scalable brand equity.
           </p>
         </div>
@@ -84,10 +84,10 @@ export default function SuccessStories() {
             <Link
               key={story.id}
               href={`/case-studies/${story.slug}`}
-              className="group flex flex-col focus:outline-none"
+              className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 rounded-[8px]"
             >
               {/* CARD IMAGE FRAME (100% CLEAN IMAGE ONLY) */}
-              <div className="relative w-full h-[380px] xs:h-[400px] lg:h-[420px] rounded-[24px] lg:rounded-[28px] overflow-hidden 
+              <div className="relative w-full h-[380px] xs:h-[400px] lg:h-[420px] rounded-[8px] overflow-hidden 
                 bg-[#161618] border border-white/80 shadow-[0_12px_32px_rgba(18,18,20,0.06)] 
                 hover:shadow-[0_22px_44px_rgba(34,97,146,0.16)] transition-all duration-500 hover:-translate-y-1.5"
               >

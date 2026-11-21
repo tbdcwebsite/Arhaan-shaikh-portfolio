@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import "lenis/dist/lenis.css";
 import "./globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const mont = localFont({
   src: [
@@ -57,6 +59,7 @@ const butler = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://arhaanshaikh.com"),
   title: "Arhaan Shaikh | Growth Strategist & Marketing Architect",
   description: "Senior Growth Strategist & Digital Architect delivering scalable brand equity and commercial ROI.",
 };
@@ -76,7 +79,7 @@ export default function RootLayout({
         className={`${mont.variable} ${butler.variable} font-sans min-h-full flex flex-col bg-[#EAE6DE] text-[#121214]`}
         style={{ backgroundColor: "#EAE6DE" }}
       >
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

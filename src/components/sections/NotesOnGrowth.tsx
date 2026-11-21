@@ -21,7 +21,7 @@ const NOTES_DATA: GrowthNote[] = [
     title: "Disrupt The Market",
     imageSrc: "/blogs/blog-01-disrupt.png",
     alt: "Disrupt The Market",
-    href: "/journal/disrupt-the-market",
+    href: "/blogs/disrupt-the-market",
   },
   {
     id: "note-2",
@@ -29,7 +29,7 @@ const NOTES_DATA: GrowthNote[] = [
     title: "Clarity Before Channels",
     imageSrc: "/blogs/blog-02-clarity.png",
     alt: "Clarity Before Channels",
-    href: "/journal/clarity-before-channels",
+    href: "/blogs/clarity-before-channels",
   },
   {
     id: "note-3",
@@ -37,7 +37,7 @@ const NOTES_DATA: GrowthNote[] = [
     title: "Bad Positioning Is Expensive",
     imageSrc: "/blogs/blog-03-positioning.png",
     alt: "Bad Positioning Is Expensive",
-    href: "/journal/bad-positioning-is-expensive",
+    href: "/blogs/bad-positioning-is-expensive",
   },
   {
     id: "note-4",
@@ -45,7 +45,7 @@ const NOTES_DATA: GrowthNote[] = [
     title: "Virality Is A Piece Of Art",
     imageSrc: "/blogs/blog-04-virality.png",
     alt: "Virality Is A Piece Of Art",
-    href: "/journal/virality-is-a-piece-of-art",
+    href: "/blogs/virality-is-a-piece-of-art",
   },
   {
     id: "note-5",
@@ -53,7 +53,7 @@ const NOTES_DATA: GrowthNote[] = [
     title: "Conversion Is A Context Problem",
     imageSrc: "/blogs/blog-05-conversion.png",
     alt: "Conversion Is A Context Problem",
-    href: "/journal/conversion-is-a-context-problem",
+    href: "/blogs/conversion-is-a-context-problem",
   },
 ];
 
@@ -113,7 +113,7 @@ export default function NotesOnGrowth() {
     <section
       id="journal"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-20 sm:py-28 lg:py-32 px-5 sm:px-8 md:px-12 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
 
@@ -121,15 +121,15 @@ export default function NotesOnGrowth() {
             HEADER ROW
             ============================================================== */}
         <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
-          <div className="flex items-center gap-2.5 mb-2.5">
-            <span className="w-8 h-1.5 rounded-full bg-[#EF8557]" />
-            <span className="font-sans font-bold text-xs tracking-[0.12em] uppercase text-[#121214]/75">
-              NOTES ON GROWTH
+          <Link href="/blogs" className="flex items-center gap-2.5 mb-2.5 group/kicker focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 rounded-full">
+            <span className="w-8 h-1.5 rounded-full bg-[#EF8557] group-hover/kicker:scale-x-110 transition-transform origin-left" />
+            <span className="font-sans font-bold text-[12px] lg:text-[13px] leading-[1.4] tracking-[0.12em] uppercase text-[#121214]/75 group-hover/kicker:text-[#EF8557] transition-colors">
+              NOTES ON GROWTH →
             </span>
-          </div>
+          </Link>
 
-          <h2 className="text-[clamp(2.1rem,1.4rem+3.5vw,4rem)] tracking-[-0.025em] text-[#121214]">
-            <span className="font-sans font-normal leading-[1.08] tracking-[-0.025em]">
+          <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+            <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
               Notes On{" "}
             </span>
             <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
@@ -137,7 +137,7 @@ export default function NotesOnGrowth() {
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-sm sm:text-base text-[#121214]/65 mt-3 max-w-[54ch] leading-[1.7]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-3 max-w-[54ch]">
             Ideas worth thinking about.
           </p>
         </div>
@@ -157,9 +157,10 @@ export default function NotesOnGrowth() {
             <Link
               key={note.id}
               href={note.href}
-              className="group snap-start shrink-0 rounded-[28px] lg:rounded-[32px] p-6 lg:p-7 flex flex-col justify-end 
+              className="group snap-start shrink-0 rounded-[24px] p-6 lg:p-7 flex flex-col justify-end 
                 relative overflow-hidden cursor-pointer transition-all duration-300
                 bg-[#FAF9F6] border border-white/90 shadow-[0_14px_36px_rgba(18,18,20,0.06)] hover:shadow-[0_22px_48px_rgba(34,97,146,0.12)] hover:-translate-y-1.5
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2
                 w-[280px] xs:w-[310px] sm:w-[330px] lg:w-[calc((100%-3*24px)/4)] lg:min-w-[calc((100%-3*24px)/4)] h-[440px] lg:h-[470px]"
             >
               {/* Accessibility / SEO Title */}
@@ -197,9 +198,9 @@ export default function NotesOnGrowth() {
             onClick={() => scrollByStep("left")}
             disabled={!canScrollLeft}
             aria-label="Scroll left"
-            className="w-9 h-9 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 cursor-pointer"
           >
-            <ChevronLeft className="w-4 h-4 stroke-[2.2]" />
+            <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
           </button>
 
           {/* Synchronized Progress Track */}
@@ -219,9 +220,9 @@ export default function NotesOnGrowth() {
             onClick={() => scrollByStep("right")}
             disabled={!canScrollRight}
             aria-label="Scroll right"
-            className="w-9 h-9 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 cursor-pointer"
           >
-            <ChevronRight className="w-4 h-4 stroke-[2.2]" />
+            <ChevronRight className="w-5 h-5 stroke-[2.2]" />
           </button>
         </div>
 

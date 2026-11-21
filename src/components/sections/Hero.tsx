@@ -8,7 +8,7 @@ import Image from "next/image";
 const HERO_BANNERS = {
   desktopSrc: "/images/hero-var5.png", // 👈 Desktop Banner URL/Path
   mobileSrc: "/images/smartmove.png",   // 👈 Mobile Banner URL/Path
-  alt: "Arhaan Shaikh — Growth Strategist",
+  alt: "Smart moves, real growth — Arhaan Shaikh, Growth Strategist",
 };
 
 export default function Hero() {
@@ -45,8 +45,9 @@ export default function Hero() {
 
         {/* ==============================================================
             2. MOBILE BANNER (Visible on Mobile Only: block md:hidden)
+            Trimmed excess top clearance for seamless fold positioning
             ============================================================== */}
-        <div className="block md:hidden w-full">
+        <div className="block md:hidden w-full -mt-2 sm:mt-0 pt-0">
           <Image
             src={HERO_BANNERS.mobileSrc}
             alt={HERO_BANNERS.alt}

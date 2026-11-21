@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronDown } from "lucide-react";
@@ -37,14 +36,13 @@ const NAV_SERVICES: ServiceDropdownItem[] = [
 interface NavItem {
   name: string;
   href: string;
-  hoverDisplay: string;
 }
 
 const navItems: NavItem[] = [
-  { name: "ABOUT", href: "/#about", hoverDisplay: "About" },
-  { name: "SERVICES", href: "/#services", hoverDisplay: "Services" },
-  { name: "PROCESS", href: "/#process", hoverDisplay: "Process" },
-  { name: "JOURNAL", href: "/#journal", hoverDisplay: "Journal" },
+  { name: "ABOUT", href: "/#about" },
+  { name: "SERVICES", href: "/#services" },
+  { name: "PROCESS", href: "/#process" },
+  { name: "JOURNAL", href: "/#journal" },
 ];
 
 export function Navbar() {
@@ -204,22 +202,15 @@ export function Navbar() {
         {/* Floating Capsule: Compact h-11 on mobile, h-16 on desktop */}
         <nav
           aria-label="Main Navigation"
-          className="pointer-events-auto w-full max-w-7xl h-11 sm:h-13 md:h-16 px-4 sm:px-6 md:px-8 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
+          className="pointer-events-auto w-full max-w-7xl h-11 sm:h-13 md:h-16 px-6 sm:px-6 md:px-8 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
         >
-          {/* Brand Logo */}
+          {/* Brand Text Logo in Mont */}
           <Link
             href="/"
             aria-label="Arhaan Shaikh — Home"
-            className="relative flex items-center justify-center py-0.5 transition-opacity duration-200 hover:opacity-80 focus:outline-none"
+            className="font-sans font-bold text-[16px] sm:text-[18px] md:text-[20px] tracking-[-0.02em] leading-none text-[#FAF8F5] whitespace-nowrap hover:text-[#EF8557] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EF8557] focus-visible:ring-offset-2 focus-visible:ring-offset-[#18181A] rounded select-none py-0.5"
           >
-            <Image
-              src="/images/signature-logo.webp"
-              alt="Arhaan Shaikh"
-              width={160}
-              height={38}
-              priority
-              className="h-7 sm:h-8 md:h-9 w-auto object-contain select-none pointer-events-none"
-            />
+            Arhaan Shaikh
           </Link>
 
           {/* Desktop Navigation Links */}
@@ -237,40 +228,11 @@ export function Navbar() {
                   >
                     <a
                       href={item.href}
-                      className="relative px-3.5 lg:px-4 py-1.5 flex items-center justify-center focus:outline-none whitespace-nowrap bg-transparent hover:bg-transparent active:bg-transparent"
+                      className={`relative px-3.5 lg:px-4 py-1.5 flex items-center justify-center font-sans font-bold text-xs tracking-[0.12em] uppercase not-italic transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#18181A] rounded-full whitespace-nowrap ${
+                        servicesHovered ? "text-[#EF8557]" : "text-white/80 hover:text-[#EF8557]"
+                      }`}
                     >
-                      <motion.div
-                        className="relative h-6 overflow-hidden flex items-center justify-center cursor-pointer select-none bg-transparent"
-                        initial="initial"
-                        whileHover="hover"
-                        animate={servicesHovered ? "hover" : "initial"}
-                      >
-                        <motion.span
-                          variants={{
-                            initial: { y: 0, opacity: 0.85 },
-                            hover: { y: "-130%", opacity: 0 },
-                          }}
-                          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                          className="block font-sans font-bold text-xs tracking-[0.12em] text-white/80 whitespace-nowrap bg-transparent"
-                        >
-                          {item.name}
-                        </motion.span>
-
-                        {/* Butler Italic Terracotta Hover State */}
-                        <motion.span
-                          style={{
-                            textShadow: "0 0 12px rgba(239, 133, 87, 0.45)",
-                          }}
-                          variants={{
-                            initial: { y: "130%", opacity: 0 },
-                            hover: { y: 0, opacity: 1 },
-                          }}
-                          transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                          className="absolute inset-0 flex items-center justify-center font-serif italic font-normal text-[15px] tracking-normal text-[#EF8557] whitespace-nowrap bg-transparent"
-                        >
-                          {item.hoverDisplay}
-                        </motion.span>
-                      </motion.div>
+                      {item.name}
                     </a>
 
                     {/* Desktop Hover Dropdown Card */}
@@ -308,39 +270,9 @@ export function Navbar() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="relative px-3.5 lg:px-4 py-1.5 flex items-center justify-center focus:outline-none whitespace-nowrap bg-transparent hover:bg-transparent active:bg-transparent"
+                  className="relative px-3.5 lg:px-4 py-1.5 flex items-center justify-center font-sans font-bold text-xs tracking-[0.12em] uppercase not-italic text-white/80 hover:text-[#EF8557] transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#18181A] rounded-full whitespace-nowrap"
                 >
-                  <motion.div
-                    className="relative h-6 overflow-hidden flex items-center justify-center cursor-pointer select-none bg-transparent"
-                    initial="initial"
-                    whileHover="hover"
-                  >
-                    <motion.span
-                      variants={{
-                        initial: { y: 0, opacity: 0.85 },
-                        hover: { y: "-130%", opacity: 0 },
-                      }}
-                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="block font-sans font-bold text-xs tracking-[0.12em] text-white/80 whitespace-nowrap bg-transparent"
-                    >
-                      {item.name}
-                    </motion.span>
-
-                    {/* Butler Italic Terracotta Hover State */}
-                    <motion.span
-                      style={{
-                        textShadow: "0 0 12px rgba(239, 133, 87, 0.45)",
-                      }}
-                      variants={{
-                        initial: { y: "130%", opacity: 0 },
-                        hover: { y: 0, opacity: 1 },
-                      }}
-                      transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-                      className="absolute inset-0 flex items-center justify-center font-serif italic font-normal text-[15px] tracking-normal text-[#EF8557] whitespace-nowrap bg-transparent"
-                    >
-                      {item.hoverDisplay}
-                    </motion.span>
-                  </motion.div>
+                  {item.name}
                 </a>
               );
             })}
@@ -354,12 +286,12 @@ export function Navbar() {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 25 }}
-              className="hidden md:inline-flex items-center justify-center h-9 sm:h-10 px-5 sm:px-6 rounded-full bg-[#EF8557] text-white font-sans font-bold text-[11px] sm:text-xs tracking-wider uppercase shadow-[0_4px_18px_rgba(239,133,87,0.38)] hover:bg-[#de7343] transition-colors select-none cursor-pointer focus:outline-none"
+              className="hidden md:inline-flex items-center justify-center h-9 sm:h-10 px-5 sm:px-6 rounded-full bg-[#EF8557] text-white font-sans font-bold text-[11px] sm:text-xs tracking-wider uppercase shadow-[0_4px_18px_rgba(239,133,87,0.38)] hover:bg-[#de7343] transition-colors select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EF8557] focus-visible:ring-offset-2 focus-visible:ring-offset-[#18181A]"
             >
               LET&apos;S TALK
             </motion.a>
 
-            {/* Compact Mobile Hamburger (w-9 h-9) */}
+            {/* Mobile Hamburger (Min 44x44px touch target) */}
             <button
               type="button"
               onClick={(e) => {
@@ -367,7 +299,7 @@ export function Navbar() {
                 setMobileMenuOpen(!mobileMenuOpen);
               }}
               aria-label="Toggle Mobile Menu"
-              className="md:hidden relative w-9 h-9 flex items-center justify-center bg-transparent active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none select-none"
+              className="md:hidden relative w-11 h-11 min-w-[44px] min-h-[44px] flex items-center justify-center bg-transparent active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#18181A] rounded-full select-none"
             >
               <div className="w-4 h-3 flex flex-col justify-between items-center pointer-events-none">
                 <motion.span
@@ -436,7 +368,7 @@ export function Navbar() {
                         setMobileMenuOpen(false);
                       }}
                       aria-label="Close Mobile Menu"
-                      className="w-10 h-10 -mr-2 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/15 active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none select-none"
+                      className="w-11 h-11 min-w-[44px] min-h-[44px] -mr-2 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/15 active:scale-90 transition-transform touch-manipulation cursor-pointer z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-white select-none"
                     >
                       <span className="text-lg font-light leading-none select-none">✕</span>
                     </button>
@@ -463,10 +395,10 @@ export function Navbar() {
                                   e.stopPropagation();
                                   setMobileServicesOpen((prev) => !prev);
                                 }}
-                                className="group w-full flex items-center justify-between py-1.5 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation focus:outline-none"
+                                className="group w-full flex items-center justify-between py-1.5 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EF8557]"
                               >
-                                <span className="font-sans font-bold text-lg text-white/90 group-hover:text-[#EF8557] transition-colors tracking-tight">
-                                  {item.hoverDisplay}
+                                <span className="font-sans font-bold text-base sm:text-lg tracking-wider uppercase not-italic text-white/90 group-hover:text-[#EF8557] transition-colors duration-200">
+                                  {item.name}
                                 </span>
                                 <motion.span
                                   animate={{ rotate: mobileServicesOpen ? 180 : 0 }}
@@ -514,8 +446,8 @@ export function Navbar() {
                               onClick={() => setMobileMenuOpen(false)}
                               className="group block py-1.5 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation"
                             >
-                              <span className="font-sans font-bold text-lg text-white/90 group-hover:text-[#EF8557] transition-colors tracking-tight">
-                                {item.hoverDisplay}
+                              <span className="font-sans font-bold text-base sm:text-lg tracking-wider uppercase not-italic text-white/90 group-hover:text-[#EF8557] transition-colors duration-200">
+                                {item.name}
                               </span>
                             </a>
                           </motion.li>

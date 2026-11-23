@@ -200,7 +200,7 @@ function RenderContentBlock({ block, idx }: { block: ContentBlock; idx: number }
               src={block.src}
               alt={block.alt}
               fill
-              sizes="(max-width: 860px) 100vw, 680px"
+              sizes="(max-width: 1024px) 100vw, 680px"
               unoptimized={true}
               className="object-cover object-center"
             />
@@ -392,12 +392,12 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
 
   return (
     <div className="max-w-[1080px] mx-auto px-5 sm:px-8 pb-24">
-      {/* 2-Column Sticky Sidebar Grid */}
-      <div className="grid grid-cols-1 min-[860px]:grid-cols-[260px_minmax(0,680px)] gap-10 min-[860px]:gap-[60px]">
+      {/* 2-Column Responsive Layout: Article first on mobile (<lg), Sticky Sidebar on left on desktop (>=lg) */}
+      <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,680px)] gap-10 lg:gap-[60px]">
         {/* ===================================================================
-            LEFT STICKY RAIL (Sticky at 120px, collapses on < 860px)
+            SIDEBAR (order-2 on mobile, order-1 sticky rail on desktop)
             =================================================================== */}
-        <aside className="min-[860px]:sticky min-[860px]:top-[120px] self-start">
+        <aside className="order-2 lg:order-1 lg:sticky lg:top-28 self-start mt-12 pt-10 border-t border-[#121214]/12 lg:mt-0 lg:pt-0 lg:border-t-0">
           {/* Section Eyebrow */}
           <div className="text-[11px] font-sans font-bold uppercase tracking-[0.16em] text-[#6F6A5D] mb-2.5 pt-0.5">
             Notes on Growth
@@ -521,9 +521,9 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
         </aside>
 
         {/* ===================================================================
-            RIGHT ARTICLE COLUMN (Brand typography, Mont + Butler, Image)
+            MAIN ARTICLE (order-1 on mobile, order-2 on desktop)
             =================================================================== */}
-        <article className="min-w-0">
+        <article className="min-w-0 order-1 lg:order-2">
           {/* Breadcrumb */}
           <BlogBreadcrumb
             items={[
@@ -553,15 +553,15 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
           </div>
 
           {/* Featured Image Banner */}
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden bg-[#FAF8F5] border border-[#121214]/10 my-7 flex items-center justify-center p-3 shadow-sm">
+          <div className="relative w-full aspect-[16/10] max-h-[520px] overflow-hidden rounded-2xl bg-[#F5EFE6] border border-[#121214]/10 my-7 shadow-sm">
             <Image
               src={blog.featuredImage}
               alt={blog.title}
               fill
               priority
-              sizes="(max-width: 860px) 100vw, 680px"
+              sizes="(max-width: 1024px) 100vw, 680px"
               unoptimized={true}
-              className="object-contain object-center select-none pointer-events-none"
+              className="w-full h-full object-cover object-center select-none pointer-events-none"
             />
           </div>
 

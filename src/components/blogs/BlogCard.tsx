@@ -18,15 +18,15 @@ export default function BlogCard({ blog, compact = false }: BlogCardProps) {
   return (
     <article className="group relative flex flex-col justify-between rounded-[22px] sm:rounded-[24px] bg-[#FAF8F5] border border-[#121214]/12 p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(18,18,20,0.08)]">
       <div>
-        {/* Top Media Banner with Clean Centered Framing to prevent text clipping */}
-        <div className="relative w-full aspect-[16/10] overflow-hidden rounded-[16px] bg-[#FAF8F5] border border-[#121214]/10 mb-5 flex items-center justify-center p-2">
+        {/* Top Media Banner */}
+        <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl bg-[#F5EFE6] border border-[#121214]/10 mb-5">
           <Image
             src={blog.featuredImage}
             alt={blog.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
             unoptimized={true}
-            className="object-contain object-center pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105"
+            className="w-full h-full object-cover object-center pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105"
           />
         </div>
 

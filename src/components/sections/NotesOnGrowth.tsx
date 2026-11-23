@@ -174,7 +174,7 @@ export default function NotesOnGrowth() {
                   fill
                   sizes="340px"
                   unoptimized={true}
-                  className="object-cover object-center pointer-events-none select-none"
+                  className="w-full h-full object-cover object-center pointer-events-none select-none"
                 />
               </div>
 

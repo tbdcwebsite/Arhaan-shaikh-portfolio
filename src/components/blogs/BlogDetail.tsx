@@ -301,6 +301,7 @@ function renderTitleWithEmphasis(title: string, slug: string, explicitEmphasis?:
     "engineering-cultural-velocity": "Reach",
     "the-high-intent-dilemma": "Problem",
     "why-your-d2c-website-gets-traffic-but-no-sales": "No Sales",
+    "d2c-website-traffic-but-no-sales": "No Sales",
   };
 
   const targetWord = explicitEmphasis || TITLE_EMPHASIS_MAP[slug];

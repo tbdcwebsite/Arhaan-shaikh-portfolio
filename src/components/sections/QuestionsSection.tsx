@@ -142,19 +142,17 @@ function MobileCardItem({
     >
       <Link
         href={card.href}
-        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[24px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 shadow-[0_20px_48px_rgba(18,18,20,0.16)] ${
-          isCream
-            ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
-            : isTerracotta
-              ? "bg-[#EF8557] text-white"
-              : "bg-[#226192] text-white"
-        }`}
+        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[24px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 shadow-none hover:shadow-none focus-visible:shadow-none ${isCream
+          ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
+          : isTerracotta
+            ? "bg-[#EF8557] text-white"
+            : "bg-[#226192] text-white"
+          }`}
       >
         <div className="w-full flex items-start justify-start">
           <span
-            className={`font-serif italic text-4xl xs:text-5xl leading-none select-none ${
-              isCream ? "text-[#226192]" : "text-white"
-            }`}
+            className={`font-serif italic text-4xl xs:text-5xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
+              }`}
           >
             {card.number}
           </span>
@@ -168,28 +166,26 @@ function MobileCardItem({
             width={160}
             height={160}
             priority={index <= 2}
-            className="max-h-[130px] xs:max-h-[145px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-sm"
+            className="max-h-[130px] xs:max-h-[145px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-none"
           />
         </div>
 
         {/* Card Footer */}
         <div className="w-full flex items-start justify-between gap-4 pt-5 border-t border-current/10">
           <h3
-            className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] min-h-[44px] line-clamp-2 ${
-              isCream ? "text-[#121214]" : "text-white"
-            }`}
+            className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] min-h-[44px] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
+              }`}
           >
             {card.title}
           </h3>
 
           <div
-            className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center shadow-sm transition-transform duration-300 ${
-              isCream
-                ? "bg-[#226192] text-white"
-                : isTerracotta
-                  ? "bg-white text-[#EF8557]"
-                  : "bg-white text-[#226192]"
-            }`}
+            className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center shadow-none transition-transform duration-300 ${isCream
+              ? "bg-[#226192] text-white"
+              : isTerracotta
+                ? "bg-white text-[#EF8557]"
+                : "bg-white text-[#226192]"
+              }`}
           >
             <ArrowRight className="w-4 h-4 xs:w-4.5 xs:h-4.5 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
           </div>
@@ -256,23 +252,24 @@ export default function QuestionsSection() {
 
   return (
     // Runway calibrated to 520vh on mobile to provide relaxed stacking scroll pacing for 5 cards
+    // Runway calibrated to 200vh on mobile and 150vh on desktop to eliminate dead-scroll while keeping smooth card pacing
     <div
       ref={trackRef}
       id="services"
-      className="relative w-full h-[520vh] lg:h-[190vh]"
+      className="relative w-full h-[200vh] sm:h-[180vh] lg:h-[150vh]"
     >
       <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
 
       {/* 100vh Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between pt-5 pb-6 sm:pt-7 sm:pb-8 lg:pt-9 lg:pb-10 px-6 sm:px-10 lg:px-16 border-t border-[#121214]/10"
+        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between pt-5 pb-6 sm:pt-7 sm:pb-8 lg:pt-9 lg:pb-10 px-6 sm:px-10 lg:px-16"
       >
         <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
 
           {/* Header Row */}
           <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-3 sm:pb-4 shrink-0">
-            <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
               <span className="block font-sans font-normal leading-[1.1] tracking-[-0.02em]">
                 Where I Usually
               </span>
@@ -288,7 +285,7 @@ export default function QuestionsSection() {
           </div>
 
           {/* ==============================================================
-              DESKTOP VIEW: 3.5 CARDS & REFINED PROPORTIONS (UNCHANGED)
+              DESKTOP VIEW: 3.5 CARDS & REFINED PROPORTIONS
               ============================================================== */}
           <div
             ref={desktopViewportRef}
@@ -296,7 +293,7 @@ export default function QuestionsSection() {
           >
             <motion.div
               style={{ x: desktopTranslateX }}
-              className="flex items-center gap-5 will-change-transform py-3"
+              className="flex items-center gap-5 will-change-transform py-4 scroll-px-6 snap-x snap-mandatory"
             >
               {SERVICES_DATA.map((card, idx) => {
                 const isCream = card.theme === "cream";
@@ -310,19 +307,17 @@ export default function QuestionsSection() {
                       width: `${cardWidth}px`,
                       minWidth: `${cardWidth}px`,
                     }}
-                    className={`group shrink-0 h-[430px] lg:h-[470px] xl:h-[500px] max-h-[62vh] rounded-[24px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 will-change-transform shadow-[0_14px_36px_rgba(18,18,20,0.08)] hover:shadow-[0_22px_48px_rgba(18,18,20,0.16)] hover:-translate-y-1 ${
-                      isCream
-                        ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
-                        : isTerracotta
-                          ? "bg-[#EF8557] text-white"
-                          : "bg-[#226192] text-white"
-                    }`}
+                    className={`group shrink-0 snap-start h-[430px] lg:h-[470px] xl:h-[500px] max-h-[62vh] rounded-[24px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 will-change-transform shadow-none hover:shadow-none focus-visible:shadow-none origin-center hover:scale-[1.02] ${isCream
+                      ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
+                      : isTerracotta
+                        ? "bg-[#EF8557] text-white"
+                        : "bg-[#226192] text-white"
+                      }`}
                   >
                     <div className="w-full flex items-start justify-start pt-0.5">
                       <span
-                        className={`font-serif italic text-3xl sm:text-4xl lg:text-[40px] leading-none select-none ${
-                          isCream ? "text-[#226192]" : "text-white"
-                        }`}
+                        className={`font-serif italic text-3xl sm:text-4xl lg:text-[40px] leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
+                          }`}
                       >
                         {card.number}
                       </span>
@@ -335,28 +330,28 @@ export default function QuestionsSection() {
                         width={150}
                         height={150}
                         priority={idx < 4}
-                        className="max-h-[120px] lg:max-h-[135px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-sm"
+                        className="max-h-[120px] lg:max-h-[135px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-none"
                       />
                     </div>
 
                     {/* Card Footer */}
                     <div className="w-full flex items-start justify-between gap-4 pt-5 border-t border-current/10">
-                      <h3
-                        className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] min-h-[44px] line-clamp-2 ${
-                          isCream ? "text-[#121214]" : "text-white"
-                        }`}
-                      >
-                        {card.title}
-                      </h3>
+                      <div className="min-h-[2.6em] flex items-start flex-1">
+                        <h3
+                          className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
+                            }`}
+                        >
+                          {card.title}
+                        </h3>
+                      </div>
 
                       <div
-                        className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center transition-all duration-300 shadow-sm group-hover:scale-105 ${
-                          isCream
-                            ? "bg-[#226192] text-white"
-                            : isTerracotta
-                              ? "bg-white text-[#EF8557]"
-                              : "bg-white text-[#226192]"
-                        }`}
+                        className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center transition-all duration-300 shadow-none group-hover:scale-105 ${isCream
+                          ? "bg-[#226192] text-white"
+                          : isTerracotta
+                            ? "bg-white text-[#EF8557]"
+                            : "bg-white text-[#226192]"
+                          }`}
                       >
                         <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
                       </div>

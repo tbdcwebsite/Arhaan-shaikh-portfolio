@@ -53,7 +53,7 @@ export default function BlogCard({ blog, compact = false }: BlogCardProps) {
 
         {/* Excerpt */}
         {!compact && (
-          <p className="font-sans font-normal text-sm sm:text-base text-[#3E3D3A] leading-relaxed mt-3 line-clamp-3">
+          <p className="font-sans font-normal text-[15px] sm:text-[16px] text-[#3E3D3A] leading-[1.6] mt-3 line-clamp-3">
             {blog.excerpt}
           </p>
         )}

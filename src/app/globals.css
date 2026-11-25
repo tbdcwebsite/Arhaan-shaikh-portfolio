@@ -15,7 +15,7 @@
 @font-face {
   font-family: "Butler";
   src: url("/font/Butler-Italic.woff2") format("woff2"),
-       url("/font/Butler_Regular.otf") format("opentype");
+    url("/font/Butler_Regular.otf") format("opentype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
@@ -24,7 +24,7 @@
 @font-face {
   font-family: "Butler";
   src: url("/font/Butler-Medium.woff2") format("woff2"),
-       url("/font/Butler_Medium.otf") format("opentype");
+    url("/font/Butler_Medium.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -326,6 +326,8 @@ em.hl {
       0 0 12px rgba(205, 242, 37, 0.45),
       inset -2px -3px 6px rgba(65, 90, 0, 0.35);
   }
+
+
 
   .sphere-glass-clear {
     background: radial-gradient(circle at 30% 30%,
@@ -925,23 +927,69 @@ em.hl {
       max-height: 420px !important;
     }
 
-    .dashboard { 
-      width: 67%; 
-      height: 39%; 
-      left: 24%; 
+    .dashboard {
+      width: 67%;
+      height: 39%;
+      left: 24%;
       top: 4%;
-      padding: 9px; 
+      padding: 9px;
     }
 
-    .donut { width: 38px; height: 38px; }
-    .chart-card { width: 56%; height: 28%; left: 19%; top: 28%; padding: 8px; }
-    .bars-card { width: 42%; height: 28%; left: 20%; bottom: 2%; padding: 10px; }
-    .growth-arrow { width: 88%; height: 70%; left: 11%; top: 11%; overflow: visible !important; }
-    .activity-card { width: 37%; height: 29%; right: -1%; top: 35%; padding: 6px; }
-    .kpi-card { right: 1%; bottom: 10%; padding: 6px 10px; }
-    .kpi-icon { width: 25px; height: 25px; }
-    .kpi-card small { font-size: 7.5px; }
-    .kpi-card strong { font-size: 13.5px; }
+    .donut {
+      width: 38px;
+      height: 38px;
+    }
+
+    .chart-card {
+      width: 56%;
+      height: 28%;
+      left: 19%;
+      top: 28%;
+      padding: 8px;
+    }
+
+    .bars-card {
+      width: 42%;
+      height: 28%;
+      left: 20%;
+      bottom: 2%;
+      padding: 10px;
+    }
+
+    .growth-arrow {
+      width: 88%;
+      height: 70%;
+      left: 11%;
+      top: 11%;
+      overflow: visible !important;
+    }
+
+    .activity-card {
+      width: 37%;
+      height: 29%;
+      right: -1%;
+      top: 35%;
+      padding: 6px;
+    }
+
+    .kpi-card {
+      right: 1%;
+      bottom: 10%;
+      padding: 6px 10px;
+    }
+
+    .kpi-icon {
+      width: 25px;
+      height: 25px;
+    }
+
+    .kpi-card small {
+      font-size: 7.5px;
+    }
+
+    .kpi-card strong {
+      font-size: 13.5px;
+    }
 
     .float-icon-one {
       left: 8%;
@@ -951,5 +999,11 @@ em.hl {
       right: 1%;
       top: 9%;
     }
+  }
+}
+
+@layer base {
+  body {
+    font-variant-ligatures: none;
   }
 }

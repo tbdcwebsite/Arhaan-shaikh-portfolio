@@ -61,9 +61,21 @@
 }
 
 .svc .container {
-  max-width: 1200px;
+  max-width: 80rem; /* 1280px / max-w-7xl */
   margin: 0 auto;
-  padding: 0 clamp(20px, 4vw, 44px);
+  padding: 0 24px;
+}
+
+@media (min-width: 640px) {
+  .svc .container {
+    padding: 0 40px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .svc .container {
+    padding: 0 64px;
+  }
 }
 
 .svc .eyebrow {
@@ -76,6 +88,7 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--orange-d);
+  margin-bottom: 12px;
 }
 
 .svc .eyebrow::before {
@@ -94,11 +107,13 @@
 .svc .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   font-family: var(--display);
   font-weight: 700;
   font-size: 15px;
-  padding: 15px 28px;
+  padding: 14px 28px;
+  min-height: 48px;
   border-radius: 999px;
   text-decoration: none;
   border: none;
@@ -139,7 +154,19 @@
 
 /* ---------------- hero ---------------- */
 .svc .hero {
-  padding: clamp(48px, 7vw, 90px) 0 clamp(54px, 8vw, 90px);
+  padding: 80px 0;
+}
+
+@media (min-width: 768px) {
+  .svc .hero {
+    padding: 96px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .svc .hero {
+    padding: 120px 0;
+  }
 }
 
 .svc .hero .grid {
@@ -260,7 +287,7 @@
   display: block;
   font-weight: 400;
   color: #8a8578;
-  font-size: 12.5px;
+  font-size: 13.5px;
 }
 
 .svc .herocard .hc-metrics {
@@ -287,10 +314,48 @@
 }
 
 .svc .herocard .hc-metrics span {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   color: #8a8578;
   letter-spacing: 0.03em;
+}
+
+/* Standardized Unified Section Rhythm (80px mobile / 96px tablet / 120px desktop) */
+.svc .pains,
+.svc .fit,
+.svc .deliver,
+.svc .steps,
+.svc .result,
+.svc .pkg,
+.svc .faq,
+.svc .finalcta {
+  padding: 80px 0;
+}
+
+@media (min-width: 768px) {
+  .svc .pains,
+  .svc .fit,
+  .svc .deliver,
+  .svc .steps,
+  .svc .result,
+  .svc .pkg,
+  .svc .faq,
+  .svc .finalcta {
+    padding: 96px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .svc .pains,
+  .svc .fit,
+  .svc .deliver,
+  .svc .steps,
+  .svc .result,
+  .svc .pkg,
+  .svc .faq,
+  .svc .finalcta {
+    padding: 120px 0;
+  }
 }
 
 .svc .stamp {

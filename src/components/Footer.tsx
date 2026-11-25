@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 /* ------------------------------------------------------------------
    PRECISE INLINE BRAND SOCIAL ICONS (Zero external dependency issues)
@@ -99,19 +100,14 @@ export default function Footer() {
       className="relative w-full text-white pt-16 sm:pt-20 pb-12 sm:pb-16 px-6 sm:px-10 lg:px-16 overflow-hidden select-none"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        
+
         {/* ==============================================================
             PRE-FOOTER CALLOUT ROW: REMOVES PLAINNESS INSTANTLY
             ============================================================== */}
         <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-6 pb-12 sm:pb-14 border-b border-white/15">
           <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-2">
-              <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-              <span className="font-sans text-[12px] lg:text-[13px] leading-[1.4] font-bold tracking-[0.12em] uppercase text-[#EF8557]">
-                START A COLLABORATION
-              </span>
-            </div>
-            <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-white">
+            <SectionEyebrow text="START A COLLABORATION" variant="terracotta" shape="dot" />
+            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-white">
               <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
                 Have an ambitious project in{" "}
               </span>
@@ -124,7 +120,7 @@ export default function Footer() {
           <Link
             href="/contact"
             style={{ backgroundColor: "#EF8557" }}
-            className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-sans font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl self-start md:self-auto shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
+            className="group inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 min-h-[48px] rounded-full font-sans font-bold text-xs sm:text-sm uppercase tracking-wider text-white shadow-lg transition-all duration-300 hover:scale-[1.03] hover:shadow-xl self-start md:self-auto shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
           >
             <span>Let&apos;s Build Together</span>
             <ArrowUpRight className="w-4 h-4 stroke-[2.5] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -135,7 +131,7 @@ export default function Footer() {
             MAIN 4-COLUMN GRID
             ============================================================== */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 py-12 sm:py-14">
-          
+
           {/* COLUMN 1: BIO + SOCIAL ICONS (Span 4) */}
           <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-8">
             <Link
@@ -145,18 +141,18 @@ export default function Footer() {
             >
               Arhaan Shaikh
             </Link>
-            <p className="font-sans font-normal text-sm text-white/80 leading-[1.7] max-w-[54ch] mb-6">
+            <p className="font-sans font-normal text-sm sm:text-[15px] text-white/80 leading-[1.7] max-w-[54ch] mb-6">
               Empowering businesses with scalable growth strategies, tailored marketing systems, and high-performance digital infrastructure.
             </p>
 
-            {/* Social Icons row placed under bio */}
+            {/* Social Icons row placed under bio (44x44 tap targets) */}
             <div className="flex items-center gap-3">
               <a
                 href="https://in.linkedin.com/in/arhaan555"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
               >
                 <LinkedinIcon className="w-4 h-4" />
               </a>
@@ -166,7 +162,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="X (Twitter)"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105"
               >
                 <TwitterXIcon className="w-3.5 h-3.5" />
               </a>
@@ -176,7 +172,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
               >
                 <InstagramIcon className="w-4 h-4" />
               </a>
@@ -185,7 +181,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
+                className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-white/30 flex items-center justify-center text-white transition-all duration-300 hover:border-[#EF8557] hover:text-[#EF8557] hover:scale-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192]"
               >
                 <YoutubeIcon className="w-4 h-4" />
               </a>
@@ -282,7 +278,7 @@ export default function Footer() {
 
             {/* Standard Contact Items */}
             <div className="flex flex-col gap-4 w-full font-sans text-xs sm:text-sm text-white/85">
-              
+
               {/* Email */}
               <a
                 href={`mailto:${email}`}

@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 interface RoadmapStep {
   id: string;
@@ -111,33 +112,28 @@ export default function ProcessSection() {
       {/* 100vh Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-6 xs:py-8 sm:py-10 lg:py-14 px-6 sm:px-10 lg:px-16 border-t border-[#121214]/10"
+        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-6 xs:py-8 sm:py-10 lg:py-14 px-6 sm:px-10 lg:px-16"
       >
         <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
 
           {/* ==============================================================
               SECTION HEADER
               ============================================================== */}
-          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 shrink-0 border-b border-[#121214]/10">
+          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 shrink-0">
             <div className="flex flex-col">
-              <div className="flex items-center gap-2 mb-2 sm:mb-3">
-                <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-                <span className="font-sans text-[12px] lg:text-[13px] leading-[1.4] font-bold tracking-[0.12em] uppercase text-[#226192]">
-                  A CLEAR PATH TO GROWTH
-                </span>
-              </div>
+              <SectionEyebrow text="A CLEAR PATH TO GROWTH" />
 
-              <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+              <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
                 <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
                   Roadmap to{" "}
                 </span>
                 <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
-                  success.
+                  Success.
                 </span>
               </h2>
             </div>
 
-            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right">
+            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right mt-4 md:mt-0">
               Brand, performance, content and tech working as one connected system.
             </p>
           </div>
@@ -191,10 +187,10 @@ export default function ProcessSection() {
 
                     {/* Enlarged Typography */}
                     <div className="flex flex-col items-center max-w-[260px]">
-                      <span className="font-serif italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
+                      <span className="font-serif not-italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
                         {step.number}
                       </span>
-                      <h3 className="font-sans font-bold text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mb-2">
+                      <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mb-2">
                         {step.title}
                       </h3>
                       <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-[260px]">
@@ -255,10 +251,10 @@ export default function ProcessSection() {
                 {/* Step Metadata */}
                 <div className="flex flex-col items-start pr-1">
                   <div className="flex items-baseline gap-2 mb-0.5">
-                    <span className="font-serif italic text-xl xs:text-2xl text-[#EF8557]">
+                    <span className="font-serif not-italic text-xl xs:text-2xl text-[#EF8557]">
                       {step.number}
                     </span>
-                    <h3 className="font-sans font-bold text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214]">
+                    <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214]">
                       {step.title}
                     </h3>
                   </div>

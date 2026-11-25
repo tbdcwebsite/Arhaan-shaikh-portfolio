@@ -16,7 +16,7 @@ export default function CategoryNavigation({
     >
       <Link
         href="/blogs"
-        className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap shrink-0 border transition-all ${
+        className={`px-4 py-2.5 min-h-[44px] inline-flex items-center rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0 border transition-all ${
           !activeCategory
             ? "bg-[#121214] text-[#EAE6DE] border-[#121214] shadow-sm"
             : "bg-[#FAF8F5] text-[#121214] border-[#121214]/20 hover:border-[#EF8557] hover:text-[#EF8557]"
@@ -31,7 +31,7 @@ export default function CategoryNavigation({
           <Link
             key={cat.slug}
             href={`/blogs/${cat.slug}`}
-            className={`px-3.5 py-1.5 rounded-full text-xs font-medium whitespace-nowrap shrink-0 border transition-all ${
+            className={`px-4 py-2.5 min-h-[44px] inline-flex items-center rounded-full text-xs font-bold uppercase tracking-wider whitespace-nowrap shrink-0 border transition-all ${
               isActive
                 ? "bg-[#121214] text-[#EAE6DE] border-[#121214] shadow-sm"
                 : "bg-[#FAF8F5] text-[#121214] border-[#121214]/20 hover:border-[#EF8557] hover:text-[#EF8557]"

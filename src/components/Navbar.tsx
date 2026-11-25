@@ -197,12 +197,12 @@ export function Navbar() {
           opacity: hidden ? 0 : 1,
           visibility: hidden ? "hidden" : "visible",
         }}
-        className="fixed top-3 sm:top-5 lg:top-6 inset-x-0 z-50 flex justify-center px-3 sm:px-8 md:px-12 lg:px-16 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        className="fixed top-3 sm:top-5 lg:top-6 inset-x-0 z-50 flex justify-center px-4 sm:px-10 lg:px-16 pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
       >
         {/* Floating Capsule: Compact h-11 on mobile, h-16 on desktop */}
         <nav
           aria-label="Main Navigation"
-          className="pointer-events-auto w-full max-w-7xl h-11 sm:h-13 md:h-16 px-6 sm:px-6 md:px-8 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
+          className="pointer-events-auto w-full max-w-7xl h-11 sm:h-13 md:h-16 px-4 sm:px-6 md:px-8 rounded-full bg-[#18181A]/95 backdrop-blur-xl border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.35)] flex items-center justify-between transition-all"
         >
           {/* Brand Text Logo in Mont */}
           <Link
@@ -395,7 +395,7 @@ export function Navbar() {
                                   e.stopPropagation();
                                   setMobileServicesOpen((prev) => !prev);
                                 }}
-                                className="group w-full flex items-center justify-between py-1.5 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EF8557]"
+                                className="group w-full flex items-center justify-between min-h-[44px] py-2 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-[#EF8557]"
                               >
                                 <span className="font-sans font-bold text-base sm:text-lg tracking-wider uppercase not-italic text-white/90 group-hover:text-[#EF8557] transition-colors duration-200">
                                   {item.name}
@@ -427,7 +427,7 @@ export function Navbar() {
                                           setMobileMenuOpen(false);
                                           setMobileServicesOpen(false);
                                         }}
-                                        className="py-1.5 px-3 rounded-lg font-sans text-sm font-normal text-white/70 hover:text-[#EF8557] hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation"
+                                        className="min-h-[40px] flex items-center py-2 px-3 rounded-lg font-sans text-sm font-normal text-white/70 hover:text-[#EF8557] hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation"
                                       >
                                         {s.title}
                                       </Link>
@@ -444,7 +444,7 @@ export function Navbar() {
                             <a
                               href={item.href}
                               onClick={() => setMobileMenuOpen(false)}
-                              className="group block py-1.5 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation"
+                              className="group flex items-center min-h-[44px] py-2 px-3 rounded-xl hover:bg-white/5 active:bg-white/10 transition-all text-left touch-manipulation"
                             >
                               <span className="font-sans font-bold text-base sm:text-lg tracking-wider uppercase not-italic text-white/90 group-hover:text-[#EF8557] transition-colors duration-200">
                                 {item.name}

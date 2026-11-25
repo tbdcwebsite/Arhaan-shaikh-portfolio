@@ -98,7 +98,7 @@ export default function BlogsHubPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-[#EF8557]" />
               <span>CHRONOLOGICAL RELEASES</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#121214] tracking-tight">
+            <h2 className="text-[32px] sm:text-[40px] lg:text-[44px] font-normal leading-[1.1] tracking-[-0.02em] text-[#121214]">
               All Latest <span className="font-serif italic font-normal text-[#EF8557]">Notes.</span>
             </h2>
           </div>

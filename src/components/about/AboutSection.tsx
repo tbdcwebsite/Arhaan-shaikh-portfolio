@@ -102,14 +102,14 @@ export default function AboutSection() {
       ref={containerRef}
       id="about"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 overflow-hidden select-none"
+      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 overflow-x-clip select-none"
     >
       {/* Grid Container */}
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center relative z-10">
 
         {/* 1. TITLE (Mobile: 1st | Desktop: Left Col Row 1) */}
         <div className="order-1 lg:col-span-7 flex flex-col items-start">
-          <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
             <span className="block overflow-hidden py-1 -my-1">
               <span className="headline-mask-inner block font-sans font-normal leading-[1.1] tracking-[-0.02em]">
                 Strategy Rooms
@@ -123,28 +123,27 @@ export default function AboutSection() {
           </h2>
         </div>
 
-        {/* 2. CARD WRAPPER: PROMINENT, BALANCED SCALE */}
-        <div className="order-2 lg:col-span-5 lg:row-span-2 flex justify-center items-center py-4 sm:py-6 lg:py-0 w-full">
+        {/* 2. CARD WRAPPER: SLEEK, PROPORTIONATE SCALE */}
+        <div className="order-2 lg:col-span-5 lg:row-span-2 flex items-center justify-center lg:justify-end py-4 sm:py-6 lg:py-0 w-full">
           <div
             ref={cardRef}
-            className="group relative w-full max-w-[360px] sm:max-w-[450px] lg:max-w-[500px] xl:max-w-[530px] bg-transparent p-0 border-0 shadow-none origin-center will-change-transform flex items-center justify-center"
+            className="group relative overflow-visible w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] bg-transparent p-0 border-0 shadow-none origin-center will-change-transform flex items-center justify-center"
           >
             {/* Direct Image Frame */}
-            <div ref={portraitImgRef} className="relative w-full will-change-transform">
+            <div ref={portraitImgRef} className="relative w-full overflow-visible will-change-transform">
               <Image
                 alt="Arhaan Shaikh - Strategic Marketing Consultant"
-                src="/images/arhaan-shaikh portrait.webp"
+                src="/images/arhaan-shaikhportrait.png"
                 width={600}
                 height={750}
                 priority
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 550px"
                 className="w-full h-auto object-contain select-none pointer-events-none drop-shadow-[0_20px_45px_rgba(18,18,20,0.12)]"
               />
-            </div>
 
-            {/* Rotating Stamp Badge: Anchored Directly to Bottom-Left Corner Vertex */}
-            <div className="reveal-stamp absolute -bottom-5 -left-5 sm:-bottom-7 sm:-left-7 lg:-bottom-8 lg:-left-8 w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 z-30 select-none cursor-pointer">
-              <div className="relative w-full h-full rounded-full bg-[#226192] shadow-[0_12px_28px_rgba(34,97,146,0.45),_0_2px_8px_rgba(0,0,0,0.2)] flex items-center justify-center transition-transform duration-300 group-hover:scale-105 origin-center">
+              {/* Rotating Stamp Badge: Center-to-Corner Aligned on Bottom-Left Vertex */}
+              <div className="absolute bottom-0 left-0 -translate-x-1/2 translate-y-1/2 w-22 h-22 sm:w-24 sm:h-24 lg:w-28 lg:h-28 z-20 select-none cursor-pointer">
+                <div className="reveal-stamp relative w-full h-full rounded-full bg-[#226192] shadow-none flex items-center justify-center transition-transform duration-300 group-hover:scale-105 origin-center">
 
                 {/* Outer Rotating Text Ring */}
                 <div className="absolute inset-0 animate-[spin_14s_linear_infinite] origin-center">
@@ -179,6 +178,7 @@ export default function AboutSection() {
                   ✳
                 </div>
               </div>
+              </div>
             </div>
           </div>
         </div>
@@ -192,7 +192,8 @@ export default function AboutSection() {
             ’ve spent the last decade moving between strategy rooms and delivery calendars, building positioning for founders, running campaigns, shaping brands, and sitting with teams on the days the plan meets reality.
           </p>
           <p className="reveal-paragraph">
-            That mix is the point. I’ve consulted for businesses across categories and markets, and I’ve also built and led the teams that execute brand, content, digital, performance, and production.
+            That mix is the point. I’ve consulted for businesses across categories and markets, and I’ve also built and led the teams that execute brand, content, digital,
+            performance and production.
           </p>
           <p className="reveal-paragraph pt-1 text-[#121214]/90">
             So my advice doesn’t stay on paper. It’s shaped by years of building the teams that make growth happen.

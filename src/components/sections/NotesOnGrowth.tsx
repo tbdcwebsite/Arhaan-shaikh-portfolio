@@ -4,6 +4,7 @@ import React, { useRef, useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import SectionEyebrow from "@/components/ui/SectionEyebrow";
 
 interface GrowthNote {
   id: string;
@@ -113,7 +114,7 @@ export default function NotesOnGrowth() {
     <section
       id="journal"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 border-t border-[#121214]/10 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
 
@@ -121,14 +122,9 @@ export default function NotesOnGrowth() {
             HEADER ROW
             ============================================================== */}
         <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
-          <Link href="/blogs" className="flex items-center gap-2.5 mb-2.5 group/kicker focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 rounded-full">
-            <span className="w-8 h-1.5 rounded-full bg-[#EF8557] group-hover/kicker:scale-x-110 transition-transform origin-left" />
-            <span className="font-sans font-bold text-[12px] lg:text-[13px] leading-[1.4] tracking-[0.12em] uppercase text-[#121214]/75 group-hover/kicker:text-[#EF8557] transition-colors">
-              NOTES ON GROWTH →
-            </span>
-          </Link>
+          <SectionEyebrow text="NOTES ON GROWTH →" href="/blogs" />
 
-          <h2 className="text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
             <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
               Notes On{" "}
             </span>
@@ -137,7 +133,7 @@ export default function NotesOnGrowth() {
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-3 max-w-[54ch]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 max-w-[54ch]">
             Ideas worth thinking about.
           </p>
         </div>
@@ -159,7 +155,7 @@ export default function NotesOnGrowth() {
               href={note.href}
               className="group snap-start shrink-0 rounded-[24px] p-6 lg:p-7 flex flex-col justify-end 
                 relative overflow-hidden cursor-pointer transition-all duration-300
-                bg-[#FAF9F6] border border-white/90 shadow-[0_14px_36px_rgba(18,18,20,0.06)] hover:shadow-[0_22px_48px_rgba(34,97,146,0.12)] hover:-translate-y-1.5
+                bg-[#FAF9F6] border border-white/90 shadow-none hover:shadow-none focus-visible:shadow-none hover:-translate-y-1.5
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2
                 w-[280px] xs:w-[310px] sm:w-[330px] lg:w-[calc((100%-3*24px)/4)] lg:min-w-[calc((100%-3*24px)/4)] h-[440px] lg:h-[470px]"
             >
@@ -180,7 +176,7 @@ export default function NotesOnGrowth() {
 
               {/* BOTTOM: ARROW BUTTON */}
               <div className="w-full flex items-center justify-start relative z-10">
-                <div className="w-10 h-10 rounded-full bg-[#226192] text-white flex items-center justify-center shadow-md transition-all duration-300 group-hover:bg-[#EF8557] group-hover:scale-110">
+                <div className="w-10 h-10 rounded-full bg-[#226192] text-white flex items-center justify-center shadow-none transition-all duration-300 group-hover:bg-[#EF8557] group-hover:scale-110">
                   <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 group-hover:translate-x-0.5" />
                 </div>
               </div>
@@ -198,7 +194,7 @@ export default function NotesOnGrowth() {
             onClick={() => scrollByStep("left")}
             disabled={!canScrollLeft}
             aria-label="Scroll left"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 cursor-pointer"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] shrink-0 p-0 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm inline-flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 cursor-pointer"
           >
             <ChevronLeft className="w-5 h-5 stroke-[2.2]" />
           </button>
@@ -220,7 +216,7 @@ export default function NotesOnGrowth() {
             onClick={() => scrollByStep("right")}
             disabled={!canScrollRight}
             aria-label="Scroll right"
-            className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 cursor-pointer"
+            className="w-11 h-11 min-w-[44px] min-h-[44px] shrink-0 p-0 rounded-full border border-[#121214]/25 bg-white/60 backdrop-blur-sm inline-flex items-center justify-center text-[#121214] transition-all duration-200 hover:border-[#226192] hover:bg-white hover:text-[#226192] disabled:opacity-30 disabled:cursor-not-allowed shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 cursor-pointer"
           >
             <ChevronRight className="w-5 h-5 stroke-[2.2]" />
           </button>

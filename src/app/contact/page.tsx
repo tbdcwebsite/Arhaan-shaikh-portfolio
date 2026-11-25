@@ -329,9 +329,21 @@ export default function ContactPage() {
         }
 
         .content-wrap {
-          max-width: 1200px;
+          max-width: 80rem; /* max-w-7xl */
           margin: 0 auto;
-          padding: clamp(3rem, 6vw, 5.5rem) clamp(1.25rem, 4vw, 3rem) clamp(4rem, 8vw, 7rem);
+          padding: 80px 24px;
+        }
+
+        @media (min-width: 640px) {
+          .content-wrap {
+            padding: 96px 40px;
+          }
+        }
+
+        @media (min-width: 1024px) {
+          .content-wrap {
+            padding: 120px 64px;
+          }
         }
 
         .eyebrow {
@@ -343,7 +355,7 @@ export default function ContactPage() {
           font-weight: 700;
           color: var(--ink);
           text-transform: uppercase;
-          margin-bottom: 1.2rem;
+          margin-bottom: 12px;
         }
         .dot {
           width: 8px;
@@ -372,7 +384,7 @@ export default function ContactPage() {
           color: var(--accent);
         }
         .lede {
-          margin-top: 1.5rem;
+          margin-top: 16px;
           max-width: 54ch;
           font-size: clamp(1rem, 1.4vw, 1.15rem);
           line-height: 1.7;
@@ -482,6 +494,9 @@ export default function ContactPage() {
           color: var(--blue);
           text-decoration: none;
           width: fit-content;
+          min-height: 44px;
+          display: inline-flex;
+          align-items: center;
           border-bottom: 1.5px solid transparent;
           transition: all 0.2s ease;
         }
@@ -513,6 +528,9 @@ export default function ContactPage() {
           font-weight: 700;
           border-bottom: 1px solid var(--line);
           padding-bottom: 2px;
+          min-height: 44px;
+          display: inline-flex;
+          align-items: center;
           transition: all 0.2s ease;
         }
         .social-links a:hover {
@@ -528,8 +546,8 @@ export default function ContactPage() {
           background: #ffffff;
           border: 1px solid var(--line);
           border-radius: 999px;
-          padding: 0.4rem 0.9rem;
-          font-size: 0.72rem;
+          padding: 0.45rem 1rem;
+          font-size: 0.8125rem;
           letter-spacing: 0.14em;
           font-weight: 700;
           color: var(--ink-soft);

@@ -392,7 +392,7 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
   };
 
   return (
-    <div className="max-w-[1080px] mx-auto px-5 sm:px-8 pb-24">
+    <div className="w-full max-w-[1120px] mx-auto pb-16 lg:pb-24">
       {/* 2-Column Responsive Layout: Article first on mobile (<lg), Sticky Sidebar on left on desktop (>=lg) */}
       <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,680px)] gap-10 lg:gap-[60px]">
         {/* ===================================================================
@@ -417,7 +417,7 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
                     type="button"
                     onClick={() => toggleCategory(cat.slug)}
                     aria-expanded={isOpen}
-                    className="w-full flex items-center justify-between py-3.5 text-left group transition-colors select-none"
+                    className="w-full flex items-center justify-between min-h-[44px] py-3 text-left group transition-colors select-none"
                   >
                     <span
                       className={`text-[13.5px] font-sans font-bold tracking-tight transition-colors pr-2 leading-snug ${
@@ -458,7 +458,7 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
                               <li key={p.slug}>
                                 <Link
                                   href={`/blogs/${cat.slug}/${p.slug}`}
-                                  className={`block text-[13px] leading-snug py-1.5 pl-3.5 border-l-2 transition-all ${
+                                  className={`block text-[13px] leading-snug py-2 min-h-[38px] pl-3.5 border-l-2 transition-all ${
                                     isActive
                                       ? "border-[#EF8557] font-bold text-[#121214] bg-[#EF8557]/[0.04]"
                                       : "border-[#121214]/10 text-[#6F6A5D] hover:text-[#121214] hover:border-[#6F6A5D]"
@@ -482,16 +482,16 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
             })}
           </nav>
 
-          {/* Share Section */}
+          {/* Share Section (44x44 tap targets) */}
           <div className="text-[11px] font-sans font-bold uppercase tracking-[0.16em] text-[#6F6A5D] mb-3 mt-7">
             Share
           </div>
-          <div className="flex items-center gap-2 relative">
+          <div className="flex items-center gap-2.5 relative">
             <button
               type="button"
               onClick={handleShareLinkedIn}
               aria-label="Share on LinkedIn"
-              className="w-9 h-9 rounded-full border border-[#121214]/15 bg-white/70 hover:border-[#EF8557] hover:text-[#EF8557] text-[#6F6A5D] flex items-center justify-center transition-all duration-200 shadow-xs hover:shadow-sm"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/15 bg-white/70 hover:border-[#EF8557] hover:text-[#EF8557] text-[#6F6A5D] flex items-center justify-center transition-all duration-200 shadow-xs hover:shadow-sm"
             >
               <LinkedInIcon />
             </button>
@@ -500,7 +500,7 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
               type="button"
               onClick={handleShareX}
               aria-label="Share on X"
-              className="w-9 h-9 rounded-full border border-[#121214]/15 bg-white/70 hover:border-[#EF8557] hover:text-[#EF8557] text-[#6F6A5D] flex items-center justify-center transition-all duration-200 shadow-xs hover:shadow-sm"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/15 bg-white/70 hover:border-[#EF8557] hover:text-[#EF8557] text-[#6F6A5D] flex items-center justify-center transition-all duration-200 shadow-xs hover:shadow-sm"
             >
               <XIcon />
             </button>
@@ -509,7 +509,7 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
               type="button"
               onClick={handleCopyUrl}
               aria-label="Copy Article Link"
-              className="w-9 h-9 rounded-full border border-[#121214]/15 bg-white/70 hover:border-[#EF8557] hover:text-[#EF8557] text-[#6F6A5D] flex items-center justify-center transition-all duration-200 shadow-xs hover:shadow-sm relative"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-full border border-[#121214]/15 bg-white/70 hover:border-[#EF8557] hover:text-[#EF8557] text-[#6F6A5D] flex items-center justify-center transition-all duration-200 shadow-xs hover:shadow-sm relative"
             >
               <LinkCopyIcon />
               {copied && (

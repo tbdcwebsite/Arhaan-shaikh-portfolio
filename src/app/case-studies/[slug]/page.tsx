@@ -4,6 +4,17 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { X } from "lucide-react";
 import { CASE_STUDIES } from "@/lib/case-studies";
+import AnimatedCaseStudyShowcase, {
+  CARLOS_PHILIP_CONFIG,
+  THATGAL_CONFIG,
+  LIVING_SPACES_CONFIG,
+} from "@/components/case-studies/AnimatedCaseStudyShowcase";
+import {
+  playfairDisplay,
+  cormorantGaramond,
+  montserrat,
+  fraunces,
+} from "@/components/case-studies/showcase-fonts";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -33,9 +44,24 @@ export default async function CaseStudyPage({ params }: Props) {
     notFound();
   }
 
+  if (slug === "carlos-philip" || slug === "thatgal" || slug === "living-spaces") {
+    const fontClasses = `${playfairDisplay.variable} ${cormorantGaramond.variable} ${montserrat.variable} ${fraunces.variable}`;
+    const config =
+      slug === "thatgal"
+        ? THATGAL_CONFIG
+        : slug === "living-spaces"
+          ? LIVING_SPACES_CONFIG
+          : CARLOS_PHILIP_CONFIG;
+    return (
+      <AnimatedCaseStudyShowcase
+        config={config}
+        fontClassName={fontClasses}
+      />
+    );
+  }
+
   return (
     <main className="relative w-full min-h-screen bg-[#EAE6DE] flex flex-col items-center justify-center p-4 sm:p-8 lg:p-12 selection:bg-[#EF8557] selection:text-white">
-      
       {/* ── FLOATING CLOSE BUTTON ─────────────────────────────────── */}
       <Link
         href="/#case-studies"
@@ -61,8 +87,6 @@ export default async function CaseStudyPage({ params }: Props) {
           />
         </div>
       </div>
-
     </main>
   );
 }
-

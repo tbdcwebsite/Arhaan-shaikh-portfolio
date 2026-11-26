@@ -256,24 +256,24 @@ export default function QuestionsSection() {
     <div
       ref={trackRef}
       id="services"
-      className="relative w-full h-[200vh] sm:h-[180vh] lg:h-[150vh]"
+      className="relative w-full h-[175vh] sm:h-[160vh] lg:h-[135vh]"
     >
       <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
 
-      {/* 100vh Sticky Viewport */}
+      {/* Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between pt-5 pb-6 sm:pt-7 sm:pb-8 lg:pt-9 lg:pb-10 px-6 sm:px-10 lg:px-16"
+        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-6 sm:px-10 lg:px-16"
       >
-        <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
+        <div className="w-full max-w-7xl mx-auto relative z-10">
 
           {/* Header Row */}
-          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 pb-3 sm:pb-4 shrink-0">
-            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
-              <span className="block font-sans font-normal leading-[1.1] tracking-[-0.02em]">
+          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0">
+            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.08] tracking-[-0.02em] font-normal text-[#121214]">
+              <span className="block font-sans font-normal leading-[1.08] tracking-[-0.02em]">
                 Where I Usually
               </span>
-              <span className="block font-serif italic font-normal text-[#EF8557] leading-[1.1] mt-0.5">
+              <span className="block font-serif italic font-normal text-[#EF8557] leading-[1.08] mt-0.5">
                 Enter The Picture.
               </span>
             </h2>
@@ -289,11 +289,11 @@ export default function QuestionsSection() {
               ============================================================== */}
           <div
             ref={desktopViewportRef}
-            className="hidden lg:flex w-full flex-1 items-center overflow-hidden my-auto py-4 lg:py-6"
+            className="hidden lg:flex w-full items-center overflow-hidden mt-10 lg:mt-12"
           >
             <motion.div
               style={{ x: desktopTranslateX }}
-              className="flex items-center gap-5 will-change-transform py-4 scroll-px-6 snap-x snap-mandatory"
+              className="flex items-center gap-5 will-change-transform scroll-px-6 snap-x snap-mandatory"
             >
               {SERVICES_DATA.map((card, idx) => {
                 const isCream = card.theme === "cream";
@@ -365,7 +365,7 @@ export default function QuestionsSection() {
           {/* ==============================================================
               MOBILE VIEW: LAYERED STACKING CARDS (SLOW & SMOOTH SPEED)
               ============================================================== */}
-          <div className="flex lg:hidden w-full flex-1 items-center justify-center relative overflow-hidden my-auto py-2">
+          <div className="flex lg:hidden w-full items-center justify-center relative overflow-hidden mt-8">
             <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[480px] xs:h-[520px] sm:h-[550px] max-h-[68dvh] flex items-center justify-center">
               {SERVICES_DATA.map((card, idx) => (
                 <MobileCardItem

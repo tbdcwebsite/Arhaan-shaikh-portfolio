@@ -107,33 +107,33 @@ export default function ProcessSection() {
       ref={containerRef}
       id="process"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full h-[165vh] bg-[#EAE6DE]"
+      className="relative w-full h-[140vh] md:h-[115vh] bg-[#EAE6DE]"
     >
-      {/* 100vh Sticky Viewport */}
+      {/* Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full h-[100dvh] max-h-[100dvh] text-[#121214] overflow-hidden select-none flex flex-col justify-between py-6 xs:py-8 sm:py-10 lg:py-14 px-6 sm:px-10 lg:px-16"
+        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-6 sm:px-10 lg:px-16"
       >
-        <div className="w-full max-w-7xl mx-auto h-full flex flex-col justify-between relative z-10">
+        <div className="w-full max-w-7xl mx-auto relative z-10">
 
           {/* ==============================================================
               SECTION HEADER
               ============================================================== */}
-          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 pb-4 sm:pb-6 shrink-0">
+          <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 shrink-0">
             <div className="flex flex-col">
               <SectionEyebrow text="A CLEAR PATH TO GROWTH" />
 
-              <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
-                <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
+              <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.08] tracking-[-0.02em] font-normal text-[#121214]">
+                <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
                   Roadmap to{" "}
                 </span>
-                <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
+                <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
                   Success.
                 </span>
               </h2>
             </div>
 
-            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right mt-4 md:mt-0">
+            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right mt-4 lg:mt-5 md:mt-0">
               Brand, performance, content and tech working as one connected system.
             </p>
           </div>
@@ -141,7 +141,7 @@ export default function ProcessSection() {
           {/* ==============================================================
               DESKTOP VIEW: HORIZONTAL CONNECTED ROADMAP (IMAGE 1:1)
               ============================================================== */}
-          <div className="hidden md:flex w-full flex-1 items-center justify-between relative my-auto py-10">
+          <div className="hidden md:flex w-full items-center justify-between relative mt-12 lg:mt-16">
             <div className="relative w-full">
               {/* Single Continuous Collinear Rail */}
               <div className="absolute left-[12.5%] right-[12.5%] top-[48px] lg:top-[56px] -translate-y-1/2 h-[2px] bg-[#121214]/15 z-0">
@@ -187,13 +187,13 @@ export default function ProcessSection() {
 
                     {/* Enlarged Typography */}
                     <div className="flex flex-col items-center max-w-[260px]">
-                      <span className="font-serif not-italic text-4xl lg:text-5xl text-[#EF8557] mb-1.5 lg:mb-2">
+                      <span className="font-serif not-italic text-4xl lg:text-5xl text-[#EF8557]">
                         {step.number}
                       </span>
-                      <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mb-2">
+                      <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mt-4">
                         {step.title}
                       </h3>
-                      <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-[260px]">
+                      <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.55] text-[#121214]/75 max-w-[260px] mt-2">
                         {step.description}
                       </p>
                     </div>
@@ -206,7 +206,7 @@ export default function ProcessSection() {
           {/* ==============================================================
               MOBILE VIEW: FULL-HEIGHT VERTICAL DISTRIBUTION
               ============================================================== */}
-          <div className="flex md:hidden w-full flex-1 flex-col justify-between relative pt-6 pb-6 px-1">
+          <div className="flex md:hidden w-full flex-col justify-between gap-6 relative mt-8 pb-2 px-1">
             {/* Continuous Vertical Rail from center of Node 01 to center of Node 04 */}
             <div className="absolute top-[52px] bottom-[52px] left-7 xs:left-8 w-[2px] bg-[#121214]/15 -translate-x-1/2 z-0">
               {/* Terracotta Accent Dots at Segment Midpoints */}

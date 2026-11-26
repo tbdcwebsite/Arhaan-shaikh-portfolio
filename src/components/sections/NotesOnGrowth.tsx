@@ -114,26 +114,26 @@ export default function NotesOnGrowth() {
     <section
       id="journal"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-[72px] md:py-[96px] lg:py-[120px] px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
 
         {/* ==============================================================
             HEADER ROW
             ============================================================== */}
-        <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
+        <div className="w-full flex flex-col items-start">
           <SectionEyebrow text="NOTES ON GROWTH →" href="/blogs" />
 
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
-            <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.08] tracking-[-0.02em] font-normal text-[#121214]">
+            <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
               Notes On{" "}
             </span>
-            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
+            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
               Growth.
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 max-w-[54ch]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 lg:mt-5 max-w-[54ch]">
             Ideas worth thinking about.
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function NotesOnGrowth() {
             ============================================================== */}
         <div
           ref={scrollRef}
-          className="w-full flex items-stretch gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory py-3 px-1 [&::-webkit-scrollbar]:hidden"
+          className="w-full flex items-stretch gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory mt-10 lg:mt-12 px-1 [&::-webkit-scrollbar]:hidden"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -187,7 +187,7 @@ export default function NotesOnGrowth() {
         {/* ==============================================================
             BOTTOM SCRUBBER & RESTORED CHEVRON BUTTONS (< & >)
             ============================================================== */}
-        <div className="w-full flex items-center justify-center gap-4 pt-10 sm:pt-12">
+        <div className="w-full flex items-center justify-center gap-4 mt-8 lg:mt-10">
           {/* Previous Button (<) */}
           <button
             type="button"

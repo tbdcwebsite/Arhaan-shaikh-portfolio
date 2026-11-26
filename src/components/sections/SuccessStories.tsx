@@ -45,7 +45,7 @@ export default function SuccessStories() {
     <section
       id="case-studies"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-20 md:py-24 lg:py-[120px] px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
+      className="relative w-full text-[#121214] pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
     >
       {/* Anchor alias for backwards-compatibility */}
       <span id="success-stories" className="sr-only" />
@@ -55,19 +55,19 @@ export default function SuccessStories() {
         {/* ==============================================================
             HEADER ROW
             ============================================================== */}
-        <div className="w-full flex flex-col items-start pb-10 sm:pb-14">
+        <div className="w-full flex flex-col items-start">
           <SectionEyebrow text="OUR LATEST CAMPAIGNS" />
 
-          <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
-            <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
+          <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.08] tracking-[-0.02em] font-normal text-[#121214]">
+            <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
               Success{" "}
             </span>
-            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
+            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
               Stories.
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 max-w-[54ch]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 lg:mt-5 max-w-[54ch]">
             Selected campaigns delivering measurable ROI and scalable brand equity.
           </p>
         </div>
@@ -75,7 +75,7 @@ export default function SuccessStories() {
         {/* ==============================================================
             4-COLUMN EDITORIAL CARDS
             ============================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-7 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-7 w-full mt-10 lg:mt-12">
           {SUCCESS_STORIES.map((story) => (
             <Link
               key={story.id}

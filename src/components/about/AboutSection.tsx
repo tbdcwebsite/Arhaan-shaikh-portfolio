@@ -102,7 +102,7 @@ export default function AboutSection() {
       ref={containerRef}
       id="about"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16 overflow-x-clip select-none"
+      className="relative w-full text-[#121214] pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16 overflow-x-clip select-none"
     >
       {/* Grid Container */}
       <div className="max-w-[1320px] mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-y-6 lg:gap-y-8 lg:gap-x-14 items-center relative z-10">
@@ -124,7 +124,7 @@ export default function AboutSection() {
         </div>
 
         {/* 2. CARD WRAPPER: SLEEK, PROPORTIONATE SCALE */}
-        <div className="order-2 lg:col-span-5 lg:row-span-2 flex items-center justify-center lg:justify-end py-4 sm:py-6 lg:py-0 w-full">
+        <div className="order-2 lg:col-span-5 lg:row-span-2 flex items-center justify-center lg:justify-end py-4 sm:py-6 lg:py-0 mb-10 sm:mb-12 lg:mb-0 w-full">
           <div
             ref={cardRef}
             className="group relative overflow-visible w-full max-w-[320px] sm:max-w-[360px] lg:max-w-[420px] bg-transparent p-0 border-0 shadow-none origin-center will-change-transform flex items-center justify-center"

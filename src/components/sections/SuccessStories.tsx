@@ -45,7 +45,7 @@ export default function SuccessStories() {
     <section
       id="case-studies"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16 select-none overflow-hidden"
+      className="relative w-full text-[#121214] pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16 select-none overflow-hidden"
     >
       {/* Anchor alias for backwards-compatibility */}
       <span id="success-stories" className="sr-only" />
@@ -75,7 +75,7 @@ export default function SuccessStories() {
         {/* ==============================================================
             4-COLUMN EDITORIAL CARDS
             ============================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 w-full mt-9 lg:mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-9 sm:gap-10 lg:gap-6 w-full mt-8 md:mt-10 lg:mt-12">
           {SUCCESS_STORIES.map((story) => (
             <Link
               key={story.id}

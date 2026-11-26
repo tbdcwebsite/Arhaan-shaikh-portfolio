@@ -200,7 +200,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#about"
-                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-block transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   About
                 </Link>
@@ -208,7 +208,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#services"
-                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-block transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   Services
                 </Link>
@@ -216,7 +216,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#process"
-                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-block transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   Process
                 </Link>
@@ -224,7 +224,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/#journal"
-                  className="transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-block transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   Journal
                 </Link>
@@ -241,7 +241,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/go-to-market"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>Go-To-Market Strategy</span>
                 </Link>
@@ -249,7 +249,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/growth-strategy"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>Growth Strategy</span>
                 </Link>
@@ -257,7 +257,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/ecommerce"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>E-Commerce & Q-Commerce</span>
                 </Link>
@@ -265,7 +265,7 @@ export default function Footer() {
               <li>
                 <Link
                   href="/services/brand-positioning"
-                  className="transition-colors duration-200 hover:text-[#EF8557] flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
+                  className="py-1.5 inline-flex items-center gap-1.5 transition-colors duration-200 hover:text-[#EF8557] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#226192] rounded"
                 >
                   <span>Brand Positioning</span>
                 </Link>
@@ -316,7 +316,7 @@ export default function Footer() {
         {/* ==============================================================
             BOTTOM DIVIDER & COPYRIGHT ROW (WITH LIVE TIME CLOCK)
             ============================================================== */}
-        <div className="w-full border-t border-white/15 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <div className="w-full border-t border-white/15 pt-8 mt-12 flex flex-col md:flex-row items-center md:justify-between text-center md:text-left gap-4 text-xs text-white/60">
           <p>© 2026 Arhaan Shaikh. All rights reserved.</p>
 
           {/* Live Clock Badge */}

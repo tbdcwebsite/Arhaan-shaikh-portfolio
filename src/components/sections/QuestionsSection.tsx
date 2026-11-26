@@ -263,7 +263,7 @@ export default function QuestionsSection() {
       {/* Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16"
+        className="sticky top-0 w-full text-[#121214] overflow-visible lg:overflow-hidden select-none pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-[72px] md:pb-[96px] lg:pb-0 px-5 sm:px-8 lg:px-16"
       >
         <div className="w-full max-w-[1320px] mx-auto relative z-10">
 
@@ -363,8 +363,8 @@ export default function QuestionsSection() {
           {/* ==============================================================
               MOBILE VIEW: LAYERED STACKING CARDS (SLOW & SMOOTH SPEED)
               ============================================================== */}
-          <div className="flex lg:hidden w-full items-center justify-center relative overflow-hidden mt-8">
-            <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[480px] xs:h-[520px] sm:h-[550px] max-h-[68dvh] flex items-center justify-center">
+          <div className="flex lg:hidden w-full items-center justify-center relative overflow-visible mt-8">
+            <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[510px] xs:h-[550px] sm:h-[580px] overflow-visible flex items-center justify-center">
               {SERVICES_DATA.map((card, idx) => (
                 <MobileCardItem
                   key={card.id}

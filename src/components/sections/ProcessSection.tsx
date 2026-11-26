@@ -112,7 +112,7 @@ export default function ProcessSection() {
       {/* Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16"
+        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16"
       >
         <div className="w-full max-w-[1320px] mx-auto relative z-10">
 

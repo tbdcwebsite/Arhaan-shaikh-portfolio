@@ -114,7 +114,7 @@ export default function NotesOnGrowth() {
     <section
       id="journal"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-[72px] md:py-[96px] lg:py-[120px] px-5 sm:px-8 lg:px-16 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-[64px] sm:py-[72px] md:py-[96px] lg:py-[120px] px-5 sm:px-8 lg:px-16 select-none overflow-hidden"
     >
       <div className="max-w-[1320px] mx-auto w-full relative z-10">
 
@@ -143,7 +143,7 @@ export default function NotesOnGrowth() {
             ============================================================== */}
         <div
           ref={scrollRef}
-          className="w-full flex items-stretch gap-5 lg:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory mt-9 lg:mt-12 px-1 [&::-webkit-scrollbar]:hidden"
+          className="w-full flex items-stretch gap-5 lg:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory mt-8 md:mt-10 lg:mt-12 px-1 [&::-webkit-scrollbar]:hidden"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -187,7 +187,7 @@ export default function NotesOnGrowth() {
         {/* ==============================================================
             BOTTOM SCRUBBER & RESTORED CHEVRON BUTTONS (< & >)
             ============================================================== */}
-        <div className="w-full flex items-center justify-center gap-4 mt-8 lg:mt-10">
+        <div className="w-full flex items-center justify-center gap-4 mt-7 md:mt-8 lg:mt-10">
           {/* Previous Button (<) */}
           <button
             type="button"

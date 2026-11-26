@@ -47,7 +47,7 @@ export default function Hero() {
             2. MOBILE BANNER (Visible on Mobile Only: block md:hidden)
             Trimmed excess top clearance for seamless fold positioning
             ============================================================== */}
-        <div className="block md:hidden w-full -mt-2 sm:mt-0 pt-0">
+        <div className="block md:hidden w-full -mt-2 sm:mt-0 pt-0 pb-4 sm:pb-6">
           <Image
             src={HERO_BANNERS.mobileSrc}
             alt={HERO_BANNERS.alt}

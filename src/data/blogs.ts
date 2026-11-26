@@ -5,7 +5,7 @@ export type ContentBlock =
   | { type: "list"; items: string[] }
   | { type: "quote"; text: string; author?: string; role?: string }
   | { type: "image"; src: string; alt: string; caption?: string }
-  | { type: "table"; headers: string[]; rows: string[][] }
+  | { type: "table"; caption?: string; headers: string[]; rows: string[][]; footnote?: string }
   | {
     type: "callout";
     title?: string;
@@ -688,6 +688,255 @@ export const BLOGS: Blog[] = [
       {
         type: "paragraph",
         text: "Yes. Clear brand positioning helps customers immediately recognize the value of your product, builds trust and confidence, reduces price sensitivity, and improves the efficiency of all marketing and ad campaigns.",
+      },
+    ],
+  },
+
+  // =========================================================================
+  // 4. CLARITY BEFORE CHANNELS — MARKETPLACE COMPARISON 2026
+  // =========================================================================
+  {
+    id: "myntra-vs-ajio-vs-nykaa-fashion",
+    title: "Myntra vs Ajio vs Nykaa Fashion 2026: Which Is Best for Your Brand?",
+    titleEmphasis: "Myntra vs Ajio vs Nykaa Fashion",
+    slug: "myntra-vs-ajio-vs-nykaa-fashion",
+    category: "clarity-before-channels",
+    excerpt:
+      "For most new fashion brands in 2026, Myntra is the best place to start, Nykaa Fashion fits premium women-focused labels, and Ajio works best once you have sales history. Compare reach, commissions, returns, ad costs, and onboarding side by side.",
+    featuredImage: "/Blog images/myntra-vs-ajio-vs-nykaa-fashion.png",
+    publishedAt: "2026-11-26",
+    seoTitle: "Myntra vs Ajio vs Nykaa Fashion 2026: Seller Comparison",
+    seoDescription:
+      "Myntra vs Ajio vs Nykaa Fashion: Compare commission rates, return policies, seller onboarding and marketing costs to find the right marketplace for your fashion brand.",
+    intro:
+      "For most new fashion brands in 2026, Myntra is considered the best place to start. It has the most shoppers; Nykaa Fashion is a better fit if your brand is premium and made for women, while Ajio makes more sense once you have some sales history and want to grow.",
+    content: [
+      {
+        type: "paragraph",
+        text: "It's important to make the right choice based on your budget, your audience's return rate, and your budget for ads. Below, we explain quickly and in everyday language how the three compare: who buys on each platform, who sells there, what they charge, and what their return policies look like. All three platforms have variable commission rates depending on category, price, and contract—use these figures as a guideline and always verify the final terms in your seller agreement.",
+      },
+      {
+        type: "heading2",
+        text: "Myntra vs Ajio vs Nykaa Fashion at a Glance",
+      },
+      {
+        type: "table",
+        headers: ["Parameter", "Myntra", "Ajio", "Nykaa Fashion"],
+        rows: [
+          [
+            "Owned by",
+            "Flipkart (Walmart)",
+            "Reliance Retail",
+            "Nykaa (FSN E-Commerce)",
+          ],
+          [
+            "Reach",
+            "Biggest: 90M+ monthly app users (March 2026)",
+            "Mid-size: about 7% of festive fashion orders in 2026",
+            "Smaller: about 2M daily users (June 2026)",
+          ],
+          [
+            "Usual commission",
+            "Low to mid; depends on category and price",
+            "Among the highest; often reported at 15–30%",
+            "Mid to high; agreed in your contract",
+          ],
+          [
+            "Offer for new brands",
+            "Rising Stars: zero commission for eligible new D2C brands",
+            "No open zero-commission offer for new brands right now",
+            "Hidden Gems: zero commission for the first 6 months, if selected",
+          ],
+          [
+            "How hard to get in",
+            "Easiest of the three",
+            "Approval-based; slower",
+            "Most selective",
+          ],
+          [
+            "Typical shopper",
+            "Young, value-aware, all over India",
+            "Brand-aware buyer looking for deals",
+            "Urban woman buying premium and designer labels",
+          ],
+        ],
+        footnote:
+          "Myntra typically ends up taking the smallest commission slice for eligible new D2C brands right now.",
+      },
+      {
+        type: "heading2",
+        text: "Commission Rates on Myntra, Nykaa Fashion and Ajio",
+      },
+      {
+        type: "paragraph",
+        text: "Myntra: In January 2026, Myntra introduced a zero-commission policy for new homegrown D2C brands under the Myntra Rising Stars programme. This isn't restricted to that programme alone—Myntra has also reduced its commission significantly in certain categories, lowering reported rates to 0–1% for products priced under ₹500 (such as westernwear and sportswear), down from an earlier flat 15–16%.",
+      },
+      {
+        type: "paragraph",
+        text: "Nykaa Fashion: Nykaa does not have a fixed public rate card. You receive your commission, return rules, and payment terms in a seller agreement after approval. The upside is its Hidden Gems programme—available to selected homegrown brands in October 2026, offering 0% commission for the first 6 months.",
+      },
+      {
+        type: "paragraph",
+        text: "Ajio: In most cases, Ajio is the costliest of the three. Its commission typically ranges from 15–30% depending on the category and selling model in the seller guide, with the exact figure finalized during onboarding. Ajio's higher average order values can offset some of this, provided your products sell at healthy price points.",
+      },
+      {
+        type: "paragraph",
+        text: "Our tip: Don't make comparisons based on commission alone. Factor in commission, fixed fees, shipping costs, returns, and GST. The platform that leaves you with the highest net profit may not always be the one with the lowest headline commission.",
+      },
+      {
+        type: "heading2",
+        text: "Return Policies on Myntra, Nykaa Fashion and Ajio",
+      },
+      {
+        type: "paragraph",
+        text: "While returns are a concern across all fashion portals, Myntra is the most stringent on new sellers. It drives the highest order volume, and your return rate directly affects how often your products are shown to shoppers.",
+      },
+      {
+        type: "paragraph",
+        text: "Myntra: Shoppers frequently order two sizes and return one. Myntra closely tracks your return rate and shipping performance—a high return rate can hurt your seller score and push your products down in search rankings. On Myntra, high returns cost you both margin and visibility.",
+      },
+      {
+        type: "paragraph",
+        text: "Ajio: Ajio's return charges depend on your selling model, with some seller fee structures charging roughly ₹75 per return. That may look small on paper, but it adds up quickly on a ₹599 T-shirt.",
+      },
+      {
+        type: "paragraph",
+        text: "Nykaa Fashion: Return terms are defined in your Nykaa seller agreement. Because average selling prices are higher, each return carries a heavier logistics hit—though premium shoppers also tend to order more deliberately.",
+      },
+      {
+        type: "paragraph",
+        text: "These rules for cutting returns apply across every platform:",
+      },
+      {
+        type: "list",
+        items: [
+          "Include an easy-to-follow size guide with actual body and garment measurements.",
+          "Display every product from multiple angles using a real model.",
+          "Write clear, plain-language descriptions of fabric, fit, and length.",
+          "Review return reasons every week and fix the top recurring issue immediately.",
+        ],
+      },
+      {
+        type: "heading2",
+        text: "What Marketing Investment Does Each Platform Expect?",
+      },
+      {
+        type: "paragraph",
+        text: "Once your catalogue goes live, getting visibility on any of the three platforms requires ad spend. Build monthly advertising and promotional budgets into your unit economics from day one.",
+      },
+      {
+        type: "paragraph",
+        text: "Myntra: Myntra runs its own self-serve ad platform, led by Product Listing Ads that place your products at the top of search results and category pages. Brands invest heavily here—roughly 23.6% of Myntra's FY26 operating revenue came from advertising. Myntra also runs mega events like the End of Reason Sale (EORS), where participating brands are expected to offer strong discounts.",
+      },
+      {
+        type: "paragraph",
+        text: "Ajio: A large share of volume on Ajio happens during tentpole sale events like the AJIO All Stars Sale, where brands routinely run 50–90% discounts. To participate profitably, your product margins must be built to absorb deep discounting.",
+      },
+      {
+        type: "paragraph",
+        text: "Nykaa Fashion: Because Nykaa is more curated, you may need lower baseline ad spend to get discovered. Selected brands also receive editorial and marketing support through the Hidden Gems programme, though you will still want a dedicated budget for platform ads and seasonal sales.",
+      },
+      {
+        type: "paragraph",
+        text: "Our advice: Marketplace ads perform best when shoppers already recognize your brand. Pair your marketplace listings with Meta and Google campaigns to build brand recall so users search for your brand by name—which lifts organic ranking and lowers your ad costs inside the marketplace.",
+      },
+      {
+        type: "heading2",
+        text: "Myntra vs Nykaa Fashion vs Ajio: Seller Onboarding Time and Approval Process",
+      },
+      {
+        type: "paragraph",
+        text: "Myntra is the fastest to enter, Ajio takes the longest, and Nykaa Fashion is the most selective.",
+      },
+      {
+        type: "paragraph",
+        text: "Myntra: With over 2,000 fashion, beauty, and lifestyle brands onboarded under its Rising Stars programme, Myntra is open to emerging labels. If you have a clear brand identity, strong product photography, and complete compliance documents, approval is straightforward.",
+      },
+      {
+        type: "paragraph",
+        text: "Ajio: Ajio does not offer open self-serve sign-ups. Your brand is evaluated and approved first; once cleared, you sign the Terms of Trade and submit physical samples if requested. Seller guides indicate approval takes 2–4 weeks, while the full end-to-end process to go live typically takes 6–12 weeks.",
+      },
+      {
+        type: "paragraph",
+        text: "Nykaa Fashion: Nykaa curates a tighter roster of labels. Its merchandising team reviews your aesthetic, quality, and fit, with initial review taking roughly 7–10 working days. Once approved, Nykaa shares a formal agreement covering commission, returns, and payouts (typically settled in 30–45 days).",
+      },
+      {
+        type: "paragraph",
+        text: "Keep these documents and assets ready before applying to any of the three:",
+      },
+      {
+        type: "list",
+        items: [
+          "GST Certificate and PAN Card.",
+          "Trademark registration certificate (or application receipt) or brand authorisation letter.",
+          "Current bank account details and a cancelled cheque.",
+          "Complete product catalogue list with MRP, detailed descriptions, and high-resolution photography.",
+          "Active brand website or Instagram handle so merchandising teams can evaluate your brand presence.",
+        ],
+      },
+      {
+        type: "heading2",
+        text: "Choosing a Fashion Marketplace in India: Which Platform Matches Your Target Customer?",
+      },
+      {
+        type: "paragraph",
+        text: "Each marketplace attracts a distinct shopper profile—choose the one where your ideal customer is already shopping.",
+      },
+      {
+        type: "paragraph",
+        text: "Myntra — The Young, Everyday Fashion Buyer: As of March 2026, Myntra leads India with 90M+ monthly active app users. Over 70% of its new customers come from non-metro cities, and roughly half of its active base is Gen Z. Choose Myntra if your brand is trend-led, competitively priced, and built for mass scale.",
+      },
+      {
+        type: "paragraph",
+        text: "Ajio — The Brand-Aware Deal Hunter: Ajio shoppers gravitate toward recognizable labels and major sale events. Average order values tend to be higher than Myntra's—typically ₹1,200–2,500 according to seller guides—and its share of festive fashion orders reached roughly 7.3% in 2026.",
+      },
+      {
+        type: "paragraph",
+        text: "Nykaa Fashion — The Urban Woman Shopping for Something Special: While Nykaa Fashion's daily user base is smaller (~2 million in June 2026), its average selling price is significantly higher at around ₹2,024. It excels in women's westernwear, Indian wear, jewellery, bags, and designer labels—bolstered by cross-shopping from Nykaa's beauty ecosystem.",
+      },
+      {
+        type: "heading2",
+        text: "Frequently Asked Questions",
+      },
+      {
+        type: "heading3",
+        text: "Which is better for a new brand, Myntra or Ajio?",
+      },
+      {
+        type: "paragraph",
+        text: "For most new brands, Myntra is better. It offers a much larger customer base, faster approval, and zero commission for eligible new D2C brands through Myntra Rising Stars. Ajio typically carries higher commissions, a 6–12 week onboarding timeline, and works better once you already have proven sales history and healthy margins.",
+      },
+      {
+        type: "heading3",
+        text: "Is Nykaa Fashion only for women's brands?",
+      },
+      {
+        type: "paragraph",
+        text: "No—Nykaa Fashion also sells menswear, kidswear, footwear, bags, jewellery, and home products. However, women's clothing—especially premium and designer labels—is its strongest category, making it easiest for women-focused brands to stand out.",
+      },
+      {
+        type: "heading3",
+        text: "Can I sell on Myntra, Ajio, and Nykaa Fashion at the same time?",
+      },
+      {
+        type: "paragraph",
+        text: "Yes, many brands sell across all three platforms simultaneously. However, it is best to start with one marketplace, master its catalogue rules, size charts, and inventory cadence, and then expand to the second and third once your operations can support them.",
+      },
+      {
+        type: "heading3",
+        text: "What is Myntra's commission rate in 2026?",
+      },
+      {
+        type: "paragraph",
+        text: "It depends on your category and price point. Eligible new homegrown D2C brands can sell at 0% commission under Myntra Rising Stars, and select categories under ₹500 carry 0–1% commission. Keep in mind that fixed per-order fees, shipping/handling charges, and 18% GST on platform fees still apply.",
+      },
+      {
+        type: "heading3",
+        text: "Do I need a registered trademark to sell on these marketplaces?",
+      },
+      {
+        type: "paragraph",
+        text: "In most cases, yes. Both Ajio and Nykaa Fashion require a trademark certificate or brand authorisation letter during onboarding. Even if your trademark is still under review, keeping your filed trademark application receipt ready helps verify brand authenticity.",
       },
     ],
   },

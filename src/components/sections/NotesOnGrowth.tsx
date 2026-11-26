@@ -114,9 +114,9 @@ export default function NotesOnGrowth() {
     <section
       id="journal"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] py-[72px] md:py-[96px] lg:py-[120px] px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
+      className="relative w-full text-[#121214] py-[72px] md:py-[96px] lg:py-[120px] px-5 sm:px-8 lg:px-16 select-none overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1320px] mx-auto w-full relative z-10">
 
         {/* ==============================================================
             HEADER ROW
@@ -133,7 +133,7 @@ export default function NotesOnGrowth() {
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 lg:mt-5 max-w-[54ch]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 max-w-[54ch]">
             Ideas worth thinking about.
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function NotesOnGrowth() {
             ============================================================== */}
         <div
           ref={scrollRef}
-          className="w-full flex items-stretch gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory mt-10 lg:mt-12 px-1 [&::-webkit-scrollbar]:hidden"
+          className="w-full flex items-stretch gap-5 lg:gap-6 overflow-x-auto scrollbar-none snap-x snap-mandatory mt-9 lg:mt-12 px-1 [&::-webkit-scrollbar]:hidden"
           style={{
             scrollbarWidth: "none",
             msOverflowStyle: "none",
@@ -153,7 +153,7 @@ export default function NotesOnGrowth() {
             <Link
               key={note.id}
               href={note.href}
-              className="group snap-start shrink-0 rounded-[24px] p-6 lg:p-7 flex flex-col justify-end 
+              className="group snap-start shrink-0 rounded-[20px] p-6 lg:p-7 flex flex-col justify-end 
                 relative overflow-hidden cursor-pointer transition-all duration-300
                 bg-[#FAF9F6] border border-white/90 shadow-none hover:shadow-none focus-visible:shadow-none hover:-translate-y-1.5
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2

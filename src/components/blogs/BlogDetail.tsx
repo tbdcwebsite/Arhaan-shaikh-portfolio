@@ -215,45 +215,52 @@ function RenderContentBlock({ block, idx }: { block: ContentBlock; idx: number }
 
     case "table":
       return (
-        <div
-          key={`table-${idx}`}
-          className="my-8 overflow-x-auto rounded-2xl border border-[#121214]/12 bg-[#FAF8F5] shadow-sm"
-        >
-          <table className="w-full text-left border-collapse font-sans text-sm sm:text-[15px]">
-            <thead>
-              <tr className="border-b border-[#121214]/12 bg-[#121214]/5">
-                {block.headers.map((header, hIdx) => (
-                  <th
-                    key={`th-${idx}-${hIdx}`}
-                    className="py-3.5 px-4 sm:px-6 font-bold text-[#121214] tracking-tight whitespace-nowrap first:pl-5 sm:first:pl-6"
-                  >
-                    {renderFormattedText(header)}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-[#121214]/10">
-              {block.rows.map((row, rIdx) => (
-                <tr
-                  key={`tr-${idx}-${rIdx}`}
-                  className="hover:bg-[#121214]/[0.02] transition-colors"
-                >
-                  {row.map((cell, cIdx) => (
-                    <td
-                      key={`td-${idx}-${rIdx}-${cIdx}`}
-                      className={`py-3.5 px-4 sm:px-6 leading-relaxed ${
-                        cIdx === 0
-                          ? "font-bold text-[#121214] whitespace-nowrap bg-[#121214]/[0.02]"
-                          : "text-[#3E3D3A]"
-                      } first:pl-5 sm:first:pl-6`}
+        <div key={`table-${idx}`} className="my-8">
+          <div className="w-full overflow-x-auto rounded-[16px] border border-[#121214]/12 bg-[#FAF8F5]">
+            <table className="w-full min-w-[600px] border-collapse text-left font-sans text-[14.5px] leading-[1.55]">
+              {block.caption && (
+                <caption className="sr-only">{block.caption}</caption>
+              )}
+              <thead>
+                <tr className="bg-[#121214] text-[#F5F2EB]">
+                  {block.headers.map((header, hIdx) => (
+                    <th
+                      key={`th-${idx}-${hIdx}`}
+                      className="px-5 py-3.5 font-semibold tracking-[0.02em] border-b border-[#121214]/12 whitespace-nowrap"
                     >
-                      {renderFormattedText(cell)}
-                    </td>
+                      {renderFormattedText(header)}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {block.rows.map((row, rIdx) => (
+                  <tr
+                    key={`tr-${idx}-${rIdx}`}
+                    className="even:bg-[#F3EFE6]/60 border-b border-[#121214]/10 last:border-b-0"
+                  >
+                    {row.map((cell, cIdx) => (
+                      <td
+                        key={`td-${idx}-${rIdx}-${cIdx}`}
+                        className={`px-5 py-4 align-top ${
+                          cIdx === 0
+                            ? "font-semibold text-[#121214] whitespace-nowrap"
+                            : "text-[#121214]/85"
+                        }`}
+                      >
+                        {renderFormattedText(cell)}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          {block.footnote && (
+            <p className="mt-3 text-[13px] italic text-[#121214]/70">
+              {renderFormattedText(block.footnote)}
+            </p>
+          )}
         </div>
       );
 

@@ -45,12 +45,12 @@ export default function SuccessStories() {
     <section
       id="case-studies"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full text-[#121214] pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-6 sm:px-10 lg:px-16 select-none overflow-hidden"
+      className="relative w-full text-[#121214] pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16 select-none overflow-hidden"
     >
       {/* Anchor alias for backwards-compatibility */}
       <span id="success-stories" className="sr-only" />
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1320px] mx-auto w-full relative z-10">
 
         {/* ==============================================================
             HEADER ROW
@@ -67,7 +67,7 @@ export default function SuccessStories() {
             </span>
           </h2>
 
-          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 lg:mt-5 max-w-[54ch]">
+          <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/65 mt-4 max-w-[54ch]">
             Selected campaigns delivering measurable ROI and scalable brand equity.
           </p>
         </div>
@@ -75,15 +75,15 @@ export default function SuccessStories() {
         {/* ==============================================================
             4-COLUMN EDITORIAL CARDS
             ============================================================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-7 w-full mt-10 lg:mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6 w-full mt-9 lg:mt-12">
           {SUCCESS_STORIES.map((story) => (
             <Link
               key={story.id}
               href={`/case-studies/${story.slug}`}
-              className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 rounded-[8px]"
+              className="group flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 rounded-[20px]"
             >
               {/* CARD IMAGE FRAME (100% CLEAN IMAGE ONLY) */}
-              <div className="relative w-full h-[380px] xs:h-[400px] lg:h-[420px] rounded-[8px] overflow-hidden 
+              <div className="relative w-full h-[380px] xs:h-[400px] lg:h-[420px] rounded-[20px] overflow-hidden 
                 bg-[#161618] border border-white/80 shadow-[0_12px_32px_rgba(18,18,20,0.06)] 
                 hover:shadow-[0_22px_44px_rgba(34,97,146,0.16)] transition-all duration-500 hover:-translate-y-1.5"
               >

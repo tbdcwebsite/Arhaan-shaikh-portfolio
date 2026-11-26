@@ -142,7 +142,7 @@ function MobileCardItem({
     >
       <Link
         href={card.href}
-        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[24px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 shadow-none hover:shadow-none focus-visible:shadow-none ${isCream
+        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[20px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 shadow-none hover:shadow-none focus-visible:shadow-none ${isCream
           ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
           : isTerracotta
             ? "bg-[#EF8557] text-white"
@@ -159,7 +159,7 @@ function MobileCardItem({
         </div>
 
         {/* Refined Centerpiece Image */}
-        <div className="relative w-full h-36 xs:h-40 flex items-center justify-center my-auto px-6 py-2">
+        <div className="relative w-full h-36 xs:h-40 flex items-center justify-center mt-6 px-6 py-2">
           <Image
             src={card.iconSrc}
             alt={card.alt}
@@ -171,9 +171,9 @@ function MobileCardItem({
         </div>
 
         {/* Card Footer */}
-        <div className="w-full flex items-start justify-between gap-4 pt-5 border-t border-current/10">
+        <div className="w-full min-h-[52px] flex items-center justify-between gap-4 mt-6 pt-4 border-t border-current/10">
           <h3
-            className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] min-h-[44px] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
+            className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
               }`}
           >
             {card.title}
@@ -263,9 +263,9 @@ export default function QuestionsSection() {
       {/* Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-6 sm:px-10 lg:px-16"
+        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16"
       >
-        <div className="w-full max-w-7xl mx-auto relative z-10">
+        <div className="w-full max-w-[1320px] mx-auto relative z-10">
 
           {/* Header Row */}
           <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-4 shrink-0">
@@ -289,11 +289,11 @@ export default function QuestionsSection() {
               ============================================================== */}
           <div
             ref={desktopViewportRef}
-            className="hidden lg:flex w-full items-center overflow-hidden mt-10 lg:mt-12"
+            className="hidden lg:flex w-full items-center overflow-hidden mt-9 lg:mt-12"
           >
             <motion.div
               style={{ x: desktopTranslateX }}
-              className="flex items-center gap-5 will-change-transform scroll-px-6 snap-x snap-mandatory"
+              className="flex items-center gap-5 lg:gap-6 will-change-transform scroll-px-6 snap-x snap-mandatory"
             >
               {SERVICES_DATA.map((card, idx) => {
                 const isCream = card.theme === "cream";
@@ -307,7 +307,7 @@ export default function QuestionsSection() {
                       width: `${cardWidth}px`,
                       minWidth: `${cardWidth}px`,
                     }}
-                    className={`group shrink-0 snap-start h-[430px] lg:h-[470px] xl:h-[500px] max-h-[62vh] rounded-[24px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 will-change-transform shadow-none hover:shadow-none focus-visible:shadow-none origin-center hover:scale-[1.02] ${isCream
+                    className={`group shrink-0 snap-start h-[430px] lg:h-[470px] xl:h-[500px] max-h-[62vh] rounded-[20px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 will-change-transform shadow-none hover:shadow-none focus-visible:shadow-none origin-center hover:scale-[1.02] ${isCream
                       ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
                       : isTerracotta
                         ? "bg-[#EF8557] text-white"
@@ -323,7 +323,7 @@ export default function QuestionsSection() {
                       </span>
                     </div>
 
-                    <div className="relative w-full h-32 lg:h-36 flex items-center justify-center my-auto px-6 py-2">
+                    <div className="relative w-full h-32 lg:h-36 flex items-center justify-center mt-6 px-6 py-2">
                       <Image
                         src={card.iconSrc}
                         alt={card.alt}
@@ -335,15 +335,13 @@ export default function QuestionsSection() {
                     </div>
 
                     {/* Card Footer */}
-                    <div className="w-full flex items-start justify-between gap-4 pt-5 border-t border-current/10">
-                      <div className="min-h-[2.6em] flex items-start flex-1">
-                        <h3
-                          className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
-                            }`}
-                        >
-                          {card.title}
-                        </h3>
-                      </div>
+                    <div className="w-full min-h-[52px] flex items-center justify-between gap-4 mt-6 pt-4 border-t border-current/10">
+                      <h3
+                        className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 flex-1 ${isCream ? "text-[#121214]" : "text-white"
+                          }`}
+                      >
+                        {card.title}
+                      </h3>
 
                       <div
                         className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center transition-all duration-300 shadow-none group-hover:scale-105 ${isCream

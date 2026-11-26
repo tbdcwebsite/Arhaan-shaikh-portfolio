@@ -112,9 +112,9 @@ export default function ProcessSection() {
       {/* Sticky Viewport */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-6 sm:px-10 lg:px-16"
+        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16"
       >
-        <div className="w-full max-w-7xl mx-auto relative z-10">
+        <div className="w-full max-w-[1320px] mx-auto relative z-10">
 
           {/* ==============================================================
               SECTION HEADER
@@ -133,7 +133,7 @@ export default function ProcessSection() {
               </h2>
             </div>
 
-            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right mt-4 lg:mt-5 md:mt-0">
+            <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-xs md:text-right mt-4 md:mt-0">
               Brand, performance, content and tech working as one connected system.
             </p>
           </div>
@@ -141,7 +141,7 @@ export default function ProcessSection() {
           {/* ==============================================================
               DESKTOP VIEW: HORIZONTAL CONNECTED ROADMAP (IMAGE 1:1)
               ============================================================== */}
-          <div className="hidden md:flex w-full items-center justify-between relative mt-12 lg:mt-16">
+          <div className="hidden md:flex w-full items-center justify-between relative mt-10 lg:mt-12">
             <div className="relative w-full">
               {/* Single Continuous Collinear Rail */}
               <div className="absolute left-[12.5%] right-[12.5%] top-[48px] lg:top-[56px] -translate-y-1/2 h-[2px] bg-[#121214]/15 z-0">
@@ -172,7 +172,7 @@ export default function ProcessSection() {
                       style={{
                         backgroundColor: nodeBgs[idx],
                       }}
-                      className="relative z-10 w-24 h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center border border-[#121214]/15 shadow-[0_10px_25px_rgba(18,18,20,0.08)] mb-6 cursor-default ring-8 ring-[#EAE6DE]"
+                      className="relative z-10 w-24 h-24 lg:w-28 lg:h-28 rounded-full flex items-center justify-center border border-[#121214]/15 shadow-[0_10px_25px_rgba(18,18,20,0.08)] cursor-default ring-8 ring-[#EAE6DE]"
                     >
                       <motion.div style={{ filter: nodeFilters[idx] }} className="flex items-center justify-center">
                         <Image
@@ -186,14 +186,14 @@ export default function ProcessSection() {
                     </motion.div>
 
                     {/* Enlarged Typography */}
-                    <div className="flex flex-col items-center max-w-[260px]">
+                    <div className="flex flex-col items-center max-w-[240px] mx-auto mt-5">
                       <span className="font-serif not-italic text-4xl lg:text-5xl text-[#EF8557]">
                         {step.number}
                       </span>
-                      <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mt-4">
+                      <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mt-1.5">
                         {step.title}
                       </h3>
-                      <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.55] text-[#121214]/75 max-w-[260px] mt-2">
+                      <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.55] text-[#121214]/75 max-w-[240px] mx-auto mt-2.5">
                         {step.description}
                       </p>
                     </div>

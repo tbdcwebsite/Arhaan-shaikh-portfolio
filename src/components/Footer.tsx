@@ -97,21 +97,24 @@ export default function Footer() {
   return (
     <footer
       style={{ backgroundColor: "#226192" }}
-      className="relative w-full text-white pt-16 sm:pt-20 pb-12 sm:pb-16 px-6 sm:px-10 lg:px-16 overflow-hidden select-none"
+      className="relative w-full text-white pt-16 sm:pt-20 pb-12 sm:pb-16 px-5 sm:px-8 lg:px-16 overflow-hidden select-none"
     >
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-[1320px] mx-auto w-full relative z-10">
 
         {/* ==============================================================
             PRE-FOOTER CALLOUT ROW: REMOVES PLAINNESS INSTANTLY
             ============================================================== */}
-        <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-6 pb-12 sm:pb-14 border-b border-white/15">
-          <div className="flex flex-col">
-            <SectionEyebrow text="START A COLLABORATION" variant="terracotta" shape="dot" />
-            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.1] tracking-[-0.02em] font-normal text-white">
-              <span className="font-sans font-normal leading-[1.1] tracking-[-0.02em]">
-                Have an ambitious project in{" "}
+        <div className="w-full flex flex-col md:flex-row md:items-center justify-between gap-6 pb-12 lg:pb-14 border-b border-white/15">
+          <div className="flex flex-col max-w-[680px]">
+            <SectionEyebrow text="START A COLLABORATION" variant="terracotta" shape="pill" />
+            <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.08] tracking-[-0.02em] font-normal text-white">
+              <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
+                Have an ambitious{" "}
               </span>
-              <span className="font-serif italic font-normal text-[#EF8557] leading-[1.1]">
+              <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
+                project in{" "}
+              </span>
+              <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
                 mind?
               </span>
             </h2>
@@ -130,10 +133,10 @@ export default function Footer() {
         {/* ==============================================================
             MAIN 4-COLUMN GRID
             ============================================================== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 py-12 sm:py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_0.8fr_1fr_1.3fr] gap-8 lg:gap-12 pt-12 lg:pt-14">
 
-          {/* COLUMN 1: BIO + SOCIAL ICONS (Span 4) */}
-          <div className="lg:col-span-4 flex flex-col items-start pr-0 lg:pr-8">
+          {/* COLUMN 1: BIO + SOCIAL ICONS */}
+          <div className="flex flex-col items-start pr-0 lg:pr-4">
             <Link
               href="/"
               aria-label="Arhaan Shaikh — Home"
@@ -188,12 +191,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* COLUMN 2: EXPLORE (Span 2) */}
-          <div className="lg:col-span-2 flex flex-col items-start">
+          {/* COLUMN 2: EXPLORE */}
+          <div className="flex flex-col items-start">
             <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
               EXPLORE
             </h4>
-            <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm tracking-wide text-white/85">
+            <ul className="space-y-3 font-sans text-xs sm:text-sm tracking-wide text-white/85">
               <li>
                 <Link
                   href="/#about"
@@ -229,12 +232,12 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 3: EXPERTISE (Span 3) */}
-          <div className="lg:col-span-3 flex flex-col items-start">
+          {/* COLUMN 3: EXPERTISE */}
+          <div className="flex flex-col items-start">
             <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
               EXPERTISE
             </h4>
-            <ul className="flex flex-col gap-3 font-sans text-xs sm:text-sm text-white/85">
+            <ul className="space-y-3 font-sans text-xs sm:text-sm text-white/85">
               <li>
                 <Link
                   href="/services/go-to-market"
@@ -270,14 +273,14 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* COLUMN 4: CONTACT US (Span 3) */}
-          <div className="lg:col-span-3 flex flex-col items-start">
+          {/* COLUMN 4: CONTACT US */}
+          <div className="flex flex-col items-start">
             <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
               CONTACT US
             </h4>
 
             {/* Standard Contact Items */}
-            <div className="flex flex-col gap-4 w-full font-sans text-xs sm:text-sm text-white/85">
+            <div className="space-y-3 w-full font-sans text-xs sm:text-sm text-white/85">
 
               {/* Email */}
               <a
@@ -313,7 +316,7 @@ export default function Footer() {
         {/* ==============================================================
             BOTTOM DIVIDER & COPYRIGHT ROW (WITH LIVE TIME CLOCK)
             ============================================================== */}
-        <div className="w-full border-t border-white/15 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
+        <div className="w-full border-t border-white/15 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/60">
           <p>© 2026 Arhaan Shaikh. All rights reserved.</p>
 
           {/* Live Clock Badge */}

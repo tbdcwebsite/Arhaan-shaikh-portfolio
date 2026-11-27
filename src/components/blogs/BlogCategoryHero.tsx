@@ -15,7 +15,7 @@ export default function BlogCategoryHero({ category }: BlogCategoryHeroProps) {
         <span className="font-sans font-normal text-[#121214]">
           {category.title}{" "}
         </span>
-        <span className="font-serif italic font-normal text-[#EF8557]">
+        <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">
           {category.titleAccent}.
         </span>
       </h1>

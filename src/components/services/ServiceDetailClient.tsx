@@ -102,9 +102,9 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
           </div>
 
           {/* Scaled-down Balanced Typographic Title */}
-          <h1 className="font-display text-3xl sm:text-5xl lg:text-[54px] font-bold tracking-tight leading-[1.08] text-[#121214] max-w-5xl">
+          <h1 className="font-display text-3xl sm:text-5xl lg:text-[54px] font-normal tracking-tight leading-[1.08] text-[#121214] max-w-5xl">
             {service.headlineLead}{" "}
-            <span className="font-serif italic font-normal text-[#6B9C00]">
+            <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#6B9C00]">
               {service.italicPunch}
             </span>
           </h1>
@@ -462,7 +462,7 @@ export function ServiceDetailClient({ service }: ServiceDetailClientProps) {
             <span className="font-sans text-xs uppercase tracking-[0.26em] text-[#CDF225] block mb-2 font-bold">
               Direct Principal Engagement
             </span>
-            <h3 className="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight leading-tight">
+            <h3 className="font-display text-2xl sm:text-4xl font-normal text-white tracking-tight leading-tight">
               Ready to deploy {service.shortLabel.toLowerCase()}?
             </h3>
             <p className="mt-3 text-xs sm:text-sm text-white/70 font-sans font-light leading-relaxed">

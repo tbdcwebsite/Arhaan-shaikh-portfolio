@@ -62,7 +62,7 @@ export default function SuccessStories() {
             <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
               Success{" "}
             </span>
-            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
+            <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557] leading-[1.08]">
               Stories.
             </span>
           </h2>

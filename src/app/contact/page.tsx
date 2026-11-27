@@ -68,10 +68,10 @@ export default function ContactPage() {
 
   const update =
     (key: keyof FormState) =>
-    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-      setForm((f) => ({ ...f, [key]: e.target.value }));
-      if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
-    };
+      (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setForm((f) => ({ ...f, [key]: e.target.value }));
+        if (errors[key]) setErrors((prev) => ({ ...prev, [key]: undefined }));
+      };
 
   const validate = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {};
@@ -122,7 +122,7 @@ export default function ContactPage() {
           <h1 className="title">
             Have an ambitious
             <br />
-            project <em className="accent-serif font-serif italic font-normal">in mind?</em>
+            project <em className="accent-serif font-serif italic font-semibold tracking-[-0.02em]">in mind?</em>
           </h1>
           <p className="lede">
             Brand, performance, content and distribution working as one connected system.
@@ -150,7 +150,7 @@ export default function ContactPage() {
           {/* Left Column — Studio Details */}
           <aside className="details">
             <h2 className="col-label">
-              <span className="num font-serif italic font-normal">01</span> Direct Reach
+              <span className="num font-sans not-italic font-normal">01</span> Direct Reach
             </h2>
 
             <ul className="channels">
@@ -204,7 +204,7 @@ export default function ContactPage() {
           {/* Right Column — Form Card */}
           <div className="form-card">
             <h2 className="col-label">
-              <span className="num font-serif italic font-normal">02</span> Start A Collaboration
+              <span className="num font-sans not-italic font-normal">02</span> Start A Collaboration
             </h2>
 
             {status === "success" ? (
@@ -462,8 +462,8 @@ export default function ContactPage() {
         }
         .num {
           color: var(--accent);
-          font-family: "Butler", Georgia, serif !important;
-          font-style: italic !important;
+          font-family: var(--font-sans) !important;
+          font-style: normal !important;
           font-weight: 400 !important;
           font-size: 1.1rem;
         }

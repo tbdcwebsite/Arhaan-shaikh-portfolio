@@ -151,7 +151,7 @@ function MobileCardItem({
       >
         <div className="w-full flex items-start justify-start">
           <span
-            className={`font-serif italic text-4xl xs:text-5xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
+            className={`font-sans not-italic font-normal text-4xl xs:text-5xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
               }`}
           >
             {card.number}
@@ -273,7 +273,7 @@ export default function QuestionsSection() {
               <span className="block font-sans font-normal leading-[1.08] tracking-[-0.02em]">
                 Where I Usually
               </span>
-              <span className="block font-serif italic font-normal text-[#EF8557] leading-[1.08] mt-0.5">
+              <span className="block font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557] leading-[1.08] mt-0.5">
                 Enter The Picture.
               </span>
             </h2>
@@ -316,7 +316,7 @@ export default function QuestionsSection() {
                   >
                     <div className="w-full flex items-start justify-start pt-0.5">
                       <span
-                        className={`font-serif italic text-3xl sm:text-4xl lg:text-[40px] leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
+                        className={`font-sans not-italic font-normal text-3xl sm:text-4xl lg:text-[40px] leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
                           }`}
                       >
                         {card.number}

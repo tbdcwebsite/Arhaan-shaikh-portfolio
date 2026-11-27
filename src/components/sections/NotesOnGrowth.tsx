@@ -122,13 +122,13 @@ export default function NotesOnGrowth() {
             HEADER ROW
             ============================================================== */}
         <div className="w-full flex flex-col items-start">
-          <SectionEyebrow text="NOTES ON GROWTH →" href="/blogs" />
+          <SectionEyebrow text="NOTES ON GROWTH " href="/blogs" />
 
           <h2 className="text-[32px] sm:text-[44px] lg:text-[56px] xl:text-[60px] leading-[1.08] tracking-[-0.02em] font-normal text-[#121214]">
             <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
               Notes On{" "}
             </span>
-            <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
+            <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557] leading-[1.08]">
               Growth.
             </span>
           </h2>

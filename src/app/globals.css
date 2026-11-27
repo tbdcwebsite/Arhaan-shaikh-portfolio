@@ -38,22 +38,6 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Mont";
-  src: url("/font/fonnts.com-Mont_Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Mont";
-  src: url("/font/fonnts.com-Mont_Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --background: #F8F8F5;
   --foreground: #28282B;
@@ -69,10 +53,10 @@
   --color-secondary: #520000;
   --color-tertiary: #28282B;
 
-  /* Global Typography System (Mont + Butler only) */
-  --font-display: "Mont", var(--font-mont), sans-serif;
-  --font-body: "Mont", var(--font-mont), sans-serif;
-  --font-sans: "Mont", var(--font-mont), sans-serif;
+  /* Global Typography System (Plus Jakarta Sans + Butler serif) */
+  --font-display: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  --font-body: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  --font-sans: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
   --font-serif: "Butler", Georgia, serif;
 
   /* Fluid Typography Scale */
@@ -104,14 +88,12 @@
   --color-tertiary: #28282B;
   --color-neutral: #EAE6DE;
 
-  --font-mont: "Mont", sans-serif;
-  --font-butler: "Butler", Georgia, serif;
-  --font-sans: "Mont", sans-serif;
+  --font-sans: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
   --font-serif: "Butler", Georgia, serif;
-  --font-display: "Mont", sans-serif;
-  --font-body: "Mont", sans-serif;
-  --font-headline: "Mont", sans-serif;
-  --font-heading: "Mont", sans-serif;
+  --font-display: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  --font-body: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  --font-headline: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  --font-heading: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
 }
 
 /* =========================================================================
@@ -141,13 +123,21 @@ html.lenis body {
 html {
   background-color: #EAE6DE !important;
   color: #121214;
-  font-family: "Mont", var(--font-mont), sans-serif;
+  font-family: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background-color: #EAE6DE !important;
   color: #121214;
-  font-family: "Mont", var(--font-mont), sans-serif;
+  font-family: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -156,30 +146,55 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Mont", var(--font-mont), sans-serif;
+  font-family: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
+  font-weight: 400;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.02em;
+}
+
+h1::first-letter,
+h2::first-letter,
+h3::first-letter,
+h4::first-letter,
+h5::first-letter,
+h6::first-letter {
+  font-weight: inherit;
+  color: inherit;
 }
 
 .font-heading,
 .font-headline,
 .font-display {
-  font-family: "Mont", var(--font-mont), sans-serif;
+  font-family: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
 }
 
 .font-body,
 .font-sans {
-  font-family: "Mont", var(--font-mont), sans-serif;
+  font-family: var(--font-mont, "Plus Jakarta Sans"), sans-serif;
 }
 
-/* Enforce Butler explicitly for all serif utilities, overriding heading cascade */
+/* Enforce Butler explicitly for all serif utilities and bold italic accents */
 .font-serif {
   font-family: "Butler", Georgia, serif !important;
 }
 
+.font-serif.italic,
 .type-serif-accent,
 .accent-serif,
 em.hl {
   font-family: "Butler", Georgia, serif !important;
+  font-weight: 700;
   font-style: italic;
+  font-synthesis: style;
 }
 
 /* =========================================================================
@@ -190,7 +205,7 @@ em.hl {
   font-size: var(--text-display);
   line-height: 1.02;
   letter-spacing: -0.03em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .type-h1 {
@@ -198,7 +213,7 @@ em.hl {
   font-size: var(--text-h1);
   line-height: 1.05;
   letter-spacing: -0.025em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .type-h2 {
@@ -206,7 +221,7 @@ em.hl {
   font-size: var(--text-h2);
   line-height: 1.05;
   letter-spacing: -0.025em;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .type-h3 {

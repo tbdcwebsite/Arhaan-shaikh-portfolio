@@ -39,8 +39,8 @@ export default function RelatedBlogs({
             <span>FURTHER PERSPECTIVES</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#121214] tracking-tight">
-            Explore <span className="font-serif italic font-normal text-[#EF8557]">More Ideas.</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-normal text-[#121214] tracking-tight">
+            Explore <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">More Ideas.</span>
           </h2>
         </div>
 

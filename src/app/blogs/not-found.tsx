@@ -11,7 +11,7 @@ export default function BlogNotFound() {
 
       <h1 className="text-4xl sm:text-5xl font-bold text-[#121214] tracking-tight mb-4">
         Article or Category{" "}
-        <span className="font-serif italic font-normal text-[#EF8557]">
+        <span className="font-serif italic font-bold tracking-[-0.02em] text-[#EF8557]">
           Not Found.
         </span>
       </h1>

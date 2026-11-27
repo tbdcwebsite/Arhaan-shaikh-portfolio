@@ -127,7 +127,7 @@ export default function ProcessSection() {
                 <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
                   Roadmap to{" "}
                 </span>
-                <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
+                <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557] leading-[1.08]">
                   Success.
                 </span>
               </h2>
@@ -187,7 +187,7 @@ export default function ProcessSection() {
 
                     {/* Enlarged Typography */}
                     <div className="flex flex-col items-center max-w-[240px] mx-auto mt-5">
-                      <span className="font-serif not-italic text-4xl lg:text-5xl text-[#EF8557]">
+                      <span className="font-sans not-italic font-normal text-4xl lg:text-5xl text-[#EF8557]">
                         {step.number}
                       </span>
                       <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214] mt-1.5">
@@ -251,7 +251,7 @@ export default function ProcessSection() {
                 {/* Step Metadata */}
                 <div className="flex flex-col items-start pr-1">
                   <div className="flex items-baseline gap-2 mb-0.5">
-                    <span className="font-serif not-italic text-xl xs:text-2xl text-[#EF8557]">
+                    <span className="font-sans not-italic font-normal text-xl xs:text-2xl text-[#EF8557]">
                       {step.number}
                     </span>
                     <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214]">

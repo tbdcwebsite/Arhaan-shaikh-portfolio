@@ -68,7 +68,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       <section>
         <div className="flex items-center justify-between pb-6 border-b border-[rgba(18,18,20,0.12)] mb-10">
           <h2 className="text-[32px] sm:text-[40px] leading-[1.1] tracking-[-0.02em] font-normal text-[#121214]">
-            Published <span className="font-serif italic font-normal text-[#EF8557]">Articles.</span>
+            Published <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">Articles.</span>
           </h2>
           <span className="text-xs font-bold uppercase tracking-wider text-[#6F6A5D]">
             {blogs.length} {blogs.length === 1 ? "Essay" : "Essays"}

@@ -116,7 +116,7 @@ export default function AboutSection() {
               </span>
             </span>
             <span className="block overflow-hidden py-1 -my-1">
-              <span className="headline-mask-inner block font-serif italic font-normal text-[#EF8557] leading-[1.08]">
+              <span className="headline-mask-inner block font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557] leading-[1.08]">
                 &amp; Delivery Calendars.
               </span>
             </span>

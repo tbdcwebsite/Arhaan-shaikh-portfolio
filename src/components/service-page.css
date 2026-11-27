@@ -36,15 +36,15 @@
   box-sizing: border-box;
 }
 
-.svc h1,
-.svc h2,
-.svc h3 {
+:where(.svc) h1,
+:where(.svc) h2,
+:where(.svc) h3 {
   font-family: var(--display);
   letter-spacing: -0.02em;
   margin: 0;
 }
 
-.svc p {
+:where(.svc) p {
   margin: 0;
 }
 
@@ -152,173 +152,7 @@
   border-color: var(--ink);
 }
 
-/* ---------------- hero ---------------- */
-.svc .hero {
-  padding: 80px 0;
-}
-
-@media (min-width: 768px) {
-  .svc .hero {
-    padding: 96px 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .svc .hero {
-    padding: 120px 0;
-  }
-}
-
-.svc .hero .grid {
-  display: grid;
-  gap: clamp(36px, 5vw, 56px);
-  align-items: center;
-}
-
-.svc .pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 8px 18px 8px 14px;
-  font-size: 13.5px;
-  font-weight: 700;
-  color: var(--ink-2);
-  box-shadow: 0 8px 20px -16px rgba(0, 0, 0, 0.3);
-}
-
-.svc .pill .star {
-  color: var(--orange);
-}
-
-.svc .hero h1 {
-  font-size: clamp(42px, 7.4vw, 84px);
-  font-weight: 400;
-  line-height: 1.08;
-  margin: 26px 0 0;
-  letter-spacing: -0.025em;
-}
-
-.svc .hero .sub {
-  font-size: clamp(17px, 2.1vw, 20px);
-  color: var(--ink-2);
-  max-width: 54ch;
-  margin: 26px 0 34px;
-  line-height: 1.7;
-}
-
-.svc .hero .ctas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.svc .herocard-wrap {
-  position: relative;
-  justify-self: center;
-}
-
-.svc .herocard {
-  position: relative;
-  background: #fff;
-  border-radius: 28px;
-  padding: 28px;
-  width: min(410px, 86vw);
-  box-shadow: 0 40px 80px -40px rgba(18, 18, 20, 0.28);
-  transform: rotate(1.6deg);
-  border: 1px solid #efe9df;
-}
-
-.svc .herocard .hc-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
-
-.svc .herocard .hc-top b {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--blue-dd);
-}
-
-.svc .herocard .hc-top span {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--orange-d);
-}
-
-.svc .herocard .hc-row {
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  padding: 13px 0;
-  border-top: 1px solid #eee7da;
-}
-
-.svc .herocard .hc-row .dot {
-  width: 28px;
-  height: 28px;
-  border-radius: 8px;
-  background: #eef3f8;
-  color: var(--blue);
-  display: grid;
-  place-items: center;
-  flex: none;
-}
-
-.svc .herocard .hc-row .dot svg {
-  width: 15px;
-  height: 15px;
-}
-
-.svc .herocard .hc-row p {
-  font-size: 14.5px;
-  font-weight: 700;
-  color: #33302b;
-}
-
-.svc .herocard .hc-row small {
-  display: block;
-  font-weight: 400;
-  color: #8a8578;
-  font-size: 13.5px;
-}
-
-.svc .herocard .hc-metrics {
-  display: flex;
-  gap: 10px;
-  margin-top: 16px;
-}
-
-.svc .herocard .hc-metrics div {
-  flex: 1;
-  background: var(--cream-card);
-  border-radius: 12px;
-  padding: 12px 10px;
-  text-align: center;
-}
-
-.svc .herocard .hc-metrics b {
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: 22px;
-  color: var(--blue-dd);
-  display: block;
-  line-height: 1;
-}
-
-.svc .herocard .hc-metrics span {
-  font-size: 12px;
-  font-weight: 400;
-  color: #8a8578;
-  letter-spacing: 0.03em;
-}
+/* Hero styles are handled with Tailwind utility classes in ServicePage.tsx */
 
 /* Standardized Unified Section Rhythm (80px mobile / 96px tablet / 120px desktop) */
 .svc .pains,
@@ -327,8 +161,7 @@
 .svc .steps,
 .svc .result,
 .svc .pkg,
-.svc .faq,
-.svc .finalcta {
+.svc .faq {
   padding: 80px 0;
 }
 
@@ -339,8 +172,7 @@
   .svc .steps,
   .svc .result,
   .svc .pkg,
-  .svc .faq,
-  .svc .finalcta {
+  .svc .faq {
     padding: 96px 0;
   }
 }
@@ -352,63 +184,12 @@
   .svc .steps,
   .svc .result,
   .svc .pkg,
-  .svc .faq,
-  .svc .finalcta {
+  .svc .faq {
     padding: 120px 0;
   }
 }
 
-.svc .stamp {
-  position: absolute;
-  left: -26px;
-  bottom: -26px;
-  width: 112px;
-  height: 112px;
-  background: var(--blue);
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 20px 40px -16px rgba(19, 57, 88, 0.7);
-  display: none;
-}
 
-.svc .stamp .ast {
-  position: absolute;
-  color: var(--orange);
-  font-size: 28px;
-  line-height: 1;
-}
-
-.svc .stamp svg {
-  width: 100%;
-  height: 100%;
-  animation: svc-spin 18s linear infinite;
-}
-
-.svc .stamp text {
-  font-family: var(--display);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  fill: #dfeaf4;
-  text-transform: uppercase;
-}
-
-@keyframes svc-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (min-width: 900px) {
-  .svc .hero .grid {
-    grid-template-columns: 1.05fr 0.95fr;
-  }
-
-  .svc .herocard {
-    transform: rotate(2deg);
-  }
-}
 
 /* ---------------- pains ---------------- */
 .svc .pains {
@@ -648,19 +429,6 @@
   overflow: hidden;
 }
 
-.svc .steps .wm {
-  position: absolute;
-  right: -4%;
-  top: -12%;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(140px, 22vw, 260px);
-  color: rgba(255, 255, 255, 0.05);
-  pointer-events: none;
-  letter-spacing: -0.04em;
-  font-style: italic;
-}
-
 .svc .steps h2 {
   font-size: clamp(30px, 4.6vw, 52px);
   font-weight: 700;
@@ -677,8 +445,8 @@
 }
 
 .svc .steps .s .n {
-  font-family: "Butler", Georgia, serif !important;
-  font-style: italic;
+  font-family: var(--display);
+  font-style: normal;
   font-weight: 400;
   font-size: 46px;
   color: var(--orange);
@@ -824,8 +592,8 @@
 }
 
 .svc .pcard .pnum {
-  font-family: "Butler", Georgia, serif !important;
-  font-style: italic;
+  font-family: var(--display);
+  font-style: normal;
   font-weight: 400;
   font-size: 40px;
   line-height: 1;
@@ -1010,51 +778,7 @@
   max-width: 64ch;
 }
 
-/* ---------------- final CTA ---------------- */
-.svc .finalcta {
-  padding: clamp(50px, 7vw, 88px) 0;
-}
 
-.svc .finalcta .inner {
-  position: relative;
-  overflow: hidden;
-  background: var(--blue);
-  color: #fff;
-  border-radius: 28px;
-  padding: clamp(40px, 5vw, 64px);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.svc .finalcta .wm {
-  position: absolute;
-  right: -2%;
-  bottom: -34%;
-  font-family: var(--display);
-  font-weight: 700;
-  font-size: clamp(120px, 20vw, 240px);
-  color: rgba(255, 255, 255, 0.06);
-  letter-spacing: -0.04em;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.svc .finalcta h2 {
-  position: relative;
-  color: #fff;
-  font-size: clamp(28px, 4vw, 48px);
-  font-weight: 700;
-  line-height: 1.04;
-  margin: 16px 0 0;
-  max-width: 16ch;
-}
-
-.svc .finalcta .btn {
-  position: relative;
-}
 
 /* ---------------- entrance transitions ---------------- */
 @media (prefers-reduced-motion: no-preference) {

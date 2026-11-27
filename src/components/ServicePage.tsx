@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./service-page.css";
 import type { Service, RowIcon } from "@/lib/services";
 
@@ -79,67 +80,98 @@ export default function ServicePage({ service }: { service: Service }) {
   return (
     <main className="svc">
       {/* ---------------- HERO ---------------- */}
-      <header className="hero">
-        <div className="container grid">
-          <div>
-            <span className="pill reveal d1">
-              <span className="star">★</span>&nbsp;{s.label}
-            </span>
-            <h1 className="reveal d2">
-              {s.hero.lead} <em className="hl">{s.hero.em}</em>
-            </h1>
-            <p className="sub reveal d3">{s.hero.sub}</p>
-            <div className="ctas reveal d4">
-              <a href="/contact" className="btn btn-blue">
-                Work with me {S.arrowR}
-              </a>
-              <a href="/case-studies" className="btn btn-ghost">
-                See case studies
-              </a>
-            </div>
-          </div>
+      <header className="relative overflow-hidden bg-[#EAE6DE] pt-20 pb-12 lg:pt-24 lg:pb-16">
+        <div className="container relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+            {/* Left Column: Editorial Copy & CTAs */}
+            <div className="lg:col-span-7 flex flex-col items-start">
+              <span className="inline-flex items-center gap-2 rounded-full border border-black/15 bg-white/60 px-4 py-1.5 text-xs tracking-wide font-normal text-[#1A1A1A]">
+                <svg
+                  className="w-3.5 h-3.5 text-[#EF8557] shrink-0"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M12 2L14.4 9.6L22 12L14.4 14.4L12 22L9.6 14.4L2 12L9.6 9.6L12 2Z" />
+                </svg>
+                <span>{s.label}</span>
+              </span>
 
-          <div className="herocard-wrap reveal d3">
-            <div className="herocard">
-              <div className="hc-top">
-                <b>{s.heroCard.title}</b>
-                <span>at a glance</span>
-              </div>
-              {s.heroCard.rows.map((r, i) => (
-                <div className="hc-row" key={i}>
-                  <span className="dot">
-                    <RowGlyph icon={r.icon} />
+              <h1 className="mt-5 text-[34px] sm:text-[44px] lg:text-[48px] xl:text-[56px] font-normal text-[#1A1A1A] leading-[1.08] tracking-[-0.02em] max-w-2xl">
+                {s.hero.lead}{" "}
+                <em className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">
+                  {s.hero.em}
+                </em>
+              </h1>
+
+              <p className="mt-5 text-[#4A4A4A] text-base max-w-lg leading-relaxed font-normal">
+                {s.hero.sub}
+              </p>
+
+              <div className="mt-7 flex flex-wrap items-center gap-3.5">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-[#226192] text-white px-6 py-3 text-sm font-medium hover:bg-[#1a4d75] transition-colors"
+                >
+                  <span>Work with me</span>
+                  <span className="w-4 h-4 inline-flex items-center justify-center" aria-hidden="true">
+                    {S.arrowR}
                   </span>
-                  <p>
-                    {r.text}
-                    <small>{r.sub}</small>
-                  </p>
-                </div>
-              ))}
-              <div className="hc-metrics">
-                {s.heroCard.metrics.map((m, i) => (
-                  <div key={i}>
-                    <b>{m.value}</b>
-                    <span>{m.label}</span>
-                  </div>
-                ))}
+                </Link>
+                <Link
+                  href="/#case-studies"
+                  className="inline-flex items-center rounded-full border border-black/25 text-[#1A1A1A] px-6 py-3 text-sm font-medium hover:border-black transition-colors"
+                >
+                  See case studies
+                </Link>
               </div>
             </div>
-            <div className="stamp" aria-hidden="true">
-              <span className="ast">✳</span>
-              <svg viewBox="0 0 120 120">
-                <defs>
-                  <path
-                    id={`circ-${s.slug}`}
-                    d="M60,60 m-44,0 a44,44 0 1,1 88,0 a44,44 0 1,1 -88,0"
-                  />
-                </defs>
-                <text>
-                  <textPath href={`#circ-${s.slug}`} startOffset="0%">
-                    {s.label.toUpperCase()} · ARHAAN SHAIKH ·{" "}
-                  </textPath>
-                </text>
-              </svg>
+
+            {/* Right Column: Tilted "At A Glance" Blueprint Card */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end">
+              <div className="bg-[#FFFDF9] rounded-3xl border border-black/10 p-7 max-w-md w-full lg:rotate-2 hover:rotate-0 transition-transform duration-300">
+                <div className="flex items-center justify-between pb-4 mb-2 border-b border-[#EF8557]/40">
+                  <span className="font-sans font-medium text-base text-[#226192]">
+                    {s.heroCard.title}
+                  </span>
+                  <span className="text-[11px] tracking-widest font-medium uppercase text-[#EF8557]">
+                    AT A GLANCE
+                  </span>
+                </div>
+
+                <div className="divide-y divide-black/[0.08]">
+                  {s.heroCard.rows.map((r, i) => (
+                    <div key={i} className="flex items-start gap-3.5 py-3.5">
+                      <span className="w-10 h-10 rounded-full bg-[#226192]/10 flex items-center justify-center text-[#226192] shrink-0">
+                        <span className="w-4 h-4 inline-flex items-center justify-center">
+                          <RowGlyph icon={r.icon} />
+                        </span>
+                      </span>
+                      <div className="min-w-0">
+                        <p className="font-medium text-[15px] text-[#1A1A1A] leading-snug">
+                          {r.text}
+                        </p>
+                        <p className="font-normal text-[13px] text-[#666666] leading-snug mt-0.5">
+                          {r.sub}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="grid grid-cols-3 gap-2.5 mt-5">
+                  {s.heroCard.metrics.map((m, i) => (
+                    <div key={i} className="bg-[#EAE6DE]/60 rounded-2xl p-3 text-center">
+                      <span className="block text-base font-semibold text-[#226192] leading-tight">
+                        {m.value}
+                      </span>
+                      <span className="block text-[10px] tracking-wider uppercase text-[#666666] mt-1">
+                        {m.label}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -215,9 +247,6 @@ export default function ServicePage({ service }: { service: Service }) {
 
       {/* ---------------- STEPS ---------------- */}
       <section className="steps">
-        <span className="wm" aria-hidden="true">
-          Process
-        </span>
         <div className="container">
           <span className="eyebrow on-blue">How it works</span>
           <h2>A simple way of working.</h2>
@@ -293,26 +322,6 @@ export default function ServicePage({ service }: { service: Service }) {
               <p>{f.a}</p>
             </details>
           ))}
-        </div>
-      </section>
-
-      {/* ---------------- FINAL CTA ---------------- */}
-      <section className="finalcta" id="book">
-        <div className="container">
-          <div className="inner">
-            <span className="wm" aria-hidden="true">
-              Arhaan
-            </span>
-            <div>
-              <span className="eyebrow on-blue">Start a collaboration</span>
-              <h2>
-                {s.finalCta.lead} <em className="hl">{s.finalCta.em}</em>
-              </h2>
-            </div>
-            <a href="/contact" className="btn btn-orange">
-              Let&apos;s build together {S.arrowUpR}
-            </a>
-          </div>
         </div>
       </section>
     </main>

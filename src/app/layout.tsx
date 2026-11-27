@@ -1,59 +1,20 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "lenis/dist/lenis.css";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 
-const mont = localFont({
-  src: [
-    {
-      path: "../../public/font/fonnts.com-Mont_Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/fonnts.com-Mont_Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
+const mont = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   variable: "--font-mont",
   display: "swap",
 });
 
-const butler = localFont({
-  src: [
-    {
-      path: "../../public/font/Butler_Light.otf",
-      weight: "300",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Butler_Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Butler-Italic.woff2",
-      weight: "400",
-      style: "italic",
-    },
-    {
-      path: "../../public/font/Butler-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Butler_Bold.otf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/Butler_Black.otf",
-      weight: "900",
-      style: "normal",
-    },
-  ],
+const butler = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
   variable: "--font-butler",
   display: "swap",
 });

@@ -318,7 +318,7 @@ function renderTitleWithEmphasis(title: string, slug: string, explicitEmphasis?:
     return (
       <>
         {before}
-        <span className="font-serif italic font-normal text-[#EF8557]">
+        <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">
           {targetWord}
         </span>
         {after}
@@ -334,7 +334,7 @@ function renderTitleWithEmphasis(title: string, slug: string, explicitEmphasis?:
     return (
       <>
         {remaining}{" "}
-        <span className="font-serif italic font-normal text-[#EF8557]">
+        <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">
           {lastWord}
         </span>
       </>
@@ -546,7 +546,7 @@ export default function BlogDetail({ blog, category }: BlogDetailProps) {
           </span>
 
           {/* Headline with Butler Italic Accent */}
-          <h1 className="font-sans font-bold text-3xl sm:text-4xl lg:text-[42px] leading-[1.1] tracking-tight text-[#121214] mb-4">
+          <h1 className="font-sans font-normal text-3xl sm:text-4xl lg:text-[42px] leading-[1.1] tracking-tight text-[#121214] mb-4">
             {renderTitleWithEmphasis(blog.title, blog.slug, blog.titleEmphasis)}
           </h1>
 

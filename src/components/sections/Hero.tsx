@@ -21,7 +21,7 @@ export default function Hero() {
       {/* Semantic H1 for SEO & Accessibility without altering visual layout */}
       <h1 className="sr-only">
         <span className="font-sans font-normal">Smart moves, </span>
-        <span className="font-serif italic font-normal text-[#226192]">real growth.</span>
+        <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#226192]">real growth.</span>
         <span> — Arhaan Shaikh | Growth Strategist &amp; Marketing Architect</span>
       </h1>
 

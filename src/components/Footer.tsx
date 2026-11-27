@@ -114,7 +114,7 @@ export default function Footer() {
               <span className="font-sans font-normal leading-[1.08] tracking-[-0.02em]">
                 project in{" "}
               </span>
-              <span className="font-serif italic font-normal text-[#EF8557] leading-[1.08]">
+              <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557] leading-[1.08]">
                 mind?
               </span>
             </h2>

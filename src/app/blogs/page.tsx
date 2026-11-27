@@ -24,9 +24,9 @@ export default function BlogsHubPage() {
 
       {/* Hero Header */}
       <header className="pt-4 pb-12 sm:pb-16 border-b border-[rgba(18,18,20,0.12)] mb-12 sm:mb-16">
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#121214] leading-[1.05] max-w-4xl">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#121214] leading-[1.05] max-w-4xl">
           Notes On{" "}
-          <span className="font-serif italic font-normal text-[#EF8557]">
+          <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">
             Growth.
           </span>
         </h1>
@@ -64,9 +64,9 @@ export default function BlogsHubPage() {
                     </span>
                   </div>
 
-                  <h2 className="text-2xl font-bold text-[#121214] tracking-tight group-hover:text-[#EF8557] transition-colors leading-snug">
+                  <h2 className="text-2xl font-normal text-[#121214] tracking-tight group-hover:text-[#EF8557] transition-colors leading-snug">
                     {cat.title}{" "}
-                    <span className="font-serif italic font-normal text-[#EF8557]">
+                    <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">
                       {cat.titleAccent}.
                     </span>
                   </h2>
@@ -91,7 +91,7 @@ export default function BlogsHubPage() {
       </section>
 
       {/* Latest Articles Feed */}
-      <section className="mb-20 sm:mb-28">
+      <section>
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-6 border-b border-[rgba(18,18,20,0.12)] mb-10">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#EF8557] mb-2">
@@ -99,7 +99,7 @@ export default function BlogsHubPage() {
               <span>CHRONOLOGICAL RELEASES</span>
             </div>
             <h2 className="text-[32px] sm:text-[40px] lg:text-[44px] font-normal leading-[1.1] tracking-[-0.02em] text-[#121214]">
-              All Latest <span className="font-serif italic font-normal text-[#EF8557]">Notes.</span>
+              All Latest <span className="font-serif italic font-semibold tracking-[-0.02em] text-[#EF8557]">Notes.</span>
             </h2>
           </div>
 
@@ -109,41 +109,6 @@ export default function BlogsHubPage() {
         </div>
 
         <BlogListing blogs={allBlogs} />
-      </section>
-
-      {/* Strategic Consultation CTA Banner */}
-      <section className="w-full rounded-[28px] bg-[#226192] text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden shadow-[0_24px_54px_rgba(34,97,146,0.22)]">
-        <div className="relative z-10 max-w-2xl">
-          <div className="inline-flex items-center gap-2 text-xs font-bold tracking-wider uppercase text-[#EF8557] mb-3">
-            <span className="w-2 h-2 rounded-full bg-[#EF8557] animate-pulse" />
-            <span>DIRECT ADVISORY</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            Have an ambitious growth problem{" "}
-            <span className="font-serif italic font-normal text-[#EF8557]">
-              in mind?
-            </span>
-          </h2>
-
-          <p className="text-base sm:text-lg text-white/80 leading-relaxed mt-4 mb-8">
-            Brand, positioning, performance, and tech working as one connected system.
-            Let&apos;s audit your bottlenecks and map a definitive roadmap.
-          </p>
-
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-[#EF8557] text-white font-bold text-sm uppercase tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-xl"
-          >
-            <span>Let&apos;s Build Together</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-
-        {/* Ambient background watermark */}
-        <div className="absolute -bottom-10 -right-10 pointer-events-none select-none opacity-[0.07] font-serif italic text-[180px] leading-none text-white z-0">
-          Growth
-        </div>
       </section>
     </div>
   );

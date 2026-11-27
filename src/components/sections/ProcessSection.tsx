@@ -48,8 +48,9 @@ const ROADMAP_STEPS = PROCESS_STEPS;
 
 export default function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const mobileTimelineRef = useRef<HTMLDivElement>(null);
 
-  // Outer runway scroll progress
+  // Outer runway scroll progress (Desktop sticky horizontal timeline)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -61,11 +62,22 @@ export default function ProcessSection() {
     mass: 0.45,
   });
 
-  // Step 1: Listen (Active upon entering)
+  // Mobile vertical timeline scroll progress (completes when Step 04 Execute is comfortably in view)
+  const { scrollYProgress: mobileScrollYProgress } = useScroll({
+    target: mobileTimelineRef,
+    offset: ["start 78%", "end 65%"],
+  });
+
+  const smoothMobileProgress = useSpring(mobileScrollYProgress, {
+    stiffness: 200,
+    damping: 30,
+    mass: 0.4,
+  });
+
+  // Desktop Node Transforms
   const node1Bg = useTransform(smoothProgress, [0, 0.05], ["#226192", "#226192"]);
   const node1Filter = useTransform(smoothProgress, [0, 0.05], ["brightness(0) invert(1)", "brightness(0) invert(1)"]);
 
-  // Step 2: Audit (Fills when continuous line reaches it at ~0.33)
   const node2Bg = useTransform(smoothProgress, [0.30, 0.34], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
@@ -73,7 +85,6 @@ export default function ProcessSection() {
     clamp: true,
   });
 
-  // Step 3: Strategize (Fills when continuous line reaches it at ~0.61)
   const node3Bg = useTransform(smoothProgress, [0.58, 0.62], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
@@ -81,7 +92,6 @@ export default function ProcessSection() {
     clamp: true,
   });
 
-  // Step 4: Execute (Fills when continuous line reaches it at ~0.88)
   const node4Bg = useTransform(smoothProgress, [0.85, 0.88], ["#FFFFFF", "#226192"], {
     clamp: true,
   });
@@ -89,30 +99,45 @@ export default function ProcessSection() {
     clamp: true,
   });
 
+  // Mobile Node Transforms (clamped [0, 1], reaches 04 Execute at 0.92)
+  const mNode1Bg = useTransform(smoothMobileProgress, [0, 0.05], ["#226192", "#226192"], { clamp: true });
+  const mNode1Filter = useTransform(smoothMobileProgress, [0, 0.05], ["brightness(0) invert(1)", "brightness(0) invert(1)"], { clamp: true });
+
+  const mNode2Bg = useTransform(smoothMobileProgress, [0.28, 0.36], ["#FFFFFF", "#226192"], { clamp: true });
+  const mNode2Filter = useTransform(smoothMobileProgress, [0.28, 0.36], ["none", "brightness(0) invert(1)"], { clamp: true });
+
+  const mNode3Bg = useTransform(smoothMobileProgress, [0.58, 0.66], ["#FFFFFF", "#226192"], { clamp: true });
+  const mNode3Filter = useTransform(smoothMobileProgress, [0.58, 0.66], ["none", "brightness(0) invert(1)"], { clamp: true });
+
+  const mNode4Bg = useTransform(smoothMobileProgress, [0.85, 0.95], ["#FFFFFF", "#226192"], { clamp: true });
+  const mNode4Filter = useTransform(smoothMobileProgress, [0.85, 0.95], ["none", "brightness(0) invert(1)"], { clamp: true });
+
   // Continuous desktop horizontal rail fill (0.05 -> 0.88)
   const desktopLineScale = useTransform(smoothProgress, [0.05, 0.88], [0, 1], {
     clamp: true,
   });
 
-  // Continuous mobile vertical rail fill (0.05 -> 0.88)
-  const mobileLineScale = useTransform(smoothProgress, [0.05, 0.88], [0, 1], {
+  // Continuous mobile vertical rail fill (0.04 -> 0.95)
+  const mobileLineScale = useTransform(smoothMobileProgress, [0.04, 0.95], [0, 1], {
     clamp: true,
   });
 
   const nodeBgs = [node1Bg, node2Bg, node3Bg, node4Bg];
   const nodeFilters = [node1Filter, node2Filter, node3Filter, node4Filter];
+  const mobileNodeBgs = [mNode1Bg, mNode2Bg, mNode3Bg, mNode4Bg];
+  const mobileNodeFilters = [mNode1Filter, mNode2Filter, mNode3Filter, mNode4Filter];
 
   return (
     <div
       ref={containerRef}
       id="process"
       style={{ backgroundColor: "#EAE6DE" }}
-      className="relative w-full h-[140vh] md:h-[115vh] bg-[#EAE6DE]"
+      className="relative w-full h-auto md:h-[115vh] bg-[#EAE6DE]"
     >
-      {/* Sticky Viewport */}
+      {/* Sticky Viewport on Desktop, Natural Flow on Mobile */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full text-[#121214] overflow-hidden select-none pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-0 px-5 sm:px-8 lg:px-16"
+        className="relative md:sticky md:top-0 w-full text-[#121214] overflow-hidden select-none py-[72px] sm:py-[84px] md:pt-[96px] lg:pt-[120px] md:pb-0 px-5 sm:px-8 lg:px-16"
       >
         <div className="w-full max-w-[1320px] mx-auto relative z-10">
 
@@ -204,15 +229,18 @@ export default function ProcessSection() {
           </div>
 
           {/* ==============================================================
-              MOBILE VIEW: FULL-HEIGHT VERTICAL DISTRIBUTION
+              MOBILE VIEW: VERTICAL TIMELINE
               ============================================================== */}
-          <div className="flex md:hidden w-full flex-col justify-between gap-6 relative mt-8 pb-2 px-1">
-            {/* Continuous Vertical Rail from center of Node 01 to center of Node 04 */}
-            <div className="absolute top-[52px] bottom-[52px] left-7 xs:left-8 w-[2px] bg-[#121214]/15 -translate-x-1/2 z-0">
+          <div
+            ref={mobileTimelineRef}
+            className="flex md:hidden w-full flex-col space-y-9 sm:space-y-10 md:space-y-0 relative mt-10"
+          >
+            {/* Continuous Vertical Rail aligned through center of 56px/64px circular nodes */}
+            <div className="absolute top-[42px] bottom-[42px] left-7 sm:left-8 w-[2px] bg-[#121214]/15 -translate-x-1/2 z-0">
               {/* Terracotta Accent Dots at Segment Midpoints */}
-              <span className="absolute top-[16.7%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] z-10 shadow-sm" />
-              <span className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] z-10 shadow-sm" />
-              <span className="absolute top-[83.3%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] z-10 shadow-sm" />
+              <span className="absolute top-[16.7%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] ring-4 ring-[#EAE6DE] z-10 shadow-sm" />
+              <span className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] ring-4 ring-[#EAE6DE] z-10 shadow-sm" />
+              <span className="absolute top-[83.3%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-[#EF8557] ring-4 ring-[#EAE6DE] z-10 shadow-sm" />
 
               {/* Progress-driven Active Fill */}
               <motion.div
@@ -224,41 +252,41 @@ export default function ProcessSection() {
               />
             </div>
 
-            {/* 4 Steps Spaced Evenly Across Available Height */}
+            {/* 4 Steps */}
             {ROADMAP_STEPS.map((step, idx) => (
               <div
                 key={step.id}
-                className="relative z-10 flex items-center gap-4 xs:gap-5"
+                className="relative z-10 flex items-center gap-4 sm:gap-5"
               >
-                {/* Circular Node Icon (Calibrated w-14/w-16) */}
+                {/* Circular Node Icon (w-14/w-16 centered on left-7/left-8) */}
                 <motion.div
                   style={{
-                    backgroundColor: nodeBgs[idx],
+                    backgroundColor: mobileNodeBgs[idx],
                   }}
-                  className="relative w-14 h-14 xs:w-16 xs:h-16 rounded-full shrink-0 flex items-center justify-center border border-[#121214]/15 shadow-[0_6px_16px_rgba(18,18,20,0.06)]"
+                  className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full shrink-0 flex items-center justify-center border border-[#121214]/15 shadow-[0_6px_16px_rgba(18,18,20,0.06)] ring-4 ring-[#EAE6DE]"
                 >
-                  <motion.div style={{ filter: nodeFilters[idx] }} className="flex items-center justify-center">
+                  <motion.div style={{ filter: mobileNodeFilters[idx] }} className="flex items-center justify-center">
                     <Image
                       src={step.iconSrc}
                       alt={step.title}
                       width={32}
                       height={32}
-                      className="w-6 h-6 xs:w-7 xs:h-7 object-contain"
+                      className="w-6 h-6 sm:w-7 sm:h-7 object-contain"
                     />
                   </motion.div>
                 </motion.div>
 
                 {/* Step Metadata */}
-                <div className="flex flex-col items-start pr-1">
+                <div className="flex flex-col items-start py-1.5 pr-1">
                   <div className="flex items-baseline gap-2 mb-0.5">
-                    <span className="font-sans not-italic font-normal text-xl xs:text-2xl text-[#EF8557]">
+                    <span className="font-sans not-italic font-normal text-xl sm:text-2xl text-[#EF8557]">
                       {step.number}
                     </span>
-                    <h3 className="font-sans font-normal text-[22px] sm:text-[24px] lg:text-[28px] leading-[1.2] tracking-[-0.015em] text-[#121214]">
+                    <h3 className="font-sans font-normal text-[22px] sm:text-[24px] leading-[1.2] tracking-[-0.015em] text-[#121214]">
                       {step.title}
                     </h3>
                   </div>
-                  <p className="font-sans font-normal text-[16px] lg:text-[17px] leading-[1.6] text-[#121214]/75 max-w-[260px] xs:max-w-xs">
+                  <p className="font-sans font-normal text-[15px] sm:text-[16px] leading-[1.6] text-[#121214]/75 max-w-[270px] sm:max-w-xs">
                     {step.description}
                   </p>
                 </div>

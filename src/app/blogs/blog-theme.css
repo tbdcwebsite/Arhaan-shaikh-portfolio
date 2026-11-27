@@ -24,19 +24,15 @@
   background-color: var(--blog-bg);
   color: var(--blog-ink);
   font-family: var(--blog-font-sans);
-  min-height: 100vh;
 }
 
-/* Base typography elements inside blogRoot */
-.blogRoot h1,
-.blogRoot h2,
-.blogRoot h3,
-.blogRoot h4 {
+/* Base typography elements inside blogRoot (low specificity so utility classes win) */
+:where(.blogRoot) :where(h1, h2, h3, h4) {
   font-family: var(--blog-font-sans);
   color: var(--blog-ink);
 }
 
-.blogRoot p {
+:where(.blogRoot) :where(p) {
   color: var(--blog-ink-soft);
 }
 

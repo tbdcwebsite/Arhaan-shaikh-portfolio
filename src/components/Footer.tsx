@@ -193,10 +193,10 @@ export default function Footer() {
 
           {/* COLUMN 2: EXPLORE */}
           <div className="flex flex-col items-start">
-            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white mb-5">
               EXPLORE
             </h4>
-            <ul className="space-y-3 font-sans text-xs sm:text-sm tracking-wide text-white/85">
+            <ul className="space-y-3 font-sans text-xs sm:text-sm tracking-wide text-white">
               <li>
                 <Link
                   href="/#about"
@@ -234,10 +234,10 @@ export default function Footer() {
 
           {/* COLUMN 3: EXPERTISE */}
           <div className="flex flex-col items-start">
-            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white mb-5">
               EXPERTISE
             </h4>
-            <ul className="space-y-3 font-sans text-xs sm:text-sm text-white/85">
+            <ul className="space-y-3 font-sans text-xs sm:text-sm text-white">
               <li>
                 <Link
                   href="/services/go-to-market"
@@ -275,12 +275,12 @@ export default function Footer() {
 
           {/* COLUMN 4: CONTACT US */}
           <div className="flex flex-col items-start">
-            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white/85 mb-5">
+            <h4 className="font-sans text-xs font-bold tracking-[0.12em] uppercase text-white mb-5">
               CONTACT US
             </h4>
 
             {/* Standard Contact Items */}
-            <div className="space-y-3 w-full font-sans text-xs sm:text-sm text-white/85">
+            <div className="space-y-3 w-full font-sans text-xs sm:text-sm text-white">
 
               {/* Email */}
               <a
@@ -301,7 +301,7 @@ export default function Footer() {
               </a>
 
               {/* Address */}
-              <div className="flex items-start gap-2.5 text-white/70">
+              <div className="flex items-start gap-2.5 text-white/80">
                 <MapPin className="w-4 h-4 text-[#EF8557] shrink-0 mt-0.5" />
                 <span className="leading-relaxed text-xs sm:text-[13px]">
                   The Bombay Digital Company, Plot no.381, RSC Rd Number 1A, Near Axis bank, opposite Shivneri building, Gorai 2, Borivali West, Mumbai, Maharashtra 400091
@@ -317,7 +317,7 @@ export default function Footer() {
             BOTTOM DIVIDER & COPYRIGHT ROW (WITH LIVE TIME CLOCK)
             ============================================================== */}
         <div className="w-full border-t border-white/15 pt-8 mt-12 flex flex-col md:flex-row items-center md:justify-between text-center md:text-left gap-4 text-xs text-white/60">
-          <p>© 2026 Arhaan Shaikh. All rights reserved.</p>
+          <p className="text-white/60">© 2026 Arhaan Shaikh. All rights reserved.</p>
 
           {/* Live Clock Badge */}
           <div className="flex items-center gap-2 font-sans text-[11px] font-normal tracking-[0.06em] text-white/50" suppressHydrationWarning>

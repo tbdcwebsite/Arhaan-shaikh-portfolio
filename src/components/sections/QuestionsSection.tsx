@@ -8,7 +8,6 @@ import {
   useScroll,
   useTransform,
   useSpring,
-  MotionValue,
 } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -71,129 +70,106 @@ const SERVICES_DATA: ServiceCard[] = [
 ];
 
 // =========================================================================
-// PREVIOUS MOBILE STACKED CARD (WITH SLOWER, CALIBRATED TIMING)
+// MOBILE STICKY STACKED CARD (NATURAL FLOW + GPU SCALE)
 // =========================================================================
 function MobileCardItem({
   card,
   index,
   total,
-  smoothProgress,
 }: {
   card: ServiceCard;
   index: number;
   total: number;
-  smoothProgress: MotionValue<number>;
 }) {
+  const cardRef = useRef<HTMLDivElement>(null);
   const isCream = card.theme === "cream";
   const isTerracotta = card.theme === "terracotta";
+  const isLast = index === total - 1;
 
-  // Calibrated step duration and gap for slower, relaxed stacking
-  const stepDuration = 0.13;
-  const stepGap = 0.035;
+  const { scrollYProgress: cardProgress } = useScroll({
+    target: cardRef,
+    offset: ["start 120px", "end start"],
+  });
 
-  const start = 0.06 + (index - 1) * (stepDuration + stepGap);
-  const end = start + stepDuration;
-  const nextStart = end + stepGap;
-  const nextEnd = nextStart + stepDuration;
-
-  // Vertical arrival from bottom
-  const y = useTransform(
-    smoothProgress,
-    index === 0
-      ? [0, 1]
-      : [Math.max(0, start - 0.05), Math.max(0, start), Math.min(1, end)],
-    index === 0 ? [0, 0] : [520, 520, 0]
-  );
-
-  // Soft arrival opacity
-  const opacity = useTransform(
-    smoothProgress,
-    index === 0
-      ? [0, 1]
-      : [Math.max(0, start - 0.04), Math.max(0, start + 0.03)],
-    index === 0 ? [1, 1] : [0, 1]
-  );
-
-  // Stacking depth scale: compresses slightly as next card covers it
+  // Subtle GPU-composited scale compression as subsequent cards stack over earlier ones
   const scale = useTransform(
-    smoothProgress,
-    index === total - 1
-      ? [0, 1]
-      : index === 0
-        ? [0, 0.06, 0.22, 1]
-        : [0, start, end, nextStart, Math.min(1, nextEnd), 1],
-    index === total - 1
-      ? [1, 1]
-      : index === 0
-        ? [1, 1, 0.94, 0.94]
-        : [1, 1, 1, 1, 0.94, 0.94]
+    cardProgress,
+    [0, 1],
+    [1, isLast ? 1 : 0.94],
+    { clamp: true }
   );
+
+  // Disciplined sticky top cadence capped at +32px so card 05 never traps off-screen
+  const stickyTop = 88 + Math.min(index, 4) * 8;
 
   return (
-    <motion.div
+    <div
+      ref={cardRef}
       style={{
-        y,
-        scale,
-        opacity,
-        top: `${index * 8}px`,
+        top: `${stickyTop}px`,
         zIndex: index + 10,
       }}
-      className="absolute inset-x-0 will-change-transform flex justify-center"
+      className="sticky w-full flex justify-center"
     >
-      <Link
-        href={card.href}
-        className={`group w-full h-[470px] xs:h-[510px] sm:h-[540px] max-h-[66dvh] rounded-[20px] p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 shadow-none hover:shadow-none focus-visible:shadow-none ${isCream
-          ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
-          : isTerracotta
-            ? "bg-[#EF8557] text-white"
-            : "bg-[#226192] text-white"
-          }`}
+      <motion.div
+        style={{ scale }}
+        className="w-full origin-top will-change-transform"
       >
-        <div className="w-full flex items-start justify-start">
-          <span
-            className={`font-sans not-italic font-normal text-4xl xs:text-5xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
-              }`}
-          >
-            {card.number}
-          </span>
-        </div>
-
-        {/* Refined Centerpiece Image */}
-        <div className="flex-1 w-full flex items-center justify-center my-4">
-          <div className="relative w-[155px] h-[155px] sm:w-[175px] sm:h-[175px] md:w-[160px] md:h-[160px] flex items-center justify-center">
-            <Image
-              src={card.iconSrc}
-              alt={card.alt}
-              width={180}
-              height={180}
-              priority={index <= 2}
-              className="w-full h-full object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-none"
-            />
+        <Link
+          href={card.href}
+          className={`group w-full h-[430px] sm:h-[470px] max-h-[66dvh] rounded-[20px] p-6 lg:p-7 flex flex-col justify-between transition-colors duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#226192] focus-visible:ring-offset-2 shadow-none hover:shadow-none focus-visible:shadow-none ${isCream
+            ? "bg-[#FAF8F5] border border-[#121214]/10 text-[#121214]"
+            : isTerracotta
+              ? "bg-[#EF8557] text-white"
+              : "bg-[#226192] text-white"
+            }`}
+        >
+          <div className="w-full flex items-start justify-start">
+            <span
+              className={`font-sans not-italic font-normal text-4xl sm:text-5xl leading-none select-none ${isCream ? "text-[#226192]" : "text-white"
+                }`}
+            >
+              {card.number}
+            </span>
           </div>
-        </div>
 
-        {/* Card Footer */}
-        <div className="w-full min-h-[52px] flex items-center justify-between gap-4 pt-4 border-t border-current/10">
-          <h3
-            className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
-              }`}
-          >
-            {card.title}
-          </h3>
-
-          <div
-            className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center shadow-none transition-transform duration-300 ${isCream
-              ? "bg-[#226192] text-white"
-              : isTerracotta
-                ? "bg-white text-[#EF8557]"
-                : "bg-white text-[#226192]"
-              }`}
-          >
-            <ArrowRight className="w-4 h-4 xs:w-4.5 xs:h-4.5 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
+          {/* Refined Centerpiece Image */}
+          <div className="flex-1 w-full flex items-center justify-center my-4">
+            <div className="relative w-[155px] h-[155px] sm:w-[175px] sm:h-[175px] md:w-[160px] md:h-[160px] flex items-center justify-center">
+              <Image
+                src={card.iconSrc}
+                alt={card.alt}
+                width={180}
+                height={180}
+                priority={index <= 2}
+                className="w-full h-full object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-none"
+              />
+            </div>
           </div>
-        </div>
-      </Link>
-    </motion.div>
+
+          {/* Card Footer */}
+          <div className="w-full min-h-[52px] flex items-center justify-between gap-4 pt-4 border-t border-current/10">
+            <h3
+              className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
+                }`}
+            >
+              {card.title}
+            </h3>
+
+            <div
+              className={`w-11 h-11 min-w-[44px] min-h-[44px] rounded-full flex items-center justify-center shrink-0 self-center shadow-none transition-transform duration-300 ${isCream
+                ? "bg-[#226192] text-white"
+                : isTerracotta
+                  ? "bg-white text-[#EF8557]"
+                  : "bg-white text-[#226192]"
+                }`}
+            >
+              <ArrowRight className="w-4 h-4 stroke-[2.4] transition-transform duration-300 ease-out group-hover:-rotate-45" />
+            </div>
+          </div>
+        </Link>
+      </motion.div>
+    </div>
   );
 }
 
@@ -253,19 +229,17 @@ export default function QuestionsSection() {
   const desktopTranslateX = useTransform(smoothProgress, [0, 1], [0, -maxScrollX]);
 
   return (
-    // Runway calibrated to 520vh on mobile to provide relaxed stacking scroll pacing for 5 cards
-    // Runway calibrated to 200vh on mobile and 150vh on desktop to eliminate dead-scroll while keeping smooth card pacing
     <div
       ref={trackRef}
       id="services"
-      className="relative w-full h-[175vh] sm:h-[160vh] lg:h-[135vh]"
+      className="relative w-full h-auto lg:h-[135vh] overflow-x-clip"
     >
       <span id="questions" className="absolute -top-24 pointer-events-none opacity-0" />
 
-      {/* Sticky Viewport */}
+      {/* Sticky Viewport on Desktop (lg+), Natural Sticky Stack Flow on Mobile */}
       <section
         style={{ backgroundColor: "#EAE6DE" }}
-        className="sticky top-0 w-full text-[#121214] overflow-visible lg:overflow-hidden select-none pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-[72px] md:pb-[96px] lg:pb-0 px-5 sm:px-8 lg:px-16"
+        className="relative lg:sticky lg:top-0 w-full text-[#121214] overflow-x-clip lg:overflow-hidden select-none pt-[64px] sm:pt-[72px] md:pt-[96px] lg:pt-[120px] pb-10 sm:pb-12 lg:pb-0 px-5 sm:px-8 lg:px-16"
       >
         <div className="w-full max-w-[1320px] mx-auto relative z-10">
 
@@ -363,17 +337,16 @@ export default function QuestionsSection() {
           </div>
 
           {/* ==============================================================
-              MOBILE VIEW: LAYERED STACKING CARDS (SLOW & SMOOTH SPEED)
+              MOBILE VIEW: NATURAL STICKY STACKING CARDS
               ============================================================== */}
-          <div className="flex lg:hidden w-full items-center justify-center relative overflow-visible mt-8">
-            <div className="relative w-full max-w-[360px] xs:max-w-[390px] sm:max-w-[430px] h-[510px] xs:h-[550px] sm:h-[580px] overflow-visible flex items-center justify-center">
+          <div className="flex lg:hidden w-full justify-center mt-8">
+            <div className="w-full max-w-[390px] sm:max-w-[430px] flex flex-col gap-6">
               {SERVICES_DATA.map((card, idx) => (
                 <MobileCardItem
                   key={card.id}
                   card={card}
                   index={idx}
                   total={SERVICES_DATA.length}
-                  smoothProgress={smoothProgress}
                 />
               ))}
             </div>

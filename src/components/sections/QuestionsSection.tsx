@@ -159,19 +159,21 @@ function MobileCardItem({
         </div>
 
         {/* Refined Centerpiece Image */}
-        <div className="relative w-full h-36 xs:h-40 flex items-center justify-center mt-6 px-6 py-2">
-          <Image
-            src={card.iconSrc}
-            alt={card.alt}
-            width={160}
-            height={160}
-            priority={index <= 2}
-            className="max-h-[130px] xs:max-h-[145px] w-auto h-auto object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-none"
-          />
+        <div className="flex-1 w-full flex items-center justify-center my-4">
+          <div className="relative w-[155px] h-[155px] sm:w-[175px] sm:h-[175px] md:w-[160px] md:h-[160px] flex items-center justify-center">
+            <Image
+              src={card.iconSrc}
+              alt={card.alt}
+              width={180}
+              height={180}
+              priority={index <= 2}
+              className="w-full h-full object-contain pointer-events-none select-none transition-transform duration-500 ease-out group-hover:scale-105 drop-shadow-none"
+            />
+          </div>
         </div>
 
         {/* Card Footer */}
-        <div className="w-full min-h-[52px] flex items-center justify-between gap-4 mt-6 pt-4 border-t border-current/10">
+        <div className="w-full min-h-[52px] flex items-center justify-between gap-4 pt-4 border-t border-current/10">
           <h3
             className={`font-sans font-normal text-[16px] lg:text-[17px] leading-[1.3] tracking-[-0.01em] line-clamp-2 ${isCream ? "text-[#121214]" : "text-white"
               }`}
